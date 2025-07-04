@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm7vy88muwfjg"]
+
+[ext_resource type="Script" uid="uid://btbs55x6fvcv0" path="res://GameSystem/FogManager/fog_manager.gd" id="1_elmru"]
+[ext_resource type="Shader" uid="uid://ctb8fk7x8a7jf" path="res://GameSystem/FogManager/FogShader.gdshader" id="2_v6yom"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vq132"]
+shader = ExtResource("2_v6yom")
+shader_parameter/color = Color(0.0666667, 0.14902, 0.215686, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_elmru"]
+blend_mode = 2
+
+[node name="FogManager" type="Node2D"]
+script = ExtResource("1_elmru")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_vq132")
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_elmru")
+color = Color(0.0680629, 0.14733, 0.215777, 1)
+polygon = PackedVector2Array(170.25, 77)
+uv = PackedVector2Array(170.25, 77)
+
+[node name="LightNodes" type="Node2D" parent="CanvasGroup"]
+unique_name_in_owner = true

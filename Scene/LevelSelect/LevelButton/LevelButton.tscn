@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cchessmlkpvjk"]
+
+[ext_resource type="Script" uid="uid://176f6l6i6eon" path="res://Scene/LevelSelect/LevelButton/level_button.gd" id="1_i85sd"]
+
+[node name="LevelButton" type="Button"]
+custom_minimum_size = Vector2(80, 80)
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+script = ExtResource("1_i85sd")

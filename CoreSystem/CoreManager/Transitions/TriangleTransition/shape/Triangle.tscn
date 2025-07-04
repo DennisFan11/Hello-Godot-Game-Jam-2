@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://4m4ofmhh0g84"]
+
+[ext_resource type="Script" uid="uid://c54ojsfq8644y" path="res://CoreSystem/CoreManager/Transitions/TriangleTransition/shape/triangle.gd" id="1_fptwn"]
+
+[node name="Triangle" type="Polygon2D"]
+script = ExtResource("1_fptwn")
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+closed = true
+default_color = Color(0.129558, 0.129558, 0.129558, 1)

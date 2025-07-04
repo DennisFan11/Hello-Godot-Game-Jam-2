@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://br1xugc67v6uv"]
+
+[ext_resource type="Script" uid="uid://d3c75qlbwd4cx" path="res://CoreSystem/CoreManager/Transitions/ITransition.gd" id="1_0jy0i"]
+[ext_resource type="Shader" uid="uid://c5c21024dahon" path="res://CoreSystem/CoreManager/Transitions/TriangleTransitionShader/TriangleTransitionShader.gdshader" id="2_f0ef5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyu0j"]
+shader = ExtResource("2_f0ef5")
+shader_parameter/EDGE = 0.94
+
+[node name="TriangleTransitionShader" type="Node"]
+script = ExtResource("1_0jy0i")
+metadata/_custom_type_script = "uid://d3c75qlbwd4cx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_cyu0j")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1980.0
+offset_bottom = -955.0
+grow_horizontal = 2
+grow_vertical = 2

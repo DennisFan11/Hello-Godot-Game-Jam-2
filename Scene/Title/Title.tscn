@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg4ji6py6jgn8"]
+
+[ext_resource type="Script" uid="uid://b2k1ue4nboo5g" path="res://Scene/Title/Title.gd" id="1_o7trp"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_o7trp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.178212, 0.178212, 0.178212, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 150.0
+offset_right = 1020.0
+offset_bottom = 373.0
+rotation = -0.165328
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "Title"
+scroll_active = false
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 80
+text = "Start Game"
+
+[node name="CreditButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Credit"
+
+[node name="Discord" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+offset_left = 1142.0
+offset_top = 709.0
+offset_right = 1642.0
+offset_bottom = 829.0
+pivot_offset = Vector2(250, 60)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Join the [url=https://discord.gg/n7xJ8QFwra]Discord[/url]~
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/CenterContainer/VBoxContainer/CreditButton" to="." method="_on_credit_button_button_down"]
+[connection signal="meta_clicked" from="CanvasLayer/Discord" to="." method="_on_discord_meta_clicked"]

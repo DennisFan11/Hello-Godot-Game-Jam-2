@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch86uotetkbml"]
+
+[ext_resource type="Script" uid="uid://c13yeti4w64sv" path="res://GameSystem/FogManager/LineLight/line_light.gd" id="1_lmvvn"]
+
+[sub_resource type="Gradient" id="Gradient_d0pju"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.510417, 1)
+colors = PackedColorArray(1, 1, 1, 0.521569, 1, 1, 1, 1, 1, 1, 1, 0.521569)
+
+[sub_resource type="Gradient" id="Gradient_lmvvn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.539773, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d0pju"]
+gradient = SubResource("Gradient_lmvvn")
+fill_to = Vector2(0, 1)
+
+[node name="LineLight" type="Node2D"]
+script = ExtResource("1_lmvvn")
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 27.2884, 17.8615, 55, 36)
+gradient = SubResource("Gradient_d0pju")
+texture = SubResource("GradientTexture2D_d0pju")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

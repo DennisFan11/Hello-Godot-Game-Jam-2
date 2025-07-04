@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="BuildingConfig" load_steps=7 format=3 uid="uid://bgqyjpa0ubmsi"]
+
+[ext_resource type="Script" uid="uid://biay4ig8d0j6q" path="res://GameSystem/ItemManager/PackedItem.gd" id="1_4xg15"]
+[ext_resource type="Script" uid="uid://kmvnh4uxay3n" path="res://CoreSystem/DI/Resource/BuildingConfig.gd" id="1_higso"]
+
+[sub_resource type="Resource" id="Resource_bxbdx"]
+script = ExtResource("1_4xg15")
+Rock = 0
+Iorn = 0
+HardRock = 1
+ManaStone = 0
+metadata/_custom_type_script = "uid://biay4ig8d0j6q"
+
+[sub_resource type="Resource" id="Resource_4xg15"]
+script = ExtResource("1_4xg15")
+Rock = 0
+Iorn = 1
+HardRock = 0
+ManaStone = 0
+metadata/_custom_type_script = "uid://biay4ig8d0j6q"
+
+[sub_resource type="Resource" id="Resource_iephw"]
+script = ExtResource("1_4xg15")
+Rock = 0
+Iorn = 0
+HardRock = 0
+ManaStone = 3
+metadata/_custom_type_script = "uid://biay4ig8d0j6q"
+
+[sub_resource type="Resource" id="Resource_k5foh"]
+script = ExtResource("1_4xg15")
+Rock = 0
+Iorn = 5
+HardRock = 0
+ManaStone = 0
+metadata/_custom_type_script = "uid://biay4ig8d0j6q"
+
+[resource]
+script = ExtResource("1_higso")
+hardrock_wall_cost = SubResource("Resource_bxbdx")
+iorn_wall_cost = SubResource("Resource_4xg15")
+radar_cost = SubResource("Resource_iephw")
+turret_cost = SubResource("Resource_k5foh")
+metadata/_custom_type_script = "uid://kmvnh4uxay3n"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcvphcm5mrft5"]
+
+[ext_resource type="Script" uid="uid://nrcxreuu5005" path="res://Asset/Class/hint/hinter.gd" id="1_dxmsb"]
+[ext_resource type="FontFile" uid="uid://ccjd5bwkp56le" path="res://Asset/Fonts/Sour_Gummy/SDF_light.ttf" id="2_22n0j"]
+
+[node name="Hinter" type="Node2D"]
+script = ExtResource("1_dxmsb")
+dist = 10.0
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.25, 0.25)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -98.5
+offset_right = 148.0
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_22n0j")
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+closed = true
+width = 1.5

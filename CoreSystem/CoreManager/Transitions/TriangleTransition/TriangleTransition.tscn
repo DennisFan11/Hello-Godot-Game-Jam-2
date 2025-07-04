@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cql8o1y2hvpls"]
+
+[ext_resource type="Script" uid="uid://x1lxvjth0rbm" path="res://CoreSystem/CoreManager/Transitions/TriangleTransition/TriangleTransition.gd" id="1_vsss8"]
+[ext_resource type="Script" uid="uid://homttye2pt8k" path="res://Asset/Class/GradientTexture2DMap.gd" id="2_w3awm"]
+
+[sub_resource type="Gradient" id="Gradient_nj0tr"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.515, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bf7wa"]
+gradient = SubResource("Gradient_nj0tr")
+fill_to = Vector2(1, 1)
+script = ExtResource("2_w3awm")
+metadata/_custom_type_script = "uid://homttye2pt8k"
+
+[node name="TriangleTransition" type="Node"]
+script = ExtResource("1_vsss8")
+anime_map = SubResource("GradientTexture2D_bf7wa")
+metadata/_custom_type_script = "uid://d3c75qlbwd4cx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 18
