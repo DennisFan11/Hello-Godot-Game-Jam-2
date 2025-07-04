@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cn83unxe8000m" path="res://GameSystem/CameraManager/CameraManager.tscn" id="3_6fmk2"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
 
-[node name="BaseScene" type="Node2D"]
+[node name="GameManager" type="Node2D"]
 script = ExtResource("1_jcyoa")
 
 [node name="ParticleManager" parent="." instance=ExtResource("11_khy4d")]

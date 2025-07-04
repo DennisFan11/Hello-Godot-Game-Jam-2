@@ -21,14 +21,6 @@ func _ready() -> void:
 	
 	## 遞歸重新注入
 	DI.injection(self, true)
-	
-	scene_init()
-
-
-
-## 流程圖
-## _load -> _game_start ->  
-func scene_init():
 	#SoundManager.play_bgm_stack("game_normal")
 	#await _load()
 	await get_tree().process_frame

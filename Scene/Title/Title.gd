@@ -7,7 +7,7 @@ func _ready() -> void:
 	#SoundManager.play_bgm("menu")
 
 func _on_button_pressed() -> void:
-	await CoreManager.goto_scene("LevelSelect")
+	await CoreManager.goto_scene("Level1")
 	#CoreManager.enter_game()
 
 

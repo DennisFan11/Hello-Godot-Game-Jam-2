@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 
-const TIME = 1.5
+const TIME = 0.5
 func _in():
 	_spawn_triangle()
 	var tween = get_tree().create_tween()

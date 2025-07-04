@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://jghh2wj4o126"]
+
+[ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_4no0k"]
+
+[node name="Level1" instance=ExtResource("1_4no0k")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[font_size=70]LEVEL 1"
+fit_content = true
+horizontal_alignment = 2

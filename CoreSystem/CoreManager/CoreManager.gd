@@ -5,8 +5,8 @@ var SCENE := {
 	"Title":{
 		"file":preload("uid://bg4ji6py6jgn8")
 	},
-	"LevelSelect":{
-		"file":preload("uid://fbg7a35l7a4s")
+	"Level1":{
+		"file":preload("uid://jghh2wj4o126")
 	},
 	"Endding":{
 		"file":preload("uid://cv2bm6xikqx7q")
