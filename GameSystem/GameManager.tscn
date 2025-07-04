@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=5 format=3 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
-[ext_resource type="PackedScene" uid="uid://cn83unxe8000m" path="res://GameSystem/CameraManager/CameraManager.tscn" id="3_6fmk2"]
+[ext_resource type="TileSet" uid="uid://b0cto2wqefjcl" path="res://Asset/Tilemap/Tileset.tres" id="4_20ou5"]
+[ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
 
 [node name="GameManager" type="Node2D"]
@@ -9,6 +10,9 @@ script = ExtResource("1_jcyoa")
 
 [node name="ParticleManager" parent="." instance=ExtResource("11_khy4d")]
 
-[node name="Camera" parent="." instance=ExtResource("3_6fmk2")]
+[node name="Block" type="TileMapLayer" parent="." groups=["Block"]]
+tile_set = ExtResource("4_20ou5")
+
+[node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

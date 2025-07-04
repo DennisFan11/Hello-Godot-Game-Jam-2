@@ -2,21 +2,29 @@ extends Camera2D
 
 
 func _ready() -> void:
-	DI.register("_camera_manager", self)
+	#DI.register("_camera_manager", self)
 	%AudioListener2D.make_current()
 
-
+var _player_manager: PlayerManager
 
 const SPEED:float = 5 # lerp time
+
+var target := Vector2.ZERO
 func _process(delta: float) -> void:
-	var target = Vector2.ZERO # FIXME
+	if not _player_manager: return
+	if not _player_manager.player: return
+	
+	target = _player_manager.player.position
 	if target:
 		position = position.lerp(target, SPEED*delta)
 	
+
+
+
+
+
 const ZOOM_SPEED:float = 1.2 
 const ZOOM_TIME:float = 0.08 #0.05
-
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("scroll_down"):
 		#%Camera2D.zoom *= 0.9

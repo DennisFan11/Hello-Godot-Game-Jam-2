@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg4ag1spy7bdx"]
+
+[ext_resource type="Script" uid="uid://xa0qokdojcla" path="res://GameSystem/PlayerManager/PlayerManager.gd" id="1_ne4h4"]
+[ext_resource type="Script" uid="uid://d4kvnwbk24my8" path="res://GameSystem/PlayerManager/Camera.gd" id="2_b5ih3"]
+
+[node name="PlayerManager" type="Node2D"]
+script = ExtResource("1_ne4h4")
+
+[node name="SpawnMarker2D" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_b5ih3")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+unique_name_in_owner = true
