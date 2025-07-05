@@ -11,8 +11,7 @@ config_version=5
 [application]
 
 config/name="Hello-Godot-Game-Jam-2"
-config/tags=PackedStringArray("template")
-run/main_scene="uid://bg4ji6py6jgn8"
+run/main_scene="uid://ck880glpw7yhe"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -44,6 +43,8 @@ folder_colors={
 [global_group]
 
 Block=""
+Player=""
+Enemy=""
 
 [input]
 
@@ -110,12 +111,8 @@ shift={
 [layer_names]
 
 2d_render/layer_10="buildingUI"
-2d_physics/layer_1="Player"
-2d_physics/layer_2="TileMap"
-2d_physics/layer_3="RIgidItem"
-2d_physics/layer_4="Building"
-2d_physics/layer_7="Player"
-2d_physics/layer_8="Enemy"
+2d_physics/layer_1="Player, Wall"
+2d_physics/layer_2="Enemy"
 2d_physics/layer_20="PlayerBuilding"
 2d_physics/layer_21="EnemyBuilding"
 

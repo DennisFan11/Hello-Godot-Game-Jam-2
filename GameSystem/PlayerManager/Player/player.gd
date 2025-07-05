@@ -14,11 +14,11 @@ func _physics_process(delta: float) -> void:
 
 
 const MAX_SPEED := 100.0 # 330
-const INCREASE := 5.0
-const DECREASE := 10.0 #0.17
+const INCREASE := 7.0
+const DECREASE := 20.0 #0.17
 
-const GRAVITY := MAX_SPEED*5.0
-const JUMP_SPEED := GRAVITY/2.0
+const GRAVITY := MAX_SPEED*10.0
+const JUMP_SPEED := GRAVITY * 0.27
 
 enum {IDLE, ON_WALL}
 

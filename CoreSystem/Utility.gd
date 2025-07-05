@@ -65,6 +65,10 @@ func collide_query_circle(
 
 
 
-
+func raycast(from: Vector2, to: Vector2, exclude: Array = [], collision_mask: int = 0x7FFFFFFF) -> Dictionary:
+	var space_state = get_world_2d().direct_space_state
+	return space_state.intersect_ray(
+		PhysicsRayQueryParameters2D.create(from, to, collision_mask, exclude)
+	)
 
 #

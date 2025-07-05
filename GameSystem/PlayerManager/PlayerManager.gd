@@ -17,3 +17,6 @@ func spawn_player():
 	player = PLAYER_SCENE.instantiate()
 	player.position = %SpawnMarker2D.global_position
 	add_child(player)
+
+func get_player_position()-> Vector2:
+	return player.position if player else Vector2.ZERO
