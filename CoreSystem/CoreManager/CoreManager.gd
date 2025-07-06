@@ -2,26 +2,29 @@ extends Node
 # CORE MANAGER 可以在此取得 GameSystem
 
 var SCENE := {
-	"Title":{
-		"file":preload("uid://bg4ji6py6jgn8")
+	"Title": {
+		"file": preload("uid://bg4ji6py6jgn8")
 	},
-	"Level1":{
-		"file":preload("uid://jghh2wj4o126")
+	"Level1": {
+		"file": preload("uid://jghh2wj4o126")
 	},
-	"Endding":{
-		"file":preload("uid://cv2bm6xikqx7q")
+	"UpgradeShop": {
+		"file": preload("uid://c0p31kfgvdkkq")
+	},
+	"Endding": {
+		"file": preload("uid://cv2bm6xikqx7q")
 	}
 }
 
 var TRANSITION := {
-	"Triangle":preload("uid://cql8o1y2hvpls")
+	"Triangle": preload("uid://cql8o1y2hvpls")
 }
 
 ## how to use: 
 # CoreManager.goto_scene("GameScene").enter_game()
 # CoreManager.goto_scene("Menu").exit_game()
 
-func goto_scene(scene: String, trans: String="Triangle"):
+func goto_scene(scene: String, trans: String = "Triangle"):
 	if not SCENE.has(scene):
 		printerr('CoreManager.goto_scene({0}): 無效目標'.format([name]))
 		return self
@@ -40,16 +43,16 @@ func goto_scene(scene: String, trans: String="Triangle"):
 
 ## PRIVATE
 var _transition_cache = {}
-func _call_transition(trans: String, type: bool)-> Signal:
+func _call_transition(trans: String, type: bool) -> Signal:
 	
 	if not _transition_cache.has(trans) or !is_instance_valid(_transition_cache[trans]):
 		_transition_cache[trans] = TRANSITION[trans].instantiate()
 		add_child(_transition_cache[trans])
 	var node = _transition_cache[trans]
-	if type: 
+	if type:
 		node._in()
 		return node.in_end
-	else: 
+	else:
 		node._out()
 		return node.out_end
 

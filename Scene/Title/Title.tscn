@@ -43,6 +43,12 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 80
 text = "Start Game"
 
+[node name="UpgradeShopButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 80
+text = "🛍️ Upgrade Shop"
+
 [node name="CreditButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
@@ -66,5 +72,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/UpgradeShopButton" to="." method="_on_upgrade_shop_button_pressed"]
 [connection signal="button_down" from="CanvasLayer/CenterContainer/VBoxContainer/CreditButton" to="." method="_on_credit_button_button_down"]
 [connection signal="meta_clicked" from="CanvasLayer/Discord" to="." method="_on_discord_meta_clicked"]
