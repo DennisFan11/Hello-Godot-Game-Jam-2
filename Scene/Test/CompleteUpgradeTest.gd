@@ -5,6 +5,7 @@ extends Node2D
 
 # 依賴注入 - 將自動被 DI 系統注入
 var _player_upgrade_system
+var _player_inventory_system
 
 # UI 元件
 @onready var info_panel: Panel

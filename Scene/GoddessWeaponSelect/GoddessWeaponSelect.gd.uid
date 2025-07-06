@@ -1,0 +1,13 @@
+[remap]
+
+importer="scene"
+type="PackedScene"
+uid="uid://d0t4w5bfhv8jn"
+path="res://.godot/imported/GoddessWeaponSelect.tscn-b24b8ab2c5e2ce3f7a93b5b9d8f4a3e5.scn"
+
+[deps]
+
+source_file="res://Scene/GoddessWeaponSelect/GoddessWeaponSelect.tscn"
+dest_files=["res://.godot/imported/GoddessWeaponSelect.tscn-b24b8ab2c5e2ce3f7a93b5b9d8f4a3e5.scn"]
+
+[params]
