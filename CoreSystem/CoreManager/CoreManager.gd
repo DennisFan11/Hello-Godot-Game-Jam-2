@@ -55,4 +55,41 @@ func _call_transition(trans: String, type: bool)-> Signal:
 
 ## GAME MANAGER
 
+# 升級系統管理
+var _player_upgrade_system: PlayerUpgradeSystem = null
+
+func _ready():
+	print("CoreManager 正在初始化...")
+	
+	# 初始化升級系統
+	_initialize_upgrade_system()
+	
+	print("✓ CoreManager 初始化完成")
+
+func _initialize_upgrade_system():
+	"""初始化並註冊升級系統到 DI"""
+	print("初始化升級系統...")
+	
+	# 創建升級系統實例
+	var upgrade_system_script = preload("res://GameSystem/PlayerManager/PlayerUpgradeSystem.gd")
+	_player_upgrade_system = upgrade_system_script.new()
+	
+	# 將升級系統加入 CoreManager 的場景樹中
+	add_child(_player_upgrade_system)
+	
+	# 註冊到 DI 系統
+	DI.register("_player_upgrade_system", _player_upgrade_system)
+	
+	print("✓ 升級系統已創建並註冊到 DI 系統")
+
+func get_upgrade_system() -> PlayerUpgradeSystem:
+	"""獲取升級系統實例"""
+	return _player_upgrade_system
+
+func reset_upgrade_system():
+	"""重置升級系統（測試用）"""
+	if _player_upgrade_system != null:
+		_player_upgrade_system.reset_upgrades()
+		print("✓ 升級系統已重置")
+
 #

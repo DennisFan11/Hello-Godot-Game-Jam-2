@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d31s52ob7ncne"]
+
+[ext_resource type="Script" uid="uid://b3i1is3i63i5i" path="res://Scene/Test/CompleteUpgradeTest.gd" id="1_is27u"]
+
+[node name="CompleteUpgradeTest" type="Node2D"]
+script = ExtResource("1_is27u")
