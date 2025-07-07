@@ -14,6 +14,23 @@ var inventory_system # PlayerInventorySystem 的引用
 @onready var weapon_selection_panel: Panel = $WeaponSelectionPanel
 @onready var weapon_buttons_container: HBoxContainer = $WeaponSelectionPanel/WeaponButtonsContainer
 
+# 武器按鈕
+@onready var weapon_button1: Button = $WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container/WeaponButton1
+@onready var weapon_button2: Button = $WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container/WeaponButton2
+@onready var weapon_button3: Button = $WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container/WeaponButton3
+
+# 武器按鈕描述
+@onready var weapon_button1_description: Label = $WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container/WeaponButton1Description
+@onready var weapon_button2_description: Label = $WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container/WeaponButton2Description
+@onready var weapon_button3_description: Label = $WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container/WeaponButton3Description
+
+# 武器按鈕陣列（方便動態處理）
+var weapon_buttons: Array[Button] = []
+var weapon_descriptions: Array[Label] = []
+
+# 當前顯示的武器（用於隨機選擇）
+var current_displayed_weapons: Array[Dictionary] = []
+
 # 女神圖片
 var goddess_image: TextureRect
 
@@ -81,7 +98,14 @@ func _load_dialogue_texts():
 						if weapon is Dictionary:
 							weapons_config.append(weapon)
 				
-				print("對話文本載入成功")
+				print("✓ 對話文本載入成功")
+				print("✓ 載入了 %d 個對話文本" % dialogue_texts.size())
+				print("✓ 載入了 %d 個武器配置" % weapons_config.size())
+				
+				# 列出載入的武器
+				for i in range(weapons_config.size()):
+					var weapon = weapons_config[i]
+					print("  - 武器 %d: %s (%s)" % [i + 1, weapon.name, weapon.id])
 			else:
 				print("JSON 解析失敗: ", json.get_error_message())
 				print("找不到有效的對話文本")
@@ -104,8 +128,8 @@ func _setup_ui():
 	dialogue_panel.visible = true
 	continue_button.pressed.connect(_on_continue_pressed)
 	
-	# 創建武器選擇按鈕
-	_create_weapon_buttons()
+	# 設置武器按鈕
+	_setup_weapon_buttons()
 
 func _create_goddess_image():
 	"""創建女神圖片"""
@@ -120,37 +144,40 @@ func _create_goddess_image():
 	goddess_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	goddess_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	
+	# 重要：設置為忽略鼠標事件，防止攔截按鈕點擊
+	goddess_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	# 使用圖片的原始大小
 	if goddess_texture:
 		var original_size = goddess_texture.get_size()
 		print("女神圖片原始大小: ", original_size)
 	
-	# 直接複製 GoddessPortrait 的錨點和偏移設置
-	goddess_image.anchor_left = goddess_portrait.anchor_left
-	goddess_image.anchor_top = goddess_portrait.anchor_top
-	goddess_image.anchor_right = goddess_portrait.anchor_right
-	goddess_image.anchor_bottom = goddess_portrait.anchor_bottom
+	# 將女神圖片作為 GoddessPortrait 的子節點，而不是直接添加到根節點
+	# 這樣可以更好地控制層級結構
+	goddess_image.anchors_preset = Control.PRESET_FULL_RECT
+	goddess_image.anchor_left = 0.0
+	goddess_image.anchor_top = 0.0
+	goddess_image.anchor_right = 1.0
+	goddess_image.anchor_bottom = 1.0
 	
-	# 設置偏移，但不限制大小，讓圖片保持原始尺寸
-	goddess_image.offset_left = goddess_portrait.offset_left - 100 # 向左擴展一點
-	goddess_image.offset_top = goddess_portrait.offset_top + 200 # 初始在下方
-	goddess_image.offset_right = goddess_portrait.offset_right + 100 # 向右擴展一點
-	goddess_image.offset_bottom = goddess_portrait.offset_bottom + 400 # 增加高度空間
-	
-	# 設置層級（在背景之上，UI之下）
-	goddess_image.z_index = 1 # 確保在背景之上，UI之下
+	# 設置偏移以擴展顯示區域
+	goddess_image.offset_left = -100
+	goddess_image.offset_top = 200 # 初始在下方
+	goddess_image.offset_right = 100
+	goddess_image.offset_bottom = 400
 	
 	# 初始透明度設為0（完全透明）
 	goddess_image.modulate.a = 0.0
 	
-	# 添加到場景
-	add_child(goddess_image)
+	# 添加到 GoddessPortrait 作為子節點
+	goddess_portrait.add_child(goddess_image)
 	
 	# 調試：輸出位置信息
 	print("GoddessPortrait 錨點: ", goddess_portrait.anchor_left, ", ", goddess_portrait.anchor_top)
 	print("GoddessPortrait 偏移: ", goddess_portrait.offset_left, ", ", goddess_portrait.offset_top)
-	print("女神圖片初始偏移: ", goddess_image.offset_left, ", ", goddess_image.offset_top)
-	print("女神圖片目標偏移: ", goddess_portrait.offset_left, ", ", goddess_portrait.offset_top)
+	print("女神圖片相對偏移: ", goddess_image.offset_left, ", ", goddess_image.offset_top)
+	print("✓ 女神圖片已設置為忽略鼠標事件")
+	print("✓ 女神圖片已添加為 GoddessPortrait 的子節點")
 
 func _start_dialogue():
 	"""開始對話序列"""
@@ -185,14 +212,15 @@ func _fade_in_goddess_image():
 		# 淡入效果 (透明度從0到1)
 		tween.tween_property(goddess_image, "modulate:a", 1.0, 2.0)
 		
-		# 由下而上的移動效果 (使用偏移動畫到目標位置)
-		var target_offset_top = goddess_portrait.offset_top - 100 # 目標位置稍微往上一點
-		var target_offset_bottom = goddess_portrait.offset_bottom + 200 # 保持足夠的高度
+		# 由下而上的移動效果 (現在是相對於 GoddessPortrait 的坐標)
+		var target_offset_top = -100 # 相對於父節點向上移動
+		var target_offset_bottom = 200 # 保持足夠的高度
 		
 		tween.tween_property(goddess_image, "offset_top", target_offset_top, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(goddess_image, "offset_bottom", target_offset_bottom, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		
 		print("女神圖片動畫目標偏移: ", target_offset_top)
+		print("✓ 女神圖片淡入動畫開始（相對於 GoddessPortrait）")
 
 func _update_dialogue_characters(visible_count: int):
 	"""更新對話顯示的字符數量（打字機效果）"""
@@ -216,115 +244,106 @@ func _show_weapon_selection():
 	
 	# 顯示武器選擇面板
 	weapon_selection_panel.visible = true
-	weapon_selection_panel.z_index = 2 # 確保武器選擇面板在女神圖片之上
+	weapon_selection_panel.z_index = 10 # 確保武器選擇面板在所有其他元素之上
+	
+	# 顯示武器按鈕
+	_show_weapon_buttons()
 	
 	# 武器選擇面板淡入動畫
 	weapon_selection_panel.modulate.a = 0.0
 	var tween = create_tween()
 	tween.tween_property(weapon_selection_panel, "modulate:a", 1.0, 0.5)
+	
+	print("✓ 武器選擇面板已顯示，z_index 設置為 10")
 
-func _create_weapon_buttons():
-	"""創建武器選擇按鈕"""
-	for weapon in weapons_config:
-		var weapon_button = _create_weapon_button(weapon)
-		weapon_buttons_container.add_child(weapon_button)
+func _setup_weapon_buttons():
+	"""設置武器按鈕"""
+	# 初始化按鈕陣列
+	weapon_buttons = [weapon_button1, weapon_button2, weapon_button3]
+	weapon_descriptions = [weapon_button1_description, weapon_button2_description, weapon_button3_description]
+	
+	# 如果武器數量超過按鈕數量，隨機選擇武器
+	if weapons_config.size() > weapon_buttons.size():
+		print("✓ 武器數量(%d)超過按鈕數量(%d)，進行隨機選擇" % [weapons_config.size(), weapon_buttons.size()])
+		
+		# 創建武器索引陣列並打亂
+		var weapon_indices = range(weapons_config.size())
+		weapon_indices.shuffle()
+		
+		# 選擇前N個武器（N = 按鈕數量）
+		current_displayed_weapons.clear()
+		for i in range(weapon_buttons.size()):
+			current_displayed_weapons.append(weapons_config[weapon_indices[i]])
+			print("  - 隨機選擇武器 %d: %s" % [i + 1, weapons_config[weapon_indices[i]].name])
+	else:
+		# 武器數量不超過按鈕數量，使用全部武器
+		current_displayed_weapons = weapons_config.duplicate()
+		print("✓ 武器數量(%d)未超過按鈕數量，顯示全部武器" % weapons_config.size())
+	
+	# 初始隱藏所有武器按鈕和描述
+	for i in range(weapon_buttons.size()):
+		weapon_buttons[i].visible = false
+		weapon_descriptions[i].visible = false
+	
+	# 連接按鈕信號並設置按鈕內容
+	for i in range(min(current_displayed_weapons.size(), weapon_buttons.size())):
+		var weapon_data = current_displayed_weapons[i]
+		var button = weapon_buttons[i]
+		var description = weapon_descriptions[i]
+		
+		# 重置按鈕狀態
+		button.disabled = false
+		
+		# 設置按鈕文本
+		button.text = weapon_data.icon + "\n" + weapon_data.name
+		
+		# 設置描述文本
+		description.text = weapon_data.description
+		
+		# 清除舊的信號連接（如果有的話）
+		if button.pressed.is_connected(_on_weapon_selected):
+			button.pressed.disconnect(_on_weapon_selected)
+		
+		# 連接新的信號
+		button.pressed.connect(_on_weapon_selected.bind(weapon_data))
+		
+		print("✓ 武器按鈕 %d 設置完成: %s" % [i + 1, weapon_data.name])
+		print("  - 描述: %s" % weapon_data.description)
+	
+	# 如果顯示的武器數量少於按鈕數量，禁用多餘的按鈕
+	for i in range(current_displayed_weapons.size(), weapon_buttons.size()):
+		var button = weapon_buttons[i]
+		var description = weapon_descriptions[i]
+		button.disabled = true
+		button.text = ""
+		description.text = ""
+		print("✓ 武器按鈕 %d 已禁用（無對應武器）" % [i + 1])
+	
+	print("✓ 武器按鈕設置完成，共顯示 %d 個武器" % current_displayed_weapons.size())
+	for i in range(weapons_config.size(), weapon_buttons.size()):
+		var button = weapon_buttons[i]
+		var description = weapon_descriptions[i]
+		button.disabled = true
+		button.text = ""
+		description.text = ""
+		print("✓ 武器按鈕 %d 已禁用（無對應武器）" % [i + 1])
+	
+	print("✓ 武器按鈕信號連接完成，共設置 %d 個武器，總共 %d 個按鈕" % [min(weapons_config.size(), weapon_buttons.size()), weapon_buttons.size()])
 
-func _create_weapon_button(weapon_data: Dictionary) -> Control:
-	"""創建單個武器按鈕"""
-	# 主容器
-	var button_container = VBoxContainer.new()
-	button_container.custom_minimum_size = Vector2(200, 280)
-	button_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
-	# 武器按鈕
-	var weapon_button = Button.new()
-	weapon_button.custom_minimum_size = Vector2(180, 200)
-	weapon_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
-	# 按鈕樣式
-	var normal_style = StyleBoxFlat.new()
-	normal_style.bg_color = Color(0.2, 0.3, 0.5, 0.8)
-	normal_style.border_width_left = 3
-	normal_style.border_width_top = 3
-	normal_style.border_width_right = 3
-	normal_style.border_width_bottom = 3
-	normal_style.border_color = Color(0.6, 0.7, 0.9, 1.0)
-	normal_style.corner_radius_top_left = 10
-	normal_style.corner_radius_top_right = 10
-	normal_style.corner_radius_bottom_right = 10
-	normal_style.corner_radius_bottom_left = 10
-	
-	var hover_style = StyleBoxFlat.new()
-	hover_style.bg_color = Color(0.3, 0.4, 0.6, 0.9)
-	hover_style.border_width_left = 4
-	hover_style.border_width_top = 4
-	hover_style.border_width_right = 4
-	hover_style.border_width_bottom = 4
-	hover_style.border_color = Color(0.8, 0.9, 1.0, 1.0)
-	hover_style.corner_radius_top_left = 10
-	hover_style.corner_radius_top_right = 10
-	hover_style.corner_radius_bottom_right = 10
-	hover_style.corner_radius_bottom_left = 10
-	
-	weapon_button.add_theme_stylebox_override("normal", normal_style)
-	weapon_button.add_theme_stylebox_override("hover", hover_style)
-	weapon_button.add_theme_stylebox_override("pressed", hover_style)
-	
-	# 武器按鈕內的內容容器
-	var button_content = VBoxContainer.new()
-	button_content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	button_content.alignment = BoxContainer.ALIGNMENT_CENTER
-	
-	# 上方區域 - 武器圖標
-	var top_spacer = Control.new()
-	top_spacer.custom_minimum_size = Vector2(0, 20)
-	button_content.add_child(top_spacer)
-	
-	# 武器圖標
-	var icon_label = Label.new()
-	icon_label.text = weapon_data.icon
-	icon_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	icon_label.add_theme_font_size_override("font_size", 72)
-	button_content.add_child(icon_label)
-	
-	# 中間彈性間距
-	var middle_spacer = Control.new()
-	middle_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	button_content.add_child(middle_spacer)
-	
-	# 武器名稱 - 位於按鈕中下方
-	var name_label = Label.new()
-	name_label.text = weapon_data.name
-	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	name_label.add_theme_font_size_override("font_size", 20)
-	name_label.add_theme_color_override("font_color", Color.WHITE)
-	button_content.add_child(name_label)
-	
-	# 底部間距
-	var bottom_spacer = Control.new()
-	bottom_spacer.custom_minimum_size = Vector2(0, 15)
-	button_content.add_child(bottom_spacer)
-	
-	weapon_button.add_child(button_content)
-	
-	# 描述標籤 - 位於整個按鈕下方
-	var description_label = Label.new()
-	description_label.text = weapon_data.description
-	description_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	description_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-	description_label.add_theme_font_size_override("font_size", 12)
-	description_label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
-	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	description_label.custom_minimum_size = Vector2(180, 60)
-	
-	# 添加到容器
-	button_container.add_child(weapon_button)
-	button_container.add_child(description_label)
-	
-	# 連接按鈕信號
-	weapon_button.pressed.connect(_on_weapon_selected.bind(weapon_data))
-	
-	return button_container
+func _show_weapon_buttons():
+	"""顯示武器按鈕"""
+	# 只顯示有對應武器的按鈕和描述
+	for i in range(min(weapons_config.size(), weapon_buttons.size())):
+		weapon_buttons[i].visible = true
+		weapon_descriptions[i].visible = true
+	print("✓ 武器按鈕已顯示，共顯示 %d 個按鈕" % min(weapons_config.size(), weapon_buttons.size()))
+
+func _hide_weapon_buttons():
+	"""隱藏武器按鈕"""
+	for i in range(weapon_buttons.size()):
+		weapon_buttons[i].visible = false
+		weapon_descriptions[i].visible = false
+	print("✓ 武器按鈕已隱藏")
 
 func _on_weapon_selected(weapon_data: Dictionary):
 	"""當玩家選擇武器時"""
@@ -334,7 +353,7 @@ func _on_weapon_selected(weapon_data: Dictionary):
 	selected_weapon = weapon_data
 	
 	# 通過背包系統添加武器 (使用變數引用)
-		inventory_system.add_weapon(weapon_data.id, weapon_data.name, weapon_data.description)
+	inventory_system.add_weapon(weapon_data.id, weapon_data.name, weapon_data.description)
 	print("✓ 武器已添加到背包系統")
 	
 	# 隱藏武器選擇面板
@@ -370,8 +389,8 @@ func _on_journey_start():
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
 	await tween.finished
 	
-	# 通過 CoreManager 轉跳到下一個場景
-	await CoreManager.goddess_scene_complete()
+	# 使用 CoreManager 的場景轉跳系統
+	await CoreManager.goto_scene(NEXT_SCENE_NAME)
 
 func _input(event):
 	"""處理輸入事件"""

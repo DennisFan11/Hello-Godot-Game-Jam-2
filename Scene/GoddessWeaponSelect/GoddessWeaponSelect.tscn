@@ -74,17 +74,16 @@ size_flags_horizontal = 4
 text = "繼續"
 
 [node name="WeaponSelectionPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -100.0
-offset_right = 400.0
-offset_bottom = 100.0
+offset_left = -450.0
+offset_top = -150.0
+offset_right = 450.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -100,3 +99,54 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="WeaponButton1Container" type="VBoxContainer" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponButton1" type="Button" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponButton1Description" type="Label" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WeaponButton2Container" type="VBoxContainer" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponButton2" type="Button" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponButton2Description" type="Label" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WeaponButton3Container" type="VBoxContainer" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponButton3" type="Button" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponButton3Description" type="Label" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+vertical_alignment = 1
+autowrap_mode = 2
