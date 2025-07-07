@@ -2,7 +2,16 @@ extends Control
 
 # 升級商店場景 - 讓玩家自由選擇升級項目
 
-var _player_upgrade_system # DI 自動注入
+# 升級類型常量
+const UPGRADE_HEALTH = 0
+const UPGRADE_ATTACK = 1
+const UPGRADE_SPEED = 2
+const UPGRADE_JUMP = 3
+const UPGRADE_COOLDOWN_REDUCTION = 4
+
+# AutoLoad 單例引用
+var upgrade_system
+var inventory_system
 
 # UI 節點引用
 @onready var player_points_label = $VBoxContainer/HeaderPanel/PlayerPointsLabel
@@ -15,31 +24,23 @@ func _ready():
 	# 等待一幀確保 @onready 變數已初始化
 	await get_tree().process_frame
 	
-	# 如果 DI 注入失敗，手動獲取
-	if _player_upgrade_system == null:
-		_player_upgrade_system = CoreManager.get_upgrade_system()
+	# 獲取 AutoLoad 單例引用
+	upgrade_system = PlayerUpgradeSystem
+	inventory_system = PlayerInventorySystem
 	
-	if _player_upgrade_system != null:
-		_setup_upgrade_system()
-		_update_shop_display()
-
-func _on_injected():
-	"""DI 注入完成後的回調"""
-	if _player_upgrade_system:
-		# 等待節點初始化完成
-		await get_tree().process_frame
-		_setup_upgrade_system()
-		_update_shop_display()
+	# 設置系統
+	_setup_upgrade_system()
+	_update_shop_display()
 
 func _setup_upgrade_system():
 	"""設置升級系統事件連接"""
-	# 連接升級事件（使用 CONNECT_ONE_SHOT 避免重複連接）
-	if not _player_upgrade_system.stats_updated.is_connected(_on_stats_updated):
-		_player_upgrade_system.stats_updated.connect(_on_stats_updated)
-	if not _player_upgrade_system.upgrade_applied.is_connected(_on_upgrade_purchased):
-		_player_upgrade_system.upgrade_applied.connect(_on_upgrade_purchased)
+	# 連接升級事件
+	if not upgrade_system.stats_updated.is_connected(_on_stats_updated):
+		upgrade_system.stats_updated.connect(_on_stats_updated)
+	if not upgrade_system.upgrade_applied.is_connected(_on_upgrade_purchased):
+		upgrade_system.upgrade_applied.connect(_on_upgrade_purchased)
 	
-	# 連接按鈕事件（檢查是否已連接）
+	# 連接按鈕事件
 	if add_exp_button and not add_exp_button.pressed.is_connected(_on_add_exp_pressed):
 		add_exp_button.pressed.connect(_on_add_exp_pressed)
 	if reset_button and not reset_button.pressed.is_connected(_on_reset_pressed):
@@ -49,18 +50,15 @@ func _setup_upgrade_system():
 
 func _update_shop_display():
 	"""更新商店顯示"""
-	if not _player_upgrade_system:
-		return
-	
 	# 檢查 UI 節點是否存在
 	if not player_points_label:
 		print("⚠ player_points_label 節點未找到")
 		return
 	
 	# 更新玩家點數顯示
-	var points = _player_upgrade_system.player_stats.upgrade_points
-	var level = _player_upgrade_system.player_stats.level
-	var experience = _player_upgrade_system.player_stats.experience_points
+	var points = upgrade_system.player_stats.upgrade_points
+	var level = upgrade_system.player_stats.level
+	var experience = upgrade_system.player_stats.experience_points
 	
 	player_points_label.text = "可用升級點數: %d | 等級: %d | 經驗: %d" % [points, level, experience]
 	
@@ -80,14 +78,14 @@ func _clear_upgrade_items():
 
 func _create_upgrade_items():
 	"""創建所有升級項目的 UI"""
-	if not upgrade_items_container or not _player_upgrade_system:
+	if not upgrade_items_container:
 		return
 	
-	for upgrade_type in PlayerUpgradeSystem.UpgradeType.values():
-		var upgrade_info = _player_upgrade_system.get_upgrade_info(upgrade_type)
+	for upgrade_type in [UPGRADE_HEALTH, UPGRADE_ATTACK, UPGRADE_SPEED, UPGRADE_JUMP, UPGRADE_COOLDOWN_REDUCTION]:
+		var upgrade_info = upgrade_system.get_upgrade_info(upgrade_type)
 		_create_upgrade_item(upgrade_type, upgrade_info)
 
-func _create_upgrade_item(upgrade_type: PlayerUpgradeSystem.UpgradeType, info: Dictionary):
+func _create_upgrade_item(upgrade_type: int, info: Dictionary):
 	"""創建單個升級項目的 UI"""
 	# 主容器
 	var item_panel = Panel.new()
@@ -197,7 +195,7 @@ func _create_upgrade_item(upgrade_type: PlayerUpgradeSystem.UpgradeType, info: D
 	if info.current_level >= info.max_level:
 		button_text = "已滿級"
 		buy_button.disabled = true
-	elif _player_upgrade_system.player_stats.upgrade_points < info.cost:
+	elif upgrade_system.player_stats.upgrade_points < info.cost:
 		button_text = "點數不足"
 		buy_button.disabled = true
 	else:
@@ -265,23 +263,23 @@ func _create_upgrade_item(upgrade_type: PlayerUpgradeSystem.UpgradeType, info: D
 	bottom_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	right_container.add_child(bottom_spacer)
 
-func _get_upgrade_icon(upgrade_type: PlayerUpgradeSystem.UpgradeType) -> String:
+func _get_upgrade_icon(upgrade_type: int) -> String:
 	"""獲取升級類型的圖標"""
 	match upgrade_type:
-		PlayerUpgradeSystem.UpgradeType.HEALTH:
+		UPGRADE_HEALTH:
 			return "❤️"
-		PlayerUpgradeSystem.UpgradeType.ATTACK:
+		UPGRADE_ATTACK:
 			return "⚔️"
-		PlayerUpgradeSystem.UpgradeType.SPEED:
+		UPGRADE_SPEED:
 			return "💨"
-		PlayerUpgradeSystem.UpgradeType.JUMP:
+		UPGRADE_JUMP:
 			return "🦘"
-		PlayerUpgradeSystem.UpgradeType.COOLDOWN_REDUCTION:
+		UPGRADE_COOLDOWN_REDUCTION:
 			return "⏰"
 		_:
 			return "🔧"
 
-func _get_upgrade_effect_text(upgrade_type: PlayerUpgradeSystem.UpgradeType, info: Dictionary) -> String:
+func _get_upgrade_effect_text(upgrade_type: int, info: Dictionary) -> String:
 	"""獲取升級效果文字"""
 	var current_level = info.current_level
 	var base_value = info.next_value
@@ -290,45 +288,40 @@ func _get_upgrade_effect_text(upgrade_type: PlayerUpgradeSystem.UpgradeType, inf
 		return "已達到最高等級"
 	
 	match upgrade_type:
-		PlayerUpgradeSystem.UpgradeType.HEALTH:
+		UPGRADE_HEALTH:
 			return "下次升級: +%d 最大生命值" % base_value
-		PlayerUpgradeSystem.UpgradeType.ATTACK:
+		UPGRADE_ATTACK:
 			return "下次升級: +%d 攻擊力" % base_value
-		PlayerUpgradeSystem.UpgradeType.SPEED:
+		UPGRADE_SPEED:
 			return "下次升級: +%.1f 移動速度" % base_value
-		PlayerUpgradeSystem.UpgradeType.JUMP:
+		UPGRADE_JUMP:
 			return "下次升級: +%.1f 跳躍力" % base_value
-		PlayerUpgradeSystem.UpgradeType.COOLDOWN_REDUCTION:
+		UPGRADE_COOLDOWN_REDUCTION:
 			return "下次升級: +%.1f%% 冷卻縮減" % (base_value * 100)
 		_:
 			return "升級效果未知"
 
-func _on_buy_upgrade(upgrade_type: PlayerUpgradeSystem.UpgradeType):
+func _on_buy_upgrade(upgrade_type: int):
 	"""處理購買升級"""
-	if not _player_upgrade_system:
-		return
-	
-	var success = _player_upgrade_system.apply_upgrade(upgrade_type)
+	var success = upgrade_system.apply_upgrade(upgrade_type)
 	if success:
-		print("✅ 購買成功！升級了 %s" % _player_upgrade_system.upgrade_configs[upgrade_type].name)
+		print("✅ 購買成功！升級了 %s" % upgrade_system.upgrade_configs[upgrade_type].name)
 
 func _on_add_exp_pressed():
 	"""測試按鈕：增加經驗值"""
-	if _player_upgrade_system:
-		_player_upgrade_system.gain_experience(100)
+	upgrade_system.gain_experience(100)
 
 func _on_reset_pressed():
 	"""重置按鈕：重置所有升級"""
-	if _player_upgrade_system:
-		_player_upgrade_system.reset_upgrades()
+	upgrade_system.reset_upgrades()
 
 func _on_back_to_title_pressed():
 	"""返回標題畫面"""
 	await CoreManager.goto_scene("Title")
 
-func _on_upgrade_purchased(upgrade_type: PlayerUpgradeSystem.UpgradeType, new_level: int):
+func _on_upgrade_purchased(upgrade_type: int, new_level: int):
 	"""升級購買成功時的回調"""
-	var upgrade_name = _player_upgrade_system.upgrade_configs[upgrade_type].name
+	var upgrade_name = upgrade_system.upgrade_configs[upgrade_type].name
 	print("🎉 已購買：%s 升級到等級 %d" % [upgrade_name, new_level])
 
 func _on_stats_updated(_stats):

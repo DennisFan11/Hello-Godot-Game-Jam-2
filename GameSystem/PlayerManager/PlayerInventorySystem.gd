@@ -1,8 +1,8 @@
-class_name PlayerInventorySystem
 extends Node
 
-# 玩家背包系統
+# 玩家背包系統 - AutoLoad 單例
 # 負責管理玩家的武器、道具等物品
+# 作為 AutoLoad 單例存在，跨場景持續存在
 
 signal weapon_added(weapon_data: Dictionary)
 signal weapon_selected(weapon_id: String)
@@ -16,7 +16,7 @@ var _inventory: Dictionary = {
 }
 
 func _ready():
-	print("✓ PlayerInventorySystem 已初始化")
+	print("✓ PlayerInventorySystem (AutoLoad) 已初始化")
 
 # =================== 武器管理 ===================
 
@@ -177,6 +177,10 @@ func clear_inventory():
 	}
 	print("✅ 背包已清空")
 	inventory_changed.emit()
+
+func reset_inventory():
+	"""重置背包（測試用）- 別名方法"""
+	clear_inventory()
 
 func get_inventory_summary() -> String:
 	"""獲取背包摘要信息"""

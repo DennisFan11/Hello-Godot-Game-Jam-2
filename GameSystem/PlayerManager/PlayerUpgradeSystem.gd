@@ -1,5 +1,8 @@
-class_name PlayerUpgradeSystem
 extends Node
+
+# 玩家升級系統 - AutoLoad 單例
+# 負責管理玩家屬性升級、等級提升等功能
+# 作為 AutoLoad 單例存在，跨場景持續存在
 
 # 角色屬性數據結構
 class PlayerStats:
@@ -95,7 +98,7 @@ signal level_up(new_level: int)
 signal upgrade_applied(upgrade_type: UpgradeType, new_level: int)
 
 func _ready():
-	print("PlayerUpgradeSystem 正在初始化...")
+	print("PlayerUpgradeSystem (AutoLoad) 正在初始化...")
 	
 	# 初始化升級等級
 	_init_upgrade_levels()
@@ -103,7 +106,7 @@ func _ready():
 	# 載入存檔數據
 	_load_player_data()
 	
-	print("✓ PlayerUpgradeSystem 初始化完成")
+	print("✓ PlayerUpgradeSystem (AutoLoad) 初始化完成")
 
 func _init_upgrade_levels():
 	for upgrade_type in UpgradeType.values():

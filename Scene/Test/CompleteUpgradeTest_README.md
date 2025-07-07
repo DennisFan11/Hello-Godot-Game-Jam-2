@@ -11,17 +11,17 @@ CompleteUpgradeTest (Node2D)
 
 ## 🏗️ 架構特色
 
-### DI 依賴注入
+### AutoLoad 單例系統
 
-- **自動注入**：使用 DI 系統自動注入 PlayerUpgradeSystem
-- **CoreManager 整合**：與 CoreManager 架構完全整合
-- **跨場景持久性**：升級數據在場景切換時保持一致
+- **全域可用**：PlayerUpgradeSystem 和 PlayerInventorySystem 作為 AutoLoad 單例
+- **簡潔存取**：直接使用 `PlayerUpgradeSystem` 存取升級系統
+- **跨場景持久性**：升級數據在場景切換時自動保持一致
 
 ### 系統集成
 
-- **統一管理**：使用 CoreManager 統一管理升級系統
+- **簡化架構**：不需要依賴注入，直接使用 Godot 的 AutoLoad 機制
 - **事件驅動**：通過信號系統實現 UI 自動更新
-- **容錯處理**：支持 DI 注入失敗時的備用方案
+- **穩定可靠**：基於 Godot 原生架構，穩定性更高
 
 ## 🎨 場景設置步驟
 

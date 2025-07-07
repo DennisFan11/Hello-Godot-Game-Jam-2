@@ -23,12 +23,18 @@ CoreManager="*res://CoreSystem/CoreManager/CoreManager.gd"
 SoundManager="*res://CoreSystem/SoundManager.gd"
 Utility="*res://CoreSystem/Utility.gd"
 Setting="*res://CoreSystem/Setting/Setting.tscn"
+PlayerUpgradeSystem="*res://GameSystem/PlayerManager/PlayerUpgradeSystem.gd"
+PlayerInventorySystem="*res://GameSystem/PlayerManager/PlayerInventorySystem.gd"
 
 [display]
 
 window/size/viewport_width=1728
 window/size/viewport_height=972
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Hello-Godot-Game-Jam-2"
 
 [file_customization]
 

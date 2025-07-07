@@ -3,6 +3,9 @@ extends Control
 # 女神武器選擇場景
 # 玩家進入場景後，女神會請玩家選擇起始武器
 
+# AutoLoad 單例引用
+var inventory_system # PlayerInventorySystem 的引用
+
 # UI 節點
 @onready var goddess_portrait: TextureRect = $GoddessPortrait
 @onready var dialogue_panel: Panel = $DialoguePanel
@@ -26,8 +29,14 @@ var selected_weapon: Dictionary = {}
 # 文本檔案路徑
 const DIALOGUE_FILE_PATH = "res://Scene/GoddessWeaponSelect/dialogue_texts.json"
 
+# 下一個場景名稱 (對應 CoreManager 的 SCENE 字典)
+const NEXT_SCENE_NAME = "Level1"
+
 func _ready():
 	print("女神武器選擇場景已載入")
+	
+	# 初始化 AutoLoad 單例引用
+	inventory_system = PlayerInventorySystem
 	
 	# 載入對話文本檔案
 	_load_dialogue_texts()
@@ -324,12 +333,9 @@ func _on_weapon_selected(weapon_data: Dictionary):
 	# 記錄選擇的武器
 	selected_weapon = weapon_data
 	
-	# 通過背包系統添加武器
-	var inventory_system = CoreManager.get_inventory_system()
-	if inventory_system:
+	# 通過背包系統添加武器 (使用變數引用)
 		inventory_system.add_weapon(weapon_data.id, weapon_data.name, weapon_data.description)
-	else:
-		print("❌ 背包系統未初始化")
+	print("✓ 武器已添加到背包系統")
 	
 	# 隱藏武器選擇面板
 	weapon_selection_panel.visible = false
