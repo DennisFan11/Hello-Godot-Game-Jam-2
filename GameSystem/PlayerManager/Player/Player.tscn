@@ -11,6 +11,21 @@ radius = 6.08276
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asllk"]
 size = Vector2(2, 12)
 
+[sub_resource type="Animation" id="Animation_nd1tf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponMarker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.34572]
+}
+
 [sub_resource type="Animation" id="Animation_u5ohs"]
 resource_name = "SwordType"
 capture_included = true
@@ -25,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 2,
 "values": [-2.34572, 0.759964]
-}
-
-[sub_resource type="Animation" id="Animation_nd1tf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponMarker2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-2.34572]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nd1tf"]
@@ -72,10 +72,9 @@ unique_name_in_owner = true
 position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_asllk")
 
-[node name="WeaponSlot" type="Node2D" parent="." node_paths=PackedStringArray("weapon")]
+[node name="WeaponSlot" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_s163p")
-weapon = NodePath("WeaponMarker2D/Sword")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponSlot"]
 unique_name_in_owner = true
@@ -89,6 +88,9 @@ playback_auto_capture_ease_type = 2
 [node name="WeaponMarker2D" type="Marker2D" parent="WeaponSlot"]
 rotation = -2.34572
 
-[node name="Sword" parent="WeaponSlot/WeaponMarker2D" instance=ExtResource("4_u5ohs")]
+[node name="Weapons" type="Node2D" parent="WeaponSlot"]
+
+[node name="Sword" parent="WeaponSlot/Weapons" instance=ExtResource("4_u5ohs")]
+rotation = -2.34572
 
 [connection signal="animation_finished" from="WeaponSlot/AnimationPlayer" to="WeaponSlot" method="_on_animation_player_animation_finished"]
