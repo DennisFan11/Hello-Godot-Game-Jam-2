@@ -1,13 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdqcutktqtcxw"]
+[gd_scene load_steps=10 format=3 uid="uid://bdqcutktqtcxw"]
 
 [ext_resource type="Script" uid="uid://c4yy1akfirsh" path="res://GameSystem/PlayerManager/Player/player.gd" id="1_trhjy"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
+[ext_resource type="Script" uid="uid://dl33ijmoqp57y" path="res://GameSystem/PlayerManager/Player/WeaponSlot/weapon_slot.gd" id="3_s163p"]
+[ext_resource type="PackedScene" uid="uid://ynmgrxw25he7" path="res://GameSystem/WeaponManager/Weapons/sword/sword.tscn" id="4_u5ohs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_asllk"]
 radius = 6.08276
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asllk"]
 size = Vector2(2, 12)
+
+[sub_resource type="Animation" id="Animation_u5ohs"]
+resource_name = "SwordType"
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponMarker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 2,
+"values": [-2.34572, 0.759964]
+}
+
+[sub_resource type="Animation" id="Animation_nd1tf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponMarker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.34572]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd1tf"]
+_data = {
+&"RESET": SubResource("Animation_nd1tf"),
+&"SwordType": SubResource("Animation_u5ohs")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_trhjy")
@@ -32,3 +71,24 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
 position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_asllk")
+
+[node name="WeaponSlot" type="Node2D" parent="." node_paths=PackedStringArray("weapon")]
+unique_name_in_owner = true
+script = ExtResource("3_s163p")
+weapon = NodePath("WeaponMarker2D/Sword")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponSlot"]
+unique_name_in_owner = true
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_nd1tf")
+}
+playback_auto_capture_transition_type = 6
+playback_auto_capture_ease_type = 2
+
+[node name="WeaponMarker2D" type="Marker2D" parent="WeaponSlot"]
+rotation = -2.34572
+
+[node name="Sword" parent="WeaponSlot/WeaponMarker2D" instance=ExtResource("4_u5ohs")]
+
+[connection signal="animation_finished" from="WeaponSlot/AnimationPlayer" to="WeaponSlot" method="_on_animation_player_animation_finished"]

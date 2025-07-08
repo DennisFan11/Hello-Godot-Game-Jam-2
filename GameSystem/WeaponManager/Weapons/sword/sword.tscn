@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://ynmgrxw25he7"]
+
+[ext_resource type="Script" uid="uid://bg311c3tw06j7" path="res://GameSystem/WeaponManager/Weapons/sword/sword.gd" id="1_6wxrq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wxrq"]
+radius = 3.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fe5hh"]
+radius = 5.0
+height = 32.0
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_6wxrq")
+metadata/_custom_type_script = "uid://br3cmpsmi068y"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-3, -1, -3, 1, 0, 1, 0, 3, 21, 3, 25, 0, 21, -3, 0, -3, 0, -1)
+
+[node name="WeaponArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponArea"]
+position = Vector2(10, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6wxrq")
+
+[node name="GlueArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlueArea"]
+position = Vector2(11, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fe5hh")
+debug_color = Color(0, 0.650257, 0.103608, 0.42)

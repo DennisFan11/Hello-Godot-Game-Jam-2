@@ -60,7 +60,7 @@ GoddessWeaponSelect (Control)
 │       ├── DialogueLabel (RichTextLabel) - 對話文字
 │       └── ContinueButton (Button) - 繼續按鈕
 └── WeaponSelectionPanel (Panel) - 武器選擇面板
-    └── WeaponButtonsContainer (HBoxContainer) - 武器按鈕容器
+	└── WeaponButtonsContainer (HBoxContainer) - 武器按鈕容器
 ```
 
 ## 📝 使用方法
@@ -83,13 +83,13 @@ await CoreManager.goto_scene("GoddessWeaponSelect")
 
 ```gdscript
 var weapons_config: Array[Dictionary] = [
-    {
-        "id": "weapon_id",
-        "name": "武器名稱",
-        "description": "武器描述",
-        "icon": "🗡️",
-        "response": "女神的回應文字"
-    }
+	{
+		"id": "weapon_id",
+		"name": "武器名稱",
+		"description": "武器描述",
+		"icon": "🗡️",
+		"response": "女神的回應文字"
+	}
 ]
 ```
 
@@ -99,9 +99,9 @@ var weapons_config: Array[Dictionary] = [
 
 ```gdscript
 func goddess_scene_complete():
-    """女神場景完成後的轉跳方法"""
-    print("女神賜予完成，前往下一個場景...")
-    await goto_scene("你的目標場景名稱")
+	"""女神場景完成後的轉跳方法"""
+	print("女神賜予完成，前往下一個場景...")
+	await goto_scene("你的目標場景名稱")
 ```
 
 ## ✨ 特色功能

@@ -76,7 +76,9 @@ func attack() -> bool:
 		var actual_cooldown = max(0.1, 1.0 - cooldown_reduction)
 		attack_cooldown.trigger(actual_cooldown)
 		
-		# 這裡可以添加攻擊邏輯
+		# 這裡可以添加攻擊邏輯 TODO 
+		%WeaponSlot.start_attack(0.2)
+		
 		print("攻擊！傷害：", attack_damage)
 		return true
 	return false

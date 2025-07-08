@@ -1,5 +1,5 @@
 class_name EnemyA
-extends CharacterBody2D
+extends Enemy
 
 
 const MAX_SPEED := 100.0 # 330
