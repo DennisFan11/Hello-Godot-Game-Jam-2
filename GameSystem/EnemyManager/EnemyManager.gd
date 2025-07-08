@@ -2,6 +2,14 @@
 class_name EnemyManager
 extends IGameSubManager
 
+## 最大敵方數量,
+## 當此值>0時限制敵方數量
+@export var MAX_ENEMY_NUMBER: int = 0
+
+## 生成的敵人種類,
+## 相同的敵人越多越容易生成,
+## 可填空
+@export var ENEMY_TYPE: Array[Resource] = []
 
 @export_category("敵人生成射線")
 
@@ -51,7 +59,8 @@ func _process(delta: float) -> void:
 		return 
 	_cooldown_timer.trigger(0.5)
 	
-	_try_spawn_enemy()
+	if MAX_ENEMY_NUMBER <= 0 or %Enemy.get_child_count() < MAX_ENEMY_NUMBER:
+		_try_spawn_enemy()
 	
 
 var _player_manager: PlayerManager
@@ -86,11 +95,12 @@ func _try_spawn_enemy():
 	_spawn_enemy(spawn_pos)
 
 
-var ENEMY_A_SCENE := preload("uid://dsivi152md61i")
 func _spawn_enemy(spawn_pos: Vector2):
-	var enemy = ENEMY_A_SCENE.instantiate()
-	enemy.position = spawn_pos
-	add_child(enemy)
+	var rng = ENEMY_TYPE.pick_random()
+	if rng is Resource:
+		var enemy = rng.instantiate()
+		enemy.position = spawn_pos
+		%Enemy.add_child(enemy)
 	
 
 

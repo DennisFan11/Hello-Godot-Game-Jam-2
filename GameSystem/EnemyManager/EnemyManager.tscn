@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2d27osycyph"]
+[gd_scene load_steps=3 format=3 uid="uid://b2d27osycyph"]
 
 [ext_resource type="Script" uid="uid://ca371ydv3yqwb" path="res://GameSystem/EnemyManager/EnemyManager.gd" id="1_xn506"]
+[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_rdgol"]
 
 [node name="EnemyManager" type="Node2D"]
 script = ExtResource("1_xn506")
+ENEMY_TYPE = Array[Resource]([ExtResource("2_rdgol")])
 
 [node name="PlayerPosMarker2D" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -15,3 +17,6 @@ points = PackedVector2Array(-250, -150, -50, -150)
 [node name="SpawnnerHintLineR" type="Line2D" parent="PlayerPosMarker2D"]
 unique_name_in_owner = true
 points = PackedVector2Array(50, -150, 250, -150)
+
+[node name="Enemy" type="Node2D" parent="."]
+unique_name_in_owner = true
