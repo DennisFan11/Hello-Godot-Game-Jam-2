@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0t4w5bfhv8jn"]
 
-[ext_resource type="Script" path="res://Scene/GoddessWeaponSelect/GoddessWeaponSelect.gd" id="1_1v5xg"]
+[ext_resource type="Script" path="res://GameSystem/GoddessWeaponSelect/GoddessWeaponSelect.gd" id="1_1v5xg"]
 
 [node name="GoddessWeaponSelect" type="Control"]
 layout_mode = 3

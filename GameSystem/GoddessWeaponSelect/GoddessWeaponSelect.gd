@@ -44,7 +44,7 @@ var is_dialogue_phase: bool = true
 var selected_weapon: Dictionary = {}
 
 # 文本檔案路徑
-const DIALOGUE_FILE_PATH = "res://Scene/GoddessWeaponSelect/dialogue_texts.json"
+const DIALOGUE_FILE_PATH = "res://GameSystem/GoddessWeaponSelect/dialogue_texts.json"
 
 # 下一個場景名稱 (對應 CoreManager 的 SCENE 字典)
 const NEXT_SCENE_NAME = "Level1"
