@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=7 format=4 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
 [ext_resource type="TileSet" uid="uid://b0cto2wqefjcl" path="res://Asset/Tilemap/Tileset.tres" id="4_20ou5"]
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
+[ext_resource type="PackedScene" uid="uid://ckjyc7agxyvlq" path="res://GameSystem/WeaponManager/WeaponManager.tscn" id="6_wonvf"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
 
 [node name="GameManager" type="Node2D"]
@@ -21,5 +22,7 @@ tile_set = ExtResource("4_20ou5")
 HEIGHT = -300.0
 NON_SPAWN_AREA = 200.0
 WEIGHT = 500.0
+
+[node name="WeaponManager" parent="." instance=ExtResource("6_wonvf")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
