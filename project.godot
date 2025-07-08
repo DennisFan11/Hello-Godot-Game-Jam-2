@@ -25,6 +25,8 @@ Utility="*res://CoreSystem/Utility.gd"
 Setting="*res://CoreSystem/Setting/Setting.tscn"
 PlayerUpgradeSystem="*res://GameSystem/PlayerManager/PlayerUpgradeSystem.gd"
 PlayerInventorySystem="*res://GameSystem/PlayerManager/PlayerInventorySystem.gd"
+LevelManager="*res://Scene/Levels/LevelManager.gd"
+GlobalDebugUI="*res://Scene/Test/GlobalDebugUI.gd"
 
 [display]
 
