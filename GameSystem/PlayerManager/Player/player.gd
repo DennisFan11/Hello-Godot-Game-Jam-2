@@ -141,7 +141,7 @@ func _state_behavior(delta: float) -> void:
 			
 			# 蹬牆跳
 			if Input.is_action_just_pressed("space"):
-				velocity.x = - current_max_speed * 1.25
+				velocity.x = current_max_speed * 1.25 * (1 if velocity.x < 0.0 else -1)
 				velocity.y = - current_jump_speed
 				state = IDLE
 			
