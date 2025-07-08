@@ -88,9 +88,6 @@ playback_auto_capture_ease_type = 2
 [node name="WeaponMarker2D" type="Marker2D" parent="WeaponSlot"]
 rotation = -2.34572
 
-[node name="Weapons" type="Node2D" parent="WeaponSlot"]
-
-[node name="Sword" parent="WeaponSlot/Weapons" instance=ExtResource("4_u5ohs")]
-rotation = -2.34572
+[node name="Sword" parent="WeaponSlot/WeaponMarker2D" instance=ExtResource("4_u5ohs")]
 
 [connection signal="animation_finished" from="WeaponSlot/AnimationPlayer" to="WeaponSlot" method="_on_animation_player_animation_finished"]

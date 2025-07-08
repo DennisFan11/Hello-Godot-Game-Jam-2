@@ -6,7 +6,7 @@ extends Node2D
 ## 
 #@export var SPEED: float = 0.2
 ## 武器重量
-@export var WEIGHT: float = 3.0
+@export var WEIGHT: float = 1.0
 ## 武器使用動畫
 @export var ANIM: String = "SwordType"
 

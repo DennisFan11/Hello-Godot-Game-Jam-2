@@ -8,7 +8,7 @@ func _ready() -> void:
 	update_weapons()
 
 func update_weapons():
-	var weapon_list = $Weapons.get_children()
+	var weapon_list = $WeaponMarker2D.get_children()
 
 	# 更新主武器及所有武器的總重量
 	first_weapon = null
@@ -19,18 +19,19 @@ func update_weapons():
 		for weapon in weapon_list:
 			total_weight = weapon.WEIGHT
 
-func start_attack():
+func start_attack(time: float):
 	if first_weapon:
 		# 根據主武器播放動畫, 並以所有武器的總重量調整速度
 		var anim = first_weapon.ANIM if first_weapon.ANIM else "SwordType"
-		%AnimationPlayer.play(anim, -1, 1 / total_weight)
+		print(anim)
+		%AnimationPlayer.play(anim, -1, total_weight / time)
 	else:
 		# 加上無法攻擊的提示音?
 		pass
 
 func _process(delta: float) -> void:
 	if %AnimationPlayer.is_playing():
-		for weapon in $Weapons.get_children():
+		for weapon in $WeaponMarker2D.get_children():
 			weapon.frame_attack(delta)
 
 
