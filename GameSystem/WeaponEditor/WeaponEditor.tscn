@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dysm5ban4fmau"]
+
+[ext_resource type="Script" uid="uid://di0cwvywlshlq" path="res://GameSystem/WeaponEditor/weapon_editor.gd" id="1_ikeip"]
+
+[node name="WeaponEditor" type="Node2D"]
+script = ExtResource("1_ikeip")

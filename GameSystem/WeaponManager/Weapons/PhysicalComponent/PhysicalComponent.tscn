@@ -31,8 +31,9 @@ gradient = SubResource("Gradient_t4wu3")
 fill_to = Vector2(0, 1)
 
 [node name="PhysicalComponent" type="RigidBody2D"]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 264
+collision_mask = 264
+input_pickable = true
 script = ExtResource("1_t4wu3")
 
 [node name="RigidCollision" type="CollisionPolygon2D" parent="."]

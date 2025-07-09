@@ -1,3 +1,4 @@
+class_name WeaponSlot
 extends Node2D
 
 var first_weapon:Weapon
@@ -6,6 +7,9 @@ var total_weight:float = 0.0
 func _ready() -> void:
 	DI.register("_weapon_slot", self)
 	update_weapons()
+
+func get_current_weapon()-> Weapon:
+	return first_weapon
 
 func update_weapons():
 	var weapon_list = $WeaponMarker2D.get_children()
