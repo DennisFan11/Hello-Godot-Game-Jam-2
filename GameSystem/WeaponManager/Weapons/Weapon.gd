@@ -10,6 +10,8 @@ extends Node2D
 ## 武器使用動畫
 @export var ANIM: String = "SwordType"
 
+var is_main: bool = true
+
 func get_damage():
 	# 武器傷害 + 升級傷害增加
 	return DMG + PlayerUpgradeSystem.player_stats.attack_damage

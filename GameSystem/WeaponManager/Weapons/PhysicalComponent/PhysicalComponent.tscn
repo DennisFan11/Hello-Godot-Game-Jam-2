@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://djj783bpwtmvx"]
+
+[ext_resource type="Script" uid="uid://qfkuwgxbwp0y" path="res://GameSystem/WeaponManager/Weapons/PhysicalComponent/physical_component.gd" id="1_t4wu3"]
+
+[sub_resource type="Shader" id="Shader_t4wu3"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	//COLOR.a = UV.y;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fcwc"]
+shader = SubResource("Shader_t4wu3")
+
+[sub_resource type="Gradient" id="Gradient_t4wu3"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7fcwc"]
+gradient = SubResource("Gradient_t4wu3")
+fill_to = Vector2(0, 1)
+
+[node name="PhysicalComponent" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_t4wu3")
+
+[node name="RigidCollision" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MetaBallLine" type="Line2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_7fcwc")
+points = PackedVector2Array(18, -19, 0, -14, -1, -9, 24, -12)
+closed = true
+width = 4.0
+texture = SubResource("GradientTexture2D_7fcwc")
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GlueArea" type="Area2D" parent="." groups=["Glue"]]
+unique_name_in_owner = true
+collision_layer = 12
+collision_mask = 12
+
+[node name="GlueCollision" type="CollisionPolygon2D" parent="GlueArea"]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-6, -6, 7, -6, 7, 5, -6, 5)
+
+[node name="WeaponArea" type="Area2D" parent="." groups=["Weapon"]]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="WeaponCollision" type="CollisionPolygon2D" parent="WeaponArea"]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-3, -4, 4, -4, 4, 3, -3, 3)

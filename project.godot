@@ -53,6 +53,8 @@ folder_colors={
 Block=""
 Player=""
 Enemy=""
+Glue=""
+Weapon=""
 
 [input]
 
@@ -126,6 +128,8 @@ attack={
 2d_render/layer_10="buildingUI"
 2d_physics/layer_1="Player, Wall"
 2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Glue"
+2d_physics/layer_4="Weapon"
 2d_physics/layer_20="PlayerBuilding"
 2d_physics/layer_21="EnemyBuilding"
 
