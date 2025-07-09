@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://jghh2wj4o126"]
+[gd_scene load_steps=3 format=4 uid="uid://jghh2wj4o126"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_4no0k"]
+[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyB/EnemyB.tscn" id="2_aiihb"]
 
 [node name="Level1" instance=ExtResource("1_4no0k")]
 
@@ -20,3 +21,7 @@ bbcode_enabled = true
 text = "[font_size=70]LEVEL 1"
 fit_content = true
 horizontal_alignment = 2
+
+[node name="EnemyManager" parent="." index="4"]
+MAX_ENEMY_NUMBER = 3
+ENEMY_TYPE = Array[Resource]([ExtResource("2_aiihb")])

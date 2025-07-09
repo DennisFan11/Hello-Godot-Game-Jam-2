@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsivi152md61i"]
+
+[ext_resource type="Script" uid="uid://bxupqmobf0ado" path="res://GameSystem/EnemyManager/Enemys/EnemyB/EnemyB.gd" id="1_y8rqc"]
+[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_5fd7p"]
+[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/EnemyManager/Action/Move/JumpMove.gd" id="3_snabx"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_cy3j6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n71we"]
+radius = 4.0
+
+[node name="EnemyB" type="CharacterBody2D" node_paths=PackedStringArray("move", "attack") groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_y8rqc")
+move = NodePath("Move")
+attack = NodePath("Attack")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0.522405, 0.549925, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_5fd7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5fd7p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 17.0
+offset_bottom = 17.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "B"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="FloorDetectArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_n71we")
+debug_color = Color(0, 0.628466, 0.492094, 0.42)
+
+[node name="Move" type="Node" parent="."]
+script = ExtResource("3_snabx")
+
+[node name="Attack" type="Node" parent="."]
+script = ExtResource("4_cy3j6")

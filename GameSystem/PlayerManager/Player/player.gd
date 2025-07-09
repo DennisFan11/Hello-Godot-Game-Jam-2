@@ -39,29 +39,30 @@ func _update_stats_from_upgrade_system():
 
 func _on_stats_updated(_stats):
 	_update_stats_from_upgrade_system()
-
-# 受到傷害
-func take_damage(damage: int):
-	current_health -= damage
-	current_health = max(0, current_health)
+	
+func health_change(value: int):
+	current_health = clampi(
+		current_health + value,
+		0, current_max_health
+	)
 	
 	upgrade_system.player_stats.current_health = current_health
 	upgrade_system._save_player_data()
 	
 	health_changed.emit(current_health, current_max_health)
+
+# 受到傷害
+func take_damage(damage: int):
+	health_change(-damage)
+	
+	print("hp-", damage)
 	
 	if current_health <= 0:
 		player_died.emit()
 
 # 回復生命值
 func heal(amount: int):
-	current_health += amount
-	current_health = min(current_max_health, current_health)
-	
-	upgrade_system.player_stats.current_health = current_health
-	upgrade_system._save_player_data()
-	
-	health_changed.emit(current_health, current_max_health)
+	health_change(amount)
 
 # 獲得經驗值
 func gain_experience(amount: int):
