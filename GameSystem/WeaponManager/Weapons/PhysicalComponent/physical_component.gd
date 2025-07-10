@@ -9,6 +9,7 @@ extends RigidBody2D
 
 
 
+
 const RESIZE: Vector2  = Vector2(32, 32)
 const EXPAND_SIZE: int = 2
 
@@ -27,16 +28,15 @@ func _reset()-> void:
 @export_category("自動更新項")
 @export var _weapon_polygon:  PackedVector2Array:
 	set(new): 
-		%WeaponCollision.polygon = new
-		%MetaBallLine.points = new
+		%AttackCollision.polygon = new
 		%RigidCollision.polygon = new
 @export var _glue_polygon:    PackedVector2Array:
 	set(new): 
 		%GlueCollision.polygon = new
-		
 @export var _sprite:          Texture2D:
 	set(new):
 		%Sprite2D.texture = new
+		%MetaBallOutline.texture = new
 
 ##  /////////////////////    TOOLS
 func _get_polygon(image: Image)-> PackedVector2Array:
@@ -63,11 +63,58 @@ func _valid_check()-> bool:
 		%MetaBallSprite2D.texture
 
 
+var metaball_node: Node2D
+func _set_metaball():
+	var node: Sprite2D = %MetaBallOutline.duplicate()
+	if not get_parent().glue_layer:
+		return
+	get_parent().glue_layer.add_child(node)
+	node.visible = true
+	
+	tree_exited.connect(node.queue_free)
+	metaball_node = node
+	
+func _process(delta: float) -> void:
+	if not metaball_node: return 
+	metaball_node.position = global_position
+	metaball_node.scale = global_scale
+	metaball_node.rotation = global_rotation
 
 
 func _ready() -> void:
 	if not _valid_check():
 		_reset()
+	
 
-func get_weapon_area()-> Area2D:
-	return %WeaponArea
+func get_attack_area()-> Area2D:
+	return %AttackArea
+
+## 和其他武器重疊
+func is_collide()-> bool:
+	for i: Node2D in get_attack_area().get_overlapping_bodies():
+		
+		if i == self:
+			continue
+		if not i.is_in_group("PhysicalComponent"):
+			continue
+		return true
+	
+	return false
+
+func is_glued()-> bool:
+	for i in %GlueArea.get_overlapping_areas():
+		if not i.is_in_group("Glue"):
+			continue
+		return true
+		
+	return false
+
+
+
+
+
+
+
+
+
+#
