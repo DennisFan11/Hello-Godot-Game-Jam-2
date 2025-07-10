@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0t4w5bfhv8jn"]
+[gd_scene load_steps=5 format=3 uid="uid://d0t4w5bfhv8jn"]
 
 [ext_resource type="Script" path="res://GameSystem/GoddessWeaponSelect/GoddessWeaponSelect.gd" id="1_1v5xg"]
+[ext_resource type="Texture2D" uid="uid://d3yf6t40fkax1" path="res://Asset/Image/lake_Crop1.png" id="2_w4l8r"]
+[ext_resource type="Texture2D" uid="uid://cabsr06rk6421" path="res://Asset/Image/lake_Crop2.png" id="3_77j4g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(1, 0.8, 0.2, 0.3)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8, 0.2, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [node name="GoddessWeaponSelect" type="Control"]
 layout_mode = 3
@@ -11,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1v5xg")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background1" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +37,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.2, 1)
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 294.0
+offset_right = 895.0
+offset_bottom = 563.0
+texture = ExtResource("2_w4l8r")
 
 [node name="GoddessPortrait" type="TextureRect" parent="."]
 layout_mode = 1
@@ -35,6 +61,25 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Foreground1" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 570.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.741176, 0.92549, 0, 1)
+
+[node name="Foreground2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 563.0
+offset_right = 895.0
+offset_bottom = 698.0
+texture = ExtResource("3_77j4g")
+
 [node name="DialoguePanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -48,6 +93,16 @@ offset_right = 400.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="NameLabel" type="Label" parent="DialoguePanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -25.0
+offset_right = 150.0
+offset_bottom = -5.0
+text = "角色名稱"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DialogueContainer" type="VBoxContainer" parent="DialoguePanel"]
 layout_mode = 1
@@ -73,7 +128,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "繼續"
 
-[node name="WeaponSelectionPanel" type="Panel" parent="."]
+[node name="WeaponSelectionPanel" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,7 +142,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WeaponButtonsContainer" type="HBoxContainer" parent="WeaponSelectionPanel"]
+[node name="WeaponButtonsContainer" type="Control" parent="WeaponSelectionPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,55 +153,99 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="WeaponButton1Container" type="VBoxContainer" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
+[node name="WeaponButton1Container" type="Control" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 4
+anchors_preset = 0
+offset_left = -113.0
+offset_top = 121.0
+offset_right = 87.0
+offset_bottom = 375.0
+
+[node name="Background" type="Panel" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 210.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
 
 [node name="WeaponButton1" type="Button" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container"]
 custom_minimum_size = Vector2(200, 150)
-layout_mode = 2
-size_flags_horizontal = 4
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
 
 [node name="WeaponButton1Description" type="Label" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton1Container"]
 custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
+layout_mode = 0
+offset_left = 1.0
+offset_top = -122.0
+offset_right = 201.0
+offset_bottom = -22.0
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="WeaponButton2Container" type="VBoxContainer" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
+[node name="WeaponButton2Container" type="Control" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 4
+anchors_preset = 0
+offset_left = 326.0
+offset_top = 218.0
+offset_right = 526.0
+offset_bottom = 472.0
+
+[node name="Background" type="Panel" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 210.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
 
 [node name="WeaponButton2" type="Button" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container"]
 custom_minimum_size = Vector2(200, 150)
-layout_mode = 2
-size_flags_horizontal = 4
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
 
 [node name="WeaponButton2Description" type="Label" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton2Container"]
 custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
+layout_mode = 0
+offset_left = 222.0
+offset_top = 61.0
+offset_right = 422.0
+offset_bottom = 161.0
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="WeaponButton3Container" type="VBoxContainer" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
+[node name="WeaponButton3Container" type="Control" parent="WeaponSelectionPanel/WeaponButtonsContainer"]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 4
+anchors_preset = 0
+offset_left = 778.0
+offset_top = 122.0
+offset_right = 978.0
+offset_bottom = 376.0
+
+[node name="Background" type="Panel" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 210.0
+offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
 
 [node name="WeaponButton3" type="Button" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container"]
 custom_minimum_size = Vector2(200, 150)
-layout_mode = 2
-size_flags_horizontal = 4
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
 
 [node name="WeaponButton3Description" type="Label" parent="WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton3Container"]
 custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
+layout_mode = 0
+offset_left = 4.0
+offset_top = -124.0
+offset_right = 204.0
+offset_bottom = -24.0
 vertical_alignment = 1
 autowrap_mode = 2
