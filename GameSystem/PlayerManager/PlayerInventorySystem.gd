@@ -26,7 +26,13 @@ func add_weapon(weapon_id: String, weapon_name: String, weapon_description: Stri
 		"id": weapon_id,
 		"name": weapon_name,
 		"description": weapon_description,
-		"obtained_time": Time.get_datetime_string_from_system()
+		"obtained_time": Time.get_datetime_string_from_system(),
+		"stats": {
+			"attack": 10, # 假設初始攻擊力為10
+			"defense": 5, # 假設初始防禦力為5
+			"speed": 1.0 # 假設初始速度為1.0
+		},
+		"iconPath": "res://assets/weapons/%s.png" % weapon_name # 假設武器圖標存放在這個路徑
 	}
 	
 	# 檢查是否已存在相同ID的武器
