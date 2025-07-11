@@ -19,6 +19,7 @@ tile_set = ExtResource("4_20ou5")
 [node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]
+MAX_ENEMY_NUMBER = 1
 HEIGHT = -300.0
 NON_SPAWN_AREA = 200.0
 WEIGHT = 500.0

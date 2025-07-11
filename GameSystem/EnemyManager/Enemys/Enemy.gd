@@ -3,9 +3,6 @@ extends CharacterBody2D
 
 @export var _hp: float = 30
 
-@export var move:Action
-@export var attack:Action
-
 
 func damage(dmg: float):
 	_hp -= dmg
