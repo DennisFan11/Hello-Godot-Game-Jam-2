@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=4 uid="uid://jghh2wj4o126"]
+[gd_scene load_steps=5 format=4 uid="uid://jghh2wj4o126"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_4no0k"]
-[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyB/EnemyB.tscn" id="2_aiihb"]
+[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_2w4u6"]
+[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/EnemyB/EnemyB.tscn" id="3_eab4e"]
+[ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC/EnemyC.tscn" id="4_eab4e"]
 
 [node name="Level1" instance=ExtResource("1_4no0k")]
 
@@ -23,5 +25,5 @@ fit_content = true
 horizontal_alignment = 2
 
 [node name="EnemyManager" parent="." index="4"]
-MAX_ENEMY_NUMBER = 3
-ENEMY_TYPE = Array[Resource]([ExtResource("2_aiihb")])
+MAX_ENEMY_NUMBER = 20
+ENEMY_TYPE = Array[PackedScene]([ExtResource("2_2w4u6"), ExtResource("3_eab4e"), ExtResource("4_eab4e")])

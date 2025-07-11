@@ -38,12 +38,6 @@ func try_move_y(value:float, delta:float):
 	else:
 		value = JUMP_SPEED * clamp(target_y - current_y, -1, 1)
 
-	printt(
-		_player_manager.get_player_position(), get_move_pos(), target.position,
-		current_y, target_y, floating_height, 
-		value, floating_timer
-	)
-
 	return value
 
 

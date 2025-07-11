@@ -1,4 +1,3 @@
-@tool
 class_name EnemyManager
 extends IGameSubManager
 
@@ -9,7 +8,7 @@ extends IGameSubManager
 ## 生成的敵人種類,
 ## 相同的敵人越多越容易生成,
 ## 可填空
-@export var ENEMY_TYPE: Array[Resource] = []
+@export var ENEMY_TYPE: Array[PackedScene] = []
 
 @export_category("敵人生成射線")
 
@@ -45,14 +44,10 @@ func _reset_spawnner_ray():
 	]
 	
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return 
 	DI.register("_enemy_manager", self)
 
 var _cooldown_timer := CooldownTimer.new()
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return 
 	%PlayerPosMarker2D.position.x = _player_manager.get_player_position().x
 	
 	if not _cooldown_timer.is_ready():
@@ -96,9 +91,14 @@ func _try_spawn_enemy():
 
 
 func _spawn_enemy(spawn_pos: Vector2):
+	if not len(ENEMY_TYPE):
+		return
+
 	var rng = ENEMY_TYPE.pick_random()
 	if rng is Resource:
 		var enemy = rng.instantiate()
+		print("spawn enmey: ", enemy)
+		print(ENEMY_TYPE)
 		enemy.position = spawn_pos
 		%Enemy.add_child(enemy)
 	

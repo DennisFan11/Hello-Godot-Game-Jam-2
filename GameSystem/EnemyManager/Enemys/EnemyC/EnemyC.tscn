@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bncde2rk1wyly"]
 
-[ext_resource type="Script" uid="uid://1pouwl46jkla" path="res://GameSystem/EnemyManager/Enemys/EnemyC/EnemyC.gd" id="1_rtd8s"]
+[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_rtd8s"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_8wl43"]
 [ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_r76at"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_04y04"]
