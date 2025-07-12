@@ -59,10 +59,19 @@ func frame_attack(delta: float)-> void:
 	if next_weapon: next_weapon.frame_attack(delta)
 
 # used by GodSceneManager
-signal on_click(id: String)
+signal on_click(weapon: Weapon)
 
 
 # used by WeaponEditor
+func get_parent_weapon()-> Weapon:
+	return $"../.."
+
+func get_back_weapon()-> Weapon:
+	var back_weapon: Weapon = self
+	while back_weapon.next_weapon:
+		back_weapon = back_weapon.next_weapon
+	return back_weapon
+
 func set_next_weapon(weapon: Weapon)-> void:
 	next_weapon = weapon
 	weapon.move_to(%NextWeaponContainer, glue_layer)
@@ -87,8 +96,8 @@ func get_all_weapon()-> Array[Weapon]:
 	while curr.next_weapon:
 		curr = curr.next_weapon
 		arr.append(curr)
-		print("next")
-	print(arr)
+		#print("next")
+	#print(arr)
 	return arr
 
 var _message_box_manager: MessageBoxManager
@@ -110,8 +119,8 @@ func _add_physical_components(child: PhysicalComponent):
 	child._set_metaball()
 	child.input_event.connect(
 		func(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-		if event.is_action("left_click"):
-			on_click.emit(id)
+		if event.is_action_pressed("left_click"):
+			on_click.emit(self)
 	)
 	child.mouse_entered.connect(
 		func ():

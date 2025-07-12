@@ -68,4 +68,5 @@ follow_viewport_enabled = true
 [node name="MessageBoxManager" parent="MessageBoxLayer" instance=ExtResource("10_40pkj")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="replacing_by" from="WeaponEditor" to="." method="_on_weapon_editor_replacing_by"]
 [connection signal="pressed" from="TestUILayer/Control/GodEventButton" to="TestUILayer" method="_on_god_event_button_pressed"]

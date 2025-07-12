@@ -49,6 +49,7 @@ offset_top = -130.0
 offset_right = -369.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fpx8n")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/FinishPanel"]
@@ -70,4 +71,6 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_moj5w")
 text = "Finish"
 
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="replacing_by" from="." to="." method="_on_replacing_by"]
 [connection signal="pressed" from="Control/FinishPanel/MarginContainer/FinishButton" to="." method="_on_finish_button_pressed"]

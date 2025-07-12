@@ -57,6 +57,5 @@ func _set_weapon_node(marker: Node2D, weapon: Weapon):
 	
 	for i in weapon.get_all_weapon():
 		i.on_click.connect(
-			func(id: String):
-				_finished.emit(weapon)
-		)
+			func (weapon: Weapon):
+				_finished.emit(weapon))
