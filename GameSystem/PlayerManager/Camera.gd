@@ -34,3 +34,5 @@ func _input(event: InputEvent) -> void:
 		#%Camera2D.zoom *= 1.1
 		var tween := get_tree().create_tween()
 		tween.tween_property(self,"zoom",zoom * ZOOM_SPEED,ZOOM_TIME)
+	if event is InputEventPanGesture:
+		zoom -= Vector2.ONE * 2.0 * (event.delta.y * get_process_delta_time())
