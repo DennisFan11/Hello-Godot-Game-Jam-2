@@ -17,13 +17,12 @@ func _on_injected():
 			_weapon_manager.get_random_weapon_id())
 	set_current_weapon(weapon)
 
-var _global_glue_layer: GlobalGlueLayer
 func set_current_weapon(weapon: Weapon)-> void:
 	if first_weapon:
 		first_weapon.queue_free()
 	first_weapon = weapon
 	
-	weapon.move_to(%WeaponMarker2D, _global_glue_layer, false)
+	weapon.move_to(%WeaponMarker2D, $"..".glue_layer, false)
 
 func take_current_weapon()-> Weapon:
 	var curr = first_weapon

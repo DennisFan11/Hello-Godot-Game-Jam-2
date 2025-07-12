@@ -24,6 +24,6 @@ text = "[font_size=70]LEVEL 1"
 fit_content = true
 horizontal_alignment = 2
 
-[node name="EnemyManager" parent="." index="5"]
+[node name="EnemyManager" parent="." index="4"]
 MAX_ENEMY_NUMBER = 20
 ENEMY_TYPE = Array[PackedScene]([ExtResource("2_2w4u6"), ExtResource("3_eab4e"), ExtResource("4_eab4e")])

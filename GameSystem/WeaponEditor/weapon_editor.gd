@@ -58,7 +58,6 @@ func try_merge():
 	
 	merge()
 
-var _global_glue_layer: GlobalGlueLayer
 func merge():
 	print("[WEAPON_EDITOR] merged")
 	
