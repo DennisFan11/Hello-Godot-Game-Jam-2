@@ -21,7 +21,7 @@ unique_name_in_owner = true
 
 [node name="BaseWeaponMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(818, 504)
+position = Vector2(598, 457)
 scale = Vector2(7, 7)
 
 [node name="SelectedMarker" type="Marker2D" parent="."]

@@ -15,7 +15,7 @@ var SCENE := {
 		"file": preload("uid://cv2bm6xikqx7q")
 	},
 	"GoddessWeaponSelect": {
-		"file": preload("uid://d0t4w5bfhv8jn")
+		"file": preload("uid://dbdeoxecjlqqg")
 	}
 }
 

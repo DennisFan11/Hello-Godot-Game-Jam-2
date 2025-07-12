@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0t4w5bfhv8jn"]
+[gd_scene load_steps=5 format=3 uid="uid://dbdeoxecjlqqg"]
 
-[ext_resource type="Script" path="res://GameSystem/GoddessWeaponSelect/GoddessWeaponSelect.gd" id="1_1v5xg"]
+[ext_resource type="Script" uid="uid://c7f2ojbtrbk8c" path="res://GameSystem/GoddessWeaponSelect/GoddessWeaponSelect.gd" id="1_1v5xg"]
 [ext_resource type="Texture2D" uid="uid://d3yf6t40fkax1" path="res://Asset/Image/lake_Crop1.png" id="2_w4l8r"]
 [ext_resource type="Texture2D" uid="uid://cabsr06rk6421" path="res://Asset/Image/lake_Crop2.png" id="3_77j4g"]
 

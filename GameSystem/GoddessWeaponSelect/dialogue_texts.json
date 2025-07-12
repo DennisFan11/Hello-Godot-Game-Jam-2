@@ -1,0 +1,52 @@
+{
+  "dialogue_texts": [
+	{
+	  "name": "女神",
+	  "texts": [
+		"你這凡人……怎麼敢攻擊女神大人我？是腦袋進水了嗎！",
+		"跪下說清楚。你掉的是我頭上這把破爛？還是我剛剛順手撿的{武器A}還是{武器B}?"
+	  ]
+	}
+  ],
+  "ui_texts": {
+	"weapon_selection": "請選擇你的武器：",
+	"journey_button": "踏上旅程"
+  },
+  "weapons": [
+	{
+	  "id": "sword_of_light",
+	  "name": "光明之劍",
+	  "description": "散發著神聖光芒的劍，對邪惡有額外傷害",
+	  "icon": "⚔️",
+	  "response": "光明之劍將為你照亮前路，驅散一切黑暗！"
+	},
+	{
+	  "id": "storm_bow",
+	  "name": "風暴之弓",
+	  "description": "能夠召喚風暴的神弓，攻擊範圍廣闊",
+	  "icon": "🏹",
+	  "response": "風暴之弓將賜予你風的速度與雷電的力量！"
+	},
+	{
+	  "id": "crystal_staff",
+	  "name": "水晶法杖",
+	  "description": "蘊含魔法能量的法杖，能釋放強大的法術",
+	  "icon": "🔮",
+	  "response": "水晶法杖將讓你掌控魔法的奧秘與智慧的力量！"
+	},
+	{
+	  "id": "shadow_dagger",
+	  "name": "暗影短劍",
+	  "description": "潛伏在陰影中的利刃，擅長隱身暗殺",
+	  "icon": "🗡️",
+	  "response": "暗影短劍將讓你如影隨形，無聲無息地擊敗敵人！"
+	},
+	{
+	  "id": "earth_hammer",
+	  "name": "大地戰錘",
+	  "description": "蘊含大地之力的重錘，擁有震撼性的攻擊力",
+	  "icon": "🔨",
+	  "response": "大地戰錘將賜予你山嶽般的力量和不屈的意志！"
+	}
+  ]
+}

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckjyc7agxyvlq" path="res://GameSystem/WeaponManager/WeaponManager.tscn" id="6_wonvf"]
 [ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_kst1i"]
 [ext_resource type="PackedScene" uid="uid://dg3djwp882ugn" path="res://GameSystem/ShaderManager/ShaderManager.tscn" id="7_o6cs3"]
-[ext_resource type="Script" uid="uid://bnghb6qdxye66" path="res://GameSystem/TrstUILayer.gd" id="9_53t43"]
+[ext_resource type="Script" path="res://GameSystem/TrstUILayer.gd" id="9_53t43"]
 [ext_resource type="PackedScene" uid="uid://b8b7q8fpnpmr5" path="res://GameSystem/MessageBoxManager/MessageBoxManager.tscn" id="10_40pkj"]
 [ext_resource type="PackedScene" uid="uid://dysm5ban4fmau" path="res://GameSystem/WeaponEditor/WeaponEditor.tscn" id="11_cmd41"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
@@ -37,7 +37,8 @@ WEIGHT = 500.0
 
 [node name="ShaderManager" parent="." instance=ExtResource("7_o6cs3")]
 
-[node name="GoddessWeaponSelect" parent="." instance=ExtResource("7_kst1i")]
+[node name="GodSceneManager" parent="." instance=ExtResource("7_kst1i")]
+visible = false
 
 [node name="WeaponEditor" parent="." instance=ExtResource("11_cmd41")]
 
