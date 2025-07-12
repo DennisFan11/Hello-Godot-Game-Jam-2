@@ -22,12 +22,8 @@ func set_current_weapon(weapon: Weapon)-> void:
 	if first_weapon:
 		first_weapon.queue_free()
 	first_weapon = weapon
-	weapon.request_ready()
-	weapon.glue_layer = _global_glue_layer
-	if weapon.get_parent():
-		weapon.reparent(%WeaponMarker2D, false)
-	else:
-		%WeaponMarker2D.add_child(weapon)
+	
+	weapon.move_to(%WeaponMarker2D, _global_glue_layer, false)
 
 func take_current_weapon()-> Weapon:
 	var curr = first_weapon

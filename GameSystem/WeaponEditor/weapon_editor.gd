@@ -18,17 +18,12 @@ func start_event(base_weapon: Weapon, new_weapon: Weapon=null):
 	visible = true
 	
 	base_weapon.is_main = true
-	base_weapon.glue_layer = %GlueLayer
-	base_weapon.request_ready()
-	base_weapon.reparent(%BaseWeaponMarker, false)
-	
+	base_weapon.move_to(%BaseWeaponMarker, %GlueLayer, false)
 	
 	if new_weapon:
 		#new_weapon.is_main = false
 		%FinishButton.disabled = true
-		new_weapon.glue_layer = %GlueLayer
-		%SelectedMarker.add_child(new_weapon)
-		#new_weapon.reparent(%SelectedMarker)
+		new_weapon.move_to(%SelectedMarker, %GlueLayer)
 	
 	await _finished
 	visible = false

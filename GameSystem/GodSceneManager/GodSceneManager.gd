@@ -53,15 +53,7 @@ func _set_weapon_scene(marker: Node2D, weapon_id: String):
 	_set_weapon_node(marker, weapon)
 
 func _set_weapon_node(marker: Node2D, weapon: Weapon):
-	weapon.glue_layer = %GlueLayer
-	weapon.request_ready()
-	if weapon.get_parent():
-		weapon.reparent(marker, false)
-	else:
-		marker.add_child(weapon)
-	
-	weapon.position = Vector2.ZERO
-	weapon.rotation = 0.0
+	weapon.move_to(marker, %GlueLayer, false)
 	
 	for i in weapon.get_all_weapon():
 		i.on_click.connect(

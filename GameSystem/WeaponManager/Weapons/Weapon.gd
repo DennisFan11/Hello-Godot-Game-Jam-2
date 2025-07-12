@@ -37,6 +37,19 @@ func get_damage()-> float:
 	# 武器傷害 + 升級傷害增加
 	return DMG + PlayerUpgradeSystem.player_stats.attack_damage
 
+## 轉移武器
+func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bool = true):
+	self.glue_layer = glue_layer
+	request_ready()
+	if get_parent():
+		reparent(target_node, keep_global_transform)
+	else:
+		self.position = Vector2.ZERO
+		self.rotation = 0.0
+		target_node.add_child(self)
+	
+
+
 # used by player
 func frame_attack(delta: float)-> void:
 	for i in _physical_components:
@@ -44,7 +57,6 @@ func frame_attack(delta: float)-> void:
 			if j is Enemy:
 				j.damage(get_damage())
 	if next_weapon: next_weapon.frame_attack(delta)
-	
 
 # used by GodSceneManager
 signal on_click(id: String)
@@ -53,7 +65,8 @@ signal on_click(id: String)
 # used by WeaponEditor
 func set_next_weapon(weapon: Weapon)-> void:
 	next_weapon = weapon
-	weapon.reparent(%NextWeaponContainer)
+	weapon.move_to(%NextWeaponContainer, glue_layer)
+
 
 ## 和其他武器重疊
 func is_collide()-> bool:
