@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1cttuf3xyh2x"]
+[gd_scene load_steps=8 format=3 uid="uid://d1cttuf3xyh2x"]
 
 [ext_resource type="Script" uid="uid://g205pn8k2y44" path="res://GameSystem/_shared/GlueLayer/glue_layer.gd" id="1_0sqec"]
 
@@ -45,6 +45,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-231.037, -9.85272)
 mode = 1
 flags/light_only = false
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_0sqec")
@@ -56,31 +57,7 @@ nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 3, 4, 0, 1, 2, 4, 3, 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jn5rv"]
 shader = SubResource("VisualShader_0sqec")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0sqec"]
-blend_mode = 1
-
-[sub_resource type="Gradient" id="Gradient_t4wu3"]
-offsets = PackedFloat32Array(0.415423, 1)
-colors = PackedColorArray(1, 1, 1, 0.498039, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0sqec"]
-gradient = SubResource("Gradient_t4wu3")
-fill_to = Vector2(0, 1)
-
-[node name="GlueLayer" type="CanvasGroup"]
+[node name="GlueLayer2" type="CanvasGroup"]
 material = SubResource("ShaderMaterial_jn5rv")
 script = ExtResource("1_0sqec")
 metadata/_custom_type_script = "uid://g205pn8k2y44"
-
-[node name="Line2D" type="Line2D" parent="."]
-material = SubResource("CanvasItemMaterial_0sqec")
-points = PackedVector2Array(11, 48, 60, 48, 60, 12, 9, 16)
-texture = SubResource("GradientTexture2D_0sqec")
-texture_mode = 2
-
-[node name="Line2D2" type="Line2D" parent="."]
-material = SubResource("CanvasItemMaterial_0sqec")
-position = Vector2(57, -2)
-points = PackedVector2Array(17, -3, 0, 29, 41, 38, 85, 37)
-texture = SubResource("GradientTexture2D_0sqec")
-texture_mode = 2

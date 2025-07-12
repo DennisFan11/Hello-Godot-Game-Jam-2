@@ -14,6 +14,8 @@ const RESIZE: Vector2  = Vector2(32, 32)
 const EXPAND_SIZE: int = 2
 
 func _reset()-> void:
+	if not is_node_ready():
+		return
 	var image := texture.get_image()
 	image.resize(RESIZE.x, RESIZE.y)
 	
@@ -21,7 +23,8 @@ func _reset()-> void:
 	_glue_polygon = _expand_polygon(_get_polygon(image), EXPAND_SIZE)
 	
 	_sprite = ImageTexture.create_from_image(image)
-
+	var _sdf_img = SDF_process.img2SDF(image)
+	_sdf_texture = ImageTexture.create_from_image(_sdf_img)
 
 
 
@@ -36,7 +39,9 @@ func _reset()-> void:
 @export var _sprite:          Texture2D:
 	set(new):
 		%Sprite2D.texture = new
-		%MetaBallOutline.texture = new
+@export var _sdf_texture: Texture2D:
+	set(new):
+		%SDF_Test.texture = new
 
 ##  /////////////////////    TOOLS
 func _get_polygon(image: Image)-> PackedVector2Array:
@@ -60,12 +65,12 @@ func _valid_check()-> bool:
 	return _weapon_polygon and \
 		_glue_polygon and \
 		%Sprite2D.texture and \
-		%MetaBallSprite2D.texture
+		%SDF_Test.texture
 
 
 var metaball_node: Node2D
 func _set_metaball():
-	var node: Sprite2D = %MetaBallOutline.duplicate()
+	var node: Sprite2D = %SDF_Test.duplicate()
 	if not get_parent().glue_layer:
 		return
 	get_parent().glue_layer.add_child(node)
