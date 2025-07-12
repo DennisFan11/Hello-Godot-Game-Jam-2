@@ -53,6 +53,8 @@ folder_colors={
 Block=""
 Player=""
 Enemy=""
+Glue=""
+PhysicalComponent=""
 
 [input]
 
@@ -125,12 +127,18 @@ attack={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(662, 44),"global_position":Vector2(681, 140),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+right_turn={
+"deadzone": 0.2,
+"events": []
+}
 
 [layer_names]
 
 2d_render/layer_10="buildingUI"
 2d_physics/layer_1="Player, Wall"
 2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Glue"
+2d_physics/layer_4="Weapon"
 2d_physics/layer_20="PlayerBuilding"
 2d_physics/layer_21="EnemyBuilding"
 

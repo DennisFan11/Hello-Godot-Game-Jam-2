@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1cttuf3xyh2x"]
+
+[ext_resource type="Script" uid="uid://g205pn8k2y44" path="res://GameSystem/_shared/GlueLayer/glue_layer.gd" id="1_0sqec"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0sqec"]
+expanded_output_ports = [0]
+source = 1
+
+[sub_resource type="Gradient" id="Gradient_0sqec"]
+offsets = PackedFloat32Array(0.536785, 0.591281, 0.643052, 0.910082)
+colors = PackedColorArray(0, 0, 0, 0, 2.69532e-06, 0.603186, 0.693144, 1, 2.69532e-06, 0.603186, 0.693144, 1, 0, 0.900348, 0.689131, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jn5rv"]
+gradient = SubResource("Gradient_0sqec")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_procj"]
+expanded_output_ports = [0]
+texture = SubResource("GradientTexture1D_jn5rv")
+
+[sub_resource type="VisualShader" id="VisualShader_0sqec"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D screen_tex_frg_2 : hint_screen_texture;
+uniform sampler2D tex_frg_3;
+
+
+
+void fragment() {
+	vec4 n_out2p0;
+// Texture2D:2
+	n_out2p0 = texture(screen_tex_frg_2, SCREEN_UV);
+	float n_out2p4 = n_out2p0.a;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, vec2(n_out2p4));
+	float n_out3p4 = n_out3p0.a;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out3p0.xyz);
+	COLOR.a = n_out3p4;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_0sqec")
+nodes/fragment/2/position = Vector2(-1560, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_procj")
+nodes/fragment/3/position = Vector2(-360, 180)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 3, 4, 0, 1, 2, 4, 3, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jn5rv"]
+shader = SubResource("VisualShader_0sqec")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0sqec"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_t4wu3"]
+offsets = PackedFloat32Array(0.415423, 1)
+colors = PackedColorArray(1, 1, 1, 0.498039, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0sqec"]
+gradient = SubResource("Gradient_t4wu3")
+fill_to = Vector2(0, 1)
+
+[node name="GlueLayer" type="CanvasGroup"]
+material = SubResource("ShaderMaterial_jn5rv")
+script = ExtResource("1_0sqec")
+metadata/_custom_type_script = "uid://g205pn8k2y44"
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_0sqec")
+points = PackedVector2Array(11, 48, 60, 48, 60, 12, 9, 16)
+texture = SubResource("GradientTexture2D_0sqec")
+texture_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_0sqec")
+position = Vector2(57, -2)
+points = PackedVector2Array(17, -3, 0, 29, 41, 38, 85, 37)
+texture = SubResource("GradientTexture2D_0sqec")
+texture_mode = 2

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs4e4w2qtxeyk"]
+
+[ext_resource type="PackedScene" uid="uid://d1cttuf3xyh2x" path="res://GameSystem/_shared/GlueLayer/GlueLayer.tscn" id="1_4cy1c"]
+[ext_resource type="Script" uid="uid://ptluox0s1w6g" path="res://GameSystem/GlobalGlueLayer/global_glue_layer.gd" id="2_eblxv"]
+
+[node name="GlueLayer" instance=ExtResource("1_4cy1c")]
+script = ExtResource("2_eblxv")

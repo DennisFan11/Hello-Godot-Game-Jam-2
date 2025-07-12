@@ -1,6 +1,8 @@
 class_name Weapon
 extends Node2D
 
+var id: String = "sword"
+
 ## 武器傷害
 @export var DMG: float = 15.0
 ## 
@@ -10,10 +12,135 @@ extends Node2D
 ## 武器使用動畫
 @export var ANIM: String = "SwordType"
 
-func get_damage():
+@export var NAME: String = ""
+
+
+
+var is_main: bool = true
+var next_weapon: Weapon
+var glue_layer: Node2D:
+	set(new):
+		glue_layer = new
+		request_ready()
+		if next_weapon:
+			next_weapon.glue_layer = new
+
+func get_weapon_name()-> String:
+	var str = ""
+	var curr_weapon: Weapon = self
+	while curr_weapon.next_weapon:
+		curr_weapon = curr_weapon.next_weapon
+		str += "[" + curr_weapon.NAME + "]"
+	return str + NAME
+
+func get_damage()-> float:
 	# 武器傷害 + 升級傷害增加
 	return DMG + PlayerUpgradeSystem.player_stats.attack_damage
 
 # used by player
-func frame_attack(delta: float):
-	pass
+func frame_attack(delta: float)-> void:
+	for i in _physical_components:
+		for j:Node2D in i.get_attack_area().get_overlapping_bodies():
+			if j is Enemy:
+				j.damage(get_damage())
+	if next_weapon: next_weapon.frame_attack(delta)
+	
+
+# used by GodSceneManager
+signal on_click(id: String)
+
+
+# used by WeaponEditor
+func set_next_weapon(weapon: Weapon)-> void:
+	next_weapon = weapon
+	weapon.reparent(%NextWeaponContainer)
+
+## 和其他武器重疊
+func is_collide()-> bool:
+	for i in _physical_components:
+		if i.is_collide(): return true
+	return false
+
+## 和其他武器相黏
+func is_glued()-> bool:
+	for i in _physical_components:
+		if i.is_glued(): return true
+	return false
+
+func get_all_weapon()-> Array[Weapon]:
+	var arr: Array[Weapon] = []
+	var curr: Weapon = self
+	arr.append(curr)
+	while curr.next_weapon:
+		curr = curr.next_weapon
+		arr.append(curr)
+		print("next")
+	print(arr)
+	return arr
+
+var _message_box_manager: MessageBoxManager
+
+## ////////// PRIVATE \\\\\\\\\\
+
+
+var _physical_components: Array[PhysicalComponent] = []
+
+func _ready() -> void:
+	for child: Node in get_children():
+		if child is PhysicalComponent:
+			_add_physical_components(child)
+
+var _message_box: MessageBox
+func _add_physical_components(child: PhysicalComponent):
+	_physical_components.append(child)
+	child.freeze = is_main
+	child._set_metaball()
+	child.input_event.connect(
+		func(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+		if event.is_action("left_click"):
+			on_click.emit(id)
+	)
+	child.mouse_entered.connect(
+		func ():
+			if not _message_box:
+				_message_box = _message_box_manager.create_message_box()
+				_message_box.set_string(get_weapon_name())
+	)
+	child.mouse_exited.connect(
+		func():
+			if _message_box:
+				_message_box.queue_free()
+				_message_box = null
+	)
+
+func _process(delta: float) -> void:
+	if _message_box:
+		_message_box.global_position = _message_box_manager.get_global_mouse_position()
+
+func _exit_tree() -> void:
+	if _message_box: _message_box.queue_free()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#

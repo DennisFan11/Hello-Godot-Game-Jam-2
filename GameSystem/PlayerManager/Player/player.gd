@@ -80,7 +80,7 @@ func attack() -> bool:
 		# 這裡可以添加攻擊邏輯 TODO 
 		%WeaponSlot.start_attack(0.2)
 		
-		print("攻擊！傷害：", attack_damage)
+		#print("攻擊！傷害：",  attack_damage)
 		return true
 	return false
 

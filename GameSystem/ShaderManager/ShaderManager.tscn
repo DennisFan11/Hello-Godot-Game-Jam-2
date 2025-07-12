@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg3djwp882ugn"]
+
+[ext_resource type="Script" uid="uid://ciqdsln47cfs3" path="res://GameSystem/ShaderManager/shader_manager.gd" id="1_hoov8"]
+[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_tyfhr"]
+
+[sub_resource type="Shader" id="Shader_tyfhr"]
+code = "shader_type canvas_item;
+
+// mipmap is neaded for textureLod
+uniform sampler2D screen_texture: hint_screen_texture, repeat_disable, filter_nearest_mipmap;
+// works better as a normal with warping
+uniform sampler2D warp_texture: repeat_enable;
+
+uniform float tor_weight: hint_range(0.0, 0.3) = 0.01;
+
+uniform float intensity: hint_range(0.0, 10.0) = 0.01;
+uniform vec4 tint_color: source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform float tint_amount: hint_range(0.0, 1.0) = 0.4;
+
+void fragment() {
+    // get our normal warp
+    vec2 warp = texture(warp_texture, UV).xy - 0.5;
+    // sample based on warp and intensity and blur based on intensity
+    vec4 screen = textureLod(screen_texture, SCREEN_UV + warp * tor_weight, intensity);
+    // tint our image
+    screen = mix(screen, tint_color, tint_amount);
+    // get a random-ish value for some speckle noise
+    float noise = fract(sin(dot(UV, vec2(12.9898, 78.233))) * 43758.5453);
+    // light diffusion for glass shape highlights
+    float diff = max(dot(warp, normalize(vec2(1.0, 1.0))), 0.0);
+    // apply diffusion based on intensity
+    //screen += diff * intensity;
+    // apply speckle noise based on intensity
+    //screen += noise * intensity;
+    // yarp
+    COLOR = screen;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tyfhr"]
+frequency = 0.0096
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tbvhr"]
+seamless = true
+noise = SubResource("FastNoiseLite_tyfhr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbvhr"]
+shader = SubResource("Shader_tyfhr")
+shader_parameter/warp_texture = SubResource("NoiseTexture2D_tbvhr")
+shader_parameter/tor_weight = 0.03
+shader_parameter/intensity = 1.97
+shader_parameter/tint_color = Color(0.270588, 0.709804, 0.917647, 1)
+shader_parameter/tint_amount = 0.214
+
+[node name="ShaderManager" type="Node2D"]
+script = ExtResource("1_hoov8")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-111, -19)
+texture = ExtResource("2_tyfhr")
+
+[node name="FrostedGlass" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_tbvhr")
+position = Vector2(-96, -12)
+texture = ExtResource("2_tyfhr")
+polygon = PackedVector2Array(-227, -183, 511, -207, 490, 258, -220, 241)

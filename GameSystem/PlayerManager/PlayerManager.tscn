@@ -4,10 +4,12 @@
 [ext_resource type="Script" uid="uid://d4kvnwbk24my8" path="res://GameSystem/PlayerManager/Camera.gd" id="2_b5ih3"]
 
 [node name="PlayerManager" type="Node2D"]
+visibility_layer = 7
 script = ExtResource("1_ne4h4")
 
 [node name="SpawnMarker2D" type="Marker2D" parent="."]
 unique_name_in_owner = true
+visibility_layer = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(7, 7)
