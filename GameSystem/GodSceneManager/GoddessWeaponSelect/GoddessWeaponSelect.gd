@@ -46,7 +46,7 @@ var is_dialogue_phase: bool = true
 var selected_weapon: Dictionary = {}
 
 # 文本檔案路徑
-const DIALOGUE_FILE_PATH = "res://GameSystem/GoddessWeaponSelect/dialogue_texts.json"
+const DIALOGUE_FILE_PATH = "res://GameSystem/GodSceneManager/GoddessWeaponSelect/dialogue_texts.json"
 
 # 下一個場景名稱 (對應 CoreManager 的 SCENE 字典)
 const NEXT_SCENE_NAME = "Level1"
@@ -605,10 +605,12 @@ func _change_goddess_image_with_fade(new_texture_path: String):
 		print("⚠ 警告：無法載入圖片 %s，保持原始圖片" % new_texture_path)
 		return
 	
-	# 如果 dropped_weapon_image 存在且是女神圖片的子節點，暫時移出
-	if dropped_weapon_image and is_instance_valid(dropped_weapon_image) and dropped_weapon_image.get_parent() == goddess_image:
-		goddess_image.remove_child(dropped_weapon_image)
-
+	# 如果 dropped_weapon_image 存在，暫時移出（無論父節點是什麼）
+	var temp_dropped_weapon_parent = null
+	if dropped_weapon_image and is_instance_valid(dropped_weapon_image):
+		temp_dropped_weapon_parent = dropped_weapon_image.get_parent()
+		if temp_dropped_weapon_parent:
+			temp_dropped_weapon_parent.remove_child(dropped_weapon_image)
 	
 	# 創建一個臨時的圖片節點用於新圖片
 	var temp_image = TextureRect.new()
