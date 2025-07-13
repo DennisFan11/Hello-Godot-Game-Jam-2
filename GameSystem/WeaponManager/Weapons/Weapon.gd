@@ -41,11 +41,12 @@ func get_damage()-> float:
 func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bool = true):
 	self.glue_layer = glue_layer
 	request_ready()
+	if not keep_global_transform:
+		self.position = Vector2.ZERO
+		self.rotation = 0.0
 	if get_parent():
 		reparent(target_node, keep_global_transform)
 	else:
-		self.position = Vector2.ZERO
-		self.rotation = 0.0
 		target_node.add_child(self)
 	
 
@@ -63,8 +64,14 @@ signal on_click(weapon: Weapon)
 
 
 # used by WeaponEditor
-func get_parent_weapon()-> Weapon:
+func get_parent_weapon()-> Node2D:
 	return $"../.."
+
+func get_front_weapon()-> Weapon:
+	var front_weapon: Weapon = self
+	while front_weapon.get_parent_weapon() is Weapon:
+		front_weapon = front_weapon.get_parent_weapon()
+	return front_weapon
 
 func get_back_weapon()-> Weapon:
 	var back_weapon: Weapon = self

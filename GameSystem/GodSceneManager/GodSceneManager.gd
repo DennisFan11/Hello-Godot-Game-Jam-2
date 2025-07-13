@@ -14,6 +14,7 @@ func start_event()-> Array[Weapon]:
 	_clear_weapon()
 	_set_weapon()
 	var selected: Weapon = await _finished
+	selected = selected.get_front_weapon()
 	visible = false
 	_shader_manager.disable("frosted_glass")
 	return [selected, _weapon_manager.creat_weapon_scene(_weapon_manager.get_random_weapon_id())] ## FIXME

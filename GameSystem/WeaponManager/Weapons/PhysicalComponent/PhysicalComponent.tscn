@@ -1,38 +1,50 @@
-[gd_scene load_steps=11 format=3 uid="uid://djj783bpwtmvx"]
+[gd_scene load_steps=9 format=3 uid="uid://djj783bpwtmvx"]
 
 [ext_resource type="Script" uid="uid://qfkuwgxbwp0y" path="res://GameSystem/WeaponManager/Weapons/PhysicalComponent/physical_component.gd" id="1_t4wu3"]
 [ext_resource type="Texture2D" uid="uid://dr1u2eedgoabu" path="res://Asset/Weapons/sword.png" id="2_7fcwc"]
 
 [sub_resource type="Shader" id="Shader_pnegs"]
-code = "shader_type canvas_item;
+code = "//shader_type canvas_item;
+//
+//void vertex() {
+	//// Called for every vertex the material is visible on.
+//}
+//uniform sampler2D curve_texture;
+//
+//void fragment() {
+	//float a = texture(TEXTURE, UV).a;
+	//COLOR.a = texture(curve_texture, vec2(a, 0.0)).r;
+//}
+//
+////void light() {
+////	// Called for every pixel for every light affecting the CanvasItem.
+////	// Uncomment to replace the default light processing function with this one.
+////}
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-uniform sampler2D curve_texture;
+
+shader_type canvas_item;
+
+uniform float epsilon = 1e-5; // 小常數，防止除以 0
+uniform float strength = 1.0; // 場強倍率
+uniform float k = 1.0;        // 衰減因子
 
 void fragment() {
-	float a = texture(TEXTURE, UV).a;
-	COLOR.a = texture(curve_texture, vec2(a, 0.0)).r;
+    vec4 base_color = texture(TEXTURE, UV);
+    float a = base_color.a;
+
+    // 場強函數：非線性映射 alpha
+    float field = strength * a / pow(a * a + epsilon, k);
+
+    base_color.a = clamp(field, 0.0, 1.0); // 保證 alpha 合法
+    COLOR = base_color;
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}
 "
-
-[sub_resource type="Curve" id="Curve_pnegs"]
-_limits = [0.0, 0.5, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.514523, 0, 0, Vector2(1, 0.5), 0.624425, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_0vgn0"]
-curve = SubResource("Curve_pnegs")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vgn0"]
 shader = SubResource("Shader_pnegs")
-shader_parameter/curve_texture = SubResource("CurveTexture_0vgn0")
+shader_parameter/epsilon = 1e-05
+shader_parameter/strength = 1.0
+shader_parameter/k = -0.7
 
 [sub_resource type="Image" id="Image_7fcwc"]
 data = {
