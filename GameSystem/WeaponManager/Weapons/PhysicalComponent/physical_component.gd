@@ -102,21 +102,23 @@ func is_collide()-> bool:
 			continue
 		if not i.is_in_group("PhysicalComponent"):
 			continue
+		_set_state("is collide")
 		return true
-	
+	_set_state("is not collide")
 	return false
 
 func is_glued()-> bool:
 	for i in %GlueArea.get_overlapping_areas():
-		if not i.is_in_group("Glue"):
-			continue
-		return true
-		
+		if i.is_in_group("Glue"):
+			_set_state("is glued")
+			return true
+	_set_state("is not glued")
 	return false
 
 
 
-
+func _set_state(s: String):
+	%StateLabel.text = s
 
 
 

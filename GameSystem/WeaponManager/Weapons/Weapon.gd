@@ -63,6 +63,21 @@ func frame_attack(delta: float)-> void:
 signal on_click(weapon: Weapon)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # used by WeaponEditor
 func get_parent_weapon()-> Node2D:
 	return $"../.."
@@ -88,6 +103,8 @@ func set_next_weapon(weapon: Weapon)-> void:
 func is_collide()-> bool:
 	for i in _physical_components:
 		if i.is_collide(): return true
+	if next_weapon:
+		return next_weapon.is_collide()
 	return false
 
 ## 和其他武器相黏
@@ -103,11 +120,25 @@ func get_all_weapon()-> Array[Weapon]:
 	while curr.next_weapon:
 		curr = curr.next_weapon
 		arr.append(curr)
-		#print("next")
-	#print(arr)
 	return arr
 
 var _message_box_manager: MessageBoxManager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## ////////// PRIVATE \\\\\\\\\\
 
