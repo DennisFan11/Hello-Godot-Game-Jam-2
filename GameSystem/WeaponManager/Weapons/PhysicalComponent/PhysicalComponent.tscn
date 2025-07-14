@@ -80,7 +80,6 @@ texture = ExtResource("2_7fcwc")
 
 [node name="RigidCollision" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
-visible = false
 polygon = PackedVector2Array(9, -11, -5, 2, -5, 3, -12, 2, -13, 2, -11, 6, -11, 10, -14, 13, -15, 13, -15, 15, -13, 15, -10, 12, -10, 11, -2, 12, -1, 12, -3, 8, -3, 5, 11, -9, 12, -9, 12, -12, 9, -12)
 
 [node name="SDF_Test" type="Sprite2D" parent="."]
@@ -95,7 +94,6 @@ texture = SubResource("ImageTexture_sj6x2")
 
 [node name="GlueArea" type="Area2D" parent="." groups=["Glue"]]
 unique_name_in_owner = true
-visible = false
 modulate = Color(0.487977, 0.582093, 1, 1)
 collision_layer = 12
 collision_mask = 12
@@ -106,7 +104,6 @@ polygon = PackedVector2Array(8.17157, -14, 7, -12.8284, 7, -11.8721, -6.59504, 0
 
 [node name="AttackArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-visible = false
 modulate = Color(0.831215, 0, 0.155651, 1)
 collision_layer = 10
 collision_mask = 10
@@ -115,7 +112,13 @@ collision_mask = 10
 unique_name_in_owner = true
 polygon = PackedVector2Array(9, -11, -5, 2, -5, 3, -12, 2, -13, 2, -11, 6, -11, 10, -14, 13, -15, 13, -15, 15, -13, 15, -10, 12, -10, 11, -2, 12, -1, 12, -3, 8, -3, 5, 11, -9, 12, -9, 12, -12, 9, -12)
 
-[node name="StateLabel" type="Label" parent="."]
+[node name="StateLabel" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Bello"
+fit_content = true
+autowrap_mode = 0

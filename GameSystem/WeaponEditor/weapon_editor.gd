@@ -34,7 +34,7 @@ signal _finished
 
 func _process(delta: float) -> void:
 	%SelectedMarker.position = %SelectedMarker.get_global_mouse_position()
-
+	_weapon_shader_update()
 func _unhandled_input(event: InputEvent):
 	if event is InputEventPanGesture:
 		%SelectedMarker.rotation -= 2.0 * event.delta.x * get_process_delta_time()
@@ -44,6 +44,10 @@ func _unhandled_input(event: InputEvent):
 
 
 
+func _weapon_shader_update():
+	if _new_weapon:
+		if not _new_weapon.is_collide():
+			_new_weapon.is_glued()
 
 func try_merge():
 	if (not _base_weapon or not _new_weapon):

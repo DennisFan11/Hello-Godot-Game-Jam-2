@@ -96,23 +96,21 @@ func get_attack_area()-> Area2D:
 
 ## 和其他武器重疊
 func is_collide()-> bool:
-	for i: Node2D in get_attack_area().get_overlapping_bodies():
-		
+	for i: Node2D in %AttackArea.get_overlapping_bodies():
 		if i == self:
 			continue
-		if not i.is_in_group("PhysicalComponent"):
-			continue
-		_set_state("is collide")
-		return true
-	_set_state("is not collide")
+		if i.is_in_group("PhysicalComponent"):
+			_set_state("[color=red]is collide")
+			return true
+	_set_state("[color=green]is not collide")
 	return false
 
 func is_glued()-> bool:
 	for i in %GlueArea.get_overlapping_areas():
 		if i.is_in_group("Glue"):
-			_set_state("is glued")
+			_set_state("[color=green]is glued")
 			return true
-	_set_state("is not glued")
+	_set_state("[color=red]is not glued")
 	return false
 
 
