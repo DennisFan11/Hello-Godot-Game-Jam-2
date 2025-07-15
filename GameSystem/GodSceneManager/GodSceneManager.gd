@@ -14,7 +14,7 @@ func start_event()-> Array[Weapon]:
 	_clear_weapon()
 	_set_weapon()
 	var selected: Weapon = await _finished
-	selected = selected.get_front_weapon()
+	selected = selected
 	visible = false
 	_shader_manager.disable("frosted_glass")
 	_clear_weapon()
@@ -58,5 +58,6 @@ func _set_weapon_node(marker: Node2D, weapon: Weapon):
 	for i in weapon.get_all_weapon():
 		i.on_click.connect(
 			func (weapon: Weapon):
+				weapon = weapon.get_front_weapon()
 				_weapon_arr.erase(weapon)
 				_finished.emit(weapon))
