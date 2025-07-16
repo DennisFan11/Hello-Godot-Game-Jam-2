@@ -4,12 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
 [ext_resource type="Script" uid="uid://dl33ijmoqp57y" path="res://GameSystem/PlayerManager/Player/WeaponSlot/weapon_slot.gd" id="3_s163p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_asllk"]
-radius = 6.08276
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_asllk"]
-size = Vector2(2, 12)
-
 [sub_resource type="Animation" id="Animation_nd1tf"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,13 +41,41 @@ _data = {
 &"SwordType": SubResource("Animation_u5ohs")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_asllk"]
+radius = 6.08276
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asllk"]
+size = Vector2(2, 12)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 visibility_layer = 7
 script = ExtResource("1_trhjy")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Body" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Icon" type="Sprite2D" parent="Body"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_asllk")
+
+[node name="WeaponSlot" type="Node2D" parent="Body"]
+unique_name_in_owner = true
+visibility_layer = 7
+script = ExtResource("3_s163p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/WeaponSlot"]
+unique_name_in_owner = true
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_nd1tf")
+}
+playback_auto_capture_transition_type = 6
+playback_auto_capture_ease_type = 2
+
+[node name="WeaponMarker2D" type="Marker2D" parent="Body/WeaponSlot"]
+unique_name_in_owner = true
+visibility_layer = 7
+rotation = -2.34572
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_asllk")
@@ -72,23 +94,4 @@ unique_name_in_owner = true
 position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_asllk")
 
-[node name="WeaponSlot" type="Node2D" parent="."]
-unique_name_in_owner = true
-visibility_layer = 7
-script = ExtResource("3_s163p")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponSlot"]
-unique_name_in_owner = true
-deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_nd1tf")
-}
-playback_auto_capture_transition_type = 6
-playback_auto_capture_ease_type = 2
-
-[node name="WeaponMarker2D" type="Marker2D" parent="WeaponSlot"]
-unique_name_in_owner = true
-visibility_layer = 7
-rotation = -2.34572
-
-[connection signal="animation_finished" from="WeaponSlot/AnimationPlayer" to="WeaponSlot" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Body/WeaponSlot/AnimationPlayer" to="Body/WeaponSlot" method="_on_animation_player_animation_finished"]

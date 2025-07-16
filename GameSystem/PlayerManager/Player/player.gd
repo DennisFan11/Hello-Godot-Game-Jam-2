@@ -151,21 +151,31 @@ func _state_behavior(delta: float) -> void:
 				state = IDLE
 
 	# 轉向
-	if velocity.x != 0.0:
-		var new_direction = velocity.x > 0.0
-		#if state == ON_WALL:
-			#new_direction = not new_direction
-
-		if new_direction != direction:
-			direction = new_direction
-			if direction:
-				scale.y = 1
-				rotation_degrees = 0
-			else:
-				scale.y = -1
-				rotation_degrees = 180
+	change_direction()
 
 	move_and_slide()
+
+## 若正在移動, 更改面朝方向
+func change_direction():
+	if velocity.x == 0.0:
+		return
+
+	var new_direction = velocity.x > 0.0
+	if state == ON_WALL:
+		new_direction = not new_direction
+
+	if new_direction == direction:
+		return
+
+	%Body.scale.x = 1 if new_direction else -1
+	direction = new_direction
+	#var body = %Body
+	#if direction:
+		#body.scale.y = 1
+		#body.rotation_degrees = 0
+	#else:
+		#body.scale.y = -1
+		#body.rotation_degrees = 180
 
 
 func _climb_R() -> bool:
