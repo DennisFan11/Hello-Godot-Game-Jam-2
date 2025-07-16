@@ -11,6 +11,7 @@ func _ready() -> void:
 
 ## TEST
 var _weapon_manager: WeaponManager
+var _player_manager: PlayerManager
 func _on_injected():
 	if not _weapon_manager: return 
 	var weapon := _weapon_manager.creat_weapon_scene(
@@ -22,7 +23,7 @@ func set_current_weapon(weapon: Weapon)-> void:
 		first_weapon.queue_free()
 	first_weapon = weapon
 	
-	weapon.move_to(%WeaponMarker2D, $"..".glue_layer, false)
+	weapon.move_to(%WeaponMarker2D, _player_manager.get_glue_layer(), false)
 
 func take_current_weapon()-> Weapon:
 	var curr = first_weapon

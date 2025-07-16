@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 # 升級系統引用（AutoLoad 單例，無需型別宣告）
 var upgrade_system
-var glue_layer: GlueLayer
 
 # 動態屬性（會被升級系統更新）
 var current_max_speed: float = 100.0
