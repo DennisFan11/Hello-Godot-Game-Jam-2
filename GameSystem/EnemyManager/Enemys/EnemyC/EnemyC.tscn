@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_rtd8s"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_8wl43"]
 [ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_r76at"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_04y04"]
+[ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/EnemyManager/Action/Attack/ArrowAttack.gd" id="4_rtd8s"]
 [ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="5_vcs1q"]
 [ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/EnemyManager/Action/Move/FlyMove.gd" id="6_jv77o"]
 
@@ -15,7 +15,7 @@ radius = 4.0
 
 [node name="EnemyC" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_rtd8s")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -52,12 +52,9 @@ debug_color = Color(0, 0.628466, 0.492094, 0.42)
 script = ExtResource("3_r76at")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
-[node name="TouchAttack" type="Node" parent="AttackManager"]
-script = ExtResource("4_04y04")
-damage = null
-enable = null
-cooldown = null
-metadata/_custom_type_script = "uid://dhy4eth68b7ji"
+[node name="ArrowAttack" type="Node" parent="AttackManager"]
+script = ExtResource("4_rtd8s")
+metadata/_custom_type_script = "uid://i0eyoraab26"
 
 [node name="MoveManager" type="Node" parent="."]
 script = ExtResource("5_vcs1q")
@@ -65,7 +62,6 @@ metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="FlyMove" type="Node" parent="MoveManager"]
 script = ExtResource("6_jv77o")
-MAX_SPEED = 60.0
-social_distance = Vector2(50, 20)
-JUMP_SPEED = 50.0
+MAX_SPEED = Vector2(60, 50)
+social_distance = Vector2(200, 200)
 metadata/_custom_type_script = "uid://wpswuf8in8cv"

@@ -101,8 +101,6 @@ func _physics_process(delta: float) -> void:
 const INCREASE := 7.0
 const DECREASE := 20.0
 
-const GRAVITY := 1000.0 # 重力常量
-
 enum {IDLE, ON_WALL}
 
 var state: int
@@ -111,7 +109,7 @@ func _state_behavior(delta: float) -> void:
 	match state:
 		IDLE:
 			# 施加重力
-			velocity.y += GRAVITY * delta
+			velocity += get_gravity() * delta
 
 			# 处理左右移动 - 使用動態速度
 			var vec = Input.get_vector("left", "right", "up", "down")

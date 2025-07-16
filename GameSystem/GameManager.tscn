@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=14 format=4 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
 [ext_resource type="TileSet" uid="uid://b0cto2wqefjcl" path="res://Asset/Tilemap/Tileset.tres" id="4_20ou5"]
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
+[ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC/EnemyC.tscn" id="6_30fhk"]
 [ext_resource type="PackedScene" uid="uid://ckjyc7agxyvlq" path="res://GameSystem/WeaponManager/WeaponManager.tscn" id="6_wonvf"]
+[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/EnemyB/EnemyB.tscn" id="7_ko6fk"]
 [ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_kst1i"]
 [ext_resource type="PackedScene" uid="uid://dg3djwp882ugn" path="res://GameSystem/ShaderManager/ShaderManager.tscn" id="7_o6cs3"]
 [ext_resource type="Script" uid="uid://bnghb6qdxye66" path="res://GameSystem/TrstUILayer.gd" id="9_53t43"]
@@ -25,7 +27,8 @@ tile_set = ExtResource("4_20ou5")
 [node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]
-MAX_ENEMY_NUMBER = 1
+MAX_ENEMY_NUMBER = 2
+ENEMY_TYPE = Array[PackedScene]([ExtResource("6_30fhk"), ExtResource("7_ko6fk")])
 HEIGHT = -300.0
 NON_SPAWN_AREA = 200.0
 WEIGHT = 500.0

@@ -8,4 +8,8 @@ func try_attack(delta: float) -> void:
 		var collider = last_slide_collision.get_collider()
 		if collider is Player:
 			collider.take_damage(damage)
-			_cooldown_timer.trigger(cooldown)
+
+			if cooldown > 0.0:
+				_cooldown_timer.trigger(cooldown)
+			elif cooldown < 0.0: # 當<0時將在擊中後刪除, 主要用於投射物(箭)
+				target.queue_free()

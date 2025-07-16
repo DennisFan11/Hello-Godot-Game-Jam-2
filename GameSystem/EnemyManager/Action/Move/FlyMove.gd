@@ -36,7 +36,7 @@ func try_move_y(value:float, delta:float):
 	if current_y == target_y:
 		value = 0
 	else:
-		value = JUMP_SPEED * clamp(target_y - current_y, -1, 1)
+		value = MAX_SPEED.y * clamp(target_y - current_y, -1, 1)
 
 	return value
 

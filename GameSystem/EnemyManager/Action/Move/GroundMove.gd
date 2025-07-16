@@ -6,7 +6,7 @@ func try_move(delta: float) -> void:
 
 	# 施加重力
 	if not target.is_on_floor():
-		new_velocity.y += GRAVITY * delta
+		new_velocity += target.get_gravity() * delta
 
 	# 处理左右移动
 	new_velocity.x = try_move_x(new_velocity.x, delta)
@@ -17,8 +17,8 @@ func try_move(delta: float) -> void:
 	target.velocity = new_velocity
 
 func try_move_y(value, delta) -> float:
-	if _need_jump() and _can_jump():
-		value = -JUMP_SPEED
+	if _can_jump():
+		value = -MAX_SPEED.y
 	return value
 
 
@@ -28,22 +28,26 @@ func _need_jump()-> bool:
 		target.global_position,
 		target.global_position + Vector2(_get_move_vec().x * 15.0, 0.0)
 	)
-	if not dict:
-		return false
-
-	if (dict["collider"] as Node2D).is_in_group("Block"):
-		return true
-	#if (dict["collider"] as Node2D).is_in_group("Enemy"):
-		#return true
+	if dict:
+		var collider:Node2D = dict["collider"]
+		if collider.is_in_group("Block"):
+			return true
+		#if collider.is_in_group("Enemy"):
+			#return true
 
 	return false
 
 func _can_jump()-> bool:
-	for i: Node2D in %FloorDetectArea.get_overlapping_bodies():
-		if i != self and \
-		 (i.is_in_group("Enemy") or \
-		 i.is_in_group("Block")):
-			return true
+	var area = %FloorDetectArea
+	#if not area:
+		#return _need_jump()
+	if area:
+		for i:Node2D in area.get_overlapping_bodies():
+			if i == self:
+				continue
+			if i.is_in_group("Enemy") \
+			or i.is_in_group("Block"):
+				return _need_jump()
 	return false
 #
 
