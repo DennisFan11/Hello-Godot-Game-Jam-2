@@ -44,6 +44,16 @@ var current_dialogue_index: int = 0
 var current_text_index: int = 0
 var is_dialogue_phase: bool = true
 var selected_weapon: Dictionary = {}
+var float_tween: Tween
+var move_tween: Tween
+var animated_icon: TextureRect
+
+# 信號定義
+signal journey_started
+
+var _god_scene_manager: GodSceneManager
+var _weapon_manager: WeaponManager
+var _weapon_slot: WeaponSlot
 
 # 文本檔案路徑
 const DIALOGUE_FILE_PATH = "res://GameSystem/GodSceneManager/GoddessWeaponSelect/dialogue_texts.json"
@@ -61,15 +71,18 @@ const BUTTON_PATH_TEMPLATE = "WeaponSelectionPanel/WeaponButtonsContainer/Weapon
 const DESCRIPTION_PATH_TEMPLATE = "WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton%dContainer/WeaponButton%dDescription"
 
 func _ready():
+	DI.register("_god_weapon_select", self)
 	dialogue_panel.visible = false
 	weapon_selection_panel.visible = false
 	
 	inventory_system = PlayerInventorySystem
 	_load_dialogue_texts()
-	
-	await _weapon_drop_animation()
 	_setup_ui()
-	_start_dialogue()
+	visible = false
+	
+func _on_injected():
+	# 連接信號並等待觸發
+	_god_scene_manager.start_scene_requested.connect(_on_start_scene_requested)
 
 func _load_dialogue_texts():
 	"""載入對話文本檔案"""
@@ -206,6 +219,7 @@ func _start_dialogue():
 func _show_current_dialogue():
 	"""顯示當前對話"""
 	if current_dialogue_index < dialogue_texts.size():
+		print("顯示對話：", current_dialogue_index, " - ", current_text_index)
 		var current_dialogue = dialogue_texts[current_dialogue_index]
 		var current_speaker = current_dialogue.get("name", "")
 		var current_texts = current_dialogue.get("texts", [])
@@ -449,8 +463,14 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 	# 隱藏武器選擇面板
 	weapon_selection_panel.visible = false
 	
-	# 顯示女神的回應
-	_show_goddess_response()
+	# 顯示女神的回應並等待完成
+	await _show_goddess_response()
+	var weapon: Weapon = (
+		_weapon_slot.take_current_weapon()
+		if button_index == 1 else
+		_weapon_manager.creat_weapon_scene("sword"))
+	_god_scene_manager._finished.emit(weapon)
+		
 
 func _on_dropped_weapon_selected(button_index: int):
 	"""當玩家選擇掉落的武器時"""
@@ -473,8 +493,8 @@ func _on_dropped_weapon_selected(button_index: int):
 	# 隱藏武器選擇面板
 	weapon_selection_panel.visible = false
 	
-	# 顯示女神的回應
-	_show_goddess_response()
+	# 顯示女神的回應並等待完成
+	await _show_goddess_response()
 
 func _show_goddess_response():
 	"""顯示女神對玩家選擇的回應"""
@@ -482,7 +502,7 @@ func _show_goddess_response():
 	name_label.visible = false
 	
 	# 顯示繼續按鈕
-	continue_button.visible = true
+	continue_button.visible = false
 	continue_button.text = ui_texts.get("journey_button", "踏上旅程")
 	
 	# 更新對話內容
@@ -493,12 +513,22 @@ func _show_goddess_response():
 	var tween = create_tween()
 	tween.tween_method(_update_dialogue_characters, 0, dialogue_label.get_total_character_count(), 2.0)
 	
+	# 等待打字機效果完成
+	await tween.finished
+	# 顯示繼續按鈕
+	continue_button.visible = true
 	# 更新繼續按鈕的功能
 	continue_button.pressed.disconnect(_on_continue_pressed)
 	continue_button.pressed.connect(_on_journey_start)
+	
+	# 等待旅程開始信號
+	await journey_started
 
 func _on_journey_start():
 	"""開始旅程"""
+	# 發射信號，解除 _show_goddess_response 的等待
+	journey_started.emit()
+	
 	# 清理武器圖片資源
 	if dropped_weapon_image and is_instance_valid(dropped_weapon_image):
 		dropped_weapon_image.queue_free()
@@ -508,8 +538,31 @@ func _on_journey_start():
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
 	await tween.finished
 	
-	# 使用 CoreManager 的場景轉跳系統
-	await CoreManager.goto_scene(NEXT_SCENE_NAME)
+	# 移除女神圖片
+	if goddess_image and is_instance_valid(goddess_image):
+		goddess_image.queue_free()
+		goddess_image = null
+	
+	# 清理 animated_icon
+	if animated_icon and is_instance_valid(animated_icon):
+		animated_icon.queue_free()
+		animated_icon = null
+
+	# 停止 float_tween 動畫並清理
+	if float_tween and is_instance_valid(float_tween):
+		float_tween.stop()
+		float_tween = null
+
+	# 停止 move_tween 動畫並清理
+	if move_tween and is_instance_valid(move_tween):
+		move_tween.stop()
+		move_tween = null
+
+	# 清空對話文本和武器按鈕
+	dialogue_texts.clear()
+	weapon_buttons.clear()
+	weapon_descriptions.clear()
+	weapon_selection_panel.visible = false
 
 func _input(event):
 	"""處理輸入事件"""
@@ -550,9 +603,12 @@ func _weapon_drop_animation():
 	
 	# 旋轉效果
 	tween.tween_property(dropped_weapon_image, "rotation", PI * 2, 3.0).set_ease(Tween.EASE_OUT)
-	
+	print("✓ 武器掉落動畫開始")
 	# 等待動畫完成
 	await tween.finished
+	
+	# 觸發攝影機震動
+	_screen_shake(0.4, 0.4) # 持續時間1秒，強度0.8
 	
 	# 撞擊效果 (輕微彈跳)
 	var bounce_tween = create_tween()
@@ -577,6 +633,33 @@ func _update_weapon_swing(_time: float):
 	# 這個方法會在動畫過程中被調用，用於實現擺動效果
 	# 你可以在這裡添加更複雜的擺動邏輯
 	pass
+
+func _screen_shake(duration: float, strength: float):
+	"""螢幕震動效果 - 震動整個場景"""
+	var original_position = position
+	
+	# 創建震動動畫
+	var shake_tween = create_tween()
+	
+	# 使用 tween_method 來控制震動過程
+	shake_tween.tween_method(
+		func(progress: float):
+			if progress < 1.0:
+				# 創建隨機震動偏移
+				var shake_offset = Vector2(
+					randf_range(-strength, strength) * 10,
+					randf_range(-strength, strength) * 10
+				)
+				# 應用震動偏移
+				position = original_position + shake_offset
+			else:
+				# 震動結束，回到原位
+				position = original_position,
+		0.0, 1.0, duration
+	)
+	
+	# 確保最後回到原位
+	shake_tween.tween_property(self, "position", original_position, 0.0)
 
 func _on_weapon_button_mouse_entered(button_index: int):
 	"""當滑鼠進入武器按鈕時顯示描述"""
@@ -731,7 +814,7 @@ func _start_weapon_icons_floating_animation(left_icon: TextureRect, right_icon: 
 	var right_base_y = right_icon.position.y
 	
 	# 創建無限循環的浮動動畫
-	var float_tween = create_tween()
+	float_tween = create_tween()
 	float_tween.set_loops() # 無限循環
 	float_tween.set_parallel(true)
 	
@@ -776,7 +859,7 @@ func _animate_weapon_icon_selection(button_index: int):
 		return
 	
 	# 創建一個複製的 icon 用於動畫，保持原始 icon 在女神圖片上
-	var animated_icon = TextureRect.new()
+	animated_icon = TextureRect.new()
 	animated_icon.texture = source_icon.texture
 	animated_icon.expand_mode = source_icon.expand_mode
 	animated_icon.stretch_mode = source_icon.stretch_mode
@@ -797,7 +880,7 @@ func _animate_weapon_icon_selection(button_index: int):
 	
 
 	# 創建移動和縮放動畫
-	var move_tween = create_tween()
+	move_tween = create_tween()
 	move_tween.set_parallel(true)
 	
 	var target_position = Vector2(450, 200)
@@ -821,3 +904,14 @@ func _animate_weapon_icon_selection(button_index: int):
 	
 	# 動畫完成後清理複製的 icon
 	await move_tween.finished
+
+func _on_start_scene_requested():
+	visible = true
+	# 淡入效果
+	var fade_tween = create_tween()
+	fade_tween.tween_property(self, "modulate:a", 1.0, 1.0)
+	await fade_tween.finished
+	print("開始場景請求已收到，執行武器掉落動畫和對話")
+	"""當收到開始場景信號時執行武器掉落動畫和對話"""
+	await _weapon_drop_animation()
+	_start_dialogue()

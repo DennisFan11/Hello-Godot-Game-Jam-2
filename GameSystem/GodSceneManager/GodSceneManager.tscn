@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0t4w5bfhv8jn"]
+[gd_scene load_steps=6 format=3 uid="uid://d0t4w5bfhv8jn"]
 
 [ext_resource type="Script" uid="uid://bsucxb02y5psm" path="res://GameSystem/GodSceneManager/GodSceneManager.gd" id="1_vkpf1"]
 [ext_resource type="Texture2D" uid="uid://cxfc3ogosow28" path="res://Asset/Image/Goddess.png" id="2_ggma0"]
 [ext_resource type="Texture2D" uid="uid://dr1u2eedgoabu" path="res://Asset/Weapons/sword.png" id="3_kk6bx"]
 [ext_resource type="PackedScene" uid="uid://d1cttuf3xyh2x" path="res://GameSystem/_shared/GlueLayer/GlueLayer.tscn" id="4_fi6hf"]
+[ext_resource type="PackedScene" uid="uid://dbdeoxecjlqqg" path="res://GameSystem/GodSceneManager/GoddessWeaponSelect/GoddessWeaponSelect.tscn" id="5_7ijkt"]
 
 [node name="GodSceneManager" type="CanvasLayer"]
 script = ExtResource("1_vkpf1")
 
-[node name="GoddessWeaponSelect" type="Control" parent="."]
+[node name="GoddessWeaponSelect_old" type="Control" parent="."]
+visible = false
 visibility_layer = 7
 layout_mode = 3
 anchors_preset = 15
@@ -18,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Background" type="ColorRect" parent="GoddessWeaponSelect"]
+[node name="Background" type="ColorRect" parent="GoddessWeaponSelect_old"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -28,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.2, 1)
 
-[node name="GoddessPortrait" type="TextureRect" parent="GoddessWeaponSelect"]
+[node name="GoddessPortrait" type="TextureRect" parent="GoddessWeaponSelect_old"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,10 +41,10 @@ texture = ExtResource("2_ggma0")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GlueLayer" parent="GoddessWeaponSelect" instance=ExtResource("4_fi6hf")]
+[node name="GlueLayer" parent="GoddessWeaponSelect_old" instance=ExtResource("4_fi6hf")]
 unique_name_in_owner = true
 
-[node name="WeaponMounts" type="Control" parent="GoddessWeaponSelect"]
+[node name="WeaponMounts" type="Control" parent="GoddessWeaponSelect_old"]
 visibility_layer = 7
 layout_mode = 1
 anchors_preset = 15
@@ -52,43 +54,40 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="OriginMarker2D" type="Marker2D" parent="GoddessWeaponSelect/WeaponMounts"]
+[node name="OriginMarker2D" type="Marker2D" parent="GoddessWeaponSelect_old/WeaponMounts"]
 unique_name_in_owner = true
 visibility_layer = 7
 position = Vector2(607, 54)
 rotation = 0.560695
 scale = Vector2(7, 7)
 
-[node name="Sword" type="Sprite2D" parent="GoddessWeaponSelect/WeaponMounts/OriginMarker2D"]
-visible = false
+[node name="Sword" type="Sprite2D" parent="GoddessWeaponSelect_old/WeaponMounts/OriginMarker2D"]
 rotation = 0.785398
 texture = ExtResource("3_kk6bx")
 
-[node name="RightMarker2D" type="Marker2D" parent="GoddessWeaponSelect/WeaponMounts"]
+[node name="RightMarker2D" type="Marker2D" parent="GoddessWeaponSelect_old/WeaponMounts"]
 unique_name_in_owner = true
 visibility_layer = 7
 position = Vector2(300, 558)
 rotation = -2.34996
 scale = Vector2(7, 7)
 
-[node name="Sword" type="Sprite2D" parent="GoddessWeaponSelect/WeaponMounts/RightMarker2D"]
-visible = false
+[node name="Sword" type="Sprite2D" parent="GoddessWeaponSelect_old/WeaponMounts/RightMarker2D"]
 rotation = 0.785398
 texture = ExtResource("3_kk6bx")
 
-[node name="LeftMarker2D" type="Marker2D" parent="GoddessWeaponSelect/WeaponMounts"]
+[node name="LeftMarker2D" type="Marker2D" parent="GoddessWeaponSelect_old/WeaponMounts"]
 unique_name_in_owner = true
 visibility_layer = 7
 position = Vector2(915, 538)
 rotation = -0.917838
 scale = Vector2(7, 7)
 
-[node name="Sword" type="Sprite2D" parent="GoddessWeaponSelect/WeaponMounts/LeftMarker2D"]
-visible = false
+[node name="Sword" type="Sprite2D" parent="GoddessWeaponSelect_old/WeaponMounts/LeftMarker2D"]
 rotation = 0.785398
 texture = ExtResource("3_kk6bx")
 
-[node name="DialoguePanel" type="Panel" parent="GoddessWeaponSelect"]
+[node name="DialoguePanel" type="Panel" parent="GoddessWeaponSelect_old"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -102,7 +101,7 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="DialogueContainer" type="VBoxContainer" parent="GoddessWeaponSelect/DialoguePanel"]
+[node name="DialogueContainer" type="VBoxContainer" parent="GoddessWeaponSelect_old/DialoguePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,14 +113,16 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogueLabel" type="RichTextLabel" parent="GoddessWeaponSelect/DialoguePanel/DialogueContainer"]
+[node name="DialogueLabel" type="RichTextLabel" parent="GoddessWeaponSelect_old/DialoguePanel/DialogueContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "歡迎，勇敢的冒險者！"
 fit_content = true
 
-[node name="ContinueButton" type="Button" parent="GoddessWeaponSelect/DialoguePanel/DialogueContainer"]
+[node name="ContinueButton" type="Button" parent="GoddessWeaponSelect_old/DialoguePanel/DialogueContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "繼續"
+
+[node name="GoddessWeaponSelect" parent="." instance=ExtResource("5_7ijkt")]
