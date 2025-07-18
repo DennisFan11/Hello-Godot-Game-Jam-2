@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8rpoo8yoqeud"]
+
+[ext_resource type="Script" uid="uid://cxjohiuojdouc" path="res://GameSystem/_shared/Interactable/Interactable.gd" id="1_bm7a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7a1"]
+size = Vector2(117, 20)
+
+[node name="Interactable" type="Area2D"]
+script = ExtResource("1_bm7a1")
+metadata/_custom_type_script = "uid://cxjohiuojdouc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_bm7a1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -108.0
+offset_top = -69.0
+offset_right = 108.0
+offset_bottom = -6.0
+bbcode_enabled = true
+text = "[F] 丟掉你的武器"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

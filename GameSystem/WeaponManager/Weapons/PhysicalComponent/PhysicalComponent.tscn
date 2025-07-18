@@ -117,6 +117,7 @@ unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
 scale = Vector2(0.3, 0.3)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "Bello"
