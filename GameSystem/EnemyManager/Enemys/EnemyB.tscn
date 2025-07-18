@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmbx8s22egbna"]
 
 [ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_juti4"]
-[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_m5qlo"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_juti4"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_xjwea"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="5_spv7u"]
-[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/EnemyManager/Action/Move/JumpMove.gd" id="6_fh0yc"]
+[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_xjwea"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_spv7u"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_fh0yc"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="5_f0m5f"]
+[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/EnemyManager/Action/Move/JumpMove.gd" id="6_ie3bw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
 radius = 6.0
@@ -21,7 +21,7 @@ script = ExtResource("1_juti4")
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.522405, 0.549925, 1)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_m5qlo")
+texture = ExtResource("2_xjwea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5fd7p")
@@ -49,17 +49,17 @@ shape = SubResource("CircleShape2D_n71we")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
 
 [node name="AttackManager" type="Node" parent="."]
-script = ExtResource("3_juti4")
+script = ExtResource("3_spv7u")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
 [node name="TouchAttack" type="Node" parent="AttackManager"]
-script = ExtResource("4_xjwea")
+script = ExtResource("4_fh0yc")
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="MoveManager" type="Node" parent="."]
-script = ExtResource("5_spv7u")
+script = ExtResource("5_f0m5f")
 metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="JumpMove" type="Node" parent="MoveManager"]
-script = ExtResource("6_fh0yc")
+script = ExtResource("6_ie3bw")
 metadata/_custom_type_script = "uid://vaaj7wcovhby"

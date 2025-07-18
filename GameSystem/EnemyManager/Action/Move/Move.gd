@@ -37,7 +37,17 @@ func try_move_y(value:float, delta:float) -> float:
 var _player_manager: PlayerManager
 
 func get_move_pos() -> Vector2:
-	return _player_manager.get_player_position()
+	var move_pos = _player_manager.get_player_position()
+	if social_distance != Vector2.ZERO:
+		var distance:Vector2 = move_pos - target.position
+		if distance != Vector2.ZERO:
+			if distance.x > 0:
+				move_pos.x -= social_distance.x
+			elif distance.x < 0:
+				move_pos.x += social_distance.x
+
+			move_pos.y -= social_distance.y
+	return move_pos
 
 func _get_player_distance() -> Vector2:
 	return _player_manager.get_player_position() - target.position

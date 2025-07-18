@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://632eff4dpxmu"]
 
-[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/EnemyManager/Bullet/Bullet.gd" id="1_v46i7"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="2_v46i7"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="3_dxsfs"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="4_elm1m"]
-[ext_resource type="Script" uid="uid://dserl315l4v5g" path="res://GameSystem/EnemyManager/Action/Move/ArrowMove.gd" id="5_v46i7"]
+[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/EnemyManager/Bullet/Bullet.gd" id="1_mqlab"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="2_uq0t4"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="3_ry3ja"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="4_0yqhe"]
+[ext_resource type="Script" uid="uid://dserl315l4v5g" path="res://GameSystem/EnemyManager/Action/Move/Bullet/ArrowMove.gd" id="5_grc3d"]
 
 [sub_resource type="Gradient" id="Gradient_v46i7"]
 
@@ -12,6 +12,7 @@
 gradient = SubResource("Gradient_v46i7")
 width = 6
 height = 1
+metadata/_snap_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ai2g"]
 size = Vector2(6, 1)
@@ -19,7 +20,7 @@ size = Vector2(6, 1)
 [node name="Arrow" type="CharacterBody2D"]
 z_index = -1
 collision_layer = 4
-script = ExtResource("1_v46i7")
+script = ExtResource("1_mqlab")
 cooldown = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,19 +30,20 @@ texture = SubResource("GradientTexture2D_lx23g")
 shape = SubResource("RectangleShape2D_2ai2g")
 
 [node name="AttackManager" type="Node" parent="."]
-script = ExtResource("2_v46i7")
+script = ExtResource("2_uq0t4")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
 [node name="TouchAttack" type="Node" parent="AttackManager"]
-script = ExtResource("3_dxsfs")
+script = ExtResource("3_ry3ja")
+damage = 3.0
 cooldown = -1.0
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="MoveManager" type="Node" parent="."]
-script = ExtResource("4_elm1m")
+script = ExtResource("4_0yqhe")
 metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="ArrowMove" type="Node" parent="MoveManager"]
-script = ExtResource("5_v46i7")
+script = ExtResource("5_grc3d")
 MAX_SPEED = Vector2(300, 300)
 metadata/_custom_type_script = "uid://dserl315l4v5g"

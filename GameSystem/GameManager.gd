@@ -1,5 +1,8 @@
 class_name GameManager extends Node
 
+## 前往下一關所需的擊殺數
+@export var next_level_kill_count:int = 10
+
 #func _save():
 	#for i:Node in get_children():
 		#if i.has_method("_save"): await i._save()

@@ -1,5 +1,5 @@
 class_name ArrowMove
-extends Move
+extends BulletMove
 
 var jump:bool = true
 
@@ -29,20 +29,19 @@ func try_move(delta:float):
 		new_velocity = Vector2(v0 * cos(rad), -v0 * sin(rad))
 
 		# 限制最高速度
-		new_velocity.x = clamp(new_velocity.x, -MAX_SPEED.x, MAX_SPEED.x)
-		new_velocity.y = max(new_velocity.y, -MAX_SPEED.y)
+		new_velocity = Vector2(
+			clamp(new_velocity.x, -MAX_SPEED.x, MAX_SPEED.x),
+			max(new_velocity.y, -MAX_SPEED.y)
+		)
 
 		# 增加隨機
-		new_velocity += Vector2(
-			randf_range(-MAX_SPEED.x / 10, MAX_SPEED.x / 10),
-			randf_range(-MAX_SPEED.y / 10, MAX_SPEED.y / 10)
-		)
+		#new_velocity += get_rng_vec()
 
 		jump = false
 	else:
 		if not target.is_on_floor():
 			new_velocity += target.get_gravity() * delta
-		if target.velocity.y == 0.0:
+		if new_velocity.y == 0.0:
 			new_velocity = Vector2.ZERO
 
 	target.velocity = new_velocity

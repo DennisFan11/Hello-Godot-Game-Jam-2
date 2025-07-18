@@ -49,14 +49,3 @@ func _can_jump()-> bool:
 			or i.is_in_group("Block"):
 				return _need_jump()
 	return false
-#
-
-func get_move_pos():
-	var move_pos = super()
-	if social_distance.x != 0:
-		var distance = move_pos.x - target.position.x
-		if distance > 0:
-			move_pos.x -= social_distance.x
-		elif distance < 0:
-			move_pos.x += social_distance.x
-	return move_pos

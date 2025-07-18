@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://crmf3o46forhd"]
+
+[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/EnemyManager/Bullet/Bullet.gd" id="1_sie6p"]
+[ext_resource type="Texture2D" uid="uid://1wg7l5ryt65a" path="res://Asset/Enemy/ball.png" id="2_ydy15"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_a8pk1"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_p7fdh"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="5_x5pnm"]
+[ext_resource type="Script" uid="uid://du67lfy1e8gmt" path="res://GameSystem/EnemyManager/Action/Move/Bullet/BallMove.gd" id="6_sie6p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dkh4c"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_dkh4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_38fb1"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_htq42"]
+_data = {
+&"RESET": SubResource("Animation_dkh4c"),
+&"new_animation": SubResource("Animation_38fb1")
+}
+
+[node name="Ball" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_sie6p")
+cooldown = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ydy15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dkh4c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_htq42")
+}
+autoplay = "new_animation"
+
+[node name="AttackManager" type="Node" parent="."]
+script = ExtResource("3_a8pk1")
+metadata/_custom_type_script = "uid://dkkr382xaqb8j"
+
+[node name="TouchAttack" type="Node" parent="AttackManager"]
+script = ExtResource("4_p7fdh")
+cooldown = -1.0
+metadata/_custom_type_script = "uid://dhy4eth68b7ji"
+
+[node name="MoveManager" type="Node" parent="."]
+script = ExtResource("5_x5pnm")
+metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
+
+[node name="BallMove" type="Node" parent="MoveManager"]
+script = ExtResource("6_sie6p")
+MAX_SPEED = Vector2(300, 300)
+metadata/_custom_type_script = "uid://du67lfy1e8gmt"

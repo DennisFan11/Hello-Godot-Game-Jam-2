@@ -95,12 +95,12 @@ func _spawn_enemy(spawn_pos: Vector2):
 		return
 
 	var rng = ENEMY_TYPE.pick_random()
-	if rng is Resource:
+	if rng is PackedScene:
 		var enemy = rng.instantiate()
-		print("spawn enmey: ", enemy)
-		print(ENEMY_TYPE)
 		enemy.position = spawn_pos
 		%Enemy.add_child(enemy)
+
+		print("spawn enmey: ", enemy)
 	
 
 

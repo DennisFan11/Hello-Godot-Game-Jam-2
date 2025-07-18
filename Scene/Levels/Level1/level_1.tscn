@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_4no0k"]
 [ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_2w4u6"]
-[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/EnemyB/EnemyB.tscn" id="3_eab4e"]
-[ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC/EnemyC.tscn" id="4_eab4e"]
+[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/EnemyB.tscn" id="3_eab4e"]
+[ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC.tscn" id="4_eab4e"]
 
 [node name="Level1" instance=ExtResource("1_4no0k")]
 

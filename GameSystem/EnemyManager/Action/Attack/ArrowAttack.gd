@@ -1,7 +1,7 @@
-class_name ArrowAttack
+class_name BulletAttack
 extends Attack
 
-var bullet = preload("uid://632eff4dpxmu")
+@export var bullet:PackedScene = preload("uid://632eff4dpxmu")
 
 func try_attack(delta):
 	var node:Bullet = bullet.instantiate()
