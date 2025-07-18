@@ -746,65 +746,52 @@ func _add_weapon_icons_to_goddess():
 	if not goddess_image:
 		return
 	
-	# 使用 icon.svg 作為武器圖標（可以替換成其他武器圖片）
-	var weapon_texture = load(WEAPON_ICON_PATH)
-	if not weapon_texture:
-		print("⚠ 警告：無法載入武器圖標圖片")
-		return
-	
-	# 創建左側武器圖標
-	left_weapon_icon = TextureRect.new()
-	left_weapon_icon.texture = weapon_texture
-	left_weapon_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	left_weapon_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	left_weapon_icon.size = Vector2(80, 80)
-	left_weapon_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var left_id: String = _weapon_manager.get_random_weapon_id()
+	var right_id: String = _weapon_manager.get_random_weapon_id()
+
+	var left_weapon: Weapon = (
+		_weapon_slot.take_current_weapon()
+		if left_id == "Main" else
+		_weapon_manager.creat_weapon_scene(left_id))
+	# 將 left_weapon 的 scale 設置為 5 倍
+	left_weapon.scale = Vector2(5, 5)
+
+	var right_weapon: Weapon = (
+		_weapon_slot.take_current_weapon()
+		if right_id == "Main" else
+		_weapon_manager.creat_weapon_scene(right_id))
+	# 將 right_weapon 的 scale 設置為 5 倍
+	right_weapon.scale = Vector2(5, 5)
 	
 	# 設置左側位置（左中）
-	left_weapon_icon.position = Vector2(0, 250) # 相對於女神圖片的左中位置
-	left_weapon_icon.rotation = deg_to_rad(-15) # 輕微傾斜
-	left_weapon_icon.pivot_offset = left_weapon_icon.size / 2
-	
-	# 創建右側武器圖標
-	right_weapon_icon = TextureRect.new()
-	right_weapon_icon.texture = weapon_texture
-	right_weapon_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	right_weapon_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	right_weapon_icon.size = Vector2(80, 80)
-	right_weapon_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	left_weapon.position = Vector2(-50, 250) # 相對於女神圖片的左中位置
 	
 	# 設置右側位置（右中）
-	right_weapon_icon.position = Vector2(300, 250) # 相對於女神圖片的右中位置
-	right_weapon_icon.rotation = deg_to_rad(15) # 輕微傾斜
-	right_weapon_icon.pivot_offset = right_weapon_icon.size / 2
-	
-	# 初始設為透明，準備淡入動畫
-	left_weapon_icon.modulate.a = 0.0
-	right_weapon_icon.modulate.a = 0.0
+	right_weapon.position = Vector2(300, 250) # 相對於女神圖片的右中位置
 	
 	# 添加到女神圖片作為子物件
-	goddess_image.add_child(left_weapon_icon)
-	goddess_image.add_child(right_weapon_icon)
+	goddess_image.add_child(left_weapon)
+	goddess_image.add_child(right_weapon)
 	
 	# 創建淡入動畫
 	var tween = create_tween()
 	tween.set_parallel(true)
 	
 	# 左右武器圖標同時淡入
-	tween.tween_property(left_weapon_icon, "modulate:a", 1.0, 0.8)
-	tween.tween_property(right_weapon_icon, "modulate:a", 1.0, 0.8)
+	tween.tween_property(left_weapon, "modulate:a", 1.0, 0.8)
+	tween.tween_property(right_weapon, "modulate:a", 1.0, 0.8)
 	
 	# 添加輕微的浮動效果
-	tween.tween_property(left_weapon_icon, "position:y", left_weapon_icon.position.y - 10, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(right_weapon_icon, "position:y", right_weapon_icon.position.y - 10, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(left_weapon, "position:y", left_weapon.position.y - 10, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(right_weapon, "position:y", right_weapon.position.y - 10, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	
 	await tween.finished
 	
 	# 創建持續的浮動動畫循環
-	_start_weapon_icons_floating_animation(left_weapon_icon, right_weapon_icon)
+	_start_weapon_icons_floating_animation(left_weapon, right_weapon)
 	
 
-func _start_weapon_icons_floating_animation(left_icon: TextureRect, right_icon: TextureRect):
+func _start_weapon_icons_floating_animation(left_icon: Weapon, right_icon: Weapon):
 	"""開始武器圖標的持續浮動動畫"""
 	if not left_icon or not right_icon:
 		return
