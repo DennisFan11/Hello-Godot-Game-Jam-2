@@ -9,11 +9,13 @@ signal sequence_completed()
 ## 可在編輯器中設定或通過代碼修改
 var LEVEL_SEQUENCE: Array[String] = [
 	"Level1",
-	"Level1",
-	"GoddessWeaponSelect",
-	"Level1",
-	"Level1",
-	"Level1"
+	"Level2",
+	"Level3"
+]
+
+## 每個關卡所需擊殺數
+var KILLS_REQUIRED: Array[int] = [
+	5, 10, 15
 ]
 
 ## 當前關卡索引
@@ -24,10 +26,90 @@ var _game_started: bool = false
 
 ## 是否已經初始化
 var _initialized: bool = false
+var _enemy_manager: EnemyManager
+# 當前 Enemy 死掉總數
+var _current_enemy_dead_count: int = 0
 
 func _ready() -> void:
 	_initialized = true
+	# 註冊到 DI 系統
+	DI.register("_level_manager", self)
+	
+	# 監聽 CoreManager 的場景切換信號
+	if CoreManager and CoreManager.has_signal("scene_changed"):
+		CoreManager.scene_changed.connect(_on_scene_changed)
+		print("✓ LevelManager 已連接到 CoreManager 的場景切換信號")
+	else:
+		print("⚠ LevelManager 無法連接到 CoreManager 信號")
+	
 	print("✓ LevelManager (AutoLoad) 已初始化")
+
+func _on_scene_changed(scene_name: String):
+	"""當 CoreManager 切換場景時觸發"""
+	print("收到場景切換信號: ", scene_name)
+	# 如果 scene_name = 'Level1' 執行 start_game()
+	if scene_name == "Level1":
+		start_game()
+	on_scene_loaded()
+
+func _on_injected():
+	# 嘗試獲取 EnemyManager 並連接信號
+	_connect_enemy_manager()
+
+func _connect_enemy_manager():
+	"""嘗試連接到 EnemyManager"""
+	# 從 DI 系統獲取 EnemyManager
+	# 檢查 DI._dependence是否有 _enemy_manager 這個 key
+	if "_enemy_manager" in DI._dependence:
+		var enemy_manager_obj = DI._dependence["_enemy_manager"]
+		
+		# 檢查對象是否有效且未被釋放
+		if is_instance_valid(enemy_manager_obj):
+			_enemy_manager = enemy_manager_obj as EnemyManager
+		else:
+			printerr("⚠ LevelManager 發現 EnemyManager 對象已被釋放")
+			_enemy_manager = null
+			return
+	else:
+		# 找不到的話就中斷
+		printerr("⚠ LevelManager 無法找到 EnemyManager")
+		return
+	
+	if _enemy_manager and is_instance_valid(_enemy_manager):
+		# 如果之前有連接其他的 EnemyManager，先斷開
+		if _enemy_manager.enemy_died.is_connected(_on_enemy_died):
+			_enemy_manager.enemy_died.disconnect(_on_enemy_died)
+		
+		# 連接新的 EnemyManager
+		_enemy_manager.enemy_died.connect(_on_enemy_died)
+		print("✓ LevelManager 已連接到新的 EnemyManager")
+	else:
+		print("⚠ LevelManager 無法找到有效的 EnemyManager")
+
+## 公開方法：讓其他系統通知場景已載入
+func on_scene_loaded():
+	"""當新場景載入時調用此方法"""
+	# 重置敵人死亡計數
+	_current_enemy_dead_count = 0
+	# 重新連接 EnemyManager
+	_connect_enemy_manager()
+
+func _on_enemy_died(enemy: Enemy):
+	_current_enemy_dead_count += 1
+	print("敵人死亡: ", enemy, " (總數: ", _current_enemy_dead_count, ")")
+	# 當敵人死亡時，檢查是否需要進行關卡更新
+	if not _game_started:
+		return
+	# 檢查是否達到下一關的擊殺數
+	if _current_level_index < 0 or _current_level_index >= KILLS_REQUIRED.size():
+		printerr("無效的關卡索引: ", _current_level_index)
+		return
+	if _current_enemy_dead_count >= KILLS_REQUIRED[_current_level_index]:
+		print("達到關卡擊殺數: ", _current_enemy_dead_count, "需要: ", KILLS_REQUIRED[_current_level_index])
+		# 前進到下一關
+		var next_level = advance_to_next_level()
+		if CoreManager:
+			await CoreManager.goto_scene(next_level)
 
 ## 獲取當前關卡
 func get_current_level() -> String:

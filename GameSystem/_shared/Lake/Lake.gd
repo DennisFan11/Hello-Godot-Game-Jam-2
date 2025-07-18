@@ -4,8 +4,8 @@ var _god_scene_manager: GodSceneManager
 var _weapon_editor: WeaponEditor
 
 var _busy: bool = false
-func interact()-> void:
-	if _busy: return 
+func interact() -> void:
+	if _busy: return
 	
 	_busy = true
 	_god_scene_manager.start_scene_requested.emit()

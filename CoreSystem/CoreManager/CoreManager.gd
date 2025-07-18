@@ -1,12 +1,21 @@
 extends Node
 # CORE MANAGER 可以在此取得 GameSystem
 
+# 場景切換信號
+signal scene_changed(scene_name: String)
+
 var SCENE := {
 	"Title": {
 		"file": preload("uid://bg4ji6py6jgn8")
 	},
 	"Level1": {
 		"file": preload("uid://jghh2wj4o126")
+	},
+	"Level2": {
+		"file": preload("uid://by1ilb7vws5mw")
+	},
+	"Level3": {
+		"file": preload("uid://dmq6hvpeioana")
 	},
 	"UpgradeShop": {
 		"file": preload("uid://c0p31kfgvdkkq")
@@ -48,6 +57,9 @@ func goto_scene(scene: String, trans: String = "Triangle"):
 		return self
 		
 	await _call_transition(trans, false)
+	
+	# 發射場景切換信號
+	scene_changed.emit(scene)
 	
 	if get_tree().current_scene.has_method("_transition_end"):
 		get_tree().current_scene._transition_end()

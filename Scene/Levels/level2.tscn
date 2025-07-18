@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://by1ilb7vws5mw"]
+
+[ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_hg86w"]
+[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_gqurj"]
+[ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC.tscn" id="3_d7ik8"]
+
+[node name="GameManager" instance=ExtResource("1_hg86w")]
+
+[node name="Lake" parent="TestNode" index="0"]
+position = Vector2(-320, 255)
+
+[node name="EnemyManager" parent="." index="4"]
+MAX_ENEMY_NUMBER = 30
+ENEMY_TYPE = Array[PackedScene]([ExtResource("2_gqurj"), ExtResource("3_d7ik8")])

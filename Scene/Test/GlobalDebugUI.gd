@@ -6,6 +6,7 @@ extends CanvasLayer
 var debug_panel: Panel
 var scene_name_label: Label
 var level_status_label: Label
+var enemy_kill_label: Label
 var start_game_button: Button
 var next_level_button: Button
 var reset_progress_button: Button
@@ -28,7 +29,7 @@ func _create_debug_ui():
 	debug_panel.name = "DebugPanel"
 	debug_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_RIGHT)
 	debug_panel.position.x -= 250 # 向左偏移一些
-	debug_panel.size = Vector2(240, 200)
+	debug_panel.size = Vector2(240, 230) # 增加高度以容納擊殺數量顯示
 	debug_panel.modulate = Color(1, 1, 1, 0.9) # 稍微透明
 	add_child(debug_panel)
 	
@@ -60,6 +61,15 @@ func _create_debug_ui():
 	level_status_label.add_theme_font_size_override("font_size", 10)
 	level_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vbox.add_child(level_status_label)
+	
+	# 敵人擊殺數量顯示
+	enemy_kill_label = Label.new()
+	enemy_kill_label.name = "EnemyKillLabel"
+	enemy_kill_label.text = "擊殺: 0/0"
+	enemy_kill_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	enemy_kill_label.add_theme_font_size_override("font_size", 12)
+	enemy_kill_label.add_theme_color_override("font_color", Color.RED)
+	vbox.add_child(enemy_kill_label)
 	
 	# 分隔線
 	var separator = HSeparator.new()
@@ -96,6 +106,9 @@ func _process(_delta: float) -> void:
 	
 	# 更新 LevelManager 狀態
 	_update_level_manager_status()
+	
+	# 更新敵人擊殺數量
+	_update_enemy_kill_status()
 
 func _update_level_manager_status():
 	if not level_status_label:
@@ -110,6 +123,32 @@ func _update_level_manager_status():
 		])
 	else:
 		level_status_label.text = "LevelManager 未載入"
+
+func _update_enemy_kill_status():
+	if not enemy_kill_label:
+		return
+	
+	if LevelManager:
+		var current_kills = LevelManager._current_enemy_dead_count
+		var required_kills = 0
+		
+		# 使用 _current_level_index 從 KILLS_REQUIRED 數組獲取當前關卡所需擊殺數
+		var level_index = LevelManager._current_level_index
+		if level_index >= 0 and level_index < LevelManager.KILLS_REQUIRED.size():
+			required_kills = LevelManager.KILLS_REQUIRED[level_index]
+		
+		enemy_kill_label.text = "擊殺: {0}/{1}".format([current_kills, required_kills])
+		
+		# 根據進度改變顏色
+		if current_kills >= required_kills and required_kills > 0:
+			enemy_kill_label.add_theme_color_override("font_color", Color.GREEN)
+		elif current_kills > 0:
+			enemy_kill_label.add_theme_color_override("font_color", Color.YELLOW)
+		else:
+			enemy_kill_label.add_theme_color_override("font_color", Color.RED)
+	else:
+		enemy_kill_label.text = "擊殺: 未載入"
+		enemy_kill_label.add_theme_color_override("font_color", Color.GRAY)
 
 func _get_current_scene_name() -> String:
 	var current_scene = get_tree().current_scene
