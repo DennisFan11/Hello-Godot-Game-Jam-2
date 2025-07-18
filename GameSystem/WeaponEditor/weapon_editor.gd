@@ -1,9 +1,10 @@
 class_name WeaponEditor
-extends CanvasLayer
+extends Node2D
 
 func _ready() -> void:
 	DI.register("_weapon_editor", self)
 	visible = false
+	%CanvasLayer.visible = false
 
 var _shader_manager: ShaderManager
 
@@ -16,6 +17,7 @@ func start_event(base_weapon: Weapon, new_weapon: Weapon=null):
 	
 	_shader_manager.enable("frosted_glass")
 	visible = true
+	%CanvasLayer.visible = true
 	
 	base_weapon.is_main = true
 	base_weapon.move_to(%BaseWeaponMarker, %GlueLayer, false)
@@ -28,13 +30,18 @@ func start_event(base_weapon: Weapon, new_weapon: Weapon=null):
 	_rebind_weapon_event()
 	await _finished
 	visible = false
+	%CanvasLayer.visible = false
+
 	_shader_manager.disable("frosted_glass")
 
 signal _finished
 
+var _player_manager: PlayerManager
 func _process(delta: float) -> void:
 	%SelectedMarker.position = %SelectedMarker.get_global_mouse_position()
+	%BaseWeaponMarker.global_position = _player_manager.get_player_position()
 	_weapon_shader_update()
+
 func _unhandled_input(event: InputEvent):
 	if event is InputEventPanGesture:
 		%SelectedMarker.rotation -= 2.0 * event.delta.x * get_process_delta_time()

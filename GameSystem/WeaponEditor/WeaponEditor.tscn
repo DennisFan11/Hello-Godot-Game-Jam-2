@@ -13,7 +13,7 @@ bg_color = Color(0.323584, 0.323584, 0.323584, 1)
 corner_radius_top_left = 60
 corner_radius_top_right = 60
 
-[node name="WeaponEditor" type="CanvasLayer"]
+[node name="WeaponEditor" type="Node2D"]
 script = ExtResource("1_ikeip")
 
 [node name="GlueLayer" parent="." instance=ExtResource("2_fpx8n")]
@@ -22,13 +22,14 @@ unique_name_in_owner = true
 [node name="BaseWeaponMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(328, 523)
-scale = Vector2(7, 7)
 
 [node name="SelectedMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(7, 7)
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -38,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="FinishPanel" type="Panel" parent="Control"]
+[node name="FinishPanel" type="Panel" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -52,7 +53,7 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fpx8n")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/FinishPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/FinishPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,13 +65,11 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="FinishButton" type="Button" parent="Control/FinishPanel/MarginContainer"]
+[node name="FinishButton" type="Button" parent="CanvasLayer/Control/FinishPanel/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_moj5w")
 text = "Finish"
 
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="replacing_by" from="." to="." method="_on_replacing_by"]
-[connection signal="pressed" from="Control/FinishPanel/MarginContainer/FinishButton" to="." method="_on_finish_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/FinishPanel/MarginContainer/FinishButton" to="." method="_on_finish_button_pressed"]
