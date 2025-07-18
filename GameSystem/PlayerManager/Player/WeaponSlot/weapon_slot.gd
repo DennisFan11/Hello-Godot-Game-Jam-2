@@ -19,6 +19,8 @@ func _on_injected():
 	set_current_weapon(weapon)
 
 func set_current_weapon(weapon: Weapon)-> void:
+	if not weapon: return 
+	
 	if first_weapon:
 		first_weapon.queue_free()
 	first_weapon = weapon
@@ -49,8 +51,11 @@ func start_attack(time: float):
 
 
 
-
-
+func _save():
+	first_weapon.get_parent().remove_child(first_weapon)
+	InGameSaveSystem.save_object("first_weapon", first_weapon)
+func _load():
+	set_current_weapon(InGameSaveSystem.load_object("first_weapon"))
 
 
 

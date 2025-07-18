@@ -75,6 +75,7 @@ func advance_to_next_level() -> String:
 func reset_progress():
 	_current_level_index = -1 # 重置為未開始狀態
 	_game_started = false
+	InGameSaveSystem.clear()
 	print("關卡進度已重置")
 
 ## 設定關卡順序
@@ -119,6 +120,7 @@ func goto_next_level():
 
 ## 便利方法：開始遊戲（從第一關開始）
 func start_game():
+	reset_progress()
 	_current_level_index = 0 # 設定到第一關
 	_game_started = true
 	var first_level = get_current_level()
