@@ -82,7 +82,8 @@ func _ready():
 	
 func _on_injected():
 	# 連接信號並等待觸發
-	_god_scene_manager.start_scene_requested.connect(_on_start_scene_requested)
+	if (_god_scene_manager):
+		_god_scene_manager.start_scene_requested.connect(_on_start_scene_requested)
 
 func _load_dialogue_texts():
 	"""載入對話文本檔案"""
