@@ -22,9 +22,9 @@ func try_move(delta:float):
 		new_velocity = Vector2.ZERO
 	else:
 		var vec = _get_move_vec()
-		if max_rotation_angle > 0.0 and current_move_angle != INF:
-			var new_angle = vec.angle()
+		var new_angle = vec.angle()
 
+		if max_rotation_angle > 0.0 and current_move_angle != INF:
 			current_move_angle = get_move_angle(
 				new_angle,
 				current_move_angle,
@@ -37,6 +37,7 @@ func try_move(delta:float):
 			).normalized()
 		else:
 			current_move_angle = new_angle
+
 		new_velocity = MAX_SPEED * vec
 
 	if move_rotation:
