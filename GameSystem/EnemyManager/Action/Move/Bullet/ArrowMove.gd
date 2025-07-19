@@ -8,6 +8,7 @@ func _physics_process(delta: float) -> void:
 
 	try_move(delta)
 	
+	# 碰撞後停止移動, 模擬箭插在牆上
 	if target.move_and_slide():
 		target.velocity = Vector2.ZERO
 		enable = false
@@ -17,7 +18,8 @@ func try_move(delta:float):
 
 	if jump:
 		var pos = _get_player_distance()
-		# 初始角度 (90 +- 45)
+		# 初始角度
+		# 向上45度(90 +- 45)
 		var rad = deg_to_rad(45 if pos.x > 0.0 else 135)
 
 		# 初始速度
@@ -35,14 +37,11 @@ func try_move(delta:float):
 		)
 
 		# 增加隨機
-		#new_velocity += get_rng_vec()
+		new_velocity += get_variance_vec()
 
 		jump = false
 	else:
-		if not target.is_on_floor():
-			new_velocity += target.get_gravity() * delta
-		if new_velocity.y == 0.0:
-			new_velocity = Vector2.ZERO
+		new_velocity += target.get_gravity() * delta
 
 	target.velocity = new_velocity
 

@@ -1,10 +1,20 @@
 class_name Move
 extends Action
 
+## 最大速度
 @export var MAX_SPEED:Vector2 = Vector2(100, 270)
+
+## 加速時間
+## 在某些行動方式中不會使用此參數
 @export var INCREASE := 7.0
+
+## 減速時間
+## 在某些行動方式中不會使用此參數
 @export var DECREASE := 20.0 #0.17
 
+## 社交距離
+## 遠離玩家角色的距離
+## 主要用於遠程角色的位置調整
 @export var social_distance:Vector2
 
 func _physics_process(delta: float) -> void:

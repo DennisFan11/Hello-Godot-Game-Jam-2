@@ -2,6 +2,8 @@ class_name JumpMove
 extends GroundMove
 
 var jump:bool = true
+
+# 固定跳躍時的目標位置, 方便玩家躲避
 var move_pos:Vector2 = Vector2.ZERO
 
 func try_move(delta:float):

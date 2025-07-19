@@ -1,27 +1,61 @@
 class_name FlyMove
 extends Move
 
-@export var floating_height:float = 2.5
+## 最大轉動角度
+## 當數值為0時不限制轉動
+@export_range(0, 180) var max_rotation_angle:float = 0.0:
+	set(value):
+		max_rotation_angle = value
+		max_directional_angle_rad = deg_to_rad(value)
 
-var floating_timer = 0
+## 移動時調整角色轉向
+@export var move_rotation:bool = false
+
+var max_directional_angle_rad:float
+var current_move_angle:float = INF
 
 func try_move(delta:float):
 	var new_velocity = target.velocity
+	# 防止到達目標位置時抖動
+	# 如果有限制轉動的話抖動會變成自行迴旋, 也許可以加上這個條件?
+	if target.position.distance_squared_to(get_move_pos()) <= MAX_SPEED.length_squared() * delta:
+		new_velocity = Vector2.ZERO
+	else:
+		var vec = _get_move_vec()
+		if max_rotation_angle > 0.0 and current_move_angle != INF:
+			var new_angle = vec.angle()
 
-	new_velocity.x = try_move_x(new_velocity.x, delta)
-	new_velocity.y = try_move_y(new_velocity.y, delta)
-	
+			current_move_angle = get_move_angle(
+				new_angle,
+				current_move_angle,
+				max_directional_angle_rad * delta
+			)
+
+			vec = Vector2(
+				cos(current_move_angle),
+				sin(current_move_angle)
+			).normalized()
+		else:
+			current_move_angle = new_angle
+		new_velocity = MAX_SPEED * vec
+
+	if move_rotation:
+		target.rotation = current_move_angle
 	target.velocity = new_velocity
 
-func try_move_y(value:float, delta:float):
-	var current_y = target.position.y
-	var target_y = get_move_pos().y + sin(floating_timer) * floating_height
 
-	floating_timer += delta
 
-	if current_y == target_y:
-		value = 0
-	else:
-		value = MAX_SPEED.y * clamp(target_y - current_y, -1, 1)
+func get_move_angle(target_angle, current_angle, max_diff):
+	var diff_angle = target_angle - current_angle
 
-	return value
+	if not is_zero_approx(diff_angle):
+		while diff_angle > PI:
+			diff_angle -= PI * 2
+		while diff_angle < -PI:
+			diff_angle += PI * 2
+
+		if diff_angle >= max_diff:
+			target_angle = current_angle + max_diff
+		elif diff_angle <= -max_diff:
+			target_angle = current_angle - max_diff
+	return target_angle
