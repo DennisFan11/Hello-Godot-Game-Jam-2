@@ -15,7 +15,7 @@ var attack_damage: int = 10
 var attack_cooldown: CooldownTimer = CooldownTimer.new()
 
 ## 面朝方向
-## false: 左 true:右
+## false:左 true:右
 var direction = true
 
 # 信號
@@ -167,14 +167,19 @@ func change_direction():
 
 	%Body.scale.x = 1 if new_direction else -1
 	direction = new_direction
-	#var body = %Body
-	#if direction:
-		#body.scale.y = 1
-		#body.rotation_degrees = 0
-	#else:
-		#body.scale.y = -1
-		#body.rotation_degrees = 180
 
+# 檢測角色與Block的碰撞方向
+# -1:左 0:無 1:右
+#func _climb() -> int:
+	#var slide_collision = get_last_slide_collision()
+#
+	#if slide_collision \
+	#and slide_collision.get_collider().is_in_group("Block"):
+		#if is_zero_approx(slide_collision.get_angle(Vector2.LEFT)):
+			#return 1
+		#elif is_zero_approx(slide_collision.get_angle(Vector2.RIGHT)):
+			#return -1
+	#return 0
 
 func _climb_R() -> bool:
 	for i in %RightArea2D.get_overlapping_bodies():

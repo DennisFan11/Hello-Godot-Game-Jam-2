@@ -4,8 +4,12 @@ extends IGameSubManager
 # 敵人死亡信號
 signal enemy_died(enemy: Enemy)
 
+## 生成敵人冷卻
+## 當此值<0時不生成敵人
+@export var SPWAN_COOLDOWN:float = 0.5
+
 ## 最大敵方數量,
-## 當此值>0時限制敵方數量
+## 當此值<=0時不限制敵方數量
 @export var MAX_ENEMY_NUMBER: int = 0
 
 ## 生成的敵人種類,
@@ -36,7 +40,7 @@ var WEIGHT: float = 250:
 func _reset_spawnner_ray():
 	if not %SpawnnerHintLineL: return
 	if not %SpawnnerHintLineR: return
-	
+
 	%SpawnnerHintLineL.points = [
 		Vector2(-WEIGHT, HEIGHT),
 		Vector2(-NON_SPAWN_AREA, HEIGHT)
@@ -45,21 +49,16 @@ func _reset_spawnner_ray():
 		Vector2(NON_SPAWN_AREA, HEIGHT),
 		Vector2(WEIGHT, HEIGHT)
 	]
-	
+
 func _ready() -> void:
 	DI.register("_enemy_manager", self)
 
 var _cooldown_timer := CooldownTimer.new()
 func _process(delta: float) -> void:
 	%PlayerPosMarker2D.position.x = _player_manager.get_player_position().x
-	
-	if not _cooldown_timer.is_ready():
-		return
-	_cooldown_timer.trigger(0.5)
-	
-	if MAX_ENEMY_NUMBER <= 0 or %Enemy.get_child_count() < MAX_ENEMY_NUMBER:
-		_try_spawn_enemy()
-	
+
+	_try_spawn_enemy()
+
 
 var _player_manager: PlayerManager
 func _get_random_start_point() -> Vector2:
@@ -83,36 +82,40 @@ func _get_casted_point() -> Vector2:
 	).get("position", Vector2.ZERO)
 
 func _try_spawn_enemy():
-	var spawn_pos: Vector2
-	
+	if not _cooldown_timer.is_ready() or SPWAN_COOLDOWN < 0.0:
+		return
+	_cooldown_timer.trigger(SPWAN_COOLDOWN)
+
+	if not len(ENEMY_TYPE):
+		return
+	if MAX_ENEMY_NUMBER > 0 \
+	and %Enemy.get_child_count() >= MAX_ENEMY_NUMBER:
+		return
+
 	for i in range(10):
-		spawn_pos = _get_casted_point()
-		if spawn_pos:
-			break
-	if not spawn_pos: return
-	_spawn_enemy(spawn_pos)
+		var spawn_pos = _get_casted_point()
+		if spawn_pos != Vector2.ZERO:
+			_spawn_enemy(spawn_pos)
+			return
 
 
 func _spawn_enemy(spawn_pos: Vector2):
-	if not len(ENEMY_TYPE):
-		return
-
 	var rng = ENEMY_TYPE.pick_random()
 	if rng is PackedScene:
 		var enemy = rng.instantiate()
 		enemy.position = spawn_pos
 		%Enemy.add_child(enemy)
-		
+
 		# 連接敵人的死亡信號到 EnemyManager
 		if enemy.has_signal("died"):
 			enemy.died.connect(_on_enemy_died)
-		
+
 		print("spawn enemy: ", enemy)
 
 func _on_enemy_died(enemy: Enemy):
 	"""當敵人死亡時觸發此方法"""
 	enemy_died.emit(enemy)
 	print("Enemy died: ", enemy)
-	
+
 
 #

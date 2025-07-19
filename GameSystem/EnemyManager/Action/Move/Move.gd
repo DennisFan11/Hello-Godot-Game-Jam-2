@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 	try_move(delta)
 	
-	target.set_collision_layer_value(2, target.is_on_floor())
+	#target.set_collision_layer_value(2, target.is_on_floor())
 	
 	target.move_and_slide()
 

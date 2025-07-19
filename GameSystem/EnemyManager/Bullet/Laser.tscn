@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://doanxfksnnymk"]
+
+[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/EnemyManager/Bullet/Bullet.gd" id="1_5r0u8"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="2_8vbo4"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="3_lre7p"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="4_vcgfe"]
+[ext_resource type="Script" uid="uid://cokkbcsi1um28" path="res://GameSystem/EnemyManager/Action/Move/Bullet/LaserMove.gd" id="5_lre7p"]
+
+[sub_resource type="Gradient" id="Gradient_oprxw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wnisf"]
+gradient = SubResource("Gradient_oprxw")
+width = 500
+height = 1
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_36pk1"]
+offsets = PackedFloat32Array(0, 0.188, 0.5, 0.812, 1)
+colors = PackedColorArray(0, 0.498039, 1, 1, 0.690196, 0.886275, 1, 1, 1, 1, 1, 1, 0.690196, 0.886275, 1, 1, 0, 0.498039, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6kurx"]
+gradient = SubResource("Gradient_36pk1")
+width = 500
+height = 50
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkbr"]
+size = Vector2(500, 50)
+
+[node name="Laser" type="Area2D"]
+rotation = 0.218166
+collision_layer = 4
+script = ExtResource("1_5r0u8")
+cooldown = 60.0
+
+[node name="AimLine" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(250, 0)
+texture = SubResource("GradientTexture2D_wnisf")
+
+[node name="LaserLine" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1e-05, 1)
+texture = SubResource("GradientTexture2D_6kurx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1e-05, 1)
+shape = SubResource("RectangleShape2D_nrkbr")
+disabled = true
+
+[node name="AttackManager" type="Node" parent="."]
+script = ExtResource("2_8vbo4")
+metadata/_custom_type_script = "uid://dkkr382xaqb8j"
+
+[node name="TouchAttack" type="Node" parent="AttackManager"]
+script = ExtResource("3_lre7p")
+metadata/_custom_type_script = "uid://dhy4eth68b7ji"
+
+[node name="MoveManager" type="Node" parent="."]
+script = ExtResource("4_vcgfe")
+metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
+
+[node name="LaserMove" type="Node" parent="MoveManager"]
+script = ExtResource("5_lre7p")
+width = 1000
+time = Array[float]([3.0, 0.5, 0.125, 2.0, 1.0])
+metadata/_custom_type_script = "uid://cokkbcsi1um28"

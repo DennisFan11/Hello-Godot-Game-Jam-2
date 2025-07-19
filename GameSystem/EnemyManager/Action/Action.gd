@@ -7,9 +7,10 @@ extends Node
 @export var cooldown: float = 0.33
 
 ## 控制目標
-var target: CharacterBody2D
+var target: Node2D:
+	set = set_target
 
 var _cooldown_timer := CooldownTimer.new()
 
-func set_target(t: CharacterBody2D):
+func set_target(t: Node2D):
 	target = t

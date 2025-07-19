@@ -1,7 +1,9 @@
 class_name Bullet
-extends CharacterBody2D
+extends Node2D
 
 @export var cooldown: float = 1
+
+var summoner:Node2D
 
 var _cooldown_timer := CooldownTimer.new()
 
