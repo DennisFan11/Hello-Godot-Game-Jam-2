@@ -48,6 +48,7 @@ _data = {
 }
 
 [node name="Ball" type="CharacterBody2D"]
+z_index = -1
 collision_layer = 4
 script = ExtResource("1_sie6p")
 cooldown = 3.0

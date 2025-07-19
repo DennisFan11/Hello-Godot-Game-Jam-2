@@ -40,6 +40,8 @@ func _ready() -> void:
 	laser_line.modulate = Color.WHITE
 	laser_line.visible = false
 
+	collision.shape.size = Vector2(width, height)
+	collision.position = Vector2(0, 0)
 	collision.scale = Vector2(0, 1)
 	collision.disabled = true
 

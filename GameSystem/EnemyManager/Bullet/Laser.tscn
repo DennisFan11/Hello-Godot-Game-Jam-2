@@ -47,7 +47,6 @@ texture = SubResource("GradientTexture2D_6kurx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(1e-05, 1)
 shape = SubResource("RectangleShape2D_nrkbr")
 disabled = true
 
