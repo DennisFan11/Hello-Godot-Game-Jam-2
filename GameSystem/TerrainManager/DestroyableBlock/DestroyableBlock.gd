@@ -19,10 +19,10 @@ var PosID:Vector2: # FIXME 調整為基於 BlockSize ID
 		if _base_scene: _base_scene.Position = new * BlockSize
 var Polygon:PackedVector2Array:
 	set(new):
-		if Geometry2D.triangulate_polygon(new).size() == 0:
-			print("Triangulate Failed")
-			queue_free()
-			return
+		#if Geometry2D.triangulate_polygon(new).size() == 0:
+			#print("Triangulate Failed")
+			#queue_free()
+			#return
 		#new = Geometry2D.convex_hull(new)
 		Polygon = new
 		if _base_scene: _base_scene.Polygon = new

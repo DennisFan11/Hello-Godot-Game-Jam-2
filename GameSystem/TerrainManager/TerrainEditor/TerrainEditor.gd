@@ -5,7 +5,7 @@ extends Node2D
 @export_tool_button("啟用繪圖工具") var start = start_draw
 @export_tool_button("關閉繪圖工具") var end = end_draw
 @export_tool_button("保存") var _save = save
-
+@export_tool_button("全部清除") var _clear = clear
 static var _terrain_manager: TerrainManager
 
 
@@ -22,3 +22,6 @@ func end_draw():
 
 func save():
 	_terrain_manager.save_map()
+
+func clear():
+	_terrain_manager.clear()

@@ -53,7 +53,9 @@ func load_map():
 	for data in _map_data:
 		DestroyableBlock.Load(data)
 		
-	
+func clear():
+	_map_data = []
+	load_map()
 	
 	
 
@@ -171,8 +173,8 @@ func _editor_get_collide_bodies(global_polygon: PackedVector2Array) -> Array:
 	var end := Vector2(ceil(max_x / BLOCK_SIZE.x), ceil(max_y / BLOCK_SIZE.y)) + Vector2.ONE
 
 	# 遍歷 bounding box 內的每個格子中心點，若在 polygon 內則取出對應的 block
-	for x in range(start.x, end.x):
-		for y in range(start.y, end.y):
+	for x in range(start.x, end.x+1):
+		for y in range(start.y, end.y+1):
 			var cell_center := Vector2(x + 0.5, y + 0.5) * BLOCK_SIZE
 			if Geometry2D.is_point_in_polygon(cell_center, collide_polygon):
 				var pos_id := Vector2(x, y)
@@ -185,7 +187,7 @@ func _editor_get_collide_bodies(global_polygon: PackedVector2Array) -> Array:
 	return result
 
 func _block_register(block: DestroyableBlock):
-	print("register block in", block.PosID)
+	#print("register block in", block.PosID)
 	if not _destroyable_block_map.has(block.PosID):
 		_destroyable_block_map[block.PosID] = []
 	_destroyable_block_map[block.PosID].append(block)
