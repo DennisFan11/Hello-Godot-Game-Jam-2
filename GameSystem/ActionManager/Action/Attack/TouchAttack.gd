@@ -8,14 +8,14 @@ func try_attack(delta: float) -> void:
 	elif target is Area2D:
 		try_attack_area(delta)
 
-func try_attack_char(delta):
+func try_attack_char(_delta):
 	var slide_collision = target.get_last_slide_collision()
 	if slide_collision:
 		var collider = slide_collision.get_collider()
 		if collider is Player:
 			attack(collider)
 
-func try_attack_area(delta):
+func try_attack_area(_delta):
 	var node_list = target.get_overlapping_bodies()
 	for node in node_list:
 		if node is Player:

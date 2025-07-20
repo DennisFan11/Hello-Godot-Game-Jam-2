@@ -7,12 +7,12 @@ extends Action
 func _physics_process(delta: float) -> void:
 	if enable and _cooldown_timer.is_ready():
 		try_attack(delta)
-	
-func try_attack(delta):
+
+func try_attack(_delta):
 	pass
 
-func attack(player):
-	player.take_damage(damage)
+func attack(t):
+	t.take_damage(damage)
 
 	if cooldown > 0.0:
 		_cooldown_timer.trigger(cooldown)

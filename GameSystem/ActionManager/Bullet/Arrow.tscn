@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://632eff4dpxmu"]
 
-[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/EnemyManager/Bullet/Bullet.gd" id="1_mqlab"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="2_uq0t4"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="3_ry3ja"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="4_0yqhe"]
-[ext_resource type="Script" uid="uid://dserl315l4v5g" path="res://GameSystem/EnemyManager/Action/Move/Bullet/ArrowMove.gd" id="5_grc3d"]
+[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/ActionManager/Bullet/Bullet.gd" id="1_mqlab"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="2_uq0t4"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_ry3ja"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="4_0yqhe"]
+[ext_resource type="Script" uid="uid://dserl315l4v5g" path="res://GameSystem/ActionManager/Action/Move/Bullet/ArrowMove.gd" id="5_grc3d"]
 
 [sub_resource type="Gradient" id="Gradient_v46i7"]
 

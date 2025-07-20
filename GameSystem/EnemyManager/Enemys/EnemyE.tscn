@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_v4plt"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_aaaa4"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_ryapq"]
-[ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/EnemyManager/Action/Attack/BulletAttack.gd" id="4_3c1ul"]
-[ext_resource type="PackedScene" uid="uid://doanxfksnnymk" path="res://GameSystem/EnemyManager/Bullet/Laser.tscn" id="5_v4plt"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="6_e0u5l"]
-[ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/EnemyManager/Action/Move/FlyMove.gd" id="7_qhscl"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_ryapq"]
+[ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/ActionManager/Action/Attack/BulletAttack.gd" id="4_3c1ul"]
+[ext_resource type="PackedScene" uid="uid://doanxfksnnymk" path="res://GameSystem/ActionManager/Bullet/Laser.tscn" id="5_v4plt"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="6_e0u5l"]
+[ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/ActionManager/Action/Move/FlyMove.gd" id="7_qhscl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
 radius = 6.0

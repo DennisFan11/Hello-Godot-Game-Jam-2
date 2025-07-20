@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://doanxfksnnymk"]
 
-[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/EnemyManager/Bullet/Bullet.gd" id="1_5r0u8"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="2_8vbo4"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="3_lre7p"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="4_vcgfe"]
-[ext_resource type="Script" uid="uid://cokkbcsi1um28" path="res://GameSystem/EnemyManager/Action/Move/Bullet/LaserMove.gd" id="5_lre7p"]
+[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/ActionManager/Bullet/Bullet.gd" id="1_5r0u8"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="2_8vbo4"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_lre7p"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="4_vcgfe"]
+[ext_resource type="Script" uid="uid://cokkbcsi1um28" path="res://GameSystem/ActionManager/Action/Move/Bullet/LaserMove.gd" id="5_lre7p"]
 
 [sub_resource type="Gradient" id="Gradient_oprxw"]
 offsets = PackedFloat32Array(0)

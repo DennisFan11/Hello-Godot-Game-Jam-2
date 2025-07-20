@@ -108,6 +108,9 @@ func _ready():
 	
 	print("✓ PlayerUpgradeSystem (AutoLoad) 初始化完成")
 
+func get_stats(name:String) -> Variant:
+	return player_stats.get(name)
+
 func _init_upgrade_levels():
 	for upgrade_type in UpgradeType.values():
 		upgrade_levels[upgrade_type] = 0

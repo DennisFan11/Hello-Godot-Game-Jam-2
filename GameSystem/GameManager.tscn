@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
 [ext_resource type="PackedScene" uid="uid://ckjyc7agxyvlq" path="res://GameSystem/WeaponManager/WeaponManager.tscn" id="6_wonvf"]
-[ext_resource type="PackedScene" uid="uid://1irg6p4f8wkm" path="res://GameSystem/EnemyManager/Enemys/EnemyE.tscn" id="7_30fhk"]
 [ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_kst1i"]
 [ext_resource type="PackedScene" uid="uid://dg3djwp882ugn" path="res://GameSystem/ShaderManager/ShaderManager.tscn" id="7_o6cs3"]
+[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/EnemyB.tscn" id="8_ko6fk"]
 [ext_resource type="PackedScene" uid="uid://b8b7q8fpnpmr5" path="res://GameSystem/MessageBoxManager/MessageBoxManager.tscn" id="10_40pkj"]
 [ext_resource type="PackedScene" uid="uid://dysm5ban4fmau" path="res://GameSystem/WeaponEditor/WeaponEditor.tscn" id="11_cmd41"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
@@ -25,7 +25,6 @@ tile_map_data = PackedByteArray("AADn/w8AAAABAAUAAADn/xAAAAABAAYAAADn/xEAAAABAAc
 tile_set = ExtResource("4_20ou5")
 
 [node name="TerrainManager" parent="." instance=ExtResource("13_ko6fk")]
-_map_data = []
 
 [node name="TestNode" type="Node2D" parent="."]
 
@@ -35,8 +34,8 @@ position = Vector2(-180, 256)
 [node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]
-MAX_ENEMY_NUMBER = 2
-ENEMY_TYPE = Array[PackedScene]([ExtResource("7_30fhk")])
+MAX_ENEMY_NUMBER = 1
+ENEMY_TYPE = Array[PackedScene]([ExtResource("8_ko6fk")])
 HEIGHT = -300.0
 NON_SPAWN_AREA = 200.0
 WEIGHT = 500.0

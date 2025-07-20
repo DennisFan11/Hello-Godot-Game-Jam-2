@@ -56,7 +56,7 @@ func frame_attack(delta: float)-> void:
 	for i in _physical_components:
 		for j:Node2D in i.get_attack_area().get_overlapping_bodies():
 			if j is Enemy:
-				j.damage(get_damage())
+				j.take_damage(get_damage())
 	if next_weapon: next_weapon.frame_attack(delta)
 
 # used by GodSceneManager

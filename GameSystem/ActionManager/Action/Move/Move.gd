@@ -17,6 +17,10 @@ extends Action
 ## 主要用於遠程角色的位置調整
 @export var social_distance:Vector2
 
+## 面朝方向
+## false:左 true:右
+var direction = true
+
 func _physics_process(delta: float) -> void:
 	if not enable: return
 
@@ -26,21 +30,8 @@ func _physics_process(delta: float) -> void:
 	
 	target.move_and_slide()
 
-
-
-func try_move(delta: float) -> void:
+func try_move(_delta: float) -> void:
 	pass
-
-func try_move_x(value:float, delta:float) -> float:
-	# 处理左右移动
-	var vec = _get_move_vec()
-	if vec.x != 0: 
-		return lerp(value, MAX_SPEED.x * vec.x, INCREASE * delta)
-	else: # 停止移动
-		return lerp(value, 0.0, DECREASE * delta)
-
-func try_move_y(value:float, delta:float) -> float:
-	return value
 
 
 

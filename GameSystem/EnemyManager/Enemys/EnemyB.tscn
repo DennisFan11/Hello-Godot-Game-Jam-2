@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_juti4"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_xjwea"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/EnemyManager/Action/AttackManager.gd" id="3_spv7u"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/EnemyManager/Action/Attack/TouchAttack.gd" id="4_fh0yc"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/EnemyManager/Action/MoveManager.gd" id="5_f0m5f"]
-[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/EnemyManager/Action/Move/JumpMove.gd" id="6_ie3bw"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_spv7u"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_fh0yc"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_f0m5f"]
+[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/ActionManager/Action/Move/JumpMove.gd" id="6_ie3bw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
 radius = 6.0

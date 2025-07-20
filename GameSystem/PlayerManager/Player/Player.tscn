@@ -1,9 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdqcutktqtcxw"]
+[gd_scene load_steps=15 format=3 uid="uid://bdqcutktqtcxw"]
 
 [ext_resource type="Script" uid="uid://c4yy1akfirsh" path="res://GameSystem/PlayerManager/Player/player.gd" id="1_trhjy"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
 [ext_resource type="Script" uid="uid://dl33ijmoqp57y" path="res://GameSystem/PlayerManager/Player/WeaponSlot/weapon_slot.gd" id="3_s163p"]
 [ext_resource type="Script" uid="uid://bs63mjapxhbg" path="res://GameSystem/PlayerManager/Player/Interacter/Interacter.gd" id="4_u5ohs"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="5_h0ovm"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="6_2mh5b"]
+[ext_resource type="Script" uid="uid://dsrlipdic14er" path="res://GameSystem/ActionManager/Action/Attack/PlayerAttack.gd" id="6_5tm2e"]
+[ext_resource type="Script" uid="uid://dxf47tfe38agp" path="res://GameSystem/ActionManager/Action/Move/PlayerMove.gd" id="7_5tm2e"]
 
 [sub_resource type="Animation" id="Animation_nd1tf"]
 length = 0.001
@@ -104,6 +108,22 @@ script = ExtResource("4_u5ohs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interacter"]
 shape = SubResource("CircleShape2D_u5ohs")
 debug_color = Color(0, 0.628631, 0.490496, 0.42)
+
+[node name="AttackManager" type="Node" parent="."]
+script = ExtResource("5_h0ovm")
+metadata/_custom_type_script = "uid://dkkr382xaqb8j"
+
+[node name="PlayerAttack" type="Node" parent="AttackManager"]
+script = ExtResource("6_5tm2e")
+metadata/_custom_type_script = "uid://dsrlipdic14er"
+
+[node name="MoveManager" type="Node" parent="."]
+script = ExtResource("6_2mh5b")
+metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
+
+[node name="PlayerMove" type="Node" parent="MoveManager"]
+script = ExtResource("7_5tm2e")
+metadata/_custom_type_script = "uid://dxf47tfe38agp"
 
 [connection signal="animation_finished" from="Body/WeaponSlot/AnimationPlayer" to="Body/WeaponSlot" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Interacter" to="Interacter" method="_on_area_entered"]
