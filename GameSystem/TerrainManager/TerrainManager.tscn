@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt04h06w01gic"]
+
+[ext_resource type="Script" uid="uid://2l76ekloil5x" path="res://GameSystem/TerrainManager/TerrainManager.gd" id="1_uynwf"]
+[ext_resource type="Script" uid="uid://cwasldijonxiw" path="res://GameSystem/TerrainManager/TerrainEditor/TerrainEditor.gd" id="2_shx21"]
+
+[node name="TerrainManager" type="Node2D"]
+script = ExtResource("1_uynwf")
+
+[node name="TerrainShader" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
+
+[node name="TerrainEditor" type="Node2D" parent="."]
+script = ExtResource("2_shx21")

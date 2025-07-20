@@ -46,6 +46,7 @@ folder_colors={
 "res://CoreSystem/": "yellow",
 "res://CoreSystem/_not_used/": "gray",
 "res://GameSystem/": "orange",
+"res://GameSystem/TerrainManager/": "red",
 "res://Scene/": "purple"
 }
 
