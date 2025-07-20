@@ -150,15 +150,38 @@ func _get_collide_bodies( global_polygon:PackedVector2Array )-> Array:
 ## =========== FOR EDITOR ========
 
 var _destroyable_block_map: Dictionary[Vector2, Array]
-func _editor_get_collide_bodies( global_polygon:PackedVector2Array )-> Array:
+func _editor_get_collide_bodies(global_polygon: PackedVector2Array) -> Array:
 	var result: Array = []
-	var center_pos: Vector2 = (global_polygon[0] / BLOCK_SIZE).floor()
-	for x in range(-3, 4):
-		for y in range(-3, 4):
-			var fix_pos: Vector2 = center_pos + Vector2(x, y)
-			if not _destroyable_block_map.has(fix_pos):
-				continue
-			result.append_array(_destroyable_block_map[fix_pos])
+	var visited := {}
+	var collide_polygon := Geometry2D.offset_polygon(global_polygon, BLOCK_SIZE.x, Geometry2D.JOIN_SQUARE)[0]
+	
+	# 先取 bounding box
+	var min_x = INF
+	var min_y = INF
+	var max_x = -INF
+	var max_y = -INF
+
+	for point in global_polygon:
+		min_x = min(min_x, point.x)
+		min_y = min(min_y, point.y)
+		max_x = max(max_x, point.x)
+		max_y = max(max_y, point.y)
+
+	var start := Vector2(floor(min_x / BLOCK_SIZE.x), floor(min_y / BLOCK_SIZE.y)) - Vector2.ONE
+	var end := Vector2(ceil(max_x / BLOCK_SIZE.x), ceil(max_y / BLOCK_SIZE.y)) + Vector2.ONE
+
+	# 遍歷 bounding box 內的每個格子中心點，若在 polygon 內則取出對應的 block
+	for x in range(start.x, end.x):
+		for y in range(start.y, end.y):
+			var cell_center := Vector2(x + 0.5, y + 0.5) * BLOCK_SIZE
+			if Geometry2D.is_point_in_polygon(cell_center, collide_polygon):
+				var pos_id := Vector2(x, y)
+				if visited.has(pos_id):
+					continue
+				visited[pos_id] = true
+				if _destroyable_block_map.has(pos_id):
+					result.append_array(_destroyable_block_map[pos_id])
+
 	return result
 
 func _block_register(block: DestroyableBlock):
