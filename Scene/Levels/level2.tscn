@@ -12,3 +12,5 @@ position = Vector2(-320, 255)
 [node name="EnemyManager" parent="." index="4"]
 MAX_ENEMY_NUMBER = 30
 ENEMY_TYPE = Array[PackedScene]([ExtResource("2_gqurj"), ExtResource("3_d7ik8")])
+
+[editable path="TerrainManager"]
