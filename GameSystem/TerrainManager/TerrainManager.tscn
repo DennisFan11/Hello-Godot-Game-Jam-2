@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt04h06w01gic"]
+[gd_scene load_steps=7 format=3 uid="uid://dt04h06w01gic"]
 
 [ext_resource type="Script" uid="uid://2l76ekloil5x" path="res://GameSystem/TerrainManager/TerrainManager.gd" id="1_uynwf"]
 [ext_resource type="Script" uid="uid://cwasldijonxiw" path="res://GameSystem/TerrainManager/TerrainEditor/TerrainEditor.gd" id="2_shx21"]
+[ext_resource type="Shader" uid="uid://cvcwgowkk3fmw" path="res://GameSystem/TerrainManager/terrain_shader.tres" id="2_xue7e"]
+
+[sub_resource type="Curve" id="Curve_xue7e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xue7e"]
+curve = SubResource("Curve_xue7e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shx21"]
+shader = ExtResource("2_xue7e")
+shader_parameter/curve_texture = SubResource("CurveTexture_xue7e")
 
 [node name="TerrainManager" type="Node2D"]
 script = ExtResource("1_uynwf")
@@ -61,6 +73,7 @@ _map_data = [{
 
 [node name="TerrainShader" type="CanvasGroup" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_shx21")
 
 [node name="TerrainEditor" type="Node2D" parent="."]
 script = ExtResource("2_shx21")
