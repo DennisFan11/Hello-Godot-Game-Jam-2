@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func add_DestroyableBlock( node:DestroyableBlock ):
 	%TerrainShader.add_child(node) 
+	node.Valid_check()
 
 ## 對當前地圖上的地形進行切割
 func clip( global_polygon:PackedVector2Array ):
@@ -91,11 +92,6 @@ func _merge( global_polygon:PackedVector2Array, id:int ):
 	var marge_node:DestroyableBlock = null
 	var bodies:Array = _get_collide_bodies(global_polygon)
 	
-	#for i in range(bodies.size()): # WARNING 導致 Bug
-		#if bodies[i].is_in_group("Block") and bodies[i].get_parent().ID == id:
-			#marge_node = bodies.pop_at(i).get_parent()
-			#marge_node.Merge(global_polygon)
-			#break
 	if !marge_node: # 相同id實例不存在
 		marge_node = DestroyableBlock.new(id, _get_GridPos_from_polygon(global_polygon), global_polygon)
 		add_DestroyableBlock(marge_node)
@@ -157,20 +153,10 @@ func _editor_get_collide_bodies(global_polygon: PackedVector2Array) -> Array:
 	var visited := {}
 	var collide_polygon := Geometry2D.offset_polygon(global_polygon, BLOCK_SIZE.x, Geometry2D.JOIN_SQUARE)[0]
 	
-	# 先取 bounding box
-	var min_x = INF
-	var min_y = INF
-	var max_x = -INF
-	var max_y = -INF
-
-	for point in global_polygon:
-		min_x = min(min_x, point.x)
-		min_y = min(min_y, point.y)
-		max_x = max(max_x, point.x)
-		max_y = max(max_y, point.y)
-
-	var start := Vector2(floor(min_x / BLOCK_SIZE.x), floor(min_y / BLOCK_SIZE.y)) - Vector2.ONE
-	var end := Vector2(ceil(max_x / BLOCK_SIZE.x), ceil(max_y / BLOCK_SIZE.y)) + Vector2.ONE
+	
+	var bounding_box: Array = GeometryTool.get_block_bounding_box(global_polygon, BLOCK_SIZE)
+	var start: Vector2 = bounding_box[0]
+	var end: Vector2 = bounding_box[1]
 
 	# 遍歷 bounding box 內的每個格子中心點，若在 polygon 內則取出對應的 block
 	for x in range(start.x, end.x+1):

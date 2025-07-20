@@ -39,11 +39,11 @@ void fragment() {
 			uv = (world_to_screen * vec4(uv,0,1)).xy;
 			uv = uv * 0.5 + 0.5;
 			tot += 1.0-ceil(texture(screen_texture, uv).a);
-			
+
 			if (texture(screen_texture, uv).a == 0.0){
 				min_dist = min(min_dist, length(vec2(x,y)) );
 			}
-			
+
 		}
 	}
 	min_dist /= length(vec2(SAMP_R));
@@ -51,7 +51,7 @@ void fragment() {
 	COLOR = texture(screen_texture, SCREEN_UV);
 
 	tot = tot/count;
-	
+
 	tot = texture(curve_texture, vec2(min_dist, 0.0)).r;
 	COLOR.rgb *= tot;
 	//COLOR.a *= tot;

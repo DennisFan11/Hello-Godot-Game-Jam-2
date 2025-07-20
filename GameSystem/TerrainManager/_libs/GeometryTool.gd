@@ -5,6 +5,24 @@ extends Node2D
 ### Merge_hole_polygon
 ### Calculate_polygon_area
 
+## 使用 block 座標
+static func get_block_bounding_box(global_polygon: PackedVector2Array, block_size: Vector2)-> Array:
+	var min_x = INF
+	var min_y = INF
+	var max_x = -INF
+	var max_y = -INF
+
+	for point in global_polygon:
+		min_x = min(min_x, point.x)
+		min_y = min(min_y, point.y)
+		max_x = max(max_x, point.x)
+		max_y = max(max_y, point.y)
+
+	var start := Vector2(floor(min_x / block_size.x), floor(min_y / block_size.y)) - Vector2.ONE
+	var end := Vector2(ceil(max_x / block_size.x), ceil(max_y / block_size.y)) + Vector2.ONE
+	return [start, end]
+
+
 static func _sort_points(array:Array)->PackedVector2Array: # 計算順時針多邊形
 	"""
 	// 輸入: 2點座標 (全域座標)

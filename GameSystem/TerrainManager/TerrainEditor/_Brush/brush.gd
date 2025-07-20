@@ -83,11 +83,13 @@ func _L_click(): # exec-once
 	%HintPolygon2D.color = _color_map[COLOR.BUILD]
 	_first_point = get_global_mouse_position()
 
+var coolddown_timer = CooldownTimer.new()
 func _L_clicking():
 	_second_point = get_global_mouse_position()
 	update_hint_polygon()
 	if Type == TYPE.POINT:
-		#if not MapManager.merge_busy:
+		if coolddown_timer.is_ready():
+			coolddown_timer.trigger(0.05)
 			_terrain_manager.merge(_gen_points(_second_point), ID)
 
 func _L_finish(): #exec-once

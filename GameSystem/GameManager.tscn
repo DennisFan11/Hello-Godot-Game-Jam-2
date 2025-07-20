@@ -25,7 +25,6 @@ tile_map_data = PackedByteArray("AADn/w8AAAABAAUAAADn/xAAAAABAAYAAADn/xEAAAABAAc
 tile_set = ExtResource("4_20ou5")
 
 [node name="TerrainManager" parent="." instance=ExtResource("13_ko6fk")]
-_map_data = []
 
 [node name="TestNode" type="Node2D" parent="."]
 
