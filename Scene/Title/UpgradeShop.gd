@@ -56,9 +56,9 @@ func _update_shop_display():
 		return
 	
 	# 更新玩家點數顯示
-	var points = upgrade_system.player_stats.upgrade_points
-	var level = upgrade_system.player_stats.level
-	var experience = upgrade_system.player_stats.experience_points
+	var points = upgrade_system.upgrade_levels.get_upgrade_point()
+	var level = upgrade_system.player_stats.get_stats("level")
+	var experience = upgrade_system.player_stats.get_stats("experience_points")
 	
 	player_points_label.text = "可用升級點數: %d | 等級: %d | 經驗: %d" % [points, level, experience]
 	
@@ -81,11 +81,12 @@ func _create_upgrade_items():
 	if not upgrade_items_container:
 		return
 	
-	for upgrade_type in [UPGRADE_HEALTH, UPGRADE_ATTACK, UPGRADE_SPEED, UPGRADE_JUMP, UPGRADE_COOLDOWN_REDUCTION]:
-		var upgrade_info = upgrade_system.get_upgrade_info(upgrade_type)
+	var upgrade_levels = upgrade_system.upgrade_levels
+	for upgrade_type in upgrade_levels.get_upgrade_type():
+		var upgrade_info = upgrade_levels.get_upgrade_info(upgrade_type)
 		_create_upgrade_item(upgrade_type, upgrade_info)
 
-func _create_upgrade_item(upgrade_type: int, info: Dictionary):
+func _create_upgrade_item(upgrade_type:String, info: Dictionary):
 	"""創建單個升級項目的 UI"""
 	# 主容器
 	var item_panel = Panel.new()
@@ -130,7 +131,7 @@ func _create_upgrade_item(upgrade_type: int, info: Dictionary):
 	
 	# 圖標標籤
 	var icon_label = Label.new()
-	icon_label.text = _get_upgrade_icon(upgrade_type)
+	icon_label.text = info.icon
 	icon_label.custom_minimum_size = Vector2(32, 32)
 	icon_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	icon_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -195,7 +196,7 @@ func _create_upgrade_item(upgrade_type: int, info: Dictionary):
 	if info.current_level >= info.max_level:
 		button_text = "已滿級"
 		buy_button.disabled = true
-	elif upgrade_system.player_stats.upgrade_points < info.cost:
+	elif upgrade_system.upgrade_levels.get_upgrade_point() < info.cost:
 		button_text = "點數不足"
 		buy_button.disabled = true
 	else:
@@ -263,49 +264,33 @@ func _create_upgrade_item(upgrade_type: int, info: Dictionary):
 	bottom_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	right_container.add_child(bottom_spacer)
 
-func _get_upgrade_icon(upgrade_type: int) -> String:
-	"""獲取升級類型的圖標"""
-	match upgrade_type:
-		UPGRADE_HEALTH:
-			return "❤️"
-		UPGRADE_ATTACK:
-			return "⚔️"
-		UPGRADE_SPEED:
-			return "💨"
-		UPGRADE_JUMP:
-			return "🦘"
-		UPGRADE_COOLDOWN_REDUCTION:
-			return "⏰"
-		_:
-			return "🔧"
-
-func _get_upgrade_effect_text(upgrade_type: int, info: Dictionary) -> String:
+func _get_upgrade_effect_text(upgrade_type:String, info: Dictionary) -> String:
 	"""獲取升級效果文字"""
 	var current_level = info.current_level
-	var base_value = info.next_value
+	var base_value = info.base_value
 	
 	if current_level >= info.max_level:
 		return "已達到最高等級"
 	
 	match upgrade_type:
-		UPGRADE_HEALTH:
+		"HEALTH":
 			return "下次升級: +%d 最大生命值" % base_value
-		UPGRADE_ATTACK:
+		"ATTACK":
 			return "下次升級: +%d 攻擊力" % base_value
-		UPGRADE_SPEED:
+		"SPEED":
 			return "下次升級: +%.1f 移動速度" % base_value
-		UPGRADE_JUMP:
+		"JUMP":
 			return "下次升級: +%.1f 跳躍力" % base_value
-		UPGRADE_COOLDOWN_REDUCTION:
+		"COOLDOWN_REDUCTION":
 			return "下次升級: +%.1f%% 冷卻縮減" % (base_value * 100)
 		_:
 			return "升級效果未知"
 
-func _on_buy_upgrade(upgrade_type: int):
+func _on_buy_upgrade(upgrade_type:String):
 	"""處理購買升級"""
 	var success = upgrade_system.apply_upgrade(upgrade_type)
 	if success:
-		print("✅ 購買成功！升級了 %s" % upgrade_system.upgrade_configs[upgrade_type].name)
+		print("✅ 購買成功！升級了 %s" % upgrade_system.upgrade_levels.get_config(upgrade_type).name)
 
 func _on_add_exp_pressed():
 	"""測試按鈕：增加經驗值"""
@@ -319,9 +304,9 @@ func _on_back_to_title_pressed():
 	"""返回標題畫面"""
 	await CoreManager.goto_scene("Title")
 
-func _on_upgrade_purchased(upgrade_type: int, new_level: int):
+func _on_upgrade_purchased(upgrade_type:String, new_level: int):
 	"""升級購買成功時的回調"""
-	var upgrade_name = upgrade_system.upgrade_configs[upgrade_type].name
+	var upgrade_name = upgrade_system.upgrade_levels.get_config(upgrade_type).name
 	print("🎉 已購買：%s 升級到等級 %d" % [upgrade_name, new_level])
 
 func _on_stats_updated(_stats):

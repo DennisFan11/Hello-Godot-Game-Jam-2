@@ -6,6 +6,14 @@ var state: int = IDLE
 
 
 
+func _ready() -> void:
+	PlayerUpgradeSystem.stats_updated.connect(_on_stats_updated)
+
+func _on_stats_updated(stats):
+	MAX_SPEED = Vector2(stats.move_speed, stats.jump_power)
+
+
+
 func try_move(delta: float) -> void:
 	var new_velocity = target.velocity
 	var vec = _get_move_vec()

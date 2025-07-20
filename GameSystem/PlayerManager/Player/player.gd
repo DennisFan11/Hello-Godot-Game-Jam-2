@@ -19,24 +19,19 @@ func _ready():
 	upgrade_system = PlayerUpgradeSystem
 
 	# 連接信號
-	upgrade_system.stats_updated.connect(_on_stats_updated)
-	_update_stats_from_upgrade_system()
+	PlayerUpgradeSystem.stats_updated.connect(_on_stats_updated)
+	_update_stats_from_upgrade_system(upgrade_system.player_stats)
 
-func _update_stats_from_upgrade_system():
-	var stats = upgrade_system.player_stats
-
-	current_max_speed = stats.move_speed
-	current_jump_speed = stats.jump_power
-
-	attack_damage = stats.attack_damage
-
+func _update_stats_from_upgrade_system(stats):
 	max_hp = stats.max_health
 	_hp = stats.current_health
 
 	health_changed.emit(_hp, max_hp)
 
 func _on_stats_updated(_stats):
-	_update_stats_from_upgrade_system()
+	_update_stats_from_upgrade_system(_stats)
+
+
 
 # 獲得經驗值
 func gain_experience(amount: int):
@@ -47,8 +42,9 @@ func gain_experience(amount: int):
 
 func health_change(value: int):
 	super(value)
+	print("player hp:{0}/{1}".format([_hp, max_hp]))
 
-	upgrade_system.player_stats.current_health = _hp
+	upgrade_system.player_stats.set_stats("current_health", _hp)
 	upgrade_system._save_player_data()
 
 	health_changed.emit(_hp, max_hp)
