@@ -77,21 +77,17 @@ func load_map():
 #region 地形操作相關實做區域
 
 func _clip( global_polygon:PackedVector2Array ):
-	for i in _get_collide_bodies(global_polygon):
-		if i.is_in_group("Block"):
-			var block:DestroyableBlock = i.get_parent()
-			block.Clip(global_polygon)
+	for block in _get_collide_bodies(global_polygon):
+		block.Clip(global_polygon)
 
 func _clip_after( global_polygon:PackedVector2Array ):
-	for i in _get_collide_bodies(global_polygon):
-		if i.is_in_group("Block"):
-			var block:DestroyableBlock = i.get_parent()
-			block.After_Optimize_Clip(global_polygon)
+	for block in _get_collide_bodies(global_polygon):
+		block.After_Optimize_Clip(global_polygon)
 
 
 func _merge( global_polygon:PackedVector2Array, id:int ):
 	var marge_node:DestroyableBlock = null
-	var bodies:Array[Node2D] = _get_collide_bodies(global_polygon)
+	var bodies:Array = _get_collide_bodies(global_polygon)
 	
 	#for i in range(bodies.size()): # WARNING 導致 Bug
 		#if bodies[i].is_in_group("Block") and bodies[i].get_parent().ID == id:
@@ -103,15 +99,12 @@ func _merge( global_polygon:PackedVector2Array, id:int ):
 		add_DestroyableBlock(marge_node)
 		marge_node.Merge(PackedVector2Array()) ### NOTE 手動觸發自分裂
 		
-	for i in bodies:
-		
-		if i.is_in_group("Block"):
-			var block:DestroyableBlock = i.get_parent()
-			if block.ID == id:
-				await marge_node.Merge(block.Polygon)
-				block.queue_free() 
-			else:
-				block.Clip(global_polygon)
+	for block in bodies:
+		if block.ID == id:
+			await marge_node.Merge(block.Polygon)
+			block.queue_free() 
+		else:
+			block.Clip(global_polygon)
 #endregion
 
 
@@ -131,7 +124,10 @@ func _get_GridPos_from_polygon( global_polygon:PackedVector2Array )-> Vector2:
 	return (center/BLOCK_SIZE).floor()
 
 ## 2D 物理空間查詢 返回碰撞的節點列表
-func _get_collide_bodies( global_polygon:PackedVector2Array )-> Array[Node2D]:
+func _get_collide_bodies( global_polygon:PackedVector2Array )-> Array:
+	if Engine.is_editor_hint():
+		return _editor_get_collide_bodies( global_polygon )
+	
 	var shape_rid = PhysicsServer2D.convex_polygon_shape_create() # 凸多邊形
 	PhysicsServer2D.shape_set_data(shape_rid, global_polygon)
 
@@ -140,9 +136,49 @@ func _get_collide_bodies( global_polygon:PackedVector2Array )-> Array[Node2D]:
 	params.collide_with_areas = false
 	params.collide_with_bodies = true
 	
-	var result: Array[Node2D] = []
+	var result: Array[DestroyableBlock] = []
 	for i in get_world_2d().direct_space_state.intersect_shape(params):
-		result.append(i["collider"])
+		var node = i["collider"]
+		if node.is_in_group("Block"):
+			var block:DestroyableBlock = node.get_parent()
+			result.append(block)
 	
 	PhysicsServer2D.free_rid(shape_rid)
 	return result
+
+
+## =========== FOR EDITOR ========
+
+var _destroyable_block_map: Dictionary[Vector2, Array]
+func _editor_get_collide_bodies( global_polygon:PackedVector2Array )-> Array:
+	var result: Array = []
+	var center_pos: Vector2 = (global_polygon[0] / BLOCK_SIZE).floor()
+	for x in range(-3, 4):
+		for y in range(-3, 4):
+			var fix_pos: Vector2 = center_pos + Vector2(x, y)
+			if not _destroyable_block_map.has(fix_pos):
+				continue
+			result.append_array(_destroyable_block_map[fix_pos])
+	return result
+
+func _block_register(block: DestroyableBlock):
+	print("register block in", block.PosID)
+	if not _destroyable_block_map.has(block.PosID):
+		_destroyable_block_map[block.PosID] = []
+	_destroyable_block_map[block.PosID].append(block)
+
+func _block_unregister(block: DestroyableBlock):
+	_destroyable_block_map[block.PosID].erase(block)
+
+
+
+
+
+
+
+
+
+
+
+
+#

@@ -59,8 +59,21 @@ func _init(_id:int, _PosID:Vector2, _polygon:PackedVector2Array) -> void:
 	node.screen_exited.connect( _free_base_scene)
 	node.position = _PosID* BlockSize
 	node.rect = Rect2(Vector2.ONE * -100, Vector2.ONE * 200)
+	node.visible = false
+	_editor_register()
+
+
+func _editor_register():
+	_terrain_manager._block_register(self)
 	
-	
+func _editor_unregister():
+	_terrain_manager._block_unregister(self)
+
+func _exit_tree() -> void:
+	_editor_unregister()
+
+
+
 func _spawn_base_scene():
 	if _base_scene:
 		return
