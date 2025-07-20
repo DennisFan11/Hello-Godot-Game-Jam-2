@@ -7,7 +7,7 @@ extends Node2D
 @export_tool_button("啟用繪圖工具") var start = start_draw
 @export_tool_button("關閉繪圖工具") var end = end_draw
 
-@export_range(10, 2000, 2)
+@export_range(10, 1000, 2)
 var Radius: float = 50:
 	set(new):
 		Radius = new

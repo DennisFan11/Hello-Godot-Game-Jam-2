@@ -167,8 +167,8 @@ func _self_split(): # 區塊優化w
 	var arr_poly:Array[PackedVector2Array] = [] # global polygon arr
 	
 	var bounding_box: Array = GeometryTool.get_block_bounding_box(Polygon, BlockSize)
-	var start: Vector2 = bounding_box[0]
-	var end: Vector2 = bounding_box[1]
+	var start: Vector2 = bounding_box[0] - Vector2.ONE
+	var end: Vector2 = bounding_box[1] + Vector2.ONE
 	
 	for x in range(start.x, end.x+1): # 初始化 座標及多邊形陣列
 		for y in range(start.y, end.y+1):
