@@ -1,4 +1,6 @@
-class_name DestoryableBlockBaseScene extends StaticBody2D
+@tool
+class_name DestoryableBlockBaseScene 
+extends StaticBody2D
 
 var ID:int:
 	set(new):

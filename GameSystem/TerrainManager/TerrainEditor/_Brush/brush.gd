@@ -3,6 +3,11 @@ class_name Brush
 extends FSM_Mouse
 
 
+func set_input_plugin(input_plugin: InputPlugin):
+	input_plugin.input_event.connect(_editor_input)
+
+
+
 ### NOTE : BlockDrawingTool 圓形繪製工具Class
 ### 圖形預設為圓形 由_gen_points生成 可覆寫
 ### 左鍵添加, 右鍵刪除 shift連線
@@ -133,6 +138,7 @@ func update_hint_polygon():
 		TYPE.POINT:
 			%HintPolygon2D.polygon = _gen_points(_second_point)
 	
+
 
 
 

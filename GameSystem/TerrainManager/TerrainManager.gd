@@ -1,3 +1,4 @@
+@tool
 class_name TerrainManager
 extends Node2D
 
