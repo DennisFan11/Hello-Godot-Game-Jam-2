@@ -24,4 +24,3 @@ material = SubResource("ShaderMaterial_shx21")
 
 [node name="TerrainEditor" type="Node2D" parent="."]
 script = ExtResource("2_shx21")
-Radius = 300.0

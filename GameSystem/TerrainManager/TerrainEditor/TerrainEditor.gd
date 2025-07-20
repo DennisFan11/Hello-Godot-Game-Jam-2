@@ -13,9 +13,32 @@ var Radius: float = 50:
 		Radius = new
 		if _brush: _brush.Radius = new
 
+@export
+var Shape: Brush.SHAPE = Brush.SHAPE.CIRCLE:
+	set(new):
+		Shape = new
+		if _brush: _brush.Shape = new
+
+@export 
+var ID: int = 1:
+	set(new):
+		ID = new
+		if _brush: _brush.ID = new
+
+@export
+var Type: Brush.TYPE = Brush.TYPE.POINT:
+	set(new):
+		Type = new
+		if _brush: _brush.Type = new
+
+
+
 
 func _update_data():
 	Radius = Radius
+	Shape = Shape
+	ID = ID 
+	Type = Type
 
 
 @export_category("存檔工具")
