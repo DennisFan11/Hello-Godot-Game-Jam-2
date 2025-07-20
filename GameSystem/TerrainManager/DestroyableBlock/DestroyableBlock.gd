@@ -45,6 +45,13 @@ static func Load(data: Dictionary):
 			)
 	)
 
+func Valid_check():
+	if PosID != _terrain_manager._get_GridPos_from_polygon(Polygon):
+		if not _split_timer:
+			_set_split_timer()
+	
+
+
 #endregion
 
 
@@ -93,7 +100,7 @@ func Clip(global_polygon:PackedVector2Array)-> float:
 	return value
 
 func Merge(global_polygon:PackedVector2Array)-> float:
-	var value = _merge(global_polygon)
+	var value = await _merge(global_polygon)
 	#print("merge ", value)
 	return value
 
@@ -111,7 +118,8 @@ static var _terrain_manager: TerrainManager
 
 func _group_spawn(id:int, pos:Vector2, global_polygon_arr:Array[PackedVector2Array]):
 	for global_polygon:PackedVector2Array in global_polygon_arr:
-		_terrain_manager.add_DestroyableBlock(DestroyableBlock.new(id, pos, global_polygon))
+		var new_block := DestroyableBlock.new(id, pos, global_polygon)
+		_terrain_manager.add_DestroyableBlock(new_block)
 #endregion
 
 
@@ -147,11 +155,15 @@ func _self_split(): # 區塊優化
 	var BLOCK_SIZE = BlockSize.x
 	var arr_pos = []
 	var arr_poly:Array[PackedVector2Array] = [] # global polygon arr
-	var R= 8 # 擴張涉及的區塊 越大的單次擴張需要越大的值
-	for x in range(-R,R+1): # 初始化 座標及多邊形陣列
-		for y in range(-R,R+1):
-			var pos = Vector2(x,y)*BLOCK_SIZE + PosID*BlockSize
-			arr_pos.append(pos)
+	
+	var bounding_box: Array = GeometryTool.get_block_bounding_box(Polygon, BlockSize)
+	var start: Vector2 = bounding_box[0]
+	var end: Vector2 = bounding_box[1]
+	
+	for x in range(start.x, end.x+1): # 初始化 座標及多邊形陣列
+		for y in range(start.y, end.y+1):
+			var pos = Vector2(x,y)*BLOCK_SIZE # + PosID*BlockSize
+			arr_pos.append(Vector2(x,y))
 			arr_poly.append(PackedVector2Array([
 				Vector2(pos.x,pos.y),
 				Vector2(pos.x+BLOCK_SIZE,pos.y),
@@ -161,7 +173,7 @@ func _self_split(): # 區塊優化
 	# 相交生成
 	for i in range(arr_pos.size()):
 		var need_polygons = Geometry2D.intersect_polygons(Polygon, arr_poly[i])
-		_group_spawn(ID, arr_pos[i]/BlockSize, need_polygons) # ATTENTION FIXME
+		_group_spawn(ID, arr_pos[i], need_polygons) # ATTENTION FIXME
 	queue_free()
 	return
 
@@ -194,12 +206,18 @@ func _merge(global_polygon:PackedVector2Array)->float:
 	
 	#for i in range(merged.size()):# 全體頂點優化
 		#merged[i] = VertexOptimization(merged[i], origin, BlockSize)
-	### BUG 沒有帶孔多邊形合併
-	Polygon = (merged.pop_front()) # 重設自身多邊形
-	_group_spawn(ID, PosID, merged) # 實例化剩餘多邊形
+	
 	
 	### ATTENTION Self Split timer start
 	_set_split_timer()
+	
+	var this_poly = merged.pop_front()
+	await _group_spawn(ID, PosID, merged) # 實例化剩餘多邊形
+
+	### BUG 沒有帶孔多邊形合併
+	Polygon = this_poly # 重設自身多邊形
+	
+	
 	
 	return GeometryTool.Calculate_polygon_area(origin, global_polygon) # 面積計算
 
