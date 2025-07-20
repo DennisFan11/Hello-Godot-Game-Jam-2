@@ -1,0 +1,64 @@
+[gd_resource type="Shader" load_steps=0 format=3 uid="uid://cvcwgowkk3fmw"]
+
+[resource]
+code = "shader_type canvas_item;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+uniform sampler2D curve_texture;
+
+varying mat4 world_to_screen;
+varying mat4 screen_to_world;
+void vertex(){
+  world_to_screen = SCREEN_MATRIX * CANVAS_MATRIX;
+  screen_to_world = inverse(world_to_screen);
+}
+
+void fragment() {
+	const float BLOCK_SIZE = 5.; // 3.0
+	const float SAMP_R = 5.; // 5 10
+
+	float tot = 0.0;
+	float count = 0.0;
+	float min_dist = 100.0;
+	for (float x=-SAMP_R; x<=SAMP_R; x++){
+		for (float y=-SAMP_R; y<=SAMP_R; y++){
+			if (length(vec2(x,y))>=SAMP_R){
+				continue;
+			}
+			count+= 1.0;
+
+			vec2 uv = SCREEN_UV;
+
+			// Puts uv in world space
+			uv = uv * 2.0 - 1.0;
+			uv = (screen_to_world * vec4(uv,0,1)).xy;
+
+			// Apply an offset of 20 units
+			uv += vec2(x,y)*BLOCK_SIZE;
+
+			// Puts uv back in screen space
+			uv = (world_to_screen * vec4(uv,0,1)).xy;
+			uv = uv * 0.5 + 0.5;
+			tot += 1.0-ceil(texture(screen_texture, uv).a);
+			
+			if (texture(screen_texture, uv).a == 0.0){
+				min_dist = min(min_dist, length(vec2(x,y)) );
+			}
+			
+		}
+	}
+	min_dist /= length(vec2(SAMP_R));
+
+	COLOR = texture(screen_texture, SCREEN_UV);
+
+	tot = tot/count;
+	
+	tot = texture(curve_texture, vec2(min_dist, 0.0)).r;
+	COLOR.rgb *= tot;
+	//COLOR.a *= tot;
+
+	//COLOR.rg = SCREEN_UV;
+
+
+
+
+}"
