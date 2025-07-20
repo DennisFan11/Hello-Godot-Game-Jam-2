@@ -46,9 +46,18 @@ static func Load(data: Dictionary):
 	)
 
 func Valid_check():
-	if PosID != _terrain_manager._get_GridPos_from_polygon(Polygon):
-		if not _split_timer:
+	var square: Array[Vector2] = [
+		Vector2(PosID),
+		Vector2(PosID) + Vector2(1, 0),
+		Vector2(PosID) + Vector2(1, 1),
+		Vector2(PosID) + Vector2(0, 1),
+	]
+	for pos: Vector2 in Polygon:
+		if not Geometry2D.is_point_in_polygon(pos/BlockSize, square):
 			_set_split_timer()
+			return
+	if PosID != _terrain_manager._get_GridPos_from_polygon(Polygon):
+		_set_split_timer()
 	
 
 
@@ -151,7 +160,8 @@ func _set_optimize_timer():
 
 
 
-func _self_split(): # 區塊優化
+func _self_split(): # 區塊優化w
+	print("Self Split !!!")
 	var BLOCK_SIZE = BlockSize.x
 	var arr_pos = []
 	var arr_poly:Array[PackedVector2Array] = [] # global polygon arr
@@ -197,6 +207,10 @@ func _clip(global_polygon:PackedVector2Array)-> float:
 	return GeometryTool.Calculate_polygon_area(origin, global_polygon) # 面積計算
 
 func _merge(global_polygon:PackedVector2Array)->float:
+	
+	### ATTENTION Self Split timer start
+	_set_split_timer()
+	
 	var origin = Polygon
 	var merged = Geometry2D.merge_polygons(origin, global_polygon)
 	if merged.size() == 0:
@@ -208,8 +222,7 @@ func _merge(global_polygon:PackedVector2Array)->float:
 		#merged[i] = VertexOptimization(merged[i], origin, BlockSize)
 	
 	
-	### ATTENTION Self Split timer start
-	_set_split_timer()
+	
 	
 	var this_poly = merged.pop_front()
 	await _group_spawn(ID, PosID, merged) # 實例化剩餘多邊形

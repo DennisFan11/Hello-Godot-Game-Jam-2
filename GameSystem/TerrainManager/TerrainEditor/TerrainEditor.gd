@@ -2,14 +2,32 @@
 class_name TerrainEditor
 extends Node2D
 
+
+
 @export_tool_button("啟用繪圖工具") var start = start_draw
 @export_tool_button("關閉繪圖工具") var end = end_draw
+
+@export_range(10, 2000, 2)
+var Radius: float = 50:
+	set(new):
+		Radius = new
+		if _brush: _brush.Radius = new
+
+
+func _update_data():
+	Radius = Radius
+
+
+@export_category("存檔工具")
 @export_tool_button("保存") var _save = save
 @export_tool_button("全部清除") var _clear = clear
-static var _terrain_manager: TerrainManager
+
 
 
 var _brush: Brush
+static var _terrain_manager: TerrainManager
+
+
 var _input_plugin: InputPlugin
 
 func start_draw():
@@ -17,8 +35,12 @@ func start_draw():
 	_brush = preload("uid://b3o1wbiuujhmc").instantiate()
 	_brush.set_input_plugin(_input_plugin)
 	add_child(_brush)
+	_update_data()
+	
 func end_draw():
-	if is_instance_valid(_brush): _brush.queue_free()
+	if is_instance_valid(_brush): 
+		_brush.queue_free()
+	_brush = null
 
 func save():
 	_terrain_manager.save_map()

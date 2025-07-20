@@ -16,7 +16,11 @@ enum SHAPE {CIRCLE, SQUARE}
 enum TYPE {POINT, LINE, BOX}
 
 var ID:int = 1
+
+@export
 var Radius:float = 70.0
+
+
 var Shape:SHAPE = SHAPE.CIRCLE
 var PointSize:float = 20
 var Type:TYPE = TYPE.POINT

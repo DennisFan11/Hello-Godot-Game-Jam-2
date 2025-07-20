@@ -896,6 +896,9 @@ _map_data = [{
 "pos_id": Vector2(-5, 0)
 }]
 
+[node name="TerrainEditor" parent="TerrainManager" index="1"]
+Radius = null
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" index="0"]

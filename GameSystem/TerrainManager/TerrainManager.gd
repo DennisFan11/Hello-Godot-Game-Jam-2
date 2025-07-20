@@ -93,12 +93,21 @@ func _merge( global_polygon:PackedVector2Array, id:int ):
 	var bodies:Array = _get_collide_bodies(global_polygon)
 	
 	if !marge_node: # 相同id實例不存在
-		marge_node = DestroyableBlock.new(id, _get_GridPos_from_polygon(global_polygon), global_polygon)
+		
+		## NOTE this is magic
+		var PosId = _get_GridPos_from_polygon(global_polygon) \
+			if not Engine.is_editor_hint() \
+			else (get_global_mouse_position()/BLOCK_SIZE).floor()
+		
+		marge_node = DestroyableBlock.new(id, PosId, global_polygon)
 		add_DestroyableBlock(marge_node)
 		marge_node.Merge(PackedVector2Array()) ### NOTE 手動觸發自分裂
 		
 	for block in bodies:
 		if block.ID == id:
+			
+			# FIXME 相交檢測
+			
 			await marge_node.Merge(block.Polygon)
 			block.queue_free() 
 		else:
@@ -151,17 +160,17 @@ var _destroyable_block_map: Dictionary[Vector2, Array]
 func _editor_get_collide_bodies(global_polygon: PackedVector2Array) -> Array:
 	var result: Array = []
 	var visited := {}
-	var collide_polygon := Geometry2D.offset_polygon(global_polygon, BLOCK_SIZE.x, Geometry2D.JOIN_SQUARE)[0]
+	var collide_polygon := Geometry2D.offset_polygon(global_polygon, BLOCK_SIZE.x*3.0, Geometry2D.JOIN_ROUND)[0]
 	
 	
 	var bounding_box: Array = GeometryTool.get_block_bounding_box(global_polygon, BLOCK_SIZE)
-	var start: Vector2 = bounding_box[0]
-	var end: Vector2 = bounding_box[1]
+	var start: Vector2 = bounding_box[0] - Vector2.ONE * 2.0
+	var end: Vector2 = bounding_box[1] + Vector2.ONE * 2.0
 
 	# 遍歷 bounding box 內的每個格子中心點，若在 polygon 內則取出對應的 block
 	for x in range(start.x, end.x+1):
 		for y in range(start.y, end.y+1):
-			var cell_center := Vector2(x + 0.5, y + 0.5) * BLOCK_SIZE
+			var cell_center := BLOCK_SIZE * Vector2(x, y) # + Vector(0.5, 0.5)
 			if Geometry2D.is_point_in_polygon(cell_center, collide_polygon):
 				var pos_id := Vector2(x, y)
 				if visited.has(pos_id):

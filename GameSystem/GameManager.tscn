@@ -498,6 +498,9 @@ _map_data = [{
 "pos_id": Vector2(3, 4)
 }]
 
+[node name="TerrainEditor" parent="TerrainManager" index="1"]
+Radius = null
+
 [node name="TestNode" type="Node2D" parent="."]
 
 [node name="Lake" parent="TestNode" instance=ExtResource("12_30fhk")]

@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 			_state = L_CLICKING
 			_L_click()
 		L_CLICKING: # 左鍵持續下壓 ()
-			print("左鍵持續下壓")
+			#print("左鍵持續下壓")
 			_L_clicking()
 		L_FINISH: # 左鍵彈起 (建造完成)
 			_state = IDLE
