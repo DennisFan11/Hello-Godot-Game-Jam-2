@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5tnutb3a2aqt"]
+
+[ext_resource type="Script" uid="uid://c7e6wcc3ky6ra" path="res://GameSystem/PlayerManager/Player/FBRIK/FBRIK.gd" id="1_hbi3i"]
+
+[node name="FBRIK" type="Node2D"]
+script = ExtResource("1_hbi3i")
+
+[node name="StartMarker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EndMarker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(26, -5)
+
+[node name="HintLine" type="Line2D" parent="."]
+unique_name_in_owner = true
+width = 1.0
+metadata/_edit_lock_ = true

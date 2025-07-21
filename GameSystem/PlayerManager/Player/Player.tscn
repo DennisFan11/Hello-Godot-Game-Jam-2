@@ -1,18 +1,46 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdqcutktqtcxw"]
+[gd_scene load_steps=24 format=3 uid="uid://bdqcutktqtcxw"]
 
 [ext_resource type="Script" uid="uid://c4yy1akfirsh" path="res://GameSystem/PlayerManager/Player/player.gd" id="1_trhjy"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
 [ext_resource type="Script" uid="uid://dl33ijmoqp57y" path="res://GameSystem/PlayerManager/Player/WeaponSlot/weapon_slot.gd" id="3_s163p"]
+[ext_resource type="Script" uid="uid://bqewuukva5sr2" path="res://GameSystem/PlayerManager/Player/body.gd" id="4_hk8lp"]
 [ext_resource type="Script" uid="uid://bs63mjapxhbg" path="res://GameSystem/PlayerManager/Player/Interacter/Interacter.gd" id="4_u5ohs"]
 [ext_resource type="PackedScene" uid="uid://dh624omjh5xdg" path="res://GameSystem/PlayerManager/Player/ClimbRaycast/climb_raycast.tscn" id="5_5tm2e"]
 [ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="5_h0ovm"]
 [ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="6_2mh5b"]
 [ext_resource type="Script" uid="uid://dsrlipdic14er" path="res://GameSystem/ActionManager/Action/Attack/PlayerAttack.gd" id="6_5tm2e"]
+[ext_resource type="PackedScene" uid="uid://c5tnutb3a2aqt" path="res://GameSystem/PlayerManager/Player/FBRIK/FBRIK.tscn" id="6_g4140"]
 [ext_resource type="Script" uid="uid://dxf47tfe38agp" path="res://GameSystem/ActionManager/Action/Move/PlayerMove.gd" id="7_5tm2e"]
+[ext_resource type="Script" uid="uid://mdmvx5cnmdbd" path="res://GameSystem/PlayerManager/Player/FBRIK/FBRIK_node.gd" id="7_yuso2"]
 [ext_resource type="PackedScene" uid="uid://02ynlc7sko8n" path="res://Asset/Class/Arrow/Arrow.tscn" id="10_qy721"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5ohs"]
 radius = 13.0
+
+[sub_resource type="Resource" id="Resource_hk8lp"]
+script = ExtResource("7_yuso2")
+Distance = 10.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
+
+[sub_resource type="Resource" id="Resource_i27o5"]
+script = ExtResource("7_yuso2")
+Distance = 5.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
+
+[sub_resource type="Resource" id="Resource_nefhd"]
+script = ExtResource("7_yuso2")
+Distance = 10.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
+
+[sub_resource type="Resource" id="Resource_yuso2"]
+script = ExtResource("7_yuso2")
+Distance = 5.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
+
+[sub_resource type="Resource" id="Resource_vypmk"]
+script = ExtResource("7_yuso2")
+Distance = 10.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
 
 [sub_resource type="Animation" id="Animation_nd1tf"]
 length = 0.001
@@ -71,10 +99,43 @@ debug_color = Color(0, 0.628631, 0.490496, 0.42)
 
 [node name="Body" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("4_hk8lp")
 
 [node name="Icon" type="Sprite2D" parent="Body"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_asllk")
+
+[node name="RLeg" parent="Body" instance=ExtResource("6_g4140")]
+position = Vector2(4, 6)
+FBRIK_nodes = Array[ExtResource("7_yuso2")]([SubResource("Resource_hk8lp"), SubResource("Resource_i27o5"), SubResource("Resource_nefhd")])
+
+[node name="EndMarker" parent="Body/RLeg" index="1"]
+position = Vector2(5, 1)
+
+[node name="HintLine" parent="Body/RLeg" index="2"]
+position = Vector2(-4, -6)
+points = PackedVector2Array(4, 6, 7.34353, 2.28236, 10.6565, 11.7176)
+
+[node name="RRayCast2D" type="RayCast2D" parent="Body/RLeg"]
+unique_name_in_owner = true
+position = Vector2(10, -2)
+target_position = Vector2(-15, 20)
+
+[node name="LLeg" parent="Body" instance=ExtResource("6_g4140")]
+position = Vector2(-3, 6)
+FBRIK_nodes = Array[ExtResource("7_yuso2")]([null, SubResource("Resource_yuso2"), SubResource("Resource_vypmk")])
+
+[node name="EndMarker" parent="Body/LLeg" index="1"]
+position = Vector2(-6, 1)
+
+[node name="HintLine" parent="Body/LLeg" index="2"]
+position = Vector2(3, -6)
+points = PackedVector2Array(-3, 6, -6.65244, 2.58537, -11.3476, 11.4146)
+
+[node name="LRayCast2D" type="RayCast2D" parent="Body/LLeg"]
+unique_name_in_owner = true
+position = Vector2(-11, -1)
+target_position = Vector2(15, 19)
 
 [node name="WeaponSlot" type="Node2D" parent="Body"]
 unique_name_in_owner = true
@@ -116,8 +177,12 @@ metadata/_custom_type_script = "uid://dxf47tfe38agp"
 
 [node name="Arrow" parent="." instance=ExtResource("10_qy721")]
 unique_name_in_owner = true
+visible = false
 text = "[color=green]velocity"
 
 [connection signal="area_entered" from="Interacter" to="Interacter" method="_on_area_entered"]
 [connection signal="area_exited" from="Interacter" to="Interacter" method="_on_area_exited"]
 [connection signal="animation_finished" from="Body/WeaponSlot/AnimationPlayer" to="Body/WeaponSlot" method="_on_animation_player_animation_finished"]
+
+[editable path="Body/RLeg"]
+[editable path="Body/LLeg"]
