@@ -1,8 +1,7 @@
 class_name PlayerMove
 extends Move
 
-enum {IDLE, ON_WALL}
-var state: int = IDLE
+enum {IDLE, CLIMB, IN_DASH}
 
 
 
@@ -17,7 +16,21 @@ func _on_stats_updated(stats):
 func try_move(delta: float) -> void:
 	var new_velocity = target.velocity
 	var vec = _get_move_vec()
-	var climb = 1 if _climb_R() else (-1 if _climb_L() else 0)
+	
+	var state = IDLE
+	if _is_climb():
+		state = CLIMB
+	elif _is_dash():
+		state = IDLE
+		
+		
+		
+	## 轉向
+	if %ClimbRaycast.is_colliding():
+		target.rotation = lerp_angle(
+			target.rotation, _get_climb_vec().angle() - PI/2.0, delta*15.0)
+	else:
+		target.rotation = lerp_angle(target.rotation, 0.0, delta*15.0)
 
 	match state:
 		IDLE:
@@ -34,76 +47,94 @@ func try_move(delta: float) -> void:
 			if target.is_on_floor():
 				if Input.is_action_just_pressed("space"): 
 					new_velocity.y = - MAX_SPEED.y
+		
+		CLIMB:
+			
+			var global_new_velocity = _vec2global(new_velocity)
+			
+			## 牆壁吸附力
+			global_new_velocity.y  = 10.0
+
+			## 左右移動
+			
+			if vec.x != 0:
+				global_new_velocity.x = lerp(
+					global_new_velocity.x,
+				 	MAX_SPEED.x * vec.x, 
+					INCREASE * delta)
 			else:
-				if new_velocity.y > 0.0 and \
-				climb and \
-				Input.is_action_pressed("shift"):
-					state = ON_WALL
-		ON_WALL:
-			# 牆壁吸附力
-			new_velocity.x = 50.0 * climb
-
-			# 上下移動
-			if vec.y != 0:
-				new_velocity.y = lerp(new_velocity.y, MAX_SPEED.x * vec.y, INCREASE * delta)
-			else:
-				new_velocity.y = lerp(new_velocity.y, 0.0, DECREASE * delta)
-
-			# 離開牆壁
-			if not climb or \
-				!Input.is_action_pressed("shift"):
-				state = IDLE
-
-			# 蹬牆跳
+				global_new_velocity.x = lerp(
+					global_new_velocity.x,
+					0.0, 
+					DECREASE * delta)
+			
 			if Input.is_action_just_pressed("space"):
-				new_velocity.x = MAX_SPEED.x * 1.25 * (1 if new_velocity.x < 0.0 else -1)
-				new_velocity.y = -MAX_SPEED.y
-				state = IDLE
+				global_new_velocity += MAX_SPEED * Vector2.UP
+				_dash()
+			
+			new_velocity = _vec2local(global_new_velocity)
+			
+			
+		
+		IN_DASH:
+			# 施加重力
+			new_velocity += target.get_gravity() * delta
+			
+			
 
 	# 轉向
-	change_direction(new_velocity)
+	#change_direction(new_velocity)
 	
 	target.velocity = new_velocity
 
-## 若正在移動, 更改面朝方向
-func change_direction(velocity):
-	if velocity.x == 0.0:
-		return
 
-	var new_direction = velocity.x > 0.0
-	if state == ON_WALL:
-		new_direction = not new_direction
+## 座標轉換 到 輸入坐標系 
+func _vec2global(vec: Vector2)-> Vector2:
+	return vec.rotated(-target.rotation)
 
-	if new_direction == direction:
-		return
+func _vec2local(vec: Vector2)-> Vector2:
+	return vec.rotated(target.rotation)
 
-	%Body.scale.x = 1 if new_direction else -1
-	direction = new_direction
+func _get_up_vec()-> Vector2:
+	return _vec2local(Vector2.UP)
 
-# 檢測角色與Block的碰撞方向
-# -1:左 0:無 1:右
-#func _climb() -> int:
-	#var slide_collision = get_last_slide_collision()
-#
-	#if slide_collision \
-	#and slide_collision.get_collider().is_in_group("Block"):
-		#if is_zero_approx(slide_collision.get_angle(Vector2.LEFT)):
-			#return 1
-		#elif is_zero_approx(slide_collision.get_angle(Vector2.RIGHT)):
-			#return -1
-	#return 0
 
-func _climb_R() -> bool:
-	for i in %RightArea2D.get_overlapping_bodies():
-		if i.is_in_group("Block"):
-			return true
-	return false
+func _get_climb_vec()-> Vector2:
+	var body = (target as CharacterBody2D)
+	if body.get_last_slide_collision():
+		return body.get_last_slide_collision().get_normal().rotated(PI)
+	return %ClimbRaycast.get_closet_point()-target.global_position
 
-func _climb_L() -> bool:
-	for i in %LeftArea2D.get_overlapping_bodies():
-		if i.is_in_group("Block"):
-			return true
-	return false
+func _is_climb()-> bool:
+	return %ClimbRaycast.is_colliding() and Input.is_action_pressed("shift")
+
+
+var in_dash_timer: CooldownTimer = CooldownTimer.new()
+func _dash():
+	in_dash_timer.trigger(0.5)
+func _is_dash()-> bool:
+	return not in_dash_timer.is_ready()
+
+
 
 func _get_move_vec() -> Vector2:
 	return Input.get_vector("left", "right", "up", "down")
+	
+	
+	
+	
+	
+### 若正在移動, 更改面朝方向
+#func change_direction(velocity):
+	#if velocity.x == 0.0:
+		#return
+#
+	#var new_direction = velocity.x > 0.0
+	#if state == ON_WALL:
+		#new_direction = not new_direction
+#
+	#if new_direction == direction:
+		#return
+#
+	#%Body.scale.x = 1 if new_direction else -1
+	#direction = new_direction

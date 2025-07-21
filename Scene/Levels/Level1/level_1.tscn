@@ -1622,9 +1622,6 @@ text = "[font_size=70]LEVEL 1"
 fit_content = true
 horizontal_alignment = 2
 
-[node name="Lake" parent="TestNode" index="0"]
-position = Vector2(-226, 5)
-
 [node name="EnemyManager" parent="." index="5"]
 MAX_ENEMY_NUMBER = 20
 ENEMY_TYPE = Array[PackedScene]([ExtResource("2_2w4u6")])

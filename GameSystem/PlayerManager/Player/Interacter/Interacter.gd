@@ -18,19 +18,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("F"):
 		_interact()
 
-
-
-
-
-
-
-
-var _player_manager: PlayerManager
 func _interact():
 	if _interactable_areas.is_empty():
 		return 
 	
-	var player_pos: Vector2 = _player_manager.get_player_position()
+	var player_pos: Vector2 = global_position
 	var min_area: Interactable = Utility.min_custom(
 			_interactable_areas,
 			(func (A: Interactable, B: Interactable):

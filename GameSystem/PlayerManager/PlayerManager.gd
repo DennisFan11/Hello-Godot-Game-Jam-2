@@ -34,3 +34,5 @@ func get_player_position()-> Vector2:
 
 func _on_player_died(player:Player):
 	player_died.emit(player)
+func get_player_rotation()-> float:
+	return player.rotation if player else 0.0

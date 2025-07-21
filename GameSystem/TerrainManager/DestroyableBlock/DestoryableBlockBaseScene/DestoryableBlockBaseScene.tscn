@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://tm3dt4pnwkc" path="res://GameSystem/TerrainManager/DestroyableBlock/DestoryableBlockBaseScene/destoryable_block_base_scene.gd" id="1_e3dcx"]
 
 [node name="DestoryableBlockBaseScene" type="StaticBody2D" groups=["Block"]]
+collision_layer = 524289
+collision_mask = 524289
 script = ExtResource("1_e3dcx")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

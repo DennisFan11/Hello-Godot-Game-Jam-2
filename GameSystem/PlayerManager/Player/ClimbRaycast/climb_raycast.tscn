@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh624omjh5xdg"]
+
+[ext_resource type="Script" uid="uid://bkjwaorww6sob" path="res://GameSystem/PlayerManager/Player/ClimbRaycast/climb_raycast.gd" id="1_nrxbo"]
+
+[node name="ClimbRaycast" type="Node2D"]
+script = ExtResource("1_nrxbo")

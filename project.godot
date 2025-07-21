@@ -50,6 +50,7 @@ folder_colors={
 "res://CoreSystem/": "yellow",
 "res://CoreSystem/_not_used/": "gray",
 "res://GameSystem/": "orange",
+"res://GameSystem/PlayerManager/Player/": "red",
 "res://GameSystem/TerrainManager/": "red",
 "res://Scene/": "purple"
 }
@@ -146,8 +147,7 @@ F={
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Glue"
 2d_physics/layer_4="Weapon"
-2d_physics/layer_20="PlayerBuilding"
-2d_physics/layer_21="EnemyBuilding"
+2d_physics/layer_20="Wall for raycast"
 
 [rendering]
 

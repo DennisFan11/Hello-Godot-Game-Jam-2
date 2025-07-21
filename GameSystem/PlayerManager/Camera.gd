@@ -17,6 +17,10 @@ func _process(delta: float) -> void:
 	target = _player_manager.player.position
 	if target:
 		position = position.lerp(target, SPEED*delta)
+		
+	rotation = lerp_angle(
+		rotation, _player_manager.get_player_rotation()*0.1, SPEED*delta
+	)
 	
 
 
