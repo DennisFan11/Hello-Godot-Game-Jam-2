@@ -8,6 +8,9 @@ extends Node
 var player_stats: PlayerStats
 var upgrade_levels: UpgradeLevel
 
+var player_stats_save_path = "user://PlayerStats.res"
+var upgrade_levels_save_path = "user://UpgradeLevel.res"
+
 # 信號
 signal stats_updated(stats: PlayerStats)
 signal level_up(new_level: int)
@@ -29,23 +32,25 @@ func _ready():
 func get_stats(stats_name:String) -> Variant:
 	return player_stats.get_stats(stats_name)
 
+
+
 func init_player_stats(load_data:bool = true):
 	if player_stats:
 		player_stats.changed.disconnect(_on_stats_updated)
 
 	if load_data:
-		player_stats = ResourceLoader.load("user://PlayerStats.tres")
+		player_stats = ResourceLoader.load(player_stats_save_path)
 	if not load_data or not player_stats:
 		player_stats = PlayerStats.new()
 	player_stats.changed.connect(_on_stats_updated)
 
-	return player_stats
-
 func _init_upgrade_levels(load_data:bool = true):
 	if load_data:
-		upgrade_levels = ResourceLoader.load("user://UpgradeLevel.tres")
+		upgrade_levels = ResourceLoader.load(upgrade_levels_save_path)
 	if not load_data or not upgrade_levels:
 		upgrade_levels = UpgradeLevel.new()
+
+
 
 # 獲得經驗值
 func gain_experience(amount: int):
@@ -110,8 +115,8 @@ func reset_upgrades():
 
 # 保存玩家數據
 func _save_player_data():
-	ResourceSaver.save(upgrade_levels, "user://UpgradeLevel.tres")
-	ResourceSaver.save(player_stats, "user://PlayerStats.tres")
+	ResourceSaver.save(player_stats, player_stats_save_path, ResourceSaver.FLAG_COMPRESS)
+	ResourceSaver.save(upgrade_levels, upgrade_levels_save_path, ResourceSaver.FLAG_COMPRESS)
 
 	# var save_data = {
 	# 	"player_stats": player_stats.to_dict(),

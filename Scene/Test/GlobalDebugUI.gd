@@ -78,24 +78,28 @@ func _create_debug_ui():
 	# 開始遊戲按鈕
 	start_game_button = Button.new()
 	start_game_button.text = "開始遊戲"
+	start_game_button.focus_mode = Control.FOCUS_NONE
 	start_game_button.pressed.connect(_on_start_game_pressed)
 	vbox.add_child(start_game_button)
 	
 	# 下一關按鈕
 	next_level_button = Button.new()
 	next_level_button.text = "下一關"
+	next_level_button.focus_mode = Control.FOCUS_NONE
 	next_level_button.pressed.connect(_on_next_level_pressed)
 	vbox.add_child(next_level_button)
 	
 	# 重置進度按鈕
 	reset_progress_button = Button.new()
 	reset_progress_button.text = "重置進度"
+	reset_progress_button.focus_mode = Control.FOCUS_NONE
 	reset_progress_button.pressed.connect(_on_reset_progress_pressed)
 	vbox.add_child(reset_progress_button)
 	
 	# 隱藏/顯示按鈕
 	var toggle_button = Button.new()
 	toggle_button.text = "隱藏調試UI"
+	toggle_button.focus_mode = Control.FOCUS_NONE
 	toggle_button.pressed.connect(_on_toggle_debug_ui)
 	vbox.add_child(toggle_button)
 
@@ -128,27 +132,31 @@ func _update_enemy_kill_status():
 	if not enemy_kill_label:
 		return
 	
-	if LevelManager:
-		var current_kills = LevelManager._current_enemy_dead_count
-		var required_kills = 0
+	var text = "擊殺: 未載入"
+	var color = Color.GRAY
+
+	var scene = LevelManager.current_scene
+	if scene and scene is GameManager:
+		var current_kills = scene.kill_count
+		var required_kills = scene.next_level_kill_count
 		
 		# 使用 _current_level_index 從 KILLS_REQUIRED 數組獲取當前關卡所需擊殺數
-		var level_index = LevelManager._current_level_index
-		if level_index >= 0 and level_index < LevelManager.KILLS_REQUIRED.size():
-			required_kills = LevelManager.KILLS_REQUIRED[level_index]
+		#var level_index = LevelManager._current_level_index
+		#if level_index >= 0 and level_index < LevelManager.KILLS_REQUIRED.size():
+			#required_kills = scene.next_level_kill_count
 		
-		enemy_kill_label.text = "擊殺: {0}/{1}".format([current_kills, required_kills])
+		text = "擊殺: {0}/{1}".format([current_kills, required_kills])
 		
 		# 根據進度改變顏色
 		if current_kills >= required_kills and required_kills > 0:
-			enemy_kill_label.add_theme_color_override("font_color", Color.GREEN)
+			color = Color.GREEN
 		elif current_kills > 0:
-			enemy_kill_label.add_theme_color_override("font_color", Color.YELLOW)
+			color = Color.YELLOW
 		else:
-			enemy_kill_label.add_theme_color_override("font_color", Color.RED)
-	else:
-		enemy_kill_label.text = "擊殺: 未載入"
-		enemy_kill_label.add_theme_color_override("font_color", Color.GRAY)
+			color = Color.RED
+
+	enemy_kill_label.text = text
+	enemy_kill_label.add_theme_color_override("font_color", color)
 
 func _get_current_scene_name() -> String:
 	var current_scene = get_tree().current_scene

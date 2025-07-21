@@ -115,6 +115,7 @@ func _spawn_enemy(spawn_pos: Vector2):
 func _on_enemy_died(enemy: Enemy):
 	"""當敵人死亡時觸發此方法"""
 	enemy_died.emit(enemy)
+	enemy.died.disconnect(_on_enemy_died)
 	print("Enemy died: ", enemy)
 
 

@@ -3,6 +3,9 @@ class_name GameManager extends Node
 ## 前往下一關所需的擊殺數
 @export var next_level_kill_count:int = 10
 
+var kill_count:int = 0
+var level_finish:bool = false
+
 func Save():
 	await _recursive_call(self, "_save")
 func Load():
@@ -32,6 +35,24 @@ func _ready() -> void:
 	await get_tree().process_frame
 	await _game_start_recursive()
 	
+	%EnemyManager.enemy_died.connect(_on_enemy_died)
+	
+	LevelManager.current_scene = self
+	
 	print("✓ GameManager 初始化完成")
+
 func _exit_tree() -> void:
 	await Save()
+
+func finish():
+	if not level_finish:
+		level_finish = true
+		LevelManager.goto_next_level()
+
+
+
+func _on_enemy_died(enemy:Enemy):
+	kill_count += 1
+	print(kill_count, "/", next_level_kill_count, " ", enemy)
+	if kill_count >= next_level_kill_count:
+		finish()

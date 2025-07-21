@@ -3530,6 +3530,7 @@ _map_data = [{
 [node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]
+unique_name_in_owner = true
 MAX_ENEMY_NUMBER = 1
 ENEMY_TYPE = Array[PackedScene]([ExtResource("8_ko6fk")])
 HEIGHT = -300.0

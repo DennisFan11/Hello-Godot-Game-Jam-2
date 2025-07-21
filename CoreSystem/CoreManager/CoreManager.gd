@@ -54,17 +54,19 @@ func goto_scene(scene: String, trans: String = "Triangle"):
 	
 	if result != OK:
 		printerr('CoreManager.goto_scene({0}): 場景載入失敗'.format([scene]))
-		return self
+		return null
 		
 	await _call_transition(trans, false)
 	
 	# 發射場景切換信號
 	scene_changed.emit(scene)
+
+	var current_scene = get_tree().current_scene
 	
-	if get_tree().current_scene.has_method("_transition_end"):
-		get_tree().current_scene._transition_end()
+	if current_scene.has_method("_transition_end"):
+		current_scene._transition_end()
 	
-	return self
+	return current_scene
 
 
 ## PRIVATE

@@ -4,10 +4,6 @@ extends Character
 # 升級系統引用（AutoLoad 單例，無需型別宣告）
 var upgrade_system
 
-# 動態屬性（會被升級系統更新）
-var current_max_speed: float = 100.0
-var current_jump_speed: float = 270.0
-
 # 信號
 signal health_changed(current_health: int, max_health: int)
 signal experience_gained(amount: int)
