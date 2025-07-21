@@ -18,12 +18,10 @@ func try_move(delta: float) -> void:
 	var vec = _get_move_vec()
 	
 	var state = IDLE
-	if _is_climb():
+	if _is_climb() and _vec2global(new_velocity).y > 0.0:
 		state = CLIMB
 	elif _is_dash():
-		state = IDLE
-		
-		
+		state = IN_DASH
 		
 	## 轉向
 	if %ClimbRaycast.is_colliding():
@@ -31,7 +29,15 @@ func try_move(delta: float) -> void:
 			target.rotation, _get_climb_vec().angle() - PI/2.0, delta*15.0)
 	else:
 		target.rotation = lerp_angle(target.rotation, 0.0, delta*15.0)
-
+	
+	## 重力歸 0
+	if %ClimbRaycast.is_colliding():
+		var global_new_velocity = _vec2global(new_velocity)
+		if global_new_velocity.y > 0.0:
+			global_new_velocity.y = 0.0
+			new_velocity = _vec2local(global_new_velocity)
+	
+	
 	match state:
 		IDLE:
 			# 施加重力
@@ -44,7 +50,7 @@ func try_move(delta: float) -> void:
 				new_velocity.x = lerp(new_velocity.x, 0.0, DECREASE * delta)
 
 			# 处理跳跃 - 使用動態跳躍力
-			if target.is_on_floor():
+			if %ClimbRaycast.is_colliding():
 				if Input.is_action_just_pressed("space"): 
 					new_velocity.y = - MAX_SPEED.y
 		
@@ -53,7 +59,7 @@ func try_move(delta: float) -> void:
 			var global_new_velocity = _vec2global(new_velocity)
 			
 			## 牆壁吸附力
-			global_new_velocity.y  = 10.0
+			global_new_velocity.y  = 50.0
 
 			## 左右移動
 			
@@ -69,23 +75,31 @@ func try_move(delta: float) -> void:
 					DECREASE * delta)
 			
 			if Input.is_action_just_pressed("space"):
+				global_new_velocity.y = 0.0
 				global_new_velocity += MAX_SPEED * Vector2.UP
 				_dash()
 			
 			new_velocity = _vec2local(global_new_velocity)
 			
-			
-		
 		IN_DASH:
 			# 施加重力
 			new_velocity += target.get_gravity() * delta
-			
-			
 
+			# 处理左右移动 - 使用動態速度
+			if vec.x != 0:
+				new_velocity.x = lerp(new_velocity.x, MAX_SPEED.x * vec.x, INCREASE * delta)
+			#else: # 停止移动
+				#new_velocity.x = lerp(new_velocity.x, 0.0, DECREASE * delta)
+	
 	# 轉向
 	#change_direction(new_velocity)
 	
 	target.velocity = new_velocity
+	_hint_component_update()
+
+func _hint_component_update()-> void:
+	%Arrow.set_vec(target.velocity)
+	
 
 
 ## 座標轉換 到 輸入坐標系 

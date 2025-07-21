@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdqcutktqtcxw"]
+[gd_scene load_steps=16 format=3 uid="uid://bdqcutktqtcxw"]
 
 [ext_resource type="Script" uid="uid://c4yy1akfirsh" path="res://GameSystem/PlayerManager/Player/player.gd" id="1_trhjy"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="6_2mh5b"]
 [ext_resource type="Script" uid="uid://dsrlipdic14er" path="res://GameSystem/ActionManager/Action/Attack/PlayerAttack.gd" id="6_5tm2e"]
 [ext_resource type="Script" uid="uid://dxf47tfe38agp" path="res://GameSystem/ActionManager/Action/Move/PlayerMove.gd" id="7_5tm2e"]
+[ext_resource type="PackedScene" uid="uid://02ynlc7sko8n" path="res://Asset/Class/Arrow/Arrow.tscn" id="10_qy721"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5ohs"]
 radius = 13.0
@@ -55,6 +56,7 @@ radius = 6.08276
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 visibility_layer = 7
+motion_mode = 1
 script = ExtResource("1_trhjy")
 
 [node name="ClimbRaycast" parent="." instance=ExtResource("5_5tm2e")]
@@ -111,6 +113,10 @@ metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 [node name="PlayerMove" type="Node" parent="MoveManager"]
 script = ExtResource("7_5tm2e")
 metadata/_custom_type_script = "uid://dxf47tfe38agp"
+
+[node name="Arrow" parent="." instance=ExtResource("10_qy721")]
+unique_name_in_owner = true
+text = "[color=green]velocity"
 
 [connection signal="area_entered" from="Interacter" to="Interacter" method="_on_area_entered"]
 [connection signal="area_exited" from="Interacter" to="Interacter" method="_on_area_exited"]

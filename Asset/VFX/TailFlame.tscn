@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmf4seylpvkwe"]
+
+[ext_resource type="Texture2D" uid="uid://chetrltosaqu7" path="res://Asset/VFX/TailFlame.png" id="1_or0ln"]
+
+[sub_resource type="Curve" id="Curve_or0ln"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0570175, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.224719), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g4844"]
+curve = SubResource("Curve_or0ln")
+
+[sub_resource type="Gradient" id="Gradient_or0ln"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4844"]
+gradient = SubResource("Gradient_or0ln")
+
+[sub_resource type="Curve" id="Curve_g4844"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yxbxq"]
+curve = SubResource("Curve_g4844")
+
+[sub_resource type="Curve" id="Curve_crnkc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.393258), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xowwl"]
+curve = SubResource("Curve_crnkc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5a7j7"]
+particle_flag_disable_z = true
+angle_min = 45.0
+angle_max = 45.0
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_xowwl")
+color_ramp = SubResource("GradientTexture1D_g4844")
+alpha_curve = SubResource("CurveTexture_g4844")
+emission_curve = SubResource("CurveTexture_yxbxq")
+
+[node name="TailFlame" type="GPUParticles2D"]
+amount = 12
+texture = ExtResource("1_or0ln")
+process_material = SubResource("ParticleProcessMaterial_5a7j7")

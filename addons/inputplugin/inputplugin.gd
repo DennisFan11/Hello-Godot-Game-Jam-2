@@ -7,6 +7,9 @@ func _handles(object):
 	return object is Node2D
 
 func _forward_canvas_draw_over_viewport(viewport):
+	if not current_target:
+		return 
+	
 	# 在編輯器畫出紅圈（例如滑鼠位置）
 	viewport.draw_circle(viewport.get_local_mouse_position(), 8, Color.RED)
 
