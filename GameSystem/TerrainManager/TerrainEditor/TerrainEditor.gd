@@ -8,7 +8,7 @@ extends Node2D
 @export_tool_button("關閉繪圖工具") var end = end_draw
 
 @export_range(10, 1000, 2)
-var Radius: float = 50:
+var Radius: float = 25:
 	set(new):
 		Radius = new
 		if _brush: _brush.Radius = new

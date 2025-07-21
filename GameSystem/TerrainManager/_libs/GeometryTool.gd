@@ -137,7 +137,7 @@ static func VertexOptimization(polygon_points: PackedVector2Array, origin:Packed
 		return polygon_points
 	const merge_distance = 10.0 # 10 一格 25
 	const iterations = 1 #20 3 
-	const angle_threshold = 3.0 # 10
+	const angle_threshold = 15.0 # 10
 	var cut_edges = _get_cut_indices(polygon_points, origin)
 	
 	polygon_points = _smooth_cut_edges(polygon_points, cut_edges, iterations)

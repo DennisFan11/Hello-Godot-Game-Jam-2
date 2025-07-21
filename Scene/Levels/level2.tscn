@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://by1ilb7vws5mw"]
+[gd_scene load_steps=5 format=3 uid="uid://by1ilb7vws5mw"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_hg86w"]
+[ext_resource type="PackedScene" uid="uid://djxy1siqmm16l" path="res://GameSystem/_shared/Lake/Lake.tscn" id="2_d7ik8"]
 [ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_gqurj"]
 [ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC.tscn" id="3_d7ik8"]
 
@@ -1176,8 +1177,8 @@ _map_data = [{
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 90.0
 
-[node name="Lake" parent="TestNode" index="0"]
-position = Vector2(-320, 255)
+[node name="Lake" parent="TestNode" index="0" instance=ExtResource("2_d7ik8")]
+position = Vector2(-491, 144)
 
 [node name="EnemyManager" parent="." index="4"]
 MAX_ENEMY_NUMBER = 30

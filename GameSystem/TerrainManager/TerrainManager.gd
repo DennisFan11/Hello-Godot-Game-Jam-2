@@ -2,7 +2,7 @@
 class_name TerrainManager
 extends Node2D
 
-const BLOCK_SIZE:Vector2 = Vector2(100.0, 100.0)
+const BLOCK_SIZE:Vector2 = Vector2(50.0, 50.0)
 
 @export var _map_data: Array = []
 
@@ -108,6 +108,8 @@ func _merge( global_polygon:PackedVector2Array, id:int ):
 			
 			# FIXME 相交檢測
 			
+			if not Geometry2D.intersect_polygons(marge_node.Polygon, block.Polygon):
+				continue
 			await marge_node.Merge(block.Polygon)
 			block.queue_free() 
 		else:
@@ -171,7 +173,7 @@ func _editor_get_collide_bodies(global_polygon: PackedVector2Array) -> Array:
 	for x in range(start.x, end.x+1):
 		for y in range(start.y, end.y+1):
 			var cell_center := BLOCK_SIZE * Vector2(x, y) # + Vector(0.5, 0.5)
-			if Geometry2D.is_point_in_polygon(cell_center, collide_polygon):
+			if Geometry2D.is_point_in_polygon(cell_center, collide_polygon) or true: # TEST
 				var pos_id := Vector2(x, y)
 				if visited.has(pos_id):
 					continue
