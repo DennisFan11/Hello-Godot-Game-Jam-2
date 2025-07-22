@@ -177,7 +177,6 @@ metadata/_custom_type_script = "uid://dxf47tfe38agp"
 
 [node name="Arrow" parent="." instance=ExtResource("10_qy721")]
 unique_name_in_owner = true
-visible = false
 text = "[color=green]velocity"
 
 [connection signal="area_entered" from="Interacter" to="Interacter" method="_on_area_entered"]

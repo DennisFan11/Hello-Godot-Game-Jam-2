@@ -147,7 +147,7 @@ F={
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Glue"
 2d_physics/layer_4="Weapon"
-2d_physics/layer_20="Wall for raycast"
+2d_physics/layer_20="Wall for raycast and enemy spawnner"
 
 [rendering]
 

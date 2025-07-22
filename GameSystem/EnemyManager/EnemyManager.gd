@@ -1,122 +1,111 @@
 class_name EnemyManager
 extends IGameSubManager
 
+"""
+只負責 Spawn Enemy 
+被 WaveManager 和 TestUI 使用
+"""
+## PUBLIC
+
+
+
+
+
+
+
 # 敵人死亡信號
 signal enemy_died(enemy: Enemy)
 
-## 生成敵人冷卻
-## 當此值<0時不生成敵人
-@export var SPWAN_COOLDOWN:float = 0.5
-
-## 最大敵方數量,
-## 當此值<=0時不限制敵方數量
-@export var MAX_ENEMY_NUMBER: int = 0
-
 ## 生成的敵人種類,
-## 相同的敵人越多越容易生成,
-## 可填空
-@export var ENEMY_TYPE: Array[PackedScene] = []
+enum ENEMY_TYPE {A, B, C, D, E}
 
-@export_category("敵人生成射線")
+## 尋找空位生成敵人 (可能失敗)
+func spawn_enemy(enemy_type: ENEMY_TYPE)-> Enemy:
+	for i in range(10):
+		var spawn_pos := _gen_random_position()
+		if _has_space(spawn_pos):
+			return _spawn_enemy(enemy_type, spawn_pos)
+	return null
 
-@export_range(-300, -10, 2)
-var HEIGHT: float = -150:
-	set(new):
-		HEIGHT = new
-		_reset_spawnner_ray()
+## 在指定位置強制生成敵人
+var _terrain_manager: TerrainManager
+func spawn_enemy_force(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
+	_terrain_manager.clip(
+		GeometryShapeTool.gen_circle(10.0, spawn_pos)
+	)
+	return _spawn_enemy(enemy_type, spawn_pos)
 
-@export_range(10, 200, 2)
-var NON_SPAWN_AREA: float = 50:
-	set(new):
-		NON_SPAWN_AREA = new
-		_reset_spawnner_ray()
 
-@export_range(250, 500, 2)
-var WEIGHT: float = 250:
-	set(new):
-		WEIGHT = new
-		_reset_spawnner_ray()
 
-func _reset_spawnner_ray():
-	if not %SpawnnerHintLineL: return
-	if not %SpawnnerHintLineR: return
 
-	%SpawnnerHintLineL.points = [
-		Vector2(-WEIGHT, HEIGHT),
-		Vector2(-NON_SPAWN_AREA, HEIGHT)
-	]
-	%SpawnnerHintLineR.points = [
-		Vector2(NON_SPAWN_AREA, HEIGHT),
-		Vector2(WEIGHT, HEIGHT)
-	]
+
+
+## PRIVATE ///////////////////////////
+
+var _enemy_file: Dictionary[ENEMY_TYPE, PackedScene] = {
+	ENEMY_TYPE.A : preload("uid://dsivi152md61i"),
+	ENEMY_TYPE.B : preload("uid://cmbx8s22egbna"),
+	ENEMY_TYPE.C : preload("uid://bncde2rk1wyly"),
+	ENEMY_TYPE.D : preload("uid://4vlqptxodl6n"),
+	ENEMY_TYPE.E : preload("uid://1irg6p4f8wkm"),
+}
 
 func _ready() -> void:
 	DI.register("_enemy_manager", self)
 
-var _cooldown_timer := CooldownTimer.new()
-func _process(delta: float) -> void:
-	%PlayerPosMarker2D.position.x = _player_manager.get_player_position().x
-
-	_try_spawn_enemy()
 
 
-var _player_manager: PlayerManager
-func _get_random_start_point() -> Vector2:
-	var player_posX := _player_manager.get_player_position().x
-	if randf_range(0.0, 1.0) > 0.5:
-		return Vector2(
-			randf_range(-WEIGHT, -NON_SPAWN_AREA) + player_posX,
-			HEIGHT
-		)
-	else:
-		return Vector2(
-			randf_range(NON_SPAWN_AREA, WEIGHT) + player_posX,
-			HEIGHT
-		)
-
-func _get_casted_point() -> Vector2:
-	var start_point := _get_random_start_point()
-	return Utility.raycast(
-		start_point,
-		start_point + Vector2(0.0, 1000.0)
-	).get("position", Vector2.ZERO)
-
-func _try_spawn_enemy():
-	if not _cooldown_timer.is_ready() or SPWAN_COOLDOWN < 0.0:
-		return
-	_cooldown_timer.trigger(SPWAN_COOLDOWN)
-
-	if not len(ENEMY_TYPE):
-		return
-	if MAX_ENEMY_NUMBER > 0 \
-	and %Enemy.get_child_count() >= MAX_ENEMY_NUMBER:
-		return
-
-	for i in range(10):
-		var spawn_pos = _get_casted_point()
-		if spawn_pos != Vector2.ZERO:
-			_spawn_enemy(spawn_pos)
-			return
 
 
-func _spawn_enemy(spawn_pos: Vector2):
-	var rng = ENEMY_TYPE.pick_random()
-	if rng is PackedScene:
-		var enemy = rng.instantiate()
-		enemy.position = spawn_pos
-		%Enemy.add_child(enemy)
 
-		# 連接敵人的死亡信號到 EnemyManager
-		if enemy.has_signal("died"):
-			enemy.died.connect(_on_enemy_died)
 
-		print("spawn enemy: ", enemy)
+
+
+
+
+
+
+
+func _spawn_enemy(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
+	var enemy: Enemy = _enemy_file[enemy_type].instantiate()
+	
+	enemy.position = spawn_pos
+	
+	# 連接敵人的死亡信號到 EnemyManager
+	if enemy.has_signal("died"):
+		enemy.died.connect(_on_enemy_died)
+	%EnemyContainer.add_child(enemy)
+	print("spawn enemy: ", enemy)
+	return enemy
 
 func _on_enemy_died(enemy: Enemy):
 	"""當敵人死亡時觸發此方法"""
 	enemy_died.emit(enemy)
 	enemy.died.disconnect(_on_enemy_died)
 	print("Enemy died: ", enemy)
+
+
+
+
+
+
+## TOOL ////////////////////////
+
+var _player_manager: PlayerManager
+func _gen_random_position()-> Vector2:
+	var distance2player: float = randf_range(100.0, 200.0)
+	var angle2player:    float = randf_range(0.0, PI*2.0)
+	
+	var player_pos = _player_manager.get_player_position()
+	return player_pos + (Vector2.from_angle(angle2player) * distance2player) 
+
+
+func _has_space(global_pos: Vector2)-> bool:
+	return Utility.collide_query_circle(global_pos, 10.0, 0<<20).is_empty()
+
+
+
+
 
 
 #

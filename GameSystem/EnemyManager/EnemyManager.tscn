@@ -5,16 +5,5 @@
 [node name="EnemyManager" type="Node2D"]
 script = ExtResource("1_xn506")
 
-[node name="PlayerPosMarker2D" type="Marker2D" parent="."]
-unique_name_in_owner = true
-
-[node name="SpawnnerHintLineL" type="Line2D" parent="PlayerPosMarker2D"]
-unique_name_in_owner = true
-points = PackedVector2Array(-250, -150, -50, -150)
-
-[node name="SpawnnerHintLineR" type="Line2D" parent="PlayerPosMarker2D"]
-unique_name_in_owner = true
-points = PackedVector2Array(50, -150, 250, -150)
-
-[node name="Enemy" type="Node2D" parent="."]
+[node name="EnemyContainer" type="Node2D" parent="."]
 unique_name_in_owner = true
