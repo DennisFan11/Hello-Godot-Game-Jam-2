@@ -31,7 +31,7 @@ func spawn_enemy(enemy_type: ENEMY_TYPE)-> Enemy:
 var _terrain_manager: TerrainManager
 func spawn_enemy_force(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
 	_terrain_manager.clip(
-		GeometryShapeTool.gen_circle(10.0, spawn_pos)
+		GeometryShapeTool.gen_circle(50.0, spawn_pos)
 	)
 	return _spawn_enemy(enemy_type, spawn_pos)
 
@@ -93,7 +93,7 @@ func _on_enemy_died(enemy: Enemy):
 
 var _player_manager: PlayerManager
 func _gen_random_position()-> Vector2:
-	var distance2player: float = randf_range(100.0, 200.0)
+	var distance2player: float = randf_range(300.0, 400.0)
 	var angle2player:    float = randf_range(0.0, PI*2.0)
 	
 	var player_pos = _player_manager.get_player_position()
@@ -101,7 +101,7 @@ func _gen_random_position()-> Vector2:
 
 
 func _has_space(global_pos: Vector2)-> bool:
-	return Utility.collide_query_circle(global_pos, 10.0, 0<<20).is_empty()
+	return Utility.collide_query_circle(global_pos, 50.0, 1<<19 || 1<< 0).is_empty()
 
 
 

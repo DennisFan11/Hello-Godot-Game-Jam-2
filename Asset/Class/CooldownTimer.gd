@@ -12,3 +12,7 @@ func is_ready() -> bool:
 
 func trigger(cd: float) -> void:
 	_next_time = get_ticks_sec() + cd
+
+## 獲取剩餘時間 單位: 秒
+func get_left_time()-> float:
+	return _next_time - get_ticks_sec()

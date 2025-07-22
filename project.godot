@@ -52,6 +52,7 @@ folder_colors={
 "res://GameSystem/": "orange",
 "res://GameSystem/PlayerManager/Player/": "red",
 "res://GameSystem/TerrainManager/": "red",
+"res://GameSystem/WaveManager/WaveDataDefine/": "green",
 "res://Scene/": "purple"
 }
 
