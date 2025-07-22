@@ -50,6 +50,10 @@ unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_nrkbr")
 disabled = true
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1, 1)
+
 [node name="AttackManager" type="Node" parent="."]
 script = ExtResource("2_8vbo4")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"

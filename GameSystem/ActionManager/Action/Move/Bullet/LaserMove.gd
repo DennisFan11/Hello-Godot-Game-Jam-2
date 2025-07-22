@@ -22,6 +22,9 @@ var timer:float = 0.0
 @onready var aim_line = %AimLine
 @onready var laser_line = %LaserLine
 @onready var collision = %CollisionShape2D
+@onready var raycast = %RayCast2D
+
+var _terrain_manager: TerrainManager
 
 func _physics_process(delta):
 	pass
@@ -44,7 +47,9 @@ func _ready() -> void:
 	collision.position = Vector2(0, 0)
 	collision.scale = Vector2(0, 1)
 	collision.disabled = true
-
+	
+	raycast.target_position = Vector2(width, 0)
+	
 	play_anim()
 
 func play_anim():
@@ -85,7 +90,10 @@ func fire_tween(t):
 
 	collision.position.x = width / 2 * t
 	collision.scale.x = t
-
+	if raycast.is_colliding():
+		var pos = raycast.get_collision_point()
+		var circle = GeometryShapeTool.gen_circle(height/3.0, pos)
+		_terrain_manager.clip(circle)
 func retract_tween(t):
 	laser_line.scale.y = t
 	collision.scale.y = t
