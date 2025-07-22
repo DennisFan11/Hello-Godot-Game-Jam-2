@@ -92,8 +92,8 @@ func fire_tween(t):
 	collision.scale.x = t
 	if raycast.is_colliding():
 		var pos = raycast.get_collision_point()
-		var circle = GeometryShapeTool.gen_circle(height/3.0, pos)
-		_terrain_manager.clip(circle)
+		var circle = GeometryShapeTool.gen_circle(height/2.0, pos)
+		_terrain_manager.clip_after(circle)
 func retract_tween(t):
 	laser_line.scale.y = t
 	collision.scale.y = t
