@@ -27,13 +27,14 @@ func set_current_weapon(weapon: Weapon)-> void:
 	weapon.summoner = _player_manager.player
 	first_weapon = weapon
 	
-	weapon.move_to(%WeaponMarker2D, _player_manager.get_glue_layer(), false)
+	weapon.move_to(self, _player_manager.get_glue_layer(), false)
+	weapon.init_move(self)
 
 func take_current_weapon()-> Weapon:
 	var curr = first_weapon
 	if curr: 
 		first_weapon = null
-		%WeaponMarker2D.remove_child(curr)
+		remove_child(curr)
 		return curr
 	return null
 
@@ -43,12 +44,7 @@ func get_current_weapon()-> Weapon:
 
 func start_attack(time: float):
 	if first_weapon:
-		# 根據主武器播放動畫, 並以所有武器的總重量調整速度
-		var anim = first_weapon.ANIM if first_weapon.ANIM else "SwordType"
-		var duration = total_weight / time
-
-		%AnimationPlayer.play(anim, -1, duration)
-		first_weapon.start_attack()
+		first_weapon.start_move(self, total_weight * time)
 
 
 

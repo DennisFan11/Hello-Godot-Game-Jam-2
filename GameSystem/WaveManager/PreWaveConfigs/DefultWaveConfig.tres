@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_rmvt2"]
 script = ExtResource("2_et1iv")
-EnemyType = 3
+EnemyType = 0
 Mount = 30
 metadata/_custom_type_script = "uid://dddth468gqso1"
 

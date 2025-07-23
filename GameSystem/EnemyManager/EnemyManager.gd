@@ -75,14 +75,14 @@ func _spawn_enemy(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
 	if enemy.has_signal("died"):
 		enemy.died.connect(_on_enemy_died)
 	%EnemyContainer.add_child(enemy)
-	print("spawn enemy: ", enemy)
+	#print("spawn enemy: ", enemy)
 	return enemy
 
 func _on_enemy_died(enemy: Enemy):
 	"""當敵人死亡時觸發此方法"""
 	enemy_died.emit(enemy)
 	enemy.died.disconnect(_on_enemy_died)
-	print("Enemy died: ", enemy)
+	#print("Enemy died: ", enemy)
 
 
 

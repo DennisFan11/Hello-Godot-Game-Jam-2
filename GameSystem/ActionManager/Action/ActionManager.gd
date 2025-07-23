@@ -8,28 +8,41 @@ extends Node
 ## 切換角色行動的指標
 ## 使用switch_phase(index)切換
 ## 此參數的格式應為Array[Array[int(action_group的index)]], 但godot不支援多維陣列的類型設定
-@export var phase:Array[Array]
+@export var phase:Array[ActionPhase]
+@export var phase_loop:bool = false
 
 @export var target: Node2D
+
+var current_phase:int = -1
+
+
+
+func _ready() -> void:
+	if not target:
+		target = get_parent()
+	set_children_target()
+	next_phase()
 
 func set_children_target(t:Node2D = target):
 	for children in get_children():
 		if children is Action:
 			children.set_target(t)
 
-func _ready() -> void:
-	if not target:
-		target = get_parent()
-	set_children_target()
+
+
+func get_enable_action():
+	return get_children().filter(
+		func(c): return c.enable
+	)
 
 
 
 ## 加入更換行動的方法
+
+## 
 func enable_action(e:bool = true):
-	printt(target, get_children())
 	for children in get_children():
 		if children is Action:
-			printt(children, children.target, children.enable, e)
 			children.enable = e
 
 ## 關閉所有子節點並開啟action_list的行動
@@ -39,6 +52,7 @@ func switch_action(action_list):
 			action.enable = true
 
 func switch_action_index(index):
+	printt("switch_action_index", index, action_group)
 	var switch_action_list:Array[Action] = []
 
 	if index is int:
@@ -55,7 +69,8 @@ func switch_action_index(index):
 				return false
 
 			if i >= 0 or i < action_group_len:
-				switch_action_list.append(action_group[index])
+				print(action_group[i])
+				switch_action_list.append(action_group[i])
 			else:
 				printerr(
 					"{0}.{1} does not exist action_group[{2}]"
@@ -72,11 +87,30 @@ func switch_action_index(index):
 	return false
 
 func switch_phase(index:int):
-	if index < 0 or index >= len(phase):
-		return switch_action_index(phase[index])
+	if index >= 0 and index < len(phase):
+		current_phase = index
+		var phase_data = phase[index]
+		if phase_data and phase_data.action_index:
+			return switch_action_index(phase_data.action_index)
+		else:
+			return true
 	else:
 		printerr(
 			"{0}.{1} does not exist phase[{2}]"
 			.format([target.name, self.name, index])
 		)
 		return false
+
+func next_phase():
+	var index = -1
+	if not len(phase):
+		return false
+	elif current_phase < 0:
+		index = 0
+	elif current_phase + 1 < len(phase):
+		index = current_phase + 1
+	elif phase_loop:
+		index = 0
+	else:
+		return false
+	return switch_phase(index)

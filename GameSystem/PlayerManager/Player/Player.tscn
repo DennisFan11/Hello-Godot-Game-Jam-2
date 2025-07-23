@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bdqcutktqtcxw"]
+[gd_scene load_steps=21 format=3 uid="uid://bdqcutktqtcxw"]
 
 [ext_resource type="Script" uid="uid://c4yy1akfirsh" path="res://GameSystem/PlayerManager/Player/player.gd" id="1_trhjy"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
@@ -41,43 +41,6 @@ metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
 script = ExtResource("7_yuso2")
 Distance = 10.0
 metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
-
-[sub_resource type="Animation" id="Animation_nd1tf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponMarker2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-2.34572]
-}
-
-[sub_resource type="Animation" id="Animation_u5ohs"]
-resource_name = "SwordType"
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponMarker2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 2,
-"values": [-2.34572, 0.759964]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd1tf"]
-_data = {
-&"RESET": SubResource("Animation_nd1tf"),
-&"SwordType": SubResource("Animation_u5ohs")
-}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_asllk"]
 radius = 6.08276
@@ -142,20 +105,6 @@ unique_name_in_owner = true
 visibility_layer = 7
 script = ExtResource("3_s163p")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/WeaponSlot"]
-unique_name_in_owner = true
-deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_nd1tf")
-}
-playback_auto_capture_transition_type = 6
-playback_auto_capture_ease_type = 2
-
-[node name="WeaponMarker2D" type="Marker2D" parent="Body/WeaponSlot"]
-unique_name_in_owner = true
-visibility_layer = 7
-rotation = -2.34572
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_asllk")
 
@@ -183,7 +132,6 @@ text = "[color=green]velocity"
 
 [connection signal="area_entered" from="Interacter" to="Interacter" method="_on_area_entered"]
 [connection signal="area_exited" from="Interacter" to="Interacter" method="_on_area_exited"]
-[connection signal="animation_finished" from="Body/WeaponSlot/AnimationPlayer" to="Body/WeaponSlot" method="_on_animation_player_animation_finished"]
 
 [editable path="Body/RLeg"]
 [editable path="Body/LLeg"]

@@ -26,3 +26,8 @@ func take_damage(value: int):
 
 func dead():
 	died.emit(self)
+
+
+
+func get_damage():
+	return attack_damage

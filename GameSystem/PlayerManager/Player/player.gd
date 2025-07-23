@@ -21,6 +21,8 @@ func _ready():
 func _update_stats_from_upgrade_system(stats):
 	max_hp = stats.max_health
 	_hp = stats.current_health
+	
+	attack_damage = stats.attack_damage
 
 	health_changed.emit(_hp, max_hp)
 

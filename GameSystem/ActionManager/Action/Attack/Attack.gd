@@ -3,7 +3,9 @@ extends Action
 
 
 ## 攻擊力
-@export var damage: float = 1.0
+@export var damage: int = 1
+
+var current_damage:int
 
 var attack_type:String = ""
 
@@ -11,15 +13,19 @@ var attack_cooldown_dict = {}
 
 func _physics_process(delta: float) -> void:
 	if enable and _cooldown_timer.is_ready():
+		update_current_damage()
 		try_attack(delta)
+
+
 
 func try_attack(_delta):
 	pass
 
 func attack(t):
-	if not t in attack_cooldown_dict.keys() \
-	or attack_cooldown_dict[t].is_ready():
-		t.take_damage(damage)
+	if current_damage > 0 \
+	and (not t in attack_cooldown_dict.keys() \
+	or attack_cooldown_dict[t].is_ready()):
+		t.take_damage(current_damage)
 
 		var new_cooldown_timer = CooldownTimer.new()
 		new_cooldown_timer.trigger(cooldown)
@@ -29,6 +35,14 @@ func attack(t):
 		#_cooldown_timer.trigger(cooldown)
 	if cooldown < 0.0: # 當<0時將在擊中後刪除, 主要用於投射物(箭)
 		target.queue_free()
+
+
+
+func update_current_damage():
+	current_damage = damage
+	if target and target.has_method("get_damage"):
+		current_damage += target.get_damage()
+	return current_damage
 
 func set_target(t: Node2D):
 	var old_target = target

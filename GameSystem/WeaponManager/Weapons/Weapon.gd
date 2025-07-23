@@ -33,13 +33,14 @@ func get_weapon_name()-> String:
 		str += "[" + curr_weapon.NAME + "]"
 	return str + NAME
 
-func get_damage()-> float:
-	# 武器傷害 + 升級傷害增加
-	return DMG + PlayerUpgradeSystem.player_stats.attack_damage
+func get_damage()-> int:
+	var damage = DMG
+	if summoner and summoner.has_method("get_damage"):
+		damage += summoner.get_damage()
+	return damage
 
 ## 轉移武器
 func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bool = true):
-	printt(target_node, glue_layer)
 	self.glue_layer = glue_layer
 	request_ready()
 	if not keep_global_transform:
@@ -53,11 +54,34 @@ func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bo
 
 
 # used by player
+#func frame_attack(delta: float)-> void:
+	#for i in _physical_components:
+		#for j:Node2D in i.get_attack_area().get_overlapping_bodies():
+			#if j is Enemy:
+				#j.take_damage(get_damage())
+	#if next_weapon: next_weapon.frame_attack(delta)
+
+func init_move(weapon_slot):
+	var move = %MoveManager.get_enable_action()
+	if move:
+		move[0].init_move(weapon_slot)
+		return true
+	return false
+
+func start_move(weapon_slot, time):
+	var move = %MoveManager.get_enable_action()
+	if move:
+		move[0].start_move(weapon_slot, time)
+		return true
+	return false
+
 func start_attack():
 	%AttackManager.enable_action(true)
+	if next_weapon: next_weapon.start_attack()
 
 func end_attack():
 	%AttackManager.enable_action(false)
+	if next_weapon: next_weapon.end_attack()
 
 # used by GodSceneManager
 signal on_click(weapon: Weapon)
@@ -96,6 +120,7 @@ func get_back_weapon()-> Weapon:
 
 func set_next_weapon(weapon: Weapon)-> void:
 	weapon.summoner = self.summoner
+
 	next_weapon = weapon
 	weapon.move_to(%NextWeaponContainer, glue_layer)
 

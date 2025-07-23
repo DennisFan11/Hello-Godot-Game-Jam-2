@@ -96,7 +96,7 @@ func get_attack_area()-> Area2D:
 
 ## 和其他武器重疊
 func is_collide()-> bool:
-	for i: Node2D in %AttackArea.get_overlapping_bodies():
+	for i: Node2D in get_attack_area().get_overlapping_bodies():
 		if i == self:
 			continue
 		if i.is_in_group("PhysicalComponent"):
