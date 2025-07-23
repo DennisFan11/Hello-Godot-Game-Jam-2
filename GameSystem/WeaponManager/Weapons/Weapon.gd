@@ -1,5 +1,5 @@
 class_name Weapon
-extends Node2D
+extends Derivative
 
 var id: String = "sword"
 
@@ -39,6 +39,7 @@ func get_damage()-> float:
 
 ## 轉移武器
 func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bool = true):
+	printt(target_node, glue_layer)
 	self.glue_layer = glue_layer
 	request_ready()
 	if not keep_global_transform:
@@ -52,12 +53,11 @@ func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bo
 
 
 # used by player
-func frame_attack(delta: float)-> void:
-	for i in _physical_components:
-		for j:Node2D in i.get_attack_area().get_overlapping_bodies():
-			if j is Enemy:
-				j.take_damage(get_damage())
-	if next_weapon: next_weapon.frame_attack(delta)
+func start_attack():
+	%AttackManager.enable_action(true)
+
+func end_attack():
+	%AttackManager.enable_action(false)
 
 # used by GodSceneManager
 signal on_click(weapon: Weapon)
@@ -95,6 +95,7 @@ func get_back_weapon()-> Weapon:
 	return back_weapon
 
 func set_next_weapon(weapon: Weapon)-> void:
+	weapon.summoner = self.summoner
 	next_weapon = weapon
 	weapon.move_to(%NextWeaponContainer, glue_layer)
 

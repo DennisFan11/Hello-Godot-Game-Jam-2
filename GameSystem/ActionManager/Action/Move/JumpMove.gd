@@ -13,7 +13,7 @@ func try_move_x(value:float, delta:float):
 		value = super(value, delta)
 	return value
 
-func try_move_y(value:float, delta:float):
+func try_move_y(value:float, _delta:float):
 	if can_jump:
 		value = -MAX_SPEED.y
 	return value

@@ -17,7 +17,7 @@ metadata/_snap_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ai2g"]
 size = Vector2(6, 1)
 
-[node name="Arrow" type="CharacterBody2D"]
+[node name="Arrow" type="CharacterBody2D" groups=["Bullet"]]
 z_index = -1
 collision_layer = 4
 script = ExtResource("1_mqlab")

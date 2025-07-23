@@ -17,7 +17,7 @@ func start_event() -> Array[Weapon]:
 	visible = false
 	_shader_manager.disable("frosted_glass")
 	_clear_weapon()
-	return [selected, _weapon_manager.creat_weapon_scene(_weapon_manager.get_random_weapon_id())] ## FIXME
+	return [selected, _weapon_manager.create_weapon_scene(_weapon_manager.get_random_weapon_id())] ## FIXME
 signal _finished(weapon: Weapon)
 signal start_scene_requested
 
@@ -46,7 +46,7 @@ func _set_weapon_scene(marker: Node2D, weapon_id: String):
 	var weapon: Weapon = (
 		_weapon_slot.take_current_weapon()
 		if weapon_id == "Main" else
-		_weapon_manager.creat_weapon_scene(weapon_id))
+		_weapon_manager.create_weapon_scene(weapon_id))
 	_weapon_arr.append(weapon)
 	_set_weapon_node(marker, weapon)
 

@@ -39,6 +39,8 @@ var _player_manager: PlayerManager
 
 func get_move_pos() -> Vector2:
 	var move_pos = _player_manager.get_player_position()
+
+	# 遠離玩家到指定距離
 	if social_distance != Vector2.ZERO:
 		var distance:Vector2 = move_pos - target.position
 		if distance != Vector2.ZERO:
@@ -48,6 +50,7 @@ func get_move_pos() -> Vector2:
 				move_pos.x += social_distance.x
 
 			move_pos.y -= social_distance.y
+
 	return move_pos
 
 func _get_player_distance() -> Vector2:

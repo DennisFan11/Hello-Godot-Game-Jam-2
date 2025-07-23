@@ -1,11 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://jghh2wj4o126"]
+[gd_scene load_steps=2 format=3 uid="uid://jghh2wj4o126"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_4no0k"]
-[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_2w4u6"]
 
 [node name="Level1" instance=ExtResource("1_4no0k")]
 
-[node name="TerrainManager" parent="." index="1"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[font_size=70]LEVEL 1"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="TerrainManager" parent="." index="3"]
 _map_data = [{
 "id": 1,
 "polygon": PackedVector2Array(-900, 800, -995.461, 800, -995.461, 700, -900, 700),
@@ -1607,23 +1620,5 @@ _map_data = [{
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 200.0
 Shape = 1
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" index="0"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "[font_size=70]LEVEL 1"
-fit_content = true
-horizontal_alignment = 2
-
-[node name="EnemyManager" parent="." index="5"]
-MAX_ENEMY_NUMBER = 20
-ENEMY_TYPE = Array[PackedScene]([ExtResource("2_2w4u6")])
 
 [editable path="TerrainManager"]

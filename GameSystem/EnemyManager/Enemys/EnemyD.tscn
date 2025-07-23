@@ -56,6 +56,7 @@ metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 [node name="BulletAttack" type="Node" parent="AttackManager"]
 script = ExtResource("4_ejnqx")
 bullet = ExtResource("5_ylx7x")
+cooldown = 3.0
 metadata/_custom_type_script = "uid://i0eyoraab26"
 
 [node name="MoveManager" type="Node" parent="."]

@@ -47,7 +47,7 @@ _data = {
 &"new_animation": SubResource("Animation_38fb1")
 }
 
-[node name="Ball" type="CharacterBody2D"]
+[node name="Ball" type="CharacterBody2D" groups=["Bullet"]]
 z_index = -1
 collision_layer = 4
 script = ExtResource("1_sie6p")

@@ -45,5 +45,6 @@ func try_move(delta:float):
 
 	target.velocity = new_velocity
 
+	# 調整角度
 	if new_velocity != Vector2.ZERO:
 		target.rotation = new_velocity.angle()

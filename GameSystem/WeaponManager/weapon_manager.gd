@@ -6,15 +6,20 @@ func _ready() -> void:
 
 var weapon_map = {
 	"sword": {
-		"scene": preload("uid://ynmgrxw25he7"),
-	}
+		"scene": preload("uid://b0nre1wp17b5l"),
+	},
+	"DispellingSword": {
+		"scene": preload("uid://bqgvi3j3xs1ku"),
+	},
 }
 
 func get_random_weapon_id()-> String:
+	return "DispellingSword"
 	return weapon_map.keys().pick_random()
 
-func creat_weapon_scene(id: String)-> Weapon:
+func create_weapon_scene(id: String)-> Weapon:
 	var weapon: Weapon = \
 		(weapon_map[id]["scene"] as PackedScene).instantiate()
 	weapon.id = id
+	printt("create weapon:", id)
 	return weapon

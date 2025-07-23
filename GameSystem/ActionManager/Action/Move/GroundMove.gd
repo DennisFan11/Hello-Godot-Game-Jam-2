@@ -34,7 +34,7 @@ func try_move_x(value:float, delta:float) -> float:
 	else: # 停止移动
 		return lerp(value, 0.0, DECREASE * delta)
 
-func try_move_y(value:float, delta:float) -> float:
+func try_move_y(value:float, _delta:float) -> float:
 	if can_jump:
 		value = -MAX_SPEED.y
 	return value

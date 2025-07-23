@@ -160,6 +160,7 @@ rotation = -2.34572
 shape = SubResource("CircleShape2D_asllk")
 
 [node name="AttackManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_h0ovm")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
@@ -168,6 +169,7 @@ script = ExtResource("6_5tm2e")
 metadata/_custom_type_script = "uid://dsrlipdic14er"
 
 [node name="MoveManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("6_2mh5b")
 metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 

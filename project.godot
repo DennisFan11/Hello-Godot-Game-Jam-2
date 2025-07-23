@@ -63,6 +63,7 @@ Player=""
 Enemy=""
 Glue=""
 PhysicalComponent=""
+Bullet=""
 
 [input]
 

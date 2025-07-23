@@ -15,7 +15,7 @@ enum ANIM_TYPE {
 	ATTACK,
 	RETRACT
 }
-var anim_state:ANIM_TYPE = -1
+var anim_state = -1
 
 var timer:float = 0.0
 
@@ -26,13 +26,13 @@ var timer:float = 0.0
 
 var _terrain_manager: TerrainManager
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func _ready() -> void:
 	aim_line.texture.width = width
 	aim_line.texture.height = 1
-	aim_line.position = Vector2(width / 2, 0)
+	aim_line.position = Vector2(width >> 1, 0)
 	aim_line.modulate = aim_line_color
 	aim_line.visible = true
 
@@ -85,15 +85,17 @@ func aim_tween(t):
 	target.rotation = _get_move_vec().angle()
 
 func fire_tween(t):
-	laser_line.position.x = width / 2 * t
+	laser_line.position.x = (width >> 1) * t
 	laser_line.scale.x = t
 
-	collision.position.x = width / 2 * t
+	collision.position.x = (width >> 1) * t
 	collision.scale.x = t
+
 	if raycast.is_colliding():
 		var pos = raycast.get_collision_point()
 		var circle = GeometryShapeTool.gen_circle(height/2.0, pos)
 		_terrain_manager.clip_after(circle)
+
 func retract_tween(t):
 	laser_line.scale.y = t
 	collision.scale.y = t

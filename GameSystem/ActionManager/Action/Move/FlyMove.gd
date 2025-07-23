@@ -46,6 +46,7 @@ func try_move(delta:float):
 
 
 
+# 獲取目前可移動的角度
 func get_move_angle(target_angle, current_angle, max_diff):
 	var diff_angle = target_angle - current_angle
 
