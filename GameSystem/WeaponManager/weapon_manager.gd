@@ -17,14 +17,24 @@ var weapon_map = {
 	"GDweapon": {
 		"scene": preload("uid://bsxrnj083mcwt"),
 	},
+	"Knife": {
+		"scene": preload("uid://dq5iml0qmpxk"),
+	},
+	"FoldingStool": {
+		"scene": preload("uid://qqmdqofjd4xa"),
+	},
+	"Table": {
+		"scene": preload("uid://d15lgghc5vkfi"),
+	},
+	"Elephant": {
+		"scene": preload("uid://m2xsglplvrqa"),
+	},
 }
 
-func get_random_weapon_id()-> String:
-	return "GDweapon"
-	return "DispellingSword"
+func get_random_weapon_id() -> String:
 	return weapon_map.keys().pick_random()
 
-func create_weapon_scene(id: String)-> Weapon:
+func create_weapon_scene(id: String) -> Weapon:
 	var weapon: Weapon = \
 		(weapon_map[id]["scene"] as PackedScene).instantiate()
 	weapon.id = id
