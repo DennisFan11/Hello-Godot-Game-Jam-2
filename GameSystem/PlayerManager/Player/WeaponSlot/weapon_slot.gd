@@ -53,20 +53,3 @@ func _save():
 	InGameSaveSystem.save_object("first_weapon", first_weapon)
 func _load():
 	set_current_weapon(InGameSaveSystem.load_object("first_weapon"))
-
-
-
-
-
-
-
-#func _process(delta: float) -> void:
-	#if %AnimationPlayer.is_playing():
-		#if first_weapon:
-			#first_weapon.frame_attack(delta)
-
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name != "RESET":
-		%AnimationPlayer.play("RESET")
-	first_weapon.end_attack()
