@@ -6,10 +6,12 @@ var open: bool = false:
 		if new:
 			%Panel.visible = true
 			%Panel._open()
+			get_tree().current_scene.set_process_mode(PROCESS_MODE_DISABLED)
 		else:
 			await %Panel._close()
 			%Panel.visible = false
 			ConfigRepo.save()
+			get_tree().current_scene.set_process_mode(PROCESS_MODE_INHERIT)
 
 
 func _input(event: InputEvent) -> void:
