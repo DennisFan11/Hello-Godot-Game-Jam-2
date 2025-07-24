@@ -538,7 +538,7 @@ func _weapon_drop_animation():
 	dropped_weapon_image = TextureRect.new()
 
 	# 從 _weapon_slot.take_first_weapon 複製一個當前的武器
-	var weapon = _weapon_slot.take_first_weapon().duplicate()
+	var weapon = _weapon_slot.take_first_weapon().duplicate(1 << 1 || 1 << 2 || 1 << 4 || 1 << 8)
 
 	# weapon 的 scale 設為 5倍
 	weapon.scale = Vector2(5, 5)
