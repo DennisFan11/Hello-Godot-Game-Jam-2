@@ -73,7 +73,7 @@ func _ready():
 	DI.register("_god_weapon_select", self)
 	dialogue_panel.visible = false
 	weapon_selection_panel.visible = false
-	
+	continue_button.visible = false
 	inventory_system = PlayerInventorySystem
 	_load_dialogue_texts()
 	_setup_ui()
@@ -171,7 +171,7 @@ func _setup_name_label_style():
 	name_label.add_theme_stylebox_override("normal", style_box)
 	name_label.add_theme_color_override("font_color", Color.WHITE)
 	
-
+var _ori_goddess_texture: Texture
 func _create_goddess_image():
 	"""創建女神圖片"""
 	goddess_image = TextureRect.new()
@@ -180,6 +180,7 @@ func _create_goddess_image():
 	var goddess_texture = load(GODDESS_IMAGE_PATH)
 	if goddess_texture:
 		goddess_image.texture = goddess_texture
+		_ori_goddess_texture = goddess_texture
 	
 	# 設置圖片屬性
 	goddess_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
@@ -214,9 +215,11 @@ func _start_dialogue():
 	current_dialogue_index = 0
 	current_text_index = 0
 	is_dialogue_phase = true
+	
 	_show_current_dialogue()
 
 func _show_current_dialogue():
+	continue_button.visible = false
 	"""顯示當前對話"""
 	if current_dialogue_index < dialogue_texts.size():
 		print("顯示對話：", current_dialogue_index, " - ", current_text_index)
@@ -243,6 +246,11 @@ func _show_current_dialogue():
 			dialogue_label.visible_characters = 0
 			var tween = create_tween()
 			tween.tween_method(_update_dialogue_characters, 0, dialogue_label.get_total_character_count(), 1.5)
+
+			# 等待打字機效果完成
+			await tween.finished
+			# 顯示繼續按紐
+			continue_button.visible = true
 		else:
 			# 當前對話組的所有文本都顯示完了，進入下一組
 			current_dialogue_index += 1
@@ -384,45 +392,20 @@ func _setup_weapon_buttons():
 	for i in range(min(current_displayed_weapons.size(), weapon_buttons.size())):
 		var weapon_data = current_displayed_weapons[i]
 		var button = weapon_buttons[i]
-		var description = weapon_descriptions[i]
 		
 		# 重置按鈕狀態
 		button.disabled = false
-		
-		# 特殊處理第二個按鈕（索引為1）
-		if i == 1:
-			# 第二個按鈕顯示特殊文本
-			button.text = "你掉的武器"
-			description.text = ""
 			
-			# 清除舊的信號連接（如果有的話）
-			if button.pressed.is_connected(_on_weapon_selected):
-				button.pressed.disconnect(_on_weapon_selected)
-			if button.pressed.is_connected(_on_dropped_weapon_selected):
-				button.pressed.disconnect(_on_dropped_weapon_selected)
+		# 清除舊的信號連接（如果有的話）
+		if button.pressed.is_connected(_on_weapon_selected):
+			button.pressed.disconnect(_on_weapon_selected)
 			
-			# 連接特殊的信號處理（傳遞按鈕索引）
-			button.pressed.connect(_on_dropped_weapon_selected.bind(i))
+		# 連接新的信號（傳遞按鈕索引）
+		button.pressed.connect(_on_weapon_selected.bind(weapon_data, i))
 			
-			# 連接滑鼠懸停信號
-			button.mouse_entered.connect(_on_weapon_button_mouse_entered.bind(i))
-			button.mouse_exited.connect(_on_weapon_button_mouse_exited.bind(i))
-			
-		else:
-			# 其他按鈕正常處理
-			button.text = weapon_data.icon + "\n" + weapon_data.name
-			description.text = weapon_data.description
-			
-			# 清除舊的信號連接（如果有的話）
-			if button.pressed.is_connected(_on_weapon_selected):
-				button.pressed.disconnect(_on_weapon_selected)
-			
-			# 連接新的信號（傳遞按鈕索引）
-			button.pressed.connect(_on_weapon_selected.bind(weapon_data, i))
-			
-			# 連接滑鼠懸停信號
-			button.mouse_entered.connect(_on_weapon_button_mouse_entered.bind(i))
-			button.mouse_exited.connect(_on_weapon_button_mouse_exited.bind(i))
+		# 連接滑鼠懸停信號
+		button.mouse_entered.connect(_on_weapon_button_mouse_entered.bind(i))
+		button.mouse_exited.connect(_on_weapon_button_mouse_exited.bind(i))
 			
 
 	# 如果顯示的武器數量少於按鈕數量，禁用多餘的按鈕
@@ -454,6 +437,9 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 	"""當玩家選擇武器時"""
 	# 記錄選擇的武器
 	selected_weapon = weapon_data
+
+	# 印出 button_index
+	print("選擇的武器按鈕索引: ", button_index)
 	
 	# 觸發對應武器 icon 的動畫效果
 	_animate_weapon_icon_selection(button_index)
@@ -463,40 +449,23 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 	# 隱藏武器選擇面板
 	weapon_selection_panel.visible = false
 	
-	# 顯示女神的回應並等待完成
-	await _show_goddess_response()
+	var weapon_id: String
+	if button_index == 1:
+		weapon_id = "Main"
+	elif button_index == 0:
+		weapon_id = left_weapon.id
+	else:
+		weapon_id = right_weapon.id
+	print("選擇的武器 ID: ", weapon_id)
 	var weapon: Weapon = (
-		_weapon_slot.take_current_weapon()
-		if button_index == 1 else
-		WeaponManager.create_weapon_scene("sword"))
-	_god_scene_manager._finished.emit(weapon)
-		
-
-func _on_dropped_weapon_selected(button_index: int):
-	"""當玩家選擇掉落的武器時"""
-	# 創建一個特殊的武器資料
-	var dropped_weapon_data = {
-		"id": "dropped_weapon",
-		"name": "你掉的武器",
-		"description": "這是你剛才掉落的神秘武器",
-		"response": "很好的選擇！這把武器似乎與你有著特殊的緣分。"
-	}
-	
-	# 記錄選擇的武器
-	selected_weapon = dropped_weapon_data
-	
-	# 觸發對應武器 icon 的動畫效果
-	_animate_weapon_icon_selection(button_index)
-	
-	# 通過背包系統添加武器
-	inventory_system.add_weapon(dropped_weapon_data.id, dropped_weapon_data.name, dropped_weapon_data.description)
-	# 隱藏武器選擇面板
-	weapon_selection_panel.visible = false
-	
+		null
+		if weapon_id == "Main" else
+		WeaponManager.create_weapon_scene(weapon_id))
 	# 顯示女神的回應並等待完成
-	await _show_goddess_response()
+	await _show_goddess_response(weapon)
+	_god_scene_manager._finished.emit(weapon)
 
-func _show_goddess_response():
+func _show_goddess_response(weapon: Weapon):
 	"""顯示女神對玩家選擇的回應"""
 	# 隱藏名字標籤（因為回應不使用新格式）
 	name_label.visible = false
@@ -506,7 +475,10 @@ func _show_goddess_response():
 	continue_button.text = ui_texts.get("journey_button", "踏上旅程")
 	
 	# 更新對話內容
-	dialogue_label.text = selected_weapon.response
+	if not weapon:
+		dialogue_label.text = ui_texts.get("no_weapon_selected", "你選擇了你原本的武器。")
+	else:
+		dialogue_label.text = ui_texts.get("goddess_response", "你選擇的武器是：") + "\n" + weapon.name
 	
 	# 打字機效果
 	dialogue_label.visible_characters = 0
@@ -538,11 +510,6 @@ func _on_journey_start():
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
 	await tween.finished
 	
-	# 移除女神圖片
-	if goddess_image and is_instance_valid(goddess_image):
-		goddess_image.queue_free()
-		goddess_image = null
-	
 	# 清理 animated_icon
 	if animated_icon and is_instance_valid(animated_icon):
 		animated_icon.queue_free()
@@ -558,11 +525,8 @@ func _on_journey_start():
 		move_tween.stop()
 		move_tween = null
 
-	# 清空對話文本和武器按鈕
-	dialogue_texts.clear()
-	weapon_buttons.clear()
-	weapon_descriptions.clear()
 	weapon_selection_panel.visible = false
+	_reset()
 
 func _input(event):
 	"""處理輸入事件"""
@@ -572,10 +536,17 @@ func _input(event):
 func _weapon_drop_animation():
 	"""武器掉落動畫 - 自由落體效果"""
 	dropped_weapon_image = TextureRect.new()
-	
-	var weapon_texture = load("res://icon.svg") # 暫時使用icon作為武器圖片
-	if weapon_texture:
-		dropped_weapon_image.texture = weapon_texture
+
+	# 從 _weapon_slot.take_first_weapon 複製一個當前的武器
+	var weapon = _weapon_slot.take_first_weapon().duplicate()
+
+	# weapon 的 scale 設為 5倍
+	weapon.scale = Vector2(5, 5)
+
+	dropped_weapon_image.add_child(weapon)
+	# var weapon_texture = load("res://icon.svg") # 暫時使用icon作為武器圖片
+	# if weapon_texture:
+	# 	dropped_weapon_image.texture = weapon_texture
 	
 	dropped_weapon_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	dropped_weapon_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -740,7 +711,8 @@ func _change_goddess_image_with_fade(new_texture_path: String):
 	if dropped_weapon_image and is_instance_valid(dropped_weapon_image):
 		goddess_image.add_child(dropped_weapon_image)
 
-
+var left_weapon: Weapon
+var right_weapon: Weapon
 func _add_weapon_icons_to_goddess():
 	"""為女神圖片添加兩個武器圖標作為子物件"""
 	if not goddess_image:
@@ -749,19 +721,20 @@ func _add_weapon_icons_to_goddess():
 	var left_id: String = WeaponManager.get_random_weapon_id()
 	var right_id: String = WeaponManager.get_random_weapon_id()
 
-	var left_weapon: Weapon = (
-		_weapon_slot.take_current_weapon()
-		if left_id == "Main" else
-		WeaponManager.create_weapon_scene(left_id))
+	left_weapon = WeaponManager.create_weapon_scene(left_id)
 	# 將 left_weapon 的 scale 設置為 5 倍
 	left_weapon.scale = Vector2(5, 5)
 
-	var right_weapon: Weapon = (
-		_weapon_slot.take_current_weapon()
-		if right_id == "Main" else
-		WeaponManager.create_weapon_scene(right_id))
+	right_weapon = WeaponManager.create_weapon_scene(right_id)
 	# 將 right_weapon 的 scale 設置為 5 倍
 	right_weapon.scale = Vector2(5, 5)
+
+	weapon_buttons[0].text = left_weapon.id
+	weapon_descriptions[0].text = left_weapon.id
+	weapon_buttons[1].text = "你掉的武器"
+	weapon_buttons[2].text = right_weapon.id
+	weapon_descriptions[2].text = right_weapon.id
+
 	
 	# 設置左側位置（左中）
 	left_weapon.position = Vector2(-50, 250) # 相對於女神圖片的左中位置
@@ -902,3 +875,52 @@ func _on_start_scene_requested():
 	"""當收到開始場景信號時執行武器掉落動畫和對話"""
 	await _weapon_drop_animation()
 	_start_dialogue()
+
+func _reset():
+	"""重置 GoddessPortrait 狀態"""
+	
+	# 重置變數
+	dropped_weapon_image = null
+	animated_icon = null
+	float_tween = null
+	move_tween = null
+	
+	current_dialogue_index = 0
+	current_text_index = 0
+	is_dialogue_phase = false
+	
+	selected_weapon = {}
+	
+	# 隱藏 UI 元素
+	# name_label.text = ""
+	# name_label.visible = false
+	# dialogue_label.text = ""
+	# dialogue_label.visible_characters = 0
+	# continue_button.visible = false
+	# weapon_selection_panel.visible = false
+
+	# 重製對話
+	dialogue_label.text = ""
+	name_label.text = ""
+	continue_button.text = "繼續"
+	continue_button.visible = false
+	weapon_selection_panel.visible = false
+	weapon_selection_panel.z_index = 0
+
+	continue_button.pressed.disconnect(_on_journey_start)
+	continue_button.pressed.connect(_on_continue_pressed)
+
+	goddess_image.texture = _ori_goddess_texture
+	goddess_image.modulate.a = 0.0
+	goddess_image.offset_top = 200 # 初始在下方
+	goddess_image.offset_bottom = 400
+	# 釋放 left_weapon
+	if left_weapon and is_instance_valid(left_weapon):
+		left_weapon.queue_free()
+		left_weapon = null
+	# 釋放 right_weapon
+	if right_weapon and is_instance_valid(right_weapon):
+		right_weapon.queue_free()
+		right_weapon = null
+	
+	print("GoddessPortrait 已重置")

@@ -11,13 +11,19 @@ func start_event() -> Array[Weapon]:
 	_shader_manager.enable("frosted_glass")
 	visible = true
 	_clear_weapon()
-	_set_weapon()
+	# _set_weapon()
 	var selected: Weapon = await _finished
 	selected = selected
 	visible = false
 	_shader_manager.disable("frosted_glass")
 	_clear_weapon()
-	return [selected, WeaponManager.create_random_weapon()] ## FIXME
+	# 如果 _weapon_slot.get_current_weapon() 為 null，則返回空陣列
+	if not selected:
+		print("GodSceneManager: No weapon selected.")
+		return []
+	# 印出選擇的武器 ID
+	print("GodSceneManager Selected weapon ID:", selected.id)
+	return [_weapon_slot.take_current_weapon(), selected] ## FIXME
 signal _finished(weapon: Weapon)
 signal start_scene_requested
 

@@ -1,8 +1,8 @@
 class_name WeaponSlot
 extends Node2D
 
-var first_weapon:Weapon
-var total_weight:float = 1.0
+var first_weapon: Weapon
+var total_weight: float = 1.0
 
 
 func _ready() -> void:
@@ -12,11 +12,11 @@ func _ready() -> void:
 ## TEST
 var _player_manager: PlayerManager
 func _on_injected():
-	var weapon:Weapon = WeaponManager.create_random_weapon()
+	var weapon: Weapon = WeaponManager.create_random_weapon()
 	set_current_weapon(weapon)
 
-func set_current_weapon(weapon: Weapon)-> void:
-	if not weapon: return 
+func set_current_weapon(weapon: Weapon) -> void:
+	if not weapon: return
 	
 	if first_weapon:
 		first_weapon.queue_free()
@@ -26,22 +26,26 @@ func set_current_weapon(weapon: Weapon)-> void:
 	weapon.move_to(self, _player_manager.get_glue_layer(), false)
 	weapon.init_move(self)
 
-func take_current_weapon()-> Weapon:
+func take_first_weapon() -> Weapon:
+	if first_weapon:
+		return first_weapon
+	return null
+
+func take_current_weapon() -> Weapon:
 	var curr = first_weapon
-	if curr: 
+	if curr:
 		first_weapon = null
 		remove_child(curr)
 		return curr
 	return null
 
-func get_current_weapon()-> Weapon:
+func get_current_weapon() -> Weapon:
 	return first_weapon
 
 
 func start_attack(time: float):
 	if first_weapon:
 		first_weapon.start_move(self, total_weight * time)
-
 
 
 func _save():
