@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsxrnj083mcwt"]
+[gd_scene load_steps=10 format=3 uid="uid://bsxrnj083mcwt"]
 
 [ext_resource type="PackedScene" uid="uid://ynmgrxw25he7" path="res://GameSystem/WeaponManager/Weapons/BaseWeapon.tscn" id="1_vayr4"]
 [ext_resource type="Script" uid="uid://2tni8k0f6ymm" path="res://GameSystem/WeaponManager/Weapons/GDscript/GDscriptWeapon.gd" id="2_m0f6a"]
 [ext_resource type="Script" uid="uid://bvlsuqgqmfop7" path="res://GameSystem/ActionManager/Action/Move/Weapon/SwordMove.gd" id="2_n8ou1"]
 [ext_resource type="Texture2D" uid="uid://ce8rsr70g8st2" path="res://GameSystem/WeaponManager/Weapons/GDscript/GDscript.png" id="2_sdmwl"]
+[ext_resource type="Script" uid="uid://dihhutg6rim5c" path="res://GameSystem/WeaponManager/Weapons/GDscript/GDweapon.gd" id="5_smtmy"]
 
 [sub_resource type="Image" id="Image_m0f6a"]
 data = {
@@ -57,13 +58,21 @@ script = ExtResource("2_n8ou1")
 metadata/_custom_type_script = "uid://bvlsuqgqmfop7"
 
 [node name="Code" type="CodeEdit" parent="." index="4"]
+unique_name_in_owner = true
 offset_left = 9.0
 offset_top = -15.0
 offset_right = 329.0
 offset_bottom = 285.0
 scale = Vector2(0.1, 0.1)
-text = "func _fire():
-	pass
+text = "extends GDweapon
+
+func _attack():
+	print(\"FIRE GDscript ! ! !\")
 "
+
+[node name="GDweapon" type="Node2D" parent="." index="5"]
+unique_name_in_owner = true
+script = ExtResource("5_smtmy")
+metadata/_custom_type_script = "uid://dihhutg6rim5c"
 
 [editable path="PhysicalComponent"]
