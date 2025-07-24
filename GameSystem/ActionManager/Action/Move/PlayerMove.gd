@@ -140,6 +140,7 @@ func _get_move_vec() -> Vector2:
 	
 ### 若正在移動, 更改面朝方向
 func change_direction(velocity):
+	velocity = _get_move_vec() #TEST
 	if is_zero_approx(velocity.x):
 		return
 
