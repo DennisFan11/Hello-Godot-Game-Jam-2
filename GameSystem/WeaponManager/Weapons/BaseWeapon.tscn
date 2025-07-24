@@ -47,6 +47,9 @@ texture = SubResource("ImageTexture_4sput")
 [node name="Sprite2D" parent="PhysicalComponent" index="2"]
 texture = SubResource("ImageTexture_6tyey")
 
+[node name="GlueCollision" parent="PhysicalComponent/GlueArea" index="0"]
+polygon = PackedVector2Array(8.17157, -14, 7, -12.8284, 7, -11.8721, -6.59504, 0.75183, -11.7874, 0.01006, -11.929, 0, -14.1151, 0, -15.2875, 1.89708, -13, 6.47213, -13, 9.17158, -14.8284, 11, -15.8284, 11, -17, 12.1716, -17, 15.8284, -15.8284, 17, -12.6022, 17, -11.8671, 16.6955, -8.38856, 13.217, -2.18635, 13.9923, -2.0622, 14, 0.11507, 14, 1.28753, 12.1029, -1, 7.52786, -1, 5.82842, 11.8284, -7, 12.8284, -7, 14, -8.17157, 14, -12.8284, 12.8284, -14)
+
 [node name="NextWeaponContainer" type="Node2D" parent="."]
 unique_name_in_owner = true
 
