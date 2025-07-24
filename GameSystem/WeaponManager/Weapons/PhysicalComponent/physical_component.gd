@@ -17,7 +17,7 @@ func _reset()-> void:
 	if not is_node_ready():
 		return
 	var image := texture.get_image()
-	image.resize(RESIZE.x, RESIZE.y)
+	#image.resize(RESIZE.x, RESIZE.y)
 	
 	_weapon_polygon = _get_polygon(image)
 	_glue_polygon = _expand_polygon(_get_polygon(image), EXPAND_SIZE)
