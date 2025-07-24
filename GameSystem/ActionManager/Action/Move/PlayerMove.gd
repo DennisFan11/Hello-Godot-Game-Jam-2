@@ -92,7 +92,7 @@ func try_move(delta: float) -> void:
 				#new_velocity.x = lerp(new_velocity.x, 0.0, DECREASE * delta)
 	
 	# 轉向
-	change_direction(new_velocity)
+	change_direction(_vec2global(new_velocity))
 	
 	target.velocity = new_velocity
 	_hint_component_update()
@@ -140,10 +140,10 @@ func _get_move_vec() -> Vector2:
 	
 ### 若正在移動, 更改面朝方向
 func change_direction(velocity):
-	if velocity.x == 0.0:
+	if is_zero_approx(velocity.x):
 		return
 
-	var new_direction = _vec2global(velocity).x > 0.0
+	var new_direction = velocity.x > 0.0
 	#if state == ON_WALL:
 		#new_direction = not new_direction
 

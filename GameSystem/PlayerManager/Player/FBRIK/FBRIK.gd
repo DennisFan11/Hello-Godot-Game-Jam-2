@@ -30,8 +30,10 @@ func _process(delta: float) -> void:
 		FABRIK_I( _global_target if not Engine.is_editor_hint() else %EndMarker.global_position)
 		FABRIK_F( %StartMarker.global_position )
 		
+	#%HintLine.global_scale = Vector2.ONE
+	#%HintLine.global_rotation = 0.0
+	%HintLine.top_level = true
 	%HintLine.global_position = Vector2.ZERO
-	%HintLine.global_rotation = 0.0
 	%HintLine.points = _points
 
 
