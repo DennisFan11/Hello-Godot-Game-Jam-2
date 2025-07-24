@@ -1,18 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5tnutb3a2aqt"]
+[gd_scene load_steps=7 format=3 uid="uid://c5tnutb3a2aqt"]
 
 [ext_resource type="Script" uid="uid://c7e6wcc3ky6ra" path="res://GameSystem/PlayerManager/Player/FBRIK/FBRIK.gd" id="1_hbi3i"]
+[ext_resource type="Script" uid="uid://mdmvx5cnmdbd" path="res://GameSystem/PlayerManager/Player/FBRIK/FBRIK_node.gd" id="2_m6qpl"]
+[ext_resource type="Texture2D" uid="uid://chtmxw14irmvm" path="res://Asset/Image/leg.png" id="3_fn3td"]
+
+[sub_resource type="Resource" id="Resource_4xoul"]
+script = ExtResource("2_m6qpl")
+Distance = 5.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
+
+[sub_resource type="Resource" id="Resource_dn8ki"]
+script = ExtResource("2_m6qpl")
+Distance = 10.0
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
+
+[sub_resource type="Resource" id="Resource_1bul3"]
+script = ExtResource("2_m6qpl")
+Distance = 12.5
+metadata/_custom_type_script = "uid://mdmvx5cnmdbd"
 
 [node name="FBRIK" type="Node2D"]
 script = ExtResource("1_hbi3i")
+FBRIK_nodes = Array[ExtResource("2_m6qpl")]([null, SubResource("Resource_4xoul"), SubResource("Resource_dn8ki"), SubResource("Resource_1bul3")])
 
 [node name="StartMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
 
 [node name="EndMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(26, -5)
+position = Vector2(5, 17)
 
 [node name="HintLine" type="Line2D" parent="."]
 unique_name_in_owner = true
-width = 1.0
+top_level = true
+points = PackedVector2Array(0, 0, 3.87026, 3.16561, 11.6108, 9.49683, 3.3473, 18.8758)
+width = 4.0
+texture = ExtResource("3_fn3td")
+texture_mode = 2
+joint_mode = 1
 metadata/_edit_lock_ = true

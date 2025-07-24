@@ -2,6 +2,23 @@ extends Node2D
 
 
 
+func _ready() -> void:
+	$RLeg.can_move = false
+	$LLeg.can_move = true
+	$LLeg.moved.connect(
+		func ():
+			await get_tree().create_timer(0.1).timeout
+			$RLeg.can_move = true
+	)
+	$RLeg.moved.connect(
+		func ():
+			await get_tree().create_timer(0.1).timeout
+			$LLeg.can_move = true
+	)
+	
+
+
+
 
 func _process(delta: float) -> void:
 	$RLeg.set_target(get_raycast_point(%RRayCast2D))

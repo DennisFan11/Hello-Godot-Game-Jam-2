@@ -2,6 +2,8 @@
 class_name FBRIK
 extends Node2D
 
+signal moved
+var can_move: bool = false
 
 
 @export var FBRIK_nodes: Array[FBRIK_node] = []
@@ -11,11 +13,14 @@ func get_points()-> PackedVector2Array:
 	return _points
 
 
-const STEP_LENGTH = 7.0
+const STEP_LENGTH = 15.0
 var _global_target: Vector2
 func set_target(target: Vector2)-> void:
-	if (target-_points[-1]).length() > STEP_LENGTH:
+	if (target-_points[-1]).length() > STEP_LENGTH and can_move:
+		
 		_global_target = target
+		can_move = false
+		moved.emit()
 
 
 
