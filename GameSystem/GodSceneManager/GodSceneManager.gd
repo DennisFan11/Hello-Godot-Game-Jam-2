@@ -4,7 +4,7 @@ extends CanvasLayer
 
 func _ready() -> void:
 	DI.register("_god_scene_manager", self)
-	visible = false
+	#visible = false
 
 
 func start_event() -> Array[Weapon]:
@@ -17,12 +17,11 @@ func start_event() -> Array[Weapon]:
 	visible = false
 	_shader_manager.disable("frosted_glass")
 	_clear_weapon()
-	return [selected, _weapon_manager.create_weapon_scene(_weapon_manager.get_random_weapon_id())] ## FIXME
+	return [selected, WeaponManager.create_random_weapon()] ## FIXME
 signal _finished(weapon: Weapon)
 signal start_scene_requested
 
 var _shader_manager: ShaderManager
-var _weapon_manager: WeaponManager
 var _weapon_slot: WeaponSlot
 var _goddess_weapon_select: Control
 
@@ -34,11 +33,11 @@ func _clear_weapon() -> void:
 
 func _set_weapon() -> void:
 	var origin_id = _weapon_slot.get_current_weapon().id
-	var left_id: String = _weapon_manager.get_random_weapon_id()
-	var right_id: String = _weapon_manager.get_random_weapon_id()
+	var left_id: String = WeaponManager.get_random_weapon_id()
+	var right_id: String = WeaponManager.get_random_weapon_id()
 	_set_weapon_scene(%OriginMarker2D, "Main")
-	_set_weapon_scene(%RightMarker2D, _weapon_manager.get_random_weapon_id())
-	_set_weapon_scene(%LeftMarker2D, _weapon_manager.get_random_weapon_id())
+	_set_weapon_scene(%RightMarker2D, WeaponManager.get_random_weapon_id())
+	_set_weapon_scene(%LeftMarker2D, WeaponManager.get_random_weapon_id())
 	
 
 ## TOOL //////////////
@@ -46,7 +45,7 @@ func _set_weapon_scene(marker: Node2D, weapon_id: String):
 	var weapon: Weapon = (
 		_weapon_slot.take_current_weapon()
 		if weapon_id == "Main" else
-		_weapon_manager.create_weapon_scene(weapon_id))
+		WeaponManager.create_weapon_scene(weapon_id))
 	_weapon_arr.append(weapon)
 	_set_weapon_node(marker, weapon)
 

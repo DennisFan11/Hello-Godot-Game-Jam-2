@@ -10,13 +10,9 @@ func _ready() -> void:
 
 
 ## TEST
-var _weapon_manager: WeaponManager
 var _player_manager: PlayerManager
 func _on_injected():
-	if not _weapon_manager: return 
-	var weapon:Weapon = _weapon_manager.create_weapon_scene(
-		_weapon_manager.get_random_weapon_id()
-	)
+	var weapon:Weapon = WeaponManager.create_random_weapon()
 	set_current_weapon(weapon)
 
 func set_current_weapon(weapon: Weapon)-> void:

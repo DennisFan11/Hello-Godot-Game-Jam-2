@@ -40,7 +40,7 @@ func get_damage()-> int:
 	return damage
 
 ## 轉移武器
-func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bool = true):
+func move_to(target_node: Node2D, glue_layer: GlueLayer, keep_global_transform: bool = true):
 	self.glue_layer = glue_layer
 	request_ready()
 	if not keep_global_transform:
@@ -50,7 +50,7 @@ func move_to(target_node: Node, glue_layer: GlueLayer, keep_global_transform: bo
 		reparent(target_node, keep_global_transform)
 	else:
 		target_node.add_child(self)
-	
+
 
 
 # used by player

@@ -28,6 +28,7 @@ PlayerInventorySystem="*res://GameSystem/PlayerManager/PlayerInventorySystem.gd"
 LevelManager="*res://Scene/Levels/LevelManager.gd"
 GlobalDebugUI="*res://Scene/Test/GlobalDebugUI.gd"
 InGameSaveSystem="*res://CoreSystem/InGameSaveSystem/InGameSaveSystem.gd"
+WeaponManager="*res://GameSystem/WeaponManager/WeaponManager.gd"
 
 [display]
 

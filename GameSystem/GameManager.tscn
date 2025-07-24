@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=12 format=3 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
 [ext_resource type="PackedScene" uid="uid://djxy1siqmm16l" path="res://GameSystem/_shared/Lake/Lake.tscn" id="5_30fhk"]
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
-[ext_resource type="PackedScene" uid="uid://ckjyc7agxyvlq" path="res://GameSystem/WeaponManager/WeaponManager.tscn" id="6_wonvf"]
 [ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_kst1i"]
 [ext_resource type="PackedScene" uid="uid://dg3djwp882ugn" path="res://GameSystem/ShaderManager/ShaderManager.tscn" id="7_o6cs3"]
 [ext_resource type="PackedScene" uid="uid://b8b7q8fpnpmr5" path="res://GameSystem/MessageBoxManager/MessageBoxManager.tscn" id="10_40pkj"]
@@ -3317,8 +3316,6 @@ position = Vector2(-123, -12)
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]
 unique_name_in_owner = true
-
-[node name="WeaponManager" parent="." instance=ExtResource("6_wonvf")]
 
 [node name="ShaderManager" parent="." instance=ExtResource("7_o6cs3")]
 

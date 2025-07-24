@@ -52,7 +52,6 @@ var animated_icon: TextureRect
 signal journey_started
 
 var _god_scene_manager: GodSceneManager
-var _weapon_manager: WeaponManager
 var _weapon_slot: WeaponSlot
 
 # 文本檔案路徑
@@ -469,7 +468,7 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 	var weapon: Weapon = (
 		_weapon_slot.take_current_weapon()
 		if button_index == 1 else
-		_weapon_manager.create_weapon_scene("sword"))
+		WeaponManager.create_weapon_scene("sword"))
 	_god_scene_manager._finished.emit(weapon)
 		
 
@@ -747,20 +746,20 @@ func _add_weapon_icons_to_goddess():
 	if not goddess_image:
 		return
 	
-	var left_id: String = _weapon_manager.get_random_weapon_id()
-	var right_id: String = _weapon_manager.get_random_weapon_id()
+	var left_id: String = WeaponManager.get_random_weapon_id()
+	var right_id: String = WeaponManager.get_random_weapon_id()
 
 	var left_weapon: Weapon = (
 		_weapon_slot.take_current_weapon()
 		if left_id == "Main" else
-		_weapon_manager.create_weapon_scene(left_id))
+		WeaponManager.create_weapon_scene(left_id))
 	# 將 left_weapon 的 scale 設置為 5 倍
 	left_weapon.scale = Vector2(5, 5)
 
 	var right_weapon: Weapon = (
 		_weapon_slot.take_current_weapon()
 		if right_id == "Main" else
-		_weapon_manager.create_weapon_scene(right_id))
+		WeaponManager.create_weapon_scene(right_id))
 	# 將 right_weapon 的 scale 設置為 5 倍
 	right_weapon.scale = Vector2(5, 5)
 	
