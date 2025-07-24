@@ -17,16 +17,16 @@ func _reset()-> void:
 	if not is_node_ready():
 		return
 	var image := texture.get_image()
-	#image.resize(RESIZE.x, RESIZE.y)
-	
-	_weapon_polygon = _get_polygon(image)
-	_glue_polygon = _expand_polygon(_get_polygon(image), EXPAND_SIZE)
+	image.resize(RESIZE.x, RESIZE.y)
+	if auto_update_polygon:
+		_weapon_polygon = _get_polygon(image)
+		_glue_polygon = _expand_polygon(_get_polygon(image), EXPAND_SIZE)
 	
 	_sprite = ImageTexture.create_from_image(image)
 	var _sdf_img = SDF_process.img2SDF(image)
 	_sdf_texture = ImageTexture.create_from_image(_sdf_img)
 
-
+@export var auto_update_polygon: bool = true
 
 @export_category("自動更新項")
 @export var _weapon_polygon:  PackedVector2Array:

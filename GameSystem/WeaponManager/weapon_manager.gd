@@ -8,16 +8,16 @@ var weapon_map = {
 	"sword": {
 		"scene": preload("uid://b0nre1wp17b5l"),
 	},
+	"BigSword": {
+		"scene": preload("uid://creq4ecbuhbfc")
+	},
 	"DispellingSword": {
 		"scene": preload("uid://bqgvi3j3xs1ku"),
 	},
-	"GDScript":{
-		"scene": preload("uid://bsxrnj083mcwt")
-	}
 }
 
 func get_random_weapon_id()-> String:
-	return "GDScript"
+	return "BigSword"
 	return "DispellingSword"
 	return weapon_map.keys().pick_random()
 
