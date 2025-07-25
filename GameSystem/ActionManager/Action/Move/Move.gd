@@ -21,6 +21,8 @@ extends Action
 ## false:左 true:右
 var direction = true
 
+var is_collide: bool = false
+
 func _physics_process(delta: float) -> void:
 	if not enable: return
 
@@ -28,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	#target.set_collision_layer_value(2, target.is_on_floor())
 	
-	target.move_and_slide()
+	is_collide = target.move_and_slide()
 
 func try_move(_delta: float) -> void:
 	pass

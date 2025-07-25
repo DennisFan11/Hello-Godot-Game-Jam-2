@@ -28,7 +28,7 @@ func try_move(delta: float) -> void:
 		target.rotation = lerp_angle(
 			target.rotation, _get_climb_vec().angle() - PI/2.0, delta*15.0)
 	else:
-		target.rotation = lerp_angle(target.rotation, 0.0, delta*15.0)
+		target.rotation = lerp_angle(target.rotation, target.velocity.angle(), delta*1.0)
 	
 	## 重力歸 0
 	if %ClimbRaycast.is_colliding():
@@ -78,6 +78,9 @@ func try_move(delta: float) -> void:
 				global_new_velocity.y = 0.0
 				global_new_velocity += MAX_SPEED * Vector2.UP
 				_dash()
+				if is_collide:
+					global_new_velocity += MAX_SPEED * Vector2.UP
+					TimeScaleManager.slow_down(0.1, 0.3)
 			
 			new_velocity = _vec2local(global_new_velocity)
 			

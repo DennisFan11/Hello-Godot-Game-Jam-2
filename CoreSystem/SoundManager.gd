@@ -49,7 +49,17 @@ func play_sound(tag: String, position: Vector2):
 	# 播放結束後自動移除
 	sound.finished.connect(sound.queue_free)
 
-
+func play_stream_sound(stream: AudioStream, position: Vector2, volume_linear: float):
+	var sound := AudioStreamPlayer2D.new()
+	sound.volume_linear = volume_linear
+	sound.stream = stream
+	sound.position = position
+	sound.bus = _bus_map[BUS.EFFECT]
+	add_child(sound)
+	sound.play()
+	
+	# 播放結束後自動移除
+	sound.finished.connect(sound.queue_free)
 
 var bgm_list = {
 	#"menu": preload("uid://ivg4ybm7cgye"),

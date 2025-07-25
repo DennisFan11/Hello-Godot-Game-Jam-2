@@ -1,8 +1,8 @@
 class_name ClimbRaycast
 extends Node2D
 
-const MOUNT: int = 50
-const DISTANCE: float = 30.0
+const MOUNT: int = 30
+const DISTANCE: float = 35.0
 
 var _raycast_arr: Array[RayCast2D] = []
 func _ready() -> void:

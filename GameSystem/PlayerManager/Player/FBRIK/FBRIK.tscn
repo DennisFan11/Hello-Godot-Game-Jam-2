@@ -33,7 +33,7 @@ position = Vector2(5, 17)
 [node name="HintLine" type="Line2D" parent="."]
 unique_name_in_owner = true
 top_level = true
-points = PackedVector2Array(0, 0, 3.87026, 3.16561, 11.6108, 9.49683, 3.3473, 18.8758)
+points = PackedVector2Array(0, 0, -1.54011, 4.7569, -4.62034, 14.2707, 7.40508, 17.6823)
 width = 4.0
 texture = ExtResource("3_fn3td")
 texture_mode = 2
