@@ -30,6 +30,8 @@ func get_glue_layer()-> GlueLayer:
 func get_player_position()-> Vector2:
 	return player.position if player else Vector2.ZERO
 
+func get_player_velocity()-> Vector2:
+	return player.velocity
 
 
 func _on_player_died(player:Player):

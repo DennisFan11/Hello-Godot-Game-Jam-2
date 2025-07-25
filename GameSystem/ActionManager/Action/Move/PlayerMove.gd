@@ -11,6 +11,7 @@ func _ready() -> void:
 func _on_stats_updated(stats):
 	MAX_SPEED = Vector2(stats.move_speed, stats.jump_power)
 
+var _camera_manager: CameraManager
 
 
 func try_move(delta: float) -> void:
@@ -80,6 +81,7 @@ func try_move(delta: float) -> void:
 				_dash()
 				if is_collide:
 					global_new_velocity += MAX_SPEED * Vector2.UP
+					_camera_manager.zoom_out(2.0)
 					TimeScaleManager.slow_down(0.1, 0.3)
 			
 			new_velocity = _vec2local(global_new_velocity)
