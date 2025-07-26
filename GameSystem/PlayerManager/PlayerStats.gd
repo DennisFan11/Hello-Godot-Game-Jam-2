@@ -1,14 +1,38 @@
 class_name PlayerStats
-extends Resource
+extends SaveResource
 
-@export var max_health: int = 100
-@export var current_health: int = 100
-@export var attack_damage: int = 10
-@export var move_speed: float = 100.0
-@export var jump_power: float = 200.0
-@export var skill_cooldown_reduction: float = 0.0
-@export var experience_points: int = 0
-@export var level: int = 1
+var max_health: int = 100
+var current_health: int = 100
+var attack_damage: int = 10
+var move_speed: float = 100.0
+var jump_power: float = 200.0
+var skill_cooldown_reduction: float = 0.0
+var experience_points: int = 0
+var level: int = 1
+
+
+
+func get_data():
+	return {
+		"max_health": max_health,
+		"current_health": current_health,
+		"attack_damage": attack_damage,
+		"move_speed": move_speed,
+		"jump_power": jump_power,
+		"skill_cooldown_reduction": skill_cooldown_reduction,
+		"experience_points": experience_points,
+		"level": level
+	}
+
+func set_data(data):
+	max_health = data.get("max_health", max_health)
+	current_health = data.get("current_health", current_health)
+	attack_damage = data.get("attack_damage", attack_damage)
+	move_speed = data.get("move_speed", move_speed)
+	jump_power = data.get("jump_power", jump_power)
+	skill_cooldown_reduction = data.get("skill_cooldown_reduction", skill_cooldown_reduction)
+	experience_points = data.get("experience_points", experience_points)
+	level = data.get("level", level)
 
 
 

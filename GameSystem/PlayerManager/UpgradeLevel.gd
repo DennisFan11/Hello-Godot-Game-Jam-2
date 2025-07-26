@@ -1,5 +1,5 @@
 class_name UpgradeLevel
-extends Resource
+extends SaveResource
 
 var default_icon = "🔧"
 
@@ -51,8 +51,20 @@ var config_dict:Dictionary = {
 	}
 }
 
-@export var point = 0
-@export var level_dict:Dictionary = {}
+var point = 0
+var level_dict:Dictionary = {}
+
+
+
+func get_data():
+	return {
+		"point": point,
+		"level_dict": level_dict
+	}
+
+func set_data(data):
+	point = data.get("point", point)
+	level_dict = data.get("level_dict", level_dict)
 
 
 

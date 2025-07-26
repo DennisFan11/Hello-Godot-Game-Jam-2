@@ -38,17 +38,13 @@ func init_player_stats(load_data:bool = true):
 	if player_stats:
 		player_stats.changed.disconnect(_on_stats_updated)
 
-	if load_data:
-		player_stats = ResourceLoader.load(player_stats_save_path)
-	if not load_data or not player_stats:
-		player_stats = PlayerStats.new()
+	var path = player_stats_save_path if load_data else ""		
+	player_stats = PlayerStats.new(path)
 	player_stats.changed.connect(_on_stats_updated)
 
 func _init_upgrade_levels(load_data:bool = true):
-	if load_data:
-		upgrade_levels = ResourceLoader.load(upgrade_levels_save_path)
-	if not load_data or not upgrade_levels:
-		upgrade_levels = UpgradeLevel.new()
+	var path = upgrade_levels_save_path if load_data else ""
+	upgrade_levels = UpgradeLevel.new(path)
 
 
 
@@ -115,35 +111,8 @@ func reset_upgrades():
 
 # 保存玩家數據
 func _save_player_data():
-	ResourceSaver.save(player_stats, player_stats_save_path, ResourceSaver.FLAG_COMPRESS)
-	ResourceSaver.save(upgrade_levels, upgrade_levels_save_path, ResourceSaver.FLAG_COMPRESS)
-
-	# var save_data = {
-	# 	"player_stats": player_stats.to_dict(),
-	# 	"upgrade_levels": upgrade_levels
-	# }
-	
-	# if ConfigRepo and ConfigRepo.repo:
-	# 	ConfigRepo.repo.set_value("PlayerUpgrade", "save_data", save_data)
-	# 	ConfigRepo.save()
-	# else:
-	# 	print("警告：ConfigRepo 未準備好，無法保存升級數據")
-
-# 載入玩家數據
-# func _load_player_data():
-# 	if not ConfigRepo or not ConfigRepo.repo:
-# 		print("警告：ConfigRepo 未準備好，使用默認升級數據")
-# 		return
-	
-# 	var save_data = ConfigRepo.repo.get_value("PlayerUpgrade", "save_data", {})
-	
-# 	# if save_data.has("player_stats"):
-# 	# 	player_stats.from_dict(save_data.player_stats)
-	
-# 	if save_data.has("upgrade_levels"):
-# 		upgrade_levels = save_data.upgrade_levels
-# 	else:
-# 		_init_upgrade_levels()
+	player_stats.save_file(player_stats_save_path)
+	upgrade_levels.save_file(upgrade_levels_save_path)
 
 func _on_stats_updated():
 	stats_updated.emit(player_stats)
