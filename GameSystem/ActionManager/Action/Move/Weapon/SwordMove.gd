@@ -12,6 +12,7 @@ func start_move(weapon_slot:Node2D, time:float):
 	printt(target, self, weapon_slot, time)
 
 	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(weapon_slot, "rotation_degrees", get_end_angle(), time)
 	tween.tween_callback(end_move.bind(weapon_slot))
 	super(weapon_slot, time)
