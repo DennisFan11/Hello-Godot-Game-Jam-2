@@ -76,10 +76,12 @@ func start_move(weapon_slot, time):
 	return false
 
 func start_attack():
+	if %WeaponTail: %WeaponTail.enable = true
 	%AttackManager.enable_action(true)
 	if next_weapon: next_weapon.start_attack()
 
 func end_attack():
+	if %WeaponTail: %WeaponTail.enable = false
 	%AttackManager.enable_action(false)
 	if next_weapon: next_weapon.end_attack()
 

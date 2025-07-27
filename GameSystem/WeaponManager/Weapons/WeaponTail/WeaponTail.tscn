@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2drxnvhyehdh"]
+
+[ext_resource type="Script" uid="uid://f1ssfd2wguyx" path="res://GameSystem/WeaponManager/Weapons/WeaponTail/WeaponTail.gd" id="1_sfshx"]
+[ext_resource type="Texture2D" uid="uid://di6dclad0pdup" path="res://Asset/Weapons/WeaponTail.png" id="2_vxjig"]
+
+[sub_resource type="Curve" id="Curve_vxjig"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.447935), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="WeaponTail" type="Node2D"]
+position = Vector2(20, -12)
+script = ExtResource("1_sfshx")
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+points = PackedVector2Array(20, -12, 20.1036, -12.0622, 20.0987, -12.0592, 20.0958, -12.0575, 20.0958, -12.0575, 20.0958, -12.0575, 20.0958, -12.0575, 20.0958, -12.0575, 20.0958, -12.0575, 20.0958, -12.0575)
+width_curve = SubResource("Curve_vxjig")
+texture = ExtResource("2_vxjig")
+texture_mode = 2
