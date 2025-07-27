@@ -33,7 +33,7 @@ func _ready() -> void:
 		
 
 
-#var _player_manager: PlayerManager
+var _player_manager: PlayerManager
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -41,14 +41,14 @@ func _process(delta: float) -> void:
 	if showed:
 		return
 	
-	#if not _player_manager:
-		#return
+	if not _player_manager:
+		return
 	#
-	#if _player_manager.get_player_position() == Vector2.ZERO:
-		#return
-	#var _dist = (_player_manager.get_player_position()-global_position).length()
-	#if _dist < dist:
-	_show()
+	if _player_manager.get_player_position() == Vector2.ZERO:
+		return
+	var _dist = (_player_manager.get_player_position()-global_position).length()
+	if _dist < dist:
+		_show()
 	
 	
 var showed:bool = false
@@ -63,7 +63,8 @@ func _show():
 		tween.tween_callback(
 			(func():
 				%RichTextLabel.visible_characters += 1
-				SoundManager.play_sound("type", global_position)
+				SoundManager.play_stream_sound(preload("uid://cqdotlf74tvx1"), global_position, 1.0)
+				#SoundManager.play_sound("type", global_position)
 				),
 		).set_delay(0.05)
 	tween.tween_interval(20.0)
