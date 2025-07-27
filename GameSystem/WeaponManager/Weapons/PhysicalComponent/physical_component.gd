@@ -70,20 +70,21 @@ func _valid_check()-> bool:
 
 var metaball_node: Node2D
 func _set_metaball():
-	var node: Sprite2D = %SDF_Test.duplicate()
-	if not get_parent().glue_layer:
+	var glue_layer = get_parent().glue_layer
+	if not glue_layer:
 		return
-	get_parent().glue_layer.add_child(node)
+
+	var node: Sprite2D = %SDF_Test.duplicate()
+	glue_layer.add_child(node)
+	
+	node.position = position
+	node.scale = scale
+	node.rotation = rotation
 	node.visible = true
 	
 	tree_exited.connect(node.queue_free)
 	metaball_node = node
-	
-func _process(delta: float) -> void:
-	if not metaball_node: return 
-	metaball_node.position = global_position
-	metaball_node.scale = global_scale
-	metaball_node.rotation = global_rotation
+
 
 
 func _ready() -> void:

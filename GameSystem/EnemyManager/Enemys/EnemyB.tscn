@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmbx8s22egbna"]
+[gd_scene load_steps=9 format=3 uid="uid://bequc6v8l0lyo"]
 
-[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_juti4"]
-[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_xjwea"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_spv7u"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_fh0yc"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_f0m5f"]
-[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/ActionManager/Action/Move/JumpMove.gd" id="6_ie3bw"]
+[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_8lyni"]
+[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_3c3kg"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_ya0mj"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_2dt28"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_0eplh"]
+[ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/ActionManager/Action/Move/JumpMove.gd" id="6_ohl1w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
 radius = 6.0
@@ -16,12 +16,12 @@ radius = 4.0
 [node name="EnemyB" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_juti4")
+script = ExtResource("1_8lyni")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.522405, 0.549925, 1)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_xjwea")
+texture = ExtResource("2_3c3kg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5fd7p")
@@ -49,17 +49,17 @@ shape = SubResource("CircleShape2D_n71we")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
 
 [node name="AttackManager" type="Node" parent="."]
-script = ExtResource("3_spv7u")
+script = ExtResource("3_ya0mj")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
 [node name="TouchAttack" type="Node" parent="AttackManager"]
-script = ExtResource("4_fh0yc")
+script = ExtResource("4_2dt28")
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="MoveManager" type="Node" parent="."]
-script = ExtResource("5_f0m5f")
+script = ExtResource("5_0eplh")
 metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="JumpMove" type="Node" parent="MoveManager"]
-script = ExtResource("6_ie3bw")
+script = ExtResource("6_ohl1w")
 metadata/_custom_type_script = "uid://vaaj7wcovhby"

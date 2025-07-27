@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c4yy1akfirsh" path="res://GameSystem/PlayerManager/Player/player.gd" id="1_trhjy"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_asllk"]
-[ext_resource type="Script" uid="uid://dl33ijmoqp57y" path="res://GameSystem/PlayerManager/Player/WeaponSlot/weapon_slot.gd" id="3_s163p"]
 [ext_resource type="Script" uid="uid://bqewuukva5sr2" path="res://GameSystem/PlayerManager/Player/body.gd" id="4_hk8lp"]
 [ext_resource type="Script" uid="uid://bs63mjapxhbg" path="res://GameSystem/PlayerManager/Player/Interacter/Interacter.gd" id="4_u5ohs"]
 [ext_resource type="PackedScene" uid="uid://dh624omjh5xdg" path="res://GameSystem/PlayerManager/Player/ClimbRaycast/climb_raycast.tscn" id="5_5tm2e"]
@@ -11,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dsrlipdic14er" path="res://GameSystem/ActionManager/Action/Attack/PlayerAttack.gd" id="6_5tm2e"]
 [ext_resource type="PackedScene" uid="uid://c5tnutb3a2aqt" path="res://GameSystem/PlayerManager/Player/FBRIK/FBRIK.tscn" id="6_g4140"]
 [ext_resource type="Script" uid="uid://dxf47tfe38agp" path="res://GameSystem/ActionManager/Action/Move/PlayerMove.gd" id="7_5tm2e"]
+[ext_resource type="PackedScene" uid="uid://bbhwrma2m5tt1" path="res://GameSystem/WeaponManager/WeaponSlot.tscn" id="7_yuso2"]
 [ext_resource type="PackedScene" uid="uid://02ynlc7sko8n" path="res://Asset/Class/Arrow/Arrow.tscn" id="10_qy721"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5ohs"]
@@ -71,10 +71,7 @@ target_position = Vector2(-10, 24)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_asllk")
 
-[node name="WeaponSlot" type="Node2D" parent="Body"]
-unique_name_in_owner = true
-visibility_layer = 7
-script = ExtResource("3_s163p")
+[node name="WeaponSlot" parent="Body" instance=ExtResource("7_yuso2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

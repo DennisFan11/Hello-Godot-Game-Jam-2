@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_kdjv3"]
 [ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_dxoiw"]
-[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/EnemyB.tscn" id="3_7u5qu"]
+[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/Slime.tscn" id="3_7u5qu"]
 [ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC.tscn" id="4_oo6o5"]
 [ext_resource type="PackedScene" uid="uid://4vlqptxodl6n" path="res://GameSystem/EnemyManager/Enemys/EnemyD.tscn" id="5_a8nhp"]
 

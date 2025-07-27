@@ -3308,6 +3308,9 @@ Radius = 18.0
 
 [node name="TestNode" type="Node2D" parent="."]
 
+[node name="BulletManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+
 [node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]

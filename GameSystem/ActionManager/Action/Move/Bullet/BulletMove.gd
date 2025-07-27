@@ -20,3 +20,12 @@ func get_variance_vec():
 		randf_range(-variance_range.x, variance_range.x),
 		randf_range(-variance_range.y, variance_range.y)
 	)
+
+
+
+func _get_move_vec()-> Vector2:
+	if target.summoner is Player:
+		#var vec = Vector2.RIGHT if _player_manager.player.
+		return Vector2.RIGHT.rotated(_player_manager.get_player_rotation())
+	else:
+		return super()

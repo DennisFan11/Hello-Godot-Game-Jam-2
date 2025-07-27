@@ -14,8 +14,11 @@ func _physics_process(delta: float) -> void:
 func try_move(delta: float) -> void:
 	var new_velocity = target.velocity
 
-	# 施加重力
-	if not target.is_on_floor():
+	if target.is_on_floor() or can_jump:
+		set_target_anim_state("jump", false)
+		set_target_anim_state("fall", true)
+	else:
+		# 施加重力
 		new_velocity += target.get_gravity() * delta
 
 	# 处理左右移动
@@ -30,16 +33,23 @@ func try_move_x(value:float, delta:float) -> float:
 	# 处理左右移动
 	var vec = _get_move_vec()
 	if vec.x != 0: 
+		set_target_anim_state("move", true)
 		return lerp(value, MAX_SPEED.x * vec.x, INCREASE * delta)
 	else: # 停止移动
+		set_target_anim_state("move", false)
 		return lerp(value, 0.0, DECREASE * delta)
 
 func try_move_y(value:float, _delta:float) -> float:
 	if can_jump:
-		value = -MAX_SPEED.y
+		return jump()
 	return value
 
 
+
+func jump():
+	set_target_anim_state("fall", false)
+	set_target_anim_state("jump", true)
+	return -MAX_SPEED.y
 
 func _need_jump()-> bool:
 	var dict = Utility.raycast(

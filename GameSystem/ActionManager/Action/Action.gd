@@ -40,3 +40,14 @@ func set_target(t: Node2D) -> bool:
 		target = t
 		return true
 	return false
+
+func get_manager_target():
+	var parent = get_parent()
+	if parent is ActionManager:
+		return parent.target
+	if parent == target:
+		return parent
+
+func set_target_anim_state(key, value):
+	if target.has_method("set_anim_state"):
+		target.set_anim_state(key, value)

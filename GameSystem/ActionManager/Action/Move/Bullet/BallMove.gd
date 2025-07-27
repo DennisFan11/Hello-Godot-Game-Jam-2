@@ -1,20 +1,23 @@
 class_name BallMove
 extends BulletMove
 
+@export var bounce:bool = true
+
 var vec:Vector2 = Vector2.INF
 
 func _physics_process(delta: float) -> void:
 	super(delta)
 
 	# 撞牆後反彈
-	var slide_collision = target.get_last_slide_collision()
-	if slide_collision:
-		var normal = -abs(slide_collision.get_normal())
-		if normal.x != 0.0:
-			vec.x *= normal.x
-			
-		if normal.y != 0.0:
-			vec.y *= normal.y
+	if bounce:
+		var slide_collision = target.get_last_slide_collision()
+		if slide_collision:
+			var normal = -abs(slide_collision.get_normal())
+			if normal.x != 0.0:
+				vec.x *= normal.x
+				
+			if normal.y != 0.0:
+				vec.y *= normal.y
 
 func try_move(_delta: float) -> void:
 	if vec == Vector2.INF:

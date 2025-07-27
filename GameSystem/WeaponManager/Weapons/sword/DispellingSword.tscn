@@ -105,6 +105,7 @@ metadata/_custom_type_script = "uid://bvlsuqgqmfop7"
 script = ExtResource("4_r280n")
 swing_angle = 450
 initial_angle = -225
+speed = 0.5
 enable = false
 metadata/_custom_type_script = "uid://bvlsuqgqmfop7"
 

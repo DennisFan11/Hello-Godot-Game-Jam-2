@@ -44,6 +44,13 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	await Save()
 
+
+
+func spawn_bullet(bullet:Bullet):
+	%BulletManager.add_child(bullet)
+
+
+
 func finish():
 	if not level_finish:
 		level_finish = true

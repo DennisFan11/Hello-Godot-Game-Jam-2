@@ -23,7 +23,7 @@ func set_current_weapon(weapon: Weapon) -> void:
 	weapon.summoner = _player_manager.player
 	first_weapon = weapon
 	
-	weapon.move_to(self, _player_manager.get_glue_layer(), false)
+	weapon.move_to(self, %GlueLayer, false)
 	weapon.init_move(self)
 
 func take_first_weapon() -> Weapon:

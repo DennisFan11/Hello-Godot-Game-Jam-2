@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbhwrma2m5tt1"]
+
+[ext_resource type="Script" uid="uid://dl33ijmoqp57y" path="res://GameSystem/PlayerManager/Player/WeaponSlot/weapon_slot.gd" id="1_7qr4a"]
+[ext_resource type="PackedScene" uid="uid://d1cttuf3xyh2x" path="res://GameSystem/_shared/GlueLayer/GlueLayer.tscn" id="2_ms3mg"]
+
+[node name="WeaponSlot" type="Node2D"]
+unique_name_in_owner = true
+visibility_layer = 7
+script = ExtResource("1_7qr4a")
+
+[node name="GlueLayer" parent="." instance=ExtResource("2_ms3mg")]
+unique_name_in_owner = true
+
+[node name="Weapon" type="Node2D" parent="."]
+unique_name_in_owner = true

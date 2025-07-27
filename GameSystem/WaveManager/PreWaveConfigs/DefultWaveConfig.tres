@@ -6,13 +6,13 @@
 
 [sub_resource type="Resource" id="Resource_rmvt2"]
 script = ExtResource("2_et1iv")
-EnemyType = 0
-Mount = 30
+EnemyType = 1
+Mount = 1
 metadata/_custom_type_script = "uid://dddth468gqso1"
 
 [sub_resource type="Resource" id="Resource_0onfb"]
 script = ExtResource("1_l0iuf")
-WaitTime = 3.0
+WaitTime = 0.0
 Enemys = Array[ExtResource("2_et1iv")]([SubResource("Resource_rmvt2")])
 metadata/_custom_type_script = "uid://cxlrsuibgh48g"
 

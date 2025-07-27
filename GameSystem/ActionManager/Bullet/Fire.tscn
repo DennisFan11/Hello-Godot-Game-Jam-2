@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://crmf3o46forhd"]
+[gd_scene load_steps=11 format=3 uid="uid://ltidc1cktsb7"]
 
-[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/ActionManager/Bullet/Bullet.gd" id="1_sie6p"]
-[ext_resource type="Texture2D" uid="uid://1wg7l5ryt65a" path="res://Asset/Bullet/ball.png" id="2_ydy15"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_a8pk1"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_p7fdh"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_x5pnm"]
-[ext_resource type="Script" uid="uid://du67lfy1e8gmt" path="res://GameSystem/ActionManager/Action/Move/Bullet/BallMove.gd" id="6_sie6p"]
+[ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/ActionManager/Bullet/Bullet.gd" id="1_obb71"]
+[ext_resource type="Texture2D" uid="uid://1wg7l5ryt65a" path="res://Asset/Bullet/ball.png" id="2_4j10c"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_51tv2"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_32t58"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_m4gua"]
+[ext_resource type="Script" uid="uid://du67lfy1e8gmt" path="res://GameSystem/ActionManager/Action/Move/Bullet/BallMove.gd" id="6_tpuav"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkh4c"]
 radius = 6.0
@@ -47,17 +47,25 @@ _data = {
 &"new_animation": SubResource("Animation_38fb1")
 }
 
-[node name="Ball" type="CharacterBody2D" groups=["Bullet"]]
+[node name="Fire" type="CharacterBody2D" groups=["Bullet"]]
 z_index = -1
 collision_layer = 4
-collision_mask = 3
-script = ExtResource("1_sie6p")
-cooldown = 3.0
+collision_mask = 0
+script = ExtResource("1_obb71")
+cooldown = 60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ydy15")
+modulate = Color(1, 1, 0, 1)
+texture = ExtResource("2_4j10c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dkh4c")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_dkh4c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -67,19 +75,22 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="AttackManager" type="Node" parent="."]
-script = ExtResource("3_a8pk1")
+script = ExtResource("3_51tv2")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
-[node name="TouchAttack" type="Node" parent="AttackManager"]
-script = ExtResource("4_p7fdh")
-cooldown = -1.0
+[node name="TouchAttack" type="Node" parent="AttackManager" node_paths=PackedStringArray("target")]
+script = ExtResource("4_32t58")
+damage = 30
+target = NodePath("../../Area2D")
+fixed_target = true
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="MoveManager" type="Node" parent="."]
-script = ExtResource("5_x5pnm")
+script = ExtResource("5_m4gua")
 metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="BallMove" type="Node" parent="MoveManager"]
-script = ExtResource("6_sie6p")
-MAX_SPEED = Vector2(300, 300)
+script = ExtResource("6_tpuav")
+bounce = false
+MAX_SPEED = Vector2(10, 10)
 metadata/_custom_type_script = "uid://du67lfy1e8gmt"

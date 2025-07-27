@@ -40,9 +40,14 @@ func gain_experience(amount: int):
 
 func health_change(value: int):
 	super(value)
-	print("player hp:{0}/{1}".format([_hp, max_hp]))
+	#print("player hp:{0}/{1}".format([_hp, max_hp]))
 
 	upgrade_system.player_stats.set_stats("current_health", _hp)
 	upgrade_system._save_player_data()
 
 	health_changed.emit(_hp, max_hp)
+
+
+
+func _on_animation_finished(anim_name:String):
+	pass

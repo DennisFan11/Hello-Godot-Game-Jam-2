@@ -52,7 +52,6 @@ func switch_action(action_list):
 			action.enable = true
 
 func switch_action_index(index):
-	printt("switch_action_index", index, action_group)
 	var switch_action_list:Array[Action] = []
 
 	if index is int:

@@ -196,6 +196,11 @@ func goto_scene(scene):
 
 
 
+func spawn_bullet(bullet:Bullet):
+	current_scene.spawn_bullet(bullet)
+
+
+
 ## 便利方法：直接進入下一關（使用 CoreManager）
 func goto_next_level():
 	var next_level = advance_to_next_level()
