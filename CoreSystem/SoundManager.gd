@@ -62,7 +62,7 @@ func play_stream_sound(stream: AudioStream, position: Vector2, volume_linear: fl
 	sound.finished.connect(sound.queue_free)
 
 var bgm_list = {
-	#"menu": preload("uid://ivg4ybm7cgye"),
+	"title_music": preload("uid://b0ggxd0mr46i1"),
 	#"game_normal": preload("uid://7u2io5ishy6q"),
 	#"game_fight": preload("uid://iqvu7wusxhjl"),
 	#"game_fight2": preload("uid://b3bokkyjsrt0s")
