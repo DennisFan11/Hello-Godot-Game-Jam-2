@@ -4,7 +4,10 @@
 
 [node name="DistanceSignal" type="Node2D"]
 script = ExtResource("1_uqf5t")
-dist = 0.0
+metadata/_custom_type_script = "uid://d1jgq8ai881o2"
 
 [node name="Line2D" type="Line2D" parent="."]
 unique_name_in_owner = true
+points = PackedVector2Array(10, 0, 9.51057, 3.09017, 8.09017, 5.87785, 5.87785, 8.09017, 3.09017, 9.51057, -4.37114e-07, 10, -3.09017, 9.51056, -5.87785, 8.09017, -8.09017, 5.87785, -9.51056, 3.09017, -10, -8.74228e-07, -9.51057, -3.09017, -8.09017, -5.87785, -5.87785, -8.09017, -3.09017, -9.51056, 1.19249e-07, -10, 3.09017, -9.51056, 5.87785, -8.09017, 8.09017, -5.87785, 9.51057, -3.09017)
+closed = true
+width = 3.0

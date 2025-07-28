@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcmasoxjfybi5"]
+[gd_scene load_steps=8 format=3 uid="uid://bcmasoxjfybi5"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_w5d86"]
 [ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="2_bnj1i"]
 [ext_resource type="Script" uid="uid://cu0xicm6f2rtw" path="res://GameSystem/WaveManager/WaveDataDefine/WaveConfig.gd" id="3_bd1n5"]
 [ext_resource type="PackedScene" uid="uid://bcvphcm5mrft5" path="res://Asset/Class/hint/Hinter.tscn" id="4_bd1n5"]
+[ext_resource type="PackedScene" uid="uid://b68cetxw3svh3" path="res://Asset/Class/DistanceSignal/DistanceSignal.tscn" id="5_fred4"]
+[ext_resource type="Script" uid="uid://dkhkhr6me555s" path="res://Scene/Tutorial/BattleEvent.gd" id="6_bweva"]
 
 [sub_resource type="Resource" id="Resource_fred4"]
 script = ExtResource("3_bd1n5")
@@ -2295,5 +2297,10 @@ dist = 48.93
 position = Vector2(509, -196)
 text = "\"LeftClick\" -> Attack"
 dist = 72.62
+
+[node name="BattleEvent" parent="TestNode" index="3" instance=ExtResource("5_fred4")]
+position = Vector2(694, -221)
+script = ExtResource("6_bweva")
+dist = 200.0
 
 [editable path="TerrainManager"]
