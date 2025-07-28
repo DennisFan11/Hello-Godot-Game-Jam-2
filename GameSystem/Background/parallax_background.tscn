@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://tblwle8bwha6"]
+
+[ext_resource type="Texture2D" uid="uid://ctp8vgasdplex" path="res://GameSystem/Background/Background_0.png" id="1_qr6gy"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+follow_viewport_enabled = true
+follow_viewport_scale = 0.3
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxLayer"]
+repeat_size = Vector2(768, 416)
+repeat_times = 3
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer/Parallax2D"]
+texture = ExtResource("1_qr6gy")

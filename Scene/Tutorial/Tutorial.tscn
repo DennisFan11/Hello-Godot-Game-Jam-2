@@ -12,10 +12,10 @@ metadata/_custom_type_script = "uid://cu0xicm6f2rtw"
 
 [node name="Tutorial" instance=ExtResource("1_w5d86")]
 
-[node name="WaveManager" parent="." index="0"]
+[node name="WaveManager" parent="." index="1"]
 waveConfig = SubResource("Resource_fred4")
 
-[node name="TerrainManager" parent="." index="2"]
+[node name="TerrainManager" parent="." index="3"]
 _map_data = [{
 "id": 1,
 "polygon": PackedVector2Array(-500, 0, -502.001, 0, -502.411, -2.591, -500, -17.8153),

@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=12 format=3 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
+[ext_resource type="PackedScene" uid="uid://tblwle8bwha6" path="res://GameSystem/Background/parallax_background.tscn" id="2_cmd41"]
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
 [ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_kst1i"]
@@ -14,6 +15,8 @@
 [node name="GameManager" type="Node2D"]
 visibility_layer = 7
 script = ExtResource("1_jcyoa")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_cmd41")]
 
 [node name="WaveManager" parent="." instance=ExtResource("11_30fhk")]
 unique_name_in_owner = true

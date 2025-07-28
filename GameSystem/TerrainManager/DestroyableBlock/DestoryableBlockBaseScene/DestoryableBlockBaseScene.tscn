@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chs71krydajvg"]
+[gd_scene load_steps=3 format=3 uid="uid://chs71krydajvg"]
 
 [ext_resource type="Script" uid="uid://tm3dt4pnwkc" path="res://GameSystem/TerrainManager/DestroyableBlock/DestoryableBlockBaseScene/destoryable_block_base_scene.gd" id="1_e3dcx"]
+[ext_resource type="Texture2D" uid="uid://n11tyncaiydx" path="res://GameSystem/TerrainManager/DestroyableBlock/DestoryableBlockBaseScene/TerrainTexture.jpg" id="2_52sao"]
 
 [node name="DestoryableBlockBaseScene" type="StaticBody2D" groups=["Block"]]
 collision_layer = 524289
@@ -9,7 +10,10 @@ script = ExtResource("1_e3dcx")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 2
 color = Color(0.703705, 0.278033, 0, 1)
+texture = ExtResource("2_52sao")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
