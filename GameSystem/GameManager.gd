@@ -40,6 +40,7 @@ func _ready() -> void:
 	LevelManager.current_scene = self
 	
 	print("✓ GameManager 初始化完成")
+	SoundManager.play_bgm("battle_music_1")
 
 func _exit_tree() -> void:
 	await Save()

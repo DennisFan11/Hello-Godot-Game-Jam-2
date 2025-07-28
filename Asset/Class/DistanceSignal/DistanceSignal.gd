@@ -1,0 +1,48 @@
+@tool
+class_name DistanceSignal
+extends Node2D
+
+
+
+@export
+var dist:float = 10.0:
+	set(new):
+		dist = new
+		if Engine.is_editor_hint():
+			var arr = []
+			for i in range(20):
+				var angle= PI*2.0/20.0*i
+				arr.append(Vector2.from_angle(angle)*dist)
+			if %Line2D:
+				%Line2D.points = arr
+
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		if %Line2D: %Line2D.visible = false
+		await get_tree().create_timer(1.0).timeout
+		DI.injection(self)
+		
+
+
+var _player_manager: PlayerManager
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	if not _player_manager:
+		return
+	
+	if showed:
+		return
+
+	if _player_manager.get_player_position() == Vector2.ZERO:
+		return
+	
+	var _dist = (_player_manager.get_player_position()-global_position).length()
+	if _dist < dist:
+		showed = true
+		_inside()
+	
+var showed: bool = false
+
+func _inside()-> void:
+	pass

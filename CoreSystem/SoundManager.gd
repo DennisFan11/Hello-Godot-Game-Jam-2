@@ -63,9 +63,7 @@ func play_stream_sound(stream: AudioStream, position: Vector2, volume_linear: fl
 
 var bgm_list = {
 	"title_music": preload("uid://b0ggxd0mr46i1"),
-	#"game_normal": preload("uid://7u2io5ishy6q"),
-	#"game_fight": preload("uid://iqvu7wusxhjl"),
-	#"game_fight2": preload("uid://b3bokkyjsrt0s")
+	"battle_music_1": preload("uid://dgufcxkt1jsdp")
 } # by lolurio
 
 

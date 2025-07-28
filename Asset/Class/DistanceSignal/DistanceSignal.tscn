@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b68cetxw3svh3"]
+
+[ext_resource type="Script" uid="uid://d1jgq8ai881o2" path="res://Asset/Class/DistanceSignal/DistanceSignal.gd" id="1_uqf5t"]
+
+[node name="DistanceSignal" type="Node2D"]
+script = ExtResource("1_uqf5t")
+dist = 0.0
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
