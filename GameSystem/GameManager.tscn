@@ -1,14 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=11 format=3 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
 [ext_resource type="PackedScene" uid="uid://tblwle8bwha6" path="res://GameSystem/Background/parallax_background.tscn" id="2_cmd41"]
+[ext_resource type="PackedScene" uid="uid://djxy1siqmm16l" path="res://GameSystem/_shared/Lake/Lake.tscn" id="5_30fhk"]
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
-[ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_kst1i"]
 [ext_resource type="PackedScene" uid="uid://dg3djwp882ugn" path="res://GameSystem/ShaderManager/ShaderManager.tscn" id="7_o6cs3"]
 [ext_resource type="PackedScene" uid="uid://b8b7q8fpnpmr5" path="res://GameSystem/MessageBoxManager/MessageBoxManager.tscn" id="10_40pkj"]
 [ext_resource type="PackedScene" uid="uid://bink73ofl073v" path="res://GameSystem/WaveManager/WaveManager.tscn" id="11_30fhk"]
-[ext_resource type="PackedScene" uid="uid://dysm5ban4fmau" path="res://GameSystem/WeaponEditor/WeaponEditor.tscn" id="11_cmd41"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
 [ext_resource type="PackedScene" uid="uid://dt04h06w01gic" path="res://GameSystem/TerrainManager/TerrainManager.tscn" id="13_ko6fk"]
 
@@ -3311,6 +3310,8 @@ Radius = 18.0
 
 [node name="TestNode" type="Node2D" parent="."]
 
+[node name="Lake" parent="TestNode" instance=ExtResource("5_30fhk")]
+
 [node name="BulletManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -3321,11 +3322,6 @@ unique_name_in_owner = true
 
 [node name="ShaderManager" parent="." instance=ExtResource("7_o6cs3")]
 
-[node name="GodSceneManager" parent="." instance=ExtResource("7_kst1i")]
-visible = false
-
-[node name="WeaponEditor" parent="." instance=ExtResource("11_cmd41")]
-
 [node name="MessageBoxLayer" type="CanvasLayer" parent="."]
 layer = 10
 follow_viewport_enabled = true
@@ -3333,6 +3329,5 @@ follow_viewport_enabled = true
 [node name="MessageBoxManager" parent="MessageBoxLayer" instance=ExtResource("10_40pkj")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="replacing_by" from="WeaponEditor" to="." method="_on_weapon_editor_replacing_by"]
 
 [editable path="TerrainManager"]

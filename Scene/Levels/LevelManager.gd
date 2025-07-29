@@ -46,66 +46,30 @@ func _on_scene_changed(scene_name: String):
 	# 如果 scene_name = 'Level1' 執行 start_game()
 	if scene_name == "Level1":
 		start_game()
-	# on_scene_loaded()
 
-# func _on_injected():
-# 	# 嘗試獲取 EnemyManager 並連接信號
-# 	_connect_enemy_manager()
 
-# func _connect_enemy_manager():
-# 	"""嘗試連接到 EnemyManager"""
-# 	# 從 DI 系統獲取 EnemyManager
-# 	# 檢查 DI._dependence是否有 _enemy_manager 這個 key
-# 	if "_enemy_manager" in DI._dependence:
-# 		var enemy_manager_obj = DI._dependence["_enemy_manager"]
-		
-# 		# 檢查對象是否有效且未被釋放
-# 		if is_instance_valid(enemy_manager_obj):
-# 			_enemy_manager = enemy_manager_obj as EnemyManager
-# 		else:
-# 			printerr("⚠ LevelManager 發現 EnemyManager 對象已被釋放")
-# 			_enemy_manager = null
-# 			return
-# 	else:
-# 		# 找不到的話就中斷
-# 		printerr("⚠ LevelManager 無法找到 EnemyManager")
-# 		return
-	
-# 	if _enemy_manager and is_instance_valid(_enemy_manager):
-# 		# 如果之前有連接其他的 EnemyManager，先斷開
-# 		if _enemy_manager.enemy_died.is_connected(_on_enemy_died):
-# 			_enemy_manager.enemy_died.disconnect(_on_enemy_died)
-		
-# 		# 連接新的 EnemyManager
-# 		_enemy_manager.enemy_died.connect(_on_enemy_died)
-# 		print("✓ LevelManager 已連接到新的 EnemyManager")
-# 	else:
-# 		print("⚠ LevelManager 無法找到有效的 EnemyManager")
+# 暫停戰鬥界面
+func pause_scene():
+	if current_scene:
+		current_scene.set_process_mode(PROCESS_MODE_DISABLED)
 
-## 公開方法：讓其他系統通知場景已載入
-# func on_scene_loaded():
-# 	"""當新場景載入時調用此方法"""
-# 	# 重置敵人死亡計數
-# 	_current_enemy_dead_count = 0
-# 	# 重新連接 EnemyManager
-# 	_connect_enemy_manager()
+# 取消暫停戰鬥界面
+func start_scene():
+	if current_scene:
+		current_scene.set_process_mode(PROCESS_MODE_INHERIT)
 
-# func _on_enemy_died(enemy: Enemy):
-# 	_current_enemy_dead_count += 1
-# 	print("敵人死亡: ", enemy, " (總數: ", _current_enemy_dead_count, ")")
-# 	# 當敵人死亡時，檢查是否需要進行關卡更新
-# 	if not _game_started:
-# 		return
-# 	# 檢查是否達到下一關的擊殺數
-# 	if _current_level_index < 0 or _current_level_index >= KILLS_REQUIRED.size():
-# 		printerr("無效的關卡索引: ", _current_level_index)
-# 		return
-# 	if _current_enemy_dead_count >= KILLS_REQUIRED[_current_level_index]:
-# 		print("達到關卡擊殺數: ", _current_enemy_dead_count, "需要: ", KILLS_REQUIRED[_current_level_index])
-# 		# 前進到下一關
-# 		var next_level = advance_to_next_level()
-# 		if CoreManager:
-# 			await CoreManager.goto_scene(next_level)
+
+
+func clear_scene():
+	current_scene = null
+
+func set_scene(scene:GameManager = null):
+	current_scene = scene
+
+func get_scene() -> GameManager:
+	return current_scene
+
+
 
 ## 獲取當前關卡
 func get_current_level() -> String:
@@ -190,12 +154,14 @@ func is_sequence_completed() -> bool:
 
 func goto_scene(scene):
 	if CoreManager:
+		set_scene()
 		var new_scene = await CoreManager.goto_scene(scene)
 	else:
 		printerr("CoreManager 不可用")
 
 
 
+# 生成目標bullet到GameManager
 func spawn_bullet(bullet:Bullet):
 	current_scene.spawn_bullet(bullet)
 

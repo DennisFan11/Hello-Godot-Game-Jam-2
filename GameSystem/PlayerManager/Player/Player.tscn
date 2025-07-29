@@ -71,7 +71,8 @@ target_position = Vector2(-10, 24)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_asllk")
 
-[node name="WeaponSlot" parent="Body" instance=ExtResource("7_yuso2")]
+[node name="WeaponSlot" parent="Body" node_paths=PackedStringArray("user") instance=ExtResource("7_yuso2")]
+user = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

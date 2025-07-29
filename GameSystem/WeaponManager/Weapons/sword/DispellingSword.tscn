@@ -53,6 +53,7 @@ metadata/_custom_type_script = "uid://bdeqmgr2eaibo"
 
 [node name="WeaponTail" parent="PhysicalComponent" index="0" instance=ExtResource("2_yhvy4")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(11.4028, -11.2239)
 rotation = -0.777493
 width = 30
@@ -77,6 +78,7 @@ disabled = true
 script = ExtResource("2_qe3q1")
 damage = 20
 enable = false
+cooldown = 1.0
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="DispellingAttack" type="Node" parent="AttackManager" index="1"]

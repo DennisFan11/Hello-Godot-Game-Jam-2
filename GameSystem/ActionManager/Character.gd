@@ -17,11 +17,13 @@ var direction = true
 
 
 func _ready() -> void:
+	_hp = max_hp
 	if anim_tree:
 		anim_tree.animation_finished.connect(_on_animation_finished)
 
 func health_change(value: int):
 	_hp = clampi(_hp + value, 0, max_hp)
+	printt(self, _hp, max_hp)
 
 # 回復生命值
 func heal(value: int):

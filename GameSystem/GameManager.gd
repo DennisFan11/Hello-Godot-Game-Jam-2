@@ -37,7 +37,7 @@ func _ready() -> void:
 	
 	%EnemyManager.enemy_died.connect(_on_enemy_died)
 	
-	LevelManager.current_scene = self
+	LevelManager.set_scene(self)
 	
 	print("✓ GameManager 初始化完成")
 	SoundManager.play_bgm("battle_music_1")

@@ -27,6 +27,7 @@ var weapon_map = {
 	},
 }
 
+
 func get_random_weapon_id() -> String:
 	return "DispellingSword"
 	return weapon_map.keys().pick_random()
@@ -40,3 +41,14 @@ func create_weapon_scene(id: String) -> Weapon:
 
 func create_random_weapon() -> Weapon:
 	return create_weapon_scene(get_random_weapon_id())
+
+
+
+func get_player_weapon():
+	return DI.get_dependence("_weapon_slot").take_first_weapon()
+
+func set_player_weapon(weapon:Weapon):
+	DI.get_dependence("_weapon_slot").set_current_weapon(weapon)
+
+func duplicate_player_weapon():
+	return get_player_weapon().duplicate()

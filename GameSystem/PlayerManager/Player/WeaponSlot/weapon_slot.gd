@@ -1,30 +1,37 @@
 class_name WeaponSlot
 extends Node2D
 
+@export var user:Character
+
 var first_weapon: Weapon
 var total_weight: float = 1.0
 
 
 func _ready() -> void:
-	DI.register("_weapon_slot", self)
+	if user is Player:
+		DI.register("_weapon_slot", self)
 
 
 ## TEST
-var _player_manager: PlayerManager
 func _on_injected():
 	var weapon: Weapon = WeaponManager.create_random_weapon()
 	set_current_weapon(weapon)
 
 func set_current_weapon(weapon: Weapon) -> void:
 	if not weapon: return
-	
+
 	if first_weapon:
 		first_weapon.queue_free()
-	weapon.summoner = _player_manager.player
-	first_weapon = weapon
-	
+	weapon.summoner = user
+	var w = weapon.next_weapon
+	while w:
+		w.summoner = user
+		w = w.next_weapon
+
 	weapon.move_to(self, %GlueLayer, false)
 	weapon.init_move(self)
+
+	first_weapon = weapon
 
 func take_first_weapon() -> Weapon:
 	if first_weapon:

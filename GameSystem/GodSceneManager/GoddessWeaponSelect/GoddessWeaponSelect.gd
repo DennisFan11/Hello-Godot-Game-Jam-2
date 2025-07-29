@@ -52,7 +52,6 @@ var animated_icon: TextureRect
 signal journey_started
 
 var _god_scene_manager: GodSceneManager
-var _weapon_slot: WeaponSlot
 
 # 文本檔案路徑
 const DIALOGUE_FILE_PATH = "res://GameSystem/GodSceneManager/GoddessWeaponSelect/dialogue_texts.json"
@@ -69,6 +68,8 @@ const WEAPON_ICON_PATH = "res://icon.svg"
 const BUTTON_PATH_TEMPLATE = "WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton%dContainer/WeaponButton%d"
 const DESCRIPTION_PATH_TEMPLATE = "WeaponSelectionPanel/WeaponButtonsContainer/WeaponButton%dContainer/WeaponButton%dDescription"
 
+var main_weapon
+
 func _ready():
 	DI.register("_god_weapon_select", self)
 	dialogue_panel.visible = false
@@ -78,11 +79,9 @@ func _ready():
 	_load_dialogue_texts()
 	_setup_ui()
 	visible = false
-	
-func _on_injected():
-	# 連接信號並等待觸發
-	if (_god_scene_manager):
-		_god_scene_manager.start_scene_requested.connect(_on_start_scene_requested)
+
+func set_god_scene_manager(node:GodSceneManager):
+	_god_scene_manager = node
 
 func _load_dialogue_texts():
 	"""載入對話文本檔案"""
@@ -463,7 +462,7 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 		WeaponManager.create_weapon_scene(weapon_id))
 	# 顯示女神的回應並等待完成
 	await _show_goddess_response(weapon)
-	_god_scene_manager._finished.emit(weapon)
+	_god_scene_manager.end_event(weapon)
 
 func _show_goddess_response(weapon: Weapon):
 	"""顯示女神對玩家選擇的回應"""
@@ -537,13 +536,10 @@ func _weapon_drop_animation():
 	"""武器掉落動畫 - 自由落體效果"""
 	dropped_weapon_image = TextureRect.new()
 
-	# 從 _weapon_slot.take_first_weapon 複製一個當前的武器
-	var weapon = _weapon_slot.take_first_weapon().duplicate(1 << 1 || 1 << 2 || 1 << 4 || 1 << 8)
-
 	# weapon 的 scale 設為 5倍
-	weapon.scale = Vector2(5, 5)
+	main_weapon.scale = Vector2(5, 5)
 
-	dropped_weapon_image.add_child(weapon)
+	dropped_weapon_image.add_child(main_weapon)
 	# var weapon_texture = load("res://icon.svg") # 暫時使用icon作為武器圖片
 	# if weapon_texture:
 	# 	dropped_weapon_image.texture = weapon_texture
@@ -865,8 +861,9 @@ func _animate_weapon_icon_selection(button_index: int):
 	# 動畫完成後清理複製的 icon
 	await move_tween.finished
 
-func _on_start_scene_requested():
+func start_scene(weapon):
 	visible = true
+	main_weapon = weapon
 	# 淡入效果
 	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 1.0, 1.0)

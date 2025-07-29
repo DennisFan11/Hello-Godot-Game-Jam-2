@@ -53,3 +53,6 @@ func _auto_reg():
 	pass
 	#register("_building_config", preload("uid://bgqyjpa0ubmsi"))
 #
+
+func get_dependence(key:String, value = null):
+	return _dependence.get(key, value)

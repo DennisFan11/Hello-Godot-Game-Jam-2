@@ -1,45 +1,45 @@
 class_name WeaponEditor
-extends Node2D
+extends CanvasLayer
 
 func _ready() -> void:
 	DI.register("_weapon_editor", self)
 	visible = false
-	%CanvasLayer.visible = false
 
-var _shader_manager: ShaderManager
+#var _shader_manager: ShaderManager
 
 var _base_weapon: Weapon
 var _new_weapon: Weapon
 
-func start_event(base_weapon: Weapon, new_weapon: Weapon=null):
-	_base_weapon = base_weapon
-	_new_weapon = new_weapon
+func start_event(args):
+	set_process_mode(PROCESS_MODE_INHERIT)
+	print(args)
+	_base_weapon = args[0]
+	_new_weapon = args[1]
 	
-	_shader_manager.enable("frosted_glass")
+	#_shader_manager.enable("frosted_glass")
 	visible = true
-	%CanvasLayer.visible = true
 	
-	base_weapon.is_main = true
-	base_weapon.move_to(%BaseWeaponMarker, %GlueLayer, false)
+	_base_weapon.is_main = true
+	_base_weapon.move_to(%BaseWeaponMarker, %GlueLayer, false)
 	
-	if new_weapon:
+	if _new_weapon:
 		#new_weapon.is_main = false
 		%FinishButton.disabled = true
-		new_weapon.move_to(%SelectedMarker, %GlueLayer)
+		_new_weapon.move_to(%SelectedMarker, %GlueLayer)
 	
 	_rebind_weapon_event()
-	await _finished
-	visible = false
-	%CanvasLayer.visible = false
 
-	_shader_manager.disable("frosted_glass")
+func end_event():
+	visible = false
+	set_process_mode(PROCESS_MODE_PAUSABLE)
+	LevelManager.start_scene()
 
 signal _finished
 
 var _player_manager: PlayerManager
 func _process(delta: float) -> void:
 	%SelectedMarker.position = %SelectedMarker.get_global_mouse_position()
-	%BaseWeaponMarker.global_position = _player_manager.get_player_position()
+	#%BaseWeaponMarker.global_position = _player_manager.get_player_position()
 	_weapon_shader_update()
 
 func _unhandled_input(event: InputEvent):
@@ -89,14 +89,12 @@ func merge():
 
 #
 
-var _weapon_slot: WeaponSlot
 func _on_finish_button_pressed() -> void:
 	if _new_weapon:
 		%FinishButton.disabled = false
-	_weapon_slot.set_current_weapon(_base_weapon)
-	_base_weapon = null
-	_finished.emit()
+	WeaponManager.set_player_weapon(_base_weapon)
 	print("[WEAPON EDITOR] weapon edit finish")
+	end_event()
 
 var select_cooldown: CooldownTimer = CooldownTimer.new()
 func _on_selected_weapon(selected_weapon: Weapon):
