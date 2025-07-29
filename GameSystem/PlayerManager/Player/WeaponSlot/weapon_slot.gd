@@ -22,10 +22,11 @@ func set_current_weapon(weapon: Weapon) -> void:
 
 	if first_weapon:
 		first_weapon.queue_free()
-	weapon.summoner = user
-	var w = weapon.next_weapon
+
+	var w = weapon
 	while w:
 		w.summoner = user
+		w.get_node("%AttackManager").update_attack_type()
 		w = w.next_weapon
 
 	weapon.move_to(self, %GlueLayer, false)

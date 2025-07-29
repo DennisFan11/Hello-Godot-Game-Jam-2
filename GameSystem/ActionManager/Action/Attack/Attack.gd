@@ -22,8 +22,6 @@ func try_attack(_delta):
 	pass
 
 func attack(t):
-	if target.name == "Fire":
-		print(t._hp)
 	if current_damage > 0 \
 	and (not t in attack_cooldown_dict.keys() \
 	or attack_cooldown_dict[t].is_ready()):
