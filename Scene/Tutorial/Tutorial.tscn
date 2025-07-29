@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcmasoxjfybi5"]
+[gd_scene load_steps=10 format=3 uid="uid://bcmasoxjfybi5"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_w5d86"]
 [ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="2_bnj1i"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bcvphcm5mrft5" path="res://Asset/Class/hint/Hinter.tscn" id="4_bd1n5"]
 [ext_resource type="PackedScene" uid="uid://b68cetxw3svh3" path="res://Asset/Class/DistanceSignal/DistanceSignal.tscn" id="5_fred4"]
 [ext_resource type="Script" uid="uid://dkhkhr6me555s" path="res://Scene/Tutorial/BattleEvent.gd" id="6_bweva"]
+[ext_resource type="PackedScene" uid="uid://d0t4w5bfhv8jn" path="res://GameSystem/GodSceneManager/GodSceneManager.tscn" id="7_r70o2"]
+[ext_resource type="PackedScene" uid="uid://dysm5ban4fmau" path="res://GameSystem/WeaponEditor/WeaponEditor.tscn" id="8_8lcm1"]
 
 [sub_resource type="Resource" id="Resource_fred4"]
 script = ExtResource("3_bd1n5")
@@ -2303,5 +2305,12 @@ dist = 72.62
 position = Vector2(694, -221)
 script = ExtResource("6_bweva")
 dist = 200.0
+
+[node name="GodSceneManager" parent="." index="9" instance=ExtResource("7_r70o2")]
+visible = false
+
+[node name="WeaponEditor" parent="." index="10" instance=ExtResource("8_8lcm1")]
+
+[connection signal="replacing_by" from="WeaponEditor" to="." method="_on_weapon_editor_replacing_by"]
 
 [editable path="TerrainManager"]

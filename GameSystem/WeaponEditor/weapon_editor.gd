@@ -32,7 +32,6 @@ func start_event(args):
 func end_event():
 	visible = false
 	set_process_mode(PROCESS_MODE_PAUSABLE)
-	LevelManager.start_scene()
 
 signal _finished
 

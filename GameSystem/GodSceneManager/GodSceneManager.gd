@@ -10,7 +10,6 @@ func _ready() -> void:
 	%GoddessWeaponSelect.set_god_scene_manager(self)
 
 func start_event(args):
-	LevelManager.pause_scene()
 
 	set_process_mode(PROCESS_MODE_INHERIT)
 	var player_weapon = WeaponManager.duplicate_player_weapon()
@@ -29,6 +28,5 @@ func end_event(new_weapon):
 	else:
 		# 如果 _weapon_slot.get_current_weapon() 為 null，則返回空陣列
 		print("GodSceneManager: No weapon selected.")
-		LevelManager.start_game()
 	
 	set_process_mode(PROCESS_MODE_PAUSABLE)

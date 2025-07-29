@@ -64,7 +64,7 @@ func _tutorial()-> void:
 			break
 	
 	ConfigRepo.repo.set_value("LEVEL_MANAGER", "need_tutorial", false)
-	
+	ConfigRepo.save()
 	
 
 func _win():
