@@ -7,7 +7,7 @@ var repo:ConfigFile = null
 
 func _ready() -> void:
 	repo = ConfigFile.new()
-	#Logger.printLog( "[CONFIG] load: ", repo.load(PATH) )
+	repo.load(PATH)
 	
 func save():
 	return repo.save(PATH)

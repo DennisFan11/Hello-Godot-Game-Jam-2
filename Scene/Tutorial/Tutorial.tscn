@@ -13,6 +13,7 @@ WaveArray = Array[ExtResource("2_bnj1i")]([])
 metadata/_custom_type_script = "uid://cu0xicm6f2rtw"
 
 [node name="Tutorial" instance=ExtResource("1_w5d86")]
+next_level_kill_count = 5
 
 [node name="WaveManager" parent="." index="1"]
 waveConfig = SubResource("Resource_fred4")

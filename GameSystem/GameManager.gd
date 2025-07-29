@@ -4,7 +4,6 @@ class_name GameManager extends Node
 @export var next_level_kill_count:int = 10
 
 var kill_count:int = 0
-var level_finish:bool = false
 
 func Save():
 	await _recursive_call(self, "_save")
@@ -37,7 +36,6 @@ func _ready() -> void:
 	
 	%EnemyManager.enemy_died.connect(_on_enemy_died)
 	
-	LevelManager.set_scene(self)
 	
 	print("✓ GameManager 初始化完成")
 	SoundManager.play_bgm("battle_music_1")
@@ -51,14 +49,11 @@ func spawn_bullet(bullet:Bullet):
 	%BulletManager.add_child(bullet)
 
 
-
+signal on_end(win:bool)
 func finish():
-	if not level_finish:
-		level_finish = true
-		LevelManager.goto_next_level()
+	on_end.emit(true)
 
-
-
+## FIXME
 func _on_enemy_died(enemy:Enemy):
 	kill_count += 1
 	print(kill_count, "/", next_level_kill_count, " ", enemy)

@@ -2,16 +2,13 @@ extends Node2D
 
 
 func _ready() -> void:
-	pass
 	SoundManager.play_bgm("title_music")
 
 func _on_button_pressed() -> void:
-	await CoreManager.goto_scene("Level1")
-	#CoreManager.enter_game()
+	LevelManager.start_game()
 
 
 func _on_upgrade_shop_button_pressed() -> void:
-	print("前往強化商店...")
 	await CoreManager.goto_scene("UpgradeShop")
 
 
