@@ -48,6 +48,10 @@ func _exit_tree() -> void:
 func spawn_bullet(bullet:Bullet):
 	%BulletManager.add_child(bullet)
 
+func stop_game()-> void:
+	set_process_mode(Node.PROCESS_MODE_DISABLED)
+func continue_game()-> void:
+	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 signal on_end(win:bool)
 func finish():

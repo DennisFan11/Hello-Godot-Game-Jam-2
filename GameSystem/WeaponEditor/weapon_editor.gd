@@ -9,9 +9,13 @@ func _ready() -> void:
 
 var _base_weapon: Weapon
 var _new_weapon: Weapon
+var _game_manager: GameManager
 
 func start_event(args):
+	await DI.injection(self)
+	_game_manager.stop_game()
 	set_process_mode(PROCESS_MODE_INHERIT)
+	
 	print(args)
 	_base_weapon = args[0]
 	_new_weapon = args[1]
@@ -32,6 +36,8 @@ func start_event(args):
 func end_event():
 	visible = false
 	set_process_mode(PROCESS_MODE_PAUSABLE)
+	DI.injection(self)
+	_game_manager.continue_game()
 
 signal _finished
 
