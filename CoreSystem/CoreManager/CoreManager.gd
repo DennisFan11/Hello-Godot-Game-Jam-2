@@ -8,6 +8,10 @@ var SCENE := {
 	"Title": {
 		"file": preload("uid://bg4ji6py6jgn8")
 	},
+	"Tutorial":{
+		"file": preload("uid://bcmasoxjfybi5")
+	},
+	
 	"Level1": {
 		"file": preload("uid://jghh2wj4o126")
 	},
@@ -17,6 +21,7 @@ var SCENE := {
 	"Level3": {
 		"file": preload("uid://dmq6hvpeioana")
 	},
+	
 	"UpgradeShop": {
 		"file": preload("uid://c0p31kfgvdkkq")
 	},
