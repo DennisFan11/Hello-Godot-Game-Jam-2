@@ -25,7 +25,7 @@ func get_variance_vec():
 
 func _get_move_vec()-> Vector2:
 	if target.summoner is Player:
-		#var vec = Vector2.RIGHT if _player_manager.player.
-		return Vector2.RIGHT.rotated(_player_manager.get_player_rotation())
+		return (Vector2.RIGHT if target.summoner.direction else Vector2.LEFT) \
+			.rotated(_player_manager.get_player_rotation())
 	else:
 		return super()

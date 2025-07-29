@@ -103,9 +103,9 @@ metadata/_custom_type_script = "uid://bvlsuqgqmfop7"
 
 [node name="SwordMove3" type="Node" parent="MoveManager" index="2"]
 script = ExtResource("4_r280n")
-swing_angle = 450
+swing_angle = 810
 initial_angle = -225
-speed = 0.5
+speed = 0.2
 enable = false
 metadata/_custom_type_script = "uid://bvlsuqgqmfop7"
 

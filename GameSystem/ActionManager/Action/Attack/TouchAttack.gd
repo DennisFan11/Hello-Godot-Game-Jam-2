@@ -3,11 +3,11 @@ extends Attack
 
 # 觸碰玩家時攻擊
 func try_attack(delta: float) -> void:
-	if target is CharacterBody2D:
-		try_attack_char(delta, target)
-	elif target is Area2D:
-		try_attack_area(delta, target)
-	elif target is Weapon:
+	if control_target is CharacterBody2D:
+		try_attack_char(delta, control_target)
+	elif control_target is Area2D:
+		try_attack_area(delta, control_target)
+	elif control_target is Weapon:
 		try_attack_weapon(delta)
 
 func try_attack_char(_delta:float, body:CharacterBody2D):

@@ -153,8 +153,8 @@ func change_direction(velocity):
 	#if state == ON_WALL:
 		#new_direction = not new_direction
 
-	if new_direction == direction:
+	if new_direction == target.direction:
 		return
 
 	%Body.scale.x = 1 if new_direction else -1
-	direction = new_direction
+	target.direction = new_direction

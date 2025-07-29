@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 
 	# 撞牆後反彈
 	if bounce:
-		var slide_collision = target.get_last_slide_collision()
+		var slide_collision = control_target.get_last_slide_collision()
 		if slide_collision:
 			var normal = -abs(slide_collision.get_normal())
 			if normal.x != 0.0:

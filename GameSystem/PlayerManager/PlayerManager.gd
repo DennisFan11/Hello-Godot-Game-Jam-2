@@ -31,10 +31,10 @@ func get_player_position()-> Vector2:
 	return player.position if player else Vector2.ZERO
 
 func get_player_velocity()-> Vector2:
-	return player.velocity
+	return player.velocity if player else Vector2.ZERO
 
+func get_player_rotation()-> float:
+	return player.rotation if player else 0.0
 
 func _on_player_died(player:Player):
 	player_died.emit(player)
-func get_player_rotation()-> float:
-	return player.rotation if player else 0.0

@@ -17,9 +17,6 @@ extends Action
 ## 主要用於遠程角色的位置調整
 @export var social_distance:Vector2
 
-## 面朝方向
-## false:左 true:右
-var direction = true
 
 var is_collide: bool = false
 

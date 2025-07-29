@@ -78,11 +78,11 @@ autoplay = "new_animation"
 script = ExtResource("3_51tv2")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
-[node name="TouchAttack" type="Node" parent="AttackManager" node_paths=PackedStringArray("target")]
+[node name="TouchAttack" type="Node" parent="AttackManager" node_paths=PackedStringArray("control_target")]
 script = ExtResource("4_32t58")
 damage = 30
-target = NodePath("../../Area2D")
-fixed_target = true
+control_target = NodePath("../../Area2D")
+fixed_control = true
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="MoveManager" type="Node" parent="."]
@@ -92,5 +92,6 @@ metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 [node name="BallMove" type="Node" parent="MoveManager"]
 script = ExtResource("6_tpuav")
 bounce = false
-MAX_SPEED = Vector2(10, 10)
+variance_enable = false
+MAX_SPEED = Vector2(20, 20)
 metadata/_custom_type_script = "uid://du67lfy1e8gmt"

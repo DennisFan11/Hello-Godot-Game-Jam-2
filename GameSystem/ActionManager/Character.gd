@@ -10,6 +10,10 @@ signal died(character:Character)
 
 var _hp: int = 30
 
+## 面朝方向
+## false:左 true:右
+var direction = true
+
 
 
 func _ready() -> void:

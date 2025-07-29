@@ -13,6 +13,10 @@ func try_move_x(value:float, delta:float):
 		value = super(value, delta)
 	return value
 
+func jump():
+	move_pos = super.get_move_pos()
+	return super()
+
 func _need_jump() -> bool:
 	if _cooldown_timer.is_ready():
 		_cooldown_timer.trigger(cooldown)
@@ -20,6 +24,4 @@ func _need_jump() -> bool:
 	return false
 
 func get_move_pos():
-	if can_jump or move_pos == Vector2.ZERO:
-		move_pos = super()
 	return move_pos
