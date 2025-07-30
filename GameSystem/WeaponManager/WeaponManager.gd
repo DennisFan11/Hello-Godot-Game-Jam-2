@@ -13,9 +13,9 @@ var weapon_map = {
 	"DispellingSword": {
 		"scene": preload("uid://bqgvi3j3xs1ku"),
 	},
-	"GDweapon": {
-		"scene": preload("uid://bsxrnj083mcwt"),
-	},
+	#"GDweapon": {
+		#"scene": preload("uid://bsxrnj083mcwt"),
+	#},
 	"Knife": {
 		"scene": preload("uid://dq5iml0qmpxk"),
 	},
@@ -32,7 +32,7 @@ var weapon_map = {
 
 
 func get_random_weapon_id() -> String:
-	return "Excalibur"
+	#return "Excalibur"
 	return weapon_map.keys().pick_random()
 
 func create_weapon_scene(id: String) -> Weapon:

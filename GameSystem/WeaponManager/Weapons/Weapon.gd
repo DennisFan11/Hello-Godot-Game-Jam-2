@@ -179,6 +179,7 @@ var _message_box_manager: MessageBoxManager
 var _physical_components: Array[PhysicalComponent] = []
 
 func _ready() -> void:
+	_physical_components = []
 	for child: Node in get_children():
 		if child is PhysicalComponent:
 			_add_physical_components(child)
@@ -186,7 +187,7 @@ func _ready() -> void:
 var _message_box: MessageBox
 func _add_physical_components(child: PhysicalComponent):
 	_physical_components.append(child)
-	child.freeze = is_main
+	child.freeze = true
 	child._set_metaball()
 	child.input_event.connect(
 		func(viewport: Node, event: InputEvent, shape_idx: int) -> void:

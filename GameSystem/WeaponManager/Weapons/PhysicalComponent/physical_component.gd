@@ -72,15 +72,17 @@ var metaball_node: Node2D
 func _set_metaball():
 	var glue_layer = get_parent().glue_layer
 	if not glue_layer:
+		assert("no glue_layer !!!")
 		return
-
+	
+	#return
 	var node: Sprite2D = %SDF_Test.duplicate()
 	glue_layer.add_child(node)
-	
-	node.position = position
-	node.scale = scale
-	node.rotation = rotation
+	%RemoteTransform2D.remote_path = node.get_path()
+
 	node.visible = true
+	
+	
 	
 	tree_exited.connect(node.queue_free)
 	metaball_node = node
@@ -119,6 +121,8 @@ func is_glued()-> bool:
 func _set_state(s: String):
 	%StateLabel.text = s
 
+func set_state_visible(v: bool)-> void:
+	%StateLabel.visible = v
 
 
 
