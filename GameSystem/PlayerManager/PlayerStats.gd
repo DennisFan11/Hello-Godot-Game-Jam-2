@@ -1,8 +1,8 @@
 class_name PlayerStats
 extends SaveResource
 
-var max_health: int = 100
-var current_health: int = 100
+var max_health: int = 200
+var current_health: int = 200
 var attack_damage: int = 10
 var move_speed: float = 100.0
 var jump_power: float = 200.0

@@ -32,9 +32,20 @@ func heal(value: int):
 	health_change(value)
 
 # 受到傷害
-func take_damage(value: int):
-	health_change(-value)
+var _particle_manager: ParticleManager
+var _overbody: CooldownTimer = CooldownTimer.new()
+const OVERBODY_TIME := 0.5
 
+func take_damage(value: int, from: Node2D):
+	if not _overbody.is_ready():
+		return 
+	_overbody.trigger(OVERBODY_TIME)
+	
+	_particle_manager.create("Blood", global_position)\
+		.rotation = (global_position - from.global_position).angle()
+	
+	health_change(-value)
+	
 	if _hp == 0:
 		dead()
 

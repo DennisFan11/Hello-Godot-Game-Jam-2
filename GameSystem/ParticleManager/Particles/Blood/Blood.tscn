@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://mf63u76gof4f"]
+[gd_scene load_steps=5 format=3 uid="uid://mf63u76gof4f"]
+
+[ext_resource type="Texture2D" uid="uid://b6eodgq77fvi4" path="res://GameSystem/ParticleManager/Particles/Blood/Blood.png" id="1_5b2y2"]
 
 [sub_resource type="Gradient" id="Gradient_ojtiw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -7,18 +9,27 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_ojtiw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxojx"]
+particle_flag_align_y = true
 particle_flag_disable_z = true
-angle_min = -720.0
-angle_max = 730.0
-spread = 180.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+spread = 20.0
+initial_velocity_min = 15.0
 initial_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.01
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_5b2y2")
 
 [node name="Blood" type="GPUParticles2D"]
 emitting = false
 amount = 15
+texture = ExtResource("1_5b2y2")
 one_shot = true
-explosiveness = 0.69
+explosiveness = 0.5
 process_material = SubResource("ParticleProcessMaterial_lxojx")

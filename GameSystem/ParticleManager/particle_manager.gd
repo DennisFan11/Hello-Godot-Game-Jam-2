@@ -10,10 +10,11 @@ var _scene_map = {
 }
 
 
-func create(type: String, global_pos: Vector2):
+func create(type: String, global_pos: Vector2)-> Node2D:
 	var node: GPUParticles2D = \
 		_scene_map[type].instantiate()
 	node.global_position = global_pos
 	node.emitting = true
 	node.finished.connect(node.queue_free)
 	add_child(node)
+	return node

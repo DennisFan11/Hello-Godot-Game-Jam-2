@@ -25,7 +25,7 @@ func attack(t):
 	if current_damage > 0 \
 	and (not t in attack_cooldown_dict.keys() \
 	or attack_cooldown_dict[t].is_ready()):
-		t.take_damage(current_damage)
+		t.take_damage(current_damage, target)
 
 		var new_cooldown_timer = CooldownTimer.new()
 		new_cooldown_timer.trigger(cooldown)
