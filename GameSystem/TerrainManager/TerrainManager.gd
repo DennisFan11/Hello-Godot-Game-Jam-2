@@ -4,16 +4,18 @@ extends Node2D
 
 const BLOCK_SIZE:Vector2 = Vector2(50.0, 50.0)
 
-@export var _map_data: Array = []
+@export var _map_data: Array
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		DI.register("_terrain_manager", self)
 	DestroyableBlock._terrain_manager = self
-	TerrainEditor._terrain_manager = self
-	Brush._terrain_manager = self
 	DestroyableBlock.BlockSize = BLOCK_SIZE
 	load_map()
+	TerrainEditor._terrain_manager = self
+	Brush._terrain_manager = self
+	
+	
 
 
 
@@ -46,7 +48,7 @@ func save_map():
 	
 
 func load_map():
-	
+	print("[TERRAIN MANAGER] LoadMap")
 	## clear map
 	for i:DestroyableBlock in %TerrainShader.get_children():
 		if is_instance_valid(i): i.queue_free()

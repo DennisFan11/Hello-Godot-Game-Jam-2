@@ -67,6 +67,10 @@ Glue=""
 PhysicalComponent=""
 Bullet=""
 
+[gui]
+
+theme/custom_font="uid://b5gbqt27lmlcs"
+
 [input]
 
 up={
