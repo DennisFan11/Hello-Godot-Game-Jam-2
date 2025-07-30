@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg4ag1spy7bdx"]
+[gd_scene load_steps=5 format=3 uid="uid://bg4ag1spy7bdx"]
 
 [ext_resource type="Script" uid="uid://xa0qokdojcla" path="res://GameSystem/PlayerManager/PlayerManager.gd" id="1_ne4h4"]
 [ext_resource type="Script" uid="uid://d4kvnwbk24my8" path="res://GameSystem/PlayerManager/Camera.gd" id="2_b5ih3"]
 [ext_resource type="PackedScene" uid="uid://d1cttuf3xyh2x" path="res://GameSystem/_shared/GlueLayer/GlueLayer.tscn" id="3_7lkel"]
+[ext_resource type="Texture2D" uid="uid://c7snqgvtubxsp" path="res://Asset/Image/Cursor.png" id="4_u0827"]
 
 [node name="PlayerManager" type="Node2D"]
 visibility_layer = 7
 script = ExtResource("1_ne4h4")
+cursor = ExtResource("4_u0827")
 
 [node name="SpawnMarker2D" type="Marker2D" parent="."]
 unique_name_in_owner = true

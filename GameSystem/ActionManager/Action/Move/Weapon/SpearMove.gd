@@ -1,9 +1,5 @@
-class_name SwordMove
+class_name SpearMove
 extends WeaponMove
-
-@export var swing_angle:int = 180
-
-
 
 func init_move(weapon_slot:Node2D):
 	weapon_slot.rotation_degrees = initial_angle

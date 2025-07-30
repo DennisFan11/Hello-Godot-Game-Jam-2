@@ -12,6 +12,12 @@ var text:String = "":
 		if %RichTextLabel:
 			%RichTextLabel.text = new
 
+@export var text_size:int = 16:
+	set(new):
+		text_size = new
+		if %RichTextLabel:
+			%RichTextLabel.add_theme_font_size_override("normal_font_size", new)
+
 @export
 var dist:float:
 	set(new):

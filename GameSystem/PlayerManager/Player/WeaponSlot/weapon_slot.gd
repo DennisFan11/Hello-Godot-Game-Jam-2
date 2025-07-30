@@ -17,6 +17,12 @@ func _on_injected():
 	var weapon: Weapon = WeaponManager.create_random_weapon()
 	set_current_weapon(weapon)
 
+func _process(delta: float) -> void:
+	if first_weapon:
+		first_weapon.point_to_mouse(self)
+
+
+
 func set_current_weapon(weapon: Weapon) -> void:
 	if not weapon: return
 

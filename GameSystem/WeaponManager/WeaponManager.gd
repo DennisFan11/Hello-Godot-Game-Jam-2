@@ -1,6 +1,9 @@
 extends Node
 
 var weapon_map = {
+	"Excalibur":{
+		"scene": preload("uid://4vimk1pu87eh")
+	},
 	"sword": {
 		"scene": preload("uid://b0nre1wp17b5l"),
 	},
@@ -29,7 +32,7 @@ var weapon_map = {
 
 
 func get_random_weapon_id() -> String:
-	return "DispellingSword"
+	return "Excalibur"
 	return weapon_map.keys().pick_random()
 
 func create_weapon_scene(id: String) -> Weapon:

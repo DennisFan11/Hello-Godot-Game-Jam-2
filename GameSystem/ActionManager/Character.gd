@@ -6,7 +6,7 @@ signal died(character:Character)
 @export var max_hp: int = 30
 @export var attack_damage: int = 0
 
-@onready var anim_tree:AnimationTree = %AnimationTree
+@onready var anim_tree:AnimationTree
 
 var _hp: int = 30
 
@@ -18,6 +18,8 @@ var direction = true
 
 func _ready() -> void:
 	_hp = max_hp
+	
+	anim_tree = %AnimationTree
 	if anim_tree:
 		anim_tree.animation_finished.connect(_on_animation_finished)
 

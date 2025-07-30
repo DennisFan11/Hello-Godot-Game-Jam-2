@@ -35,6 +35,12 @@ func get_enable_action():
 		func(c): return c.enable
 	)
 
+func get_first_enable_action() -> Action:
+	for child in get_children():
+		if child.enable:
+			return child
+	return null
+
 
 
 ## 加入更換行動的方法

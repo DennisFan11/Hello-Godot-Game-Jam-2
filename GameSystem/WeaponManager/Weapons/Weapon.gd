@@ -4,15 +4,15 @@ extends Derivative
 var id: String = "sword"
 
 ## 武器傷害
-@export var DMG: float = 15.0
+@export var DMG: float = 0.0
 ## 
 #@export var SPEED: float = 0.2
 ## 武器重量
 @export var WEIGHT: float = 1.0
-## 武器使用動畫
-@export var ANIM: String = "SwordType"
 
 @export var NAME: String = ""
+
+@export_multiline var DESC: String = ""
 
 
 
@@ -24,6 +24,10 @@ var glue_layer: Node2D:
 		request_ready()
 		if next_weapon:
 			next_weapon.glue_layer = new
+
+var in_attack:bool = false
+
+
 
 func get_weapon_name()-> String:
 	var str = ""
@@ -54,24 +58,22 @@ func move_to(target_node: Node2D, glue_layer: GlueLayer, keep_global_transform: 
 
 
 # used by player
-#func frame_attack(delta: float)-> void:
-	#for i in _physical_components:
-		#for j:Node2D in i.get_attack_area().get_overlapping_bodies():
-			#if j is Enemy:
-				#j.take_damage(get_damage())
-	#if next_weapon: next_weapon.frame_attack(delta)
+func point_to_mouse(weapon_slot):
+	var move = %MoveManager.get_first_enable_action()
+	if move:
+		move.point_to_mouse(weapon_slot)
 
 func init_move(weapon_slot):
-	var move = %MoveManager.get_enable_action()
+	var move = %MoveManager.get_first_enable_action()
 	if move:
-		move[0].init_move(weapon_slot)
+		move.init_move(weapon_slot)
 		return true
 	return false
 
 func start_move(weapon_slot, time):
-	var move = %MoveManager.get_enable_action()
+	var move = %MoveManager.get_first_enable_action()
 	if move:
-		move[0].start_move(weapon_slot, time)
+		move.start_move(weapon_slot, time)
 		return true
 	return false
 
@@ -79,11 +81,13 @@ func start_attack():
 	if %WeaponTail: %WeaponTail.enable = true
 	%AttackManager.enable_action(true)
 	if next_weapon: next_weapon.start_attack()
+	in_attack = true
 
 func end_attack():
 	if %WeaponTail: %WeaponTail.enable = false
 	%AttackManager.enable_action(false)
 	if next_weapon: next_weapon.end_attack()
+	in_attack = false
 
 # used by GodSceneManager
 signal on_click(weapon: Weapon)
