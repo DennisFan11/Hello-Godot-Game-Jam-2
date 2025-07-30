@@ -54,12 +54,12 @@ func continue_game()-> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 signal on_end(win:bool)
-func finish():
-	on_end.emit(true)
+func finish(win:bool):
+	on_end.emit(win)
 
 ## FIXME
 func _on_enemy_died(enemy:Enemy):
 	kill_count += 1
 	print(kill_count, "/", next_level_kill_count, " ", enemy)
 	if kill_count >= next_level_kill_count:
-		finish()
+		finish(true)

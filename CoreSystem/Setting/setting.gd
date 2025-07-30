@@ -25,9 +25,15 @@ func _on_exit_button_pressed() -> void:
 func _on_setting_button_pressed() -> void:
 	open = true
 
+var _game_manager: GameManager
 func _on_title_button_button_down() -> void:
-	CoreManager.goto_scene("Title")
 	open = false
+	DI.injection(self)
+	if _game_manager:
+		_game_manager.finish(false)
+	else:
+		CoreManager.goto_scene("Title")
+	
 
 
 
