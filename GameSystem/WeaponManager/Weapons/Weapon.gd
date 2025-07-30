@@ -48,6 +48,7 @@ func move_to(target_node: Node2D, glue_layer: GlueLayer, keep_global_transform: 
 	self.glue_layer = glue_layer
 	request_ready()
 	if not keep_global_transform:
+		self.scale = Vector2.ONE
 		self.position = Vector2.ZERO
 		self.rotation = 0.0
 	if get_parent():
