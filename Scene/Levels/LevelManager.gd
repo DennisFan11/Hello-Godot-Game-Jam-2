@@ -68,7 +68,7 @@ func _tutorial()-> void:
 	
 
 func _win():
-	pass
+	CoreManager.goto_scene("Title")
 
 func _lose():
 	CoreManager.goto_scene("Title")
