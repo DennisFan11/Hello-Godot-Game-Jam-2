@@ -3,8 +3,15 @@ extends CharacterBody2D
 
 signal died(character:Character)
 
+## 最大血量
 @export var max_hp: int = 30
+## 攻擊傷害
 @export var attack_damage: int = 0
+
+## 受擊間隔
+@export var overbody_time:float = 0.333
+## 受擊顏色
+@export var overbody_color:Color = Color(10, 0, 0, 10)
 
 @onready var anim_tree:AnimationTree
 
@@ -18,14 +25,20 @@ var direction = true
 
 func _ready() -> void:
 	_hp = max_hp
-	
+
 	anim_tree = %AnimationTree
 	if anim_tree:
 		anim_tree.animation_finished.connect(_on_animation_finished)
 
+func _process(_delta: float) -> void:
+	if _overbody.is_ready() or _hp <= 0:
+		modulate = Color.WHITE 
+	else:
+		modulate = overbody_color
+
+
 func health_change(value: int):
 	_hp = clampi(_hp + value, 0, max_hp)
-	printt(self, _hp, max_hp)
 
 # 回復生命值
 func heal(value: int):
@@ -33,21 +46,21 @@ func heal(value: int):
 
 # 受到傷害
 var _particle_manager: ParticleManager
-#var _overbody: CooldownTimer = CooldownTimer.new()
-#const OVERBODY_TIME := 0.5
+var _overbody: CooldownTimer = CooldownTimer.new()
 
-func take_damage(value: int, from: Node2D):
-	#if not _overbody.is_ready():
-		#return 
-	#_overbody.trigger(OVERBODY_TIME)
-	
-	_particle_manager.create("Blood", global_position)\
+func take_damage(value: int, from: Node2D) -> bool:
+	if not _overbody.is_ready() or value <= 0:
+		return false
+	_overbody.trigger(overbody_time)
+
+	_particle_manager.create("Blood", global_position) \
 		.rotation = (global_position - from.global_position).angle()
-	
+
 	health_change(-value)
-	
+
 	if _hp == 0:
 		dead()
+	return true
 
 func dead():
 	set_anim_state("dead", true)

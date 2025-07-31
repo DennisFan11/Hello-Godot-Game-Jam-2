@@ -119,7 +119,6 @@ func event_instantiate():
 			add_child(node)
 
 			EVENT[event_name].set("node", node)
-			print(EVENT)
 
 		else:
 			printerr(

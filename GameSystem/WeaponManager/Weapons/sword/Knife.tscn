@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ynmgrxw25he7" path="res://GameSystem/WeaponManager/Weapons/BaseWeapon.tscn" id="1_lg3jc"]
 [ext_resource type="Texture2D" uid="uid://c5t578vl10l8" path="res://Asset/Weapons/Knife.png" id="2_okbt6"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_spxom"]
-[ext_resource type="Script" uid="uid://bvlsuqgqmfop7" path="res://GameSystem/ActionManager/Action/Move/Weapon/SwordMove.gd" id="4_7n1je"]
+[ext_resource type="Script" uid="uid://b5quukm6t70pu" path="res://GameSystem/ActionManager/Action/Move/Weapon/SpearMove.gd" id="4_4wemx"]
 
 [sub_resource type="Image" id="Image_4wemx"]
 data = {
@@ -57,8 +57,9 @@ damage = 10
 enable = false
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
-[node name="SwordMove" type="Node" parent="MoveManager" index="0"]
-script = ExtResource("4_7n1je")
-metadata/_custom_type_script = "uid://bvlsuqgqmfop7"
+[node name="SpearMove" type="Node" parent="MoveManager" index="0"]
+script = ExtResource("4_4wemx")
+initial_angle = 0
+metadata/_custom_type_script = "uid://b5quukm6t70pu"
 
 [editable path="PhysicalComponent"]

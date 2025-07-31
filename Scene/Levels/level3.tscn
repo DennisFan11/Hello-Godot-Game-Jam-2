@@ -1,14 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmq6hvpeioana"]
+[gd_scene load_steps=2 format=3 uid="uid://dmq6hvpeioana"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_kdjv3"]
-[ext_resource type="PackedScene" uid="uid://dsivi152md61i" path="res://GameSystem/EnemyManager/Enemys/EnemyA/EnemyA.tscn" id="2_dxoiw"]
-[ext_resource type="PackedScene" uid="uid://cmbx8s22egbna" path="res://GameSystem/EnemyManager/Enemys/Slime.tscn" id="3_7u5qu"]
-[ext_resource type="PackedScene" uid="uid://bncde2rk1wyly" path="res://GameSystem/EnemyManager/Enemys/EnemyC.tscn" id="4_oo6o5"]
-[ext_resource type="PackedScene" uid="uid://4vlqptxodl6n" path="res://GameSystem/EnemyManager/Enemys/EnemyD.tscn" id="5_a8nhp"]
 
 [node name="GameManager" instance=ExtResource("1_kdjv3")]
 
-[node name="TerrainManager" parent="." index="1"]
+[node name="TerrainManager" parent="." index="2"]
 _map_data = [{
 "id": 1,
 "polygon": PackedVector2Array(-50, 50, -53.5085, 50, -52.7893, 49.2808, -52.7947, 49.2701, -53.2841, 46.18, -52.7947, 43.0898, -51.3743, 40.3021, -50, 38.9278),
@@ -3521,9 +3517,5 @@ _map_data = [{
 
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 10.0
-
-[node name="EnemyManager" parent="." index="4"]
-MAX_ENEMY_NUMBER = 50
-ENEMY_TYPE = Array[PackedScene]([ExtResource("2_dxoiw"), ExtResource("3_7u5qu"), ExtResource("4_oo6o5"), ExtResource("5_a8nhp")])
 
 [editable path="TerrainManager"]

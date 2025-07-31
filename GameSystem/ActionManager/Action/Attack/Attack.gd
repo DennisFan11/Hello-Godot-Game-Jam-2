@@ -50,18 +50,24 @@ func set_target(t: Node2D):
 	# 若target為衍生物(子彈/武器)時連接信號
 	if super(t):
 		if old_target is Derivative:
-			old_target.summoner_changed.disconnect(update_attack_type)
+			old_target.summoner_changed.disconnect(_on_summoner_changed)
 		if target is Derivative:
-			target.summoner_changed.connect(update_attack_type)
+			target.summoner_changed.connect(_on_summoner_changed)
 
 	update_attack_type()
 
 func update_attack_type():
-	if target is Player \
-	or (target is Derivative and target.summoner is Player):
-		attack_type = "Enemy"
-	elif target is Enemy \
-	or (target is Derivative and target.summoner is Enemy):
-		attack_type = "Player"
-	else:
-		attack_type = ""
+	attack_type = ""
+	if target:
+		if target is Player \
+		or (target is Derivative and target.summoner is Player):
+			attack_type = "Enemy"
+		elif target is Enemy \
+		or (target is Derivative and target.summoner is Enemy):
+			attack_type = "Player"
+	printt("UAT", self, target, attack_type)
+
+
+
+func _on_summoner_changed(summoner):
+	update_attack_type()

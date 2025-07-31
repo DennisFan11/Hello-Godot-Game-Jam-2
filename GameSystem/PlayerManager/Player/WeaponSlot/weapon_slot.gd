@@ -11,14 +11,11 @@ func _ready() -> void:
 	if user is Player:
 		DI.register("_weapon_slot", self)
 
-
-## TEST
-func _on_injected():
 	var weapon: Weapon = WeaponManager.create_random_weapon()
 	set_current_weapon(weapon)
 
-func _process(delta: float) -> void:
-	if first_weapon:
+func _process(_delta: float) -> void:
+	if first_weapon and user is Player:
 		first_weapon.point_to_mouse(self)
 
 

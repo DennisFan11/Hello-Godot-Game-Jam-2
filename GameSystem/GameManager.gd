@@ -35,10 +35,7 @@ func _ready() -> void:
 	await _game_start_recursive()
 	
 	%EnemyManager.enemy_died.connect(_on_enemy_died)
-	%PlayerManager.player_died.connect(
-		func (c):
-			finish(false)
-	)
+	#%PlayerManager.player_died.connect(func (c): finish(false))
 	
 	print("✓ GameManager 初始化完成")
 	SoundManager.play_bgm("battle_music_1")
@@ -66,3 +63,9 @@ func _on_enemy_died(enemy:Enemy):
 	print(kill_count, "/", next_level_kill_count, " ", enemy)
 	if kill_count >= next_level_kill_count:
 		finish(true)
+
+
+
+func _on_boundary_body_entered(body: Node2D) -> void:
+	if body is Character:
+		body.dead()

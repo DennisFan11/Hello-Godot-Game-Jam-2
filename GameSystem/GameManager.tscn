@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=16 format=3 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
 [ext_resource type="PackedScene" uid="uid://tblwle8bwha6" path="res://GameSystem/Background/parallax_background.tscn" id="2_cmd41"]
@@ -11,6 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://bink73ofl073v" path="res://GameSystem/WaveManager/WaveManager.tscn" id="11_30fhk"]
 [ext_resource type="PackedScene" uid="uid://qcvvobq02w7m" path="res://GameSystem/ParticleManager/ParticleManager.tscn" id="11_khy4d"]
 [ext_resource type="PackedScene" uid="uid://dt04h06w01gic" path="res://GameSystem/TerrainManager/TerrainManager.tscn" id="13_ko6fk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cmd41"]
+normal = Vector2(0, -10)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_30fhk"]
+normal = Vector2(10, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ko6fk"]
+normal = Vector2(-10, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_haw3m"]
+normal = Vector2(0, 10)
 
 [node name="GameManager" type="Node2D"]
 visibility_layer = 7
@@ -3316,6 +3328,7 @@ unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("5_ypx2t")]
 unique_name_in_owner = true
+cursor_offset = Vector2(0, 0)
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_wonvf")]
 unique_name_in_owner = true
@@ -3323,6 +3336,29 @@ unique_name_in_owner = true
 [node name="ShaderManager" parent="." instance=ExtResource("7_o6cs3")]
 
 [node name="ParticleManager" parent="." instance=ExtResource("11_khy4d")]
+
+[node name="Boundary" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="down" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(0, 1000)
+shape = SubResource("WorldBoundaryShape2D_cmd41")
+one_way_collision_margin = 0.0
+
+[node name="left" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-1000, 0)
+shape = SubResource("WorldBoundaryShape2D_30fhk")
+one_way_collision_margin = 0.0
+
+[node name="right" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1000, 0)
+shape = SubResource("WorldBoundaryShape2D_ko6fk")
+one_way_collision_margin = 0.0
+
+[node name="up" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(0, -1000)
+shape = SubResource("WorldBoundaryShape2D_haw3m")
+one_way_collision_margin = 0.0
 
 [node name="PlayerUILayer" parent="." instance=ExtResource("10_cmd41")]
 
@@ -3333,5 +3369,6 @@ follow_viewport_enabled = true
 [node name="MessageBoxManager" parent="MessageBoxLayer" instance=ExtResource("10_40pkj")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="body_entered" from="Boundary" to="." method="_on_boundary_body_entered"]
 
 [editable path="TerrainManager"]

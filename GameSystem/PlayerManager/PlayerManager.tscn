@@ -9,6 +9,7 @@
 visibility_layer = 7
 script = ExtResource("1_ne4h4")
 cursor = ExtResource("4_u0827")
+cursor_offset = Vector2(12, 12)
 
 [node name="SpawnMarker2D" type="Marker2D" parent="."]
 unique_name_in_owner = true

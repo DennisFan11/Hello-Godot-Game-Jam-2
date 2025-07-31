@@ -273,7 +273,7 @@ func _fade_in_goddess_image():
 			
 			# 重新設置位置到女神圖片的中上位置
 			dropped_weapon_image.position = Vector2(80, -40) # 相對於女神圖片的中上位置
-			dropped_weapon_image.rotation = deg_to_rad(45) # 保持45度旋轉
+			dropped_weapon_image.rotation_degrees = 45 # 保持45度旋轉
 			
 			# 顯示武器圖片並恢復透明度
 			dropped_weapon_image.visible = true
@@ -432,10 +432,10 @@ func _hide_weapon_buttons():
 		weapon_descriptions[i].visible = false
 
 
-func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
+func _on_weapon_selected(_weapon_data: Dictionary, button_index: int):
 	"""當玩家選擇武器時"""
 	# 記錄選擇的武器
-	selected_weapon = weapon_data
+	# selected_weapon = weapon_data
 
 	# 印出 button_index
 	print("選擇的武器按鈕索引: ", button_index)
@@ -444,7 +444,7 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 	_animate_weapon_icon_selection(button_index)
 	
 	# 通過背包系統添加武器 (使用變數引用)
-	inventory_system.add_weapon(weapon_data.id, weapon_data.name, weapon_data.description)
+	# inventory_system.add_weapon(weapon_data.id, weapon_data.name, weapon_data.description)
 	# 隱藏武器選擇面板
 	weapon_selection_panel.visible = false
 	
@@ -462,7 +462,7 @@ func _on_weapon_selected(weapon_data: Dictionary, button_index: int):
 		WeaponManager.create_weapon_scene(weapon_id))
 	# 顯示女神的回應並等待完成
 	await _show_goddess_response(weapon)
-	_god_scene_manager.end_event(weapon)
+	_god_scene_manager.end_event(main_weapon, weapon)
 
 func _show_goddess_response(weapon: Weapon):
 	"""顯示女神對玩家選擇的回應"""
@@ -536,10 +536,9 @@ func _weapon_drop_animation():
 	"""武器掉落動畫 - 自由落體效果"""
 	dropped_weapon_image = TextureRect.new()
 
+	main_weapon.move_to(dropped_weapon_image, null, false) ## FIXME
 	# weapon 的 scale 設為 5倍
 	main_weapon.scale = Vector2(5, 5)
-
-	dropped_weapon_image.add_child(main_weapon)
 	# var weapon_texture = load("res://icon.svg") # 暫時使用icon作為武器圖片
 	# if weapon_texture:
 	# 	dropped_weapon_image.texture = weapon_texture
@@ -552,7 +551,7 @@ func _weapon_drop_animation():
 	
 	var _screen_size = get_viewport().get_visible_rect().size
 	dropped_weapon_image.position = Vector2(0, -50)
-	dropped_weapon_image.rotation = deg_to_rad(45)
+	dropped_weapon_image.rotation_degrees = 45
 	
 	goddess_portrait.add_child(dropped_weapon_image)
 	
@@ -861,9 +860,9 @@ func _animate_weapon_icon_selection(button_index: int):
 	# 動畫完成後清理複製的 icon
 	await move_tween.finished
 
-func start_scene(weapon):
+func start_scene():
 	visible = true
-	main_weapon = weapon
+	main_weapon = WeaponManager.get_player_weapon()
 	# 淡入效果
 	var fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", 1.0, 1.0)

@@ -2,6 +2,7 @@ class_name PlayerManager
 extends Node2D
 
 @export var cursor:Texture2D
+@export var cursor_offset:Vector2 = Vector2.ZERO
 
 var PLAYER_SCENE := preload("uid://bdqcutktqtcxw")
 var player: Player
@@ -17,7 +18,7 @@ func _ready() -> void:
 	DI.register("_player_manager", self)
 	
 	if cursor:
-		Input.set_custom_mouse_cursor(cursor)
+		Input.set_custom_mouse_cursor(cursor, Input.CURSOR_ARROW, cursor_offset)
 	spawn_player()
 
 
@@ -45,7 +46,10 @@ func get_player_rotation()-> float:
 	return player.rotation if player else 0.0
 
 func get_mouse_vec():
-	var vec = (player.get_global_mouse_position() - player.global_position).normalized()
+	var vec = \
+		(player.get_global_mouse_position() - player.global_position) \
+		.rotated(-get_player_rotation()) \
+		.normalized()
 	if not player.direction:
 		vec.x *= -1
 	return vec

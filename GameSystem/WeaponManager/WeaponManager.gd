@@ -32,7 +32,7 @@ var weapon_map = {
 
 
 func get_random_weapon_id() -> String:
-	#return "Excalibur"
+	return "Knife"
 	return weapon_map.keys().pick_random()
 
 func create_weapon_scene(id: String) -> Weapon:
@@ -55,3 +55,7 @@ func set_player_weapon(weapon:Weapon):
 
 func duplicate_player_weapon():
 	return get_player_weapon().duplicate()
+
+## NOTE 感覺不會用到的東西
+func move_player_weapon(target_node: Node2D, glue_layer: GlueLayer = null, keep_global_transform: bool = true):
+	return get_player_weapon().move_to(target_node, glue_layer, keep_global_transform)

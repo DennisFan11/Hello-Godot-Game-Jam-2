@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://dsivi152md61i"]
 
-[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_81qtj"]
-[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_5fd7p"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_81qtj"]
-[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_6jkgn"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_bl181"]
-[ext_resource type="Script" uid="uid://bcuuhnkh8tdqm" path="res://GameSystem/ActionManager/Action/Move/GroundMove.gd" id="6_iturw"]
+[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_6vrpw"]
+[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_2n2u4"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_tm10t"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_aa6ss"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_e0x31"]
+[ext_resource type="Script" uid="uid://bcuuhnkh8tdqm" path="res://GameSystem/ActionManager/Action/Move/GroundMove.gd" id="6_0uk63"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
 radius = 6.0
@@ -16,12 +16,12 @@ radius = 4.0
 [node name="EnemyA" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_81qtj")
+script = ExtResource("1_6vrpw")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0.522405, 0.549925, 1)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_5fd7p")
+texture = ExtResource("2_2n2u4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5fd7p")
@@ -49,17 +49,17 @@ shape = SubResource("CircleShape2D_n71we")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
 
 [node name="AttackManager" type="Node" parent="."]
-script = ExtResource("3_81qtj")
+script = ExtResource("3_tm10t")
 metadata/_custom_type_script = "uid://dkkr382xaqb8j"
 
 [node name="TouchAttack" type="Node" parent="AttackManager"]
-script = ExtResource("4_6jkgn")
+script = ExtResource("4_aa6ss")
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="MoveManager" type="Node" parent="."]
-script = ExtResource("5_bl181")
+script = ExtResource("5_e0x31")
 metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="GroundMove" type="Node" parent="MoveManager"]
-script = ExtResource("6_iturw")
+script = ExtResource("6_0uk63")
 metadata/_custom_type_script = "uid://bcuuhnkh8tdqm"

@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_rmvt2"]
 script = ExtResource("2_et1iv")
 EnemyType = 1
-Mount = 5
+Mount = 10
 metadata/_custom_type_script = "uid://dddth468gqso1"
 
 [sub_resource type="Resource" id="Resource_0onfb"]

@@ -18,13 +18,12 @@ func start_event(args):
 	DI.injection(self)
 	set_process_mode(PROCESS_MODE_INHERIT)
 	_game_manager.stop_game()
-	
-	var player_weapon = WeaponManager.duplicate_player_weapon()
+
 	visible = true
 
-	await %GoddessWeaponSelect.start_scene(player_weapon)
+	await %GoddessWeaponSelect.start_scene()
 
-func end_event(new_weapon):
+func end_event(player_weapon, new_weapon):
 	
 	DI.injection(self)
 	set_process_mode(PROCESS_MODE_PAUSABLE)
@@ -33,12 +32,10 @@ func end_event(new_weapon):
 	visible = false
 
 	if new_weapon:
-		var player_weapon = WeaponManager.duplicate_player_weapon()
 		# 印出選擇的武器 ID
 		print("GodSceneManager Selected weapon ID:", new_weapon.id)
 		CoreManager.start_event("WeaponEditor", [player_weapon, new_weapon])
 	else:
-		# 如果 _weapon_slot.get_current_weapon() 為 null，則返回空陣列
 		print("GodSceneManager: No weapon selected.")
-	
+		WeaponManager.set_player_weapon(player_weapon)
 	
