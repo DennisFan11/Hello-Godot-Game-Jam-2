@@ -57,6 +57,7 @@ const NEXT_SCENE_NAME = "Level1"
 # 資源路徑常量
 const GODDESS_IMAGE_PATH = "res://Asset/Image/Goddess.png"
 const GODDESS_IMAGE_2_PATH = "res://Asset/Image/Goddess2.png"
+const GODDESS_IMAGE_ROOT_PATH = "res://Asset/Image/Goddess/"
 const WEAPON_ICON_PATH = "res://icon.svg"
 
 # 場景路徑常量
@@ -188,6 +189,9 @@ func _show_dialogue_stage(stage: String):
 	dialogue_label.text = text
 	# 這裡可以根據 mood 來改變女神的表情或狀態
 	print("顯示對話: ", text, " (心情: ", mood, ")")
+	# 從 GODDESS_IMAGE_ROOT_PATH 獲取女神圖片
+	var goddess_image_path = GODDESS_IMAGE_ROOT_PATH + mood + ".png"
+	goddess_image.texture = load(goddess_image_path)
 	# 打字機效果（簡化版）
 	dialogue_label.visible_characters = 0
 	var tween = create_tween()
