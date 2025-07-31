@@ -1,7 +1,7 @@
 extends Node
 
 var weapon_map = {
-	"Excalibur":{
+	"Excalibur": {
 		"scene": preload("uid://4vimk1pu87eh")
 	},
 	"sword": {
@@ -46,11 +46,13 @@ func create_random_weapon() -> Weapon:
 	return create_weapon_scene(get_random_weapon_id())
 
 
-
 func get_player_weapon():
 	return DI.get_dependence("_weapon_slot").take_first_weapon()
 
-func set_player_weapon(weapon:Weapon):
+func get_player_weapon_count():
+	return DI.get_dependence("_weapon_slot").calculate_total_count()
+
+func set_player_weapon(weapon: Weapon):
 	DI.get_dependence("_weapon_slot").set_current_weapon(weapon)
 
 func duplicate_player_weapon():

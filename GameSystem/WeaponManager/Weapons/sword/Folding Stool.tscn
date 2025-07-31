@@ -30,6 +30,10 @@ data = {
 image = SubResource("Image_ehjf6")
 
 [node name="Folding Stool" instance=ExtResource("1_rr5f4")]
+DMG = 40.0
+WEIGHT = 8.0
+NAME = "折凳"
+DESC = "好折凳！折凳的奧妙之處，是可以藏於民居之中，隨手可得，還可以坐著它掩藏殺機。就算被警察抓也告不了你，真不愧為七種武器之首！"
 
 [node name="PhysicalComponent" parent="." index="0"]
 position = Vector2(9, 0)

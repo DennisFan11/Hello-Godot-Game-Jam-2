@@ -30,6 +30,10 @@ data = {
 image = SubResource("Image_fke74")
 
 [node name="Sword" instance=ExtResource("1_gwqqb")]
+DMG = 30.0
+WEIGHT = 5.0
+NAME = "細劍"
+DESC = "妖精製作的武器，對不死系及狼人有強大的破壞力。"
 
 [node name="PhysicalComponent" parent="." index="0"]
 rotation = -0.95234

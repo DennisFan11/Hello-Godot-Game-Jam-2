@@ -34,6 +34,8 @@ image = SubResource("Image_7mk7h")
 
 [node name="GDscript" instance=ExtResource("1_vayr4")]
 script = ExtResource("2_m0f6a")
+NAME = "GDScript"
+DESC = "\"Technology comes from human nature.\""
 
 [node name="PhysicalComponent" parent="." index="0"]
 position = Vector2(25, 0)

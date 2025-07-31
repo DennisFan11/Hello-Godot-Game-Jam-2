@@ -50,6 +50,8 @@ action_index = Array[int]([2])
 metadata/_custom_type_script = "uid://bdeqmgr2eaibo"
 
 [node name="DispellingSword" instance=ExtResource("1_5ya44")]
+NAME = "特殊的木劍"
+DESC = "劍身上似乎帶有特殊的魔力"
 
 [node name="WeaponTail" parent="PhysicalComponent" index="0" instance=ExtResource("2_yhvy4")]
 unique_name_in_owner = true

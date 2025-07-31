@@ -29,6 +29,9 @@ data = {
 image = SubResource("Image_nxl3v")
 
 [node name="Sword" instance=ExtResource("1_6wxrq")]
+DMG = 10.0
+NAME = "木劍"
+DESC = "可以封印殭屍的木劍"
 
 [node name="SDF_Test" parent="PhysicalComponent" index="1"]
 texture = SubResource("ImageTexture_w5o2p")

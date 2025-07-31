@@ -30,6 +30,10 @@ data = {
 image = SubResource("Image_ouhs5")
 
 [node name="Knife" instance=ExtResource("1_lg3jc")]
+DMG = 20.0
+WEIGHT = 2.0
+NAME = "塗毒的小刀"
+DESC = "這把刀可是塗滿了毒藥的毒刃喲"
 
 [node name="PhysicalComponent" parent="." index="0"]
 position = Vector2(9, 0)

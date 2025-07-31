@@ -30,8 +30,10 @@ data = {
 image = SubResource("Image_7mv3p")
 
 [node name="Table" instance=ExtResource("1_xfavt")]
-DMG = 50.0
-NAME = "Table"
+DMG = 70.0
+WEIGHT = 50.0
+NAME = "桌子"
+DESC = "這是一張厚重的木餐桌，要花很大的力氣才能搬動他"
 
 [node name="PhysicalComponent" parent="." index="0"]
 texture = ExtResource("2_54j6p")

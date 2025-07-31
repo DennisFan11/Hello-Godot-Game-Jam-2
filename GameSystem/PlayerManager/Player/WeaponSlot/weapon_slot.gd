@@ -1,7 +1,7 @@
 class_name WeaponSlot
 extends Node2D
 
-@export var user:Character
+@export var user: Character
 
 var first_weapon: Weapon
 var total_weight: float = 1.0
@@ -17,7 +17,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if first_weapon and user is Player:
 		first_weapon.point_to_mouse(self)
-
 
 
 func set_current_weapon(weapon: Weapon) -> void:
@@ -52,6 +51,14 @@ func take_current_weapon() -> Weapon:
 
 func get_current_weapon() -> Weapon:
 	return first_weapon
+
+func calculate_total_count() -> int:
+	var total_count = 0
+	var curr = first_weapon
+	while curr:
+		total_count += 1
+		curr = curr.next_weapon
+	return total_count
 
 
 func start_attack(time: float):

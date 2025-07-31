@@ -30,6 +30,10 @@ data = {
 image = SubResource("Image_fecqe")
 
 [node name="Elephant" instance=ExtResource("1_vp6gg")]
+DMG = 60.0
+WEIGHT = 30.0
+NAME = "大象"
+DESC = "這是一隻大象"
 
 [node name="PhysicalComponent" parent="." index="0"]
 position = Vector2(12, 1)
