@@ -32,7 +32,6 @@ var weapon_map = {
 
 
 func get_random_weapon_id() -> String:
-	return "Knife"
 	return weapon_map.keys().pick_random()
 
 func create_weapon_scene(id: String) -> Weapon:
