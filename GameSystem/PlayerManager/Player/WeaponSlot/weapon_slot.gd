@@ -22,8 +22,9 @@ func _process(_delta: float) -> void:
 func set_current_weapon(weapon: Weapon) -> void:
 	if not weapon: return
 
-	if first_weapon:
+	if first_weapon != weapon and first_weapon in get_children():
 		first_weapon.queue_free()
+		
 
 	var w = weapon
 	while w:

@@ -20,7 +20,8 @@ func _ready():
 
 func _update_stats_from_upgrade_system(stats):
 	max_hp = stats.max_health
-	_hp = stats.current_health
+	_hp = max_hp
+	#_hp = stats.current_health
 	
 	attack_damage = stats.attack_damage
 
@@ -42,8 +43,8 @@ func health_change(value: int):
 	super(value)
 	#print("player hp:{0}/{1}".format([_hp, max_hp]))
 
-	upgrade_system.player_stats.set_stats("current_health", _hp)
-	upgrade_system._save_player_data()
+	#upgrade_system.player_stats.set_stats("current_health", _hp)
+	#upgrade_system._save_player_data()
 
 	health_changed.emit(_hp, max_hp)
 

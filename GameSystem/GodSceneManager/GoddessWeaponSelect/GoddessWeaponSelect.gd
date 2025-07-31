@@ -112,8 +112,15 @@ func _matches_dialogue_conditions(dialogue: Dictionary) -> bool:
 	# 檢查武器數量
 	var weapon_counts = str(dialogue.get("weapons_count", "")).split(",")
 	var weapon_match = false
+
+	var weapon_count = 0
+	var w = main_weapon
+	while w:
+		weapon_count += 1
+		w = w.next_weapon
+
 	for count in weapon_counts:
-		if count.strip_edges() == str(WeaponManager.get_player_weapon_count()):
+		if count.strip_edges() == str(weapon_count):
 			weapon_match = true
 			break
 	
@@ -443,10 +450,10 @@ func _weapon_drop_animation():
 	"""武器掉落動畫 - 自由落體效果"""
 	# 使用預定義的 TextureRect 節點
 	
+	main_weapon.move_to(dropped_weapon_image, null, false)
 	# weapon 的 scale 設為 5倍
 	main_weapon.scale = Vector2(5, 5)
 
-	main_weapon.move_to(dropped_weapon_image.get_node("Node2D"), %GlueLayer)
 	
 	# 設置 TextureRect 屬性
 	dropped_weapon_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL

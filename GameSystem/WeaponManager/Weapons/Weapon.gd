@@ -44,14 +44,15 @@ func get_damage()-> int:
 	return damage
 
 ## 轉移武器
-func move_to(target_node: Node2D, glue_layer: GlueLayer, keep_global_transform: bool = true):
+func move_to(target_node: Node, glue_layer = null, keep_global_transform: bool = true):
 	self.glue_layer = glue_layer
-	request_ready()
+
 	if not keep_global_transform:
 		self.scale = Vector2.ONE
 		self.position = Vector2.ZERO
 		self.rotation = 0.0
-	if get_parent():
+	var parent = get_parent()
+	if parent:
 		reparent(target_node, keep_global_transform)
 	else:
 		target_node.add_child(self)
