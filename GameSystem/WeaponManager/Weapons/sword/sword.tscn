@@ -30,6 +30,7 @@ image = SubResource("Image_nxl3v")
 
 [node name="Sword" instance=ExtResource("1_6wxrq")]
 DMG = 10.0
+WEIGHT = 5.0
 NAME = "木劍"
 DESC = "可以封印殭屍的木劍"
 

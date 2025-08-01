@@ -1,16 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://cmbx8s22egbna"]
+[gd_scene load_steps=26 format=3 uid="uid://cmbx8s22egbna"]
 
-[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_8lyni"]
+[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_ubfyv"]
 [ext_resource type="Texture2D" uid="uid://ss34qy0pfmb1" path="res://Asset/Enemy/Slime/Slime green.png" id="2_ya0mj"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_ya0mj"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_2dt28"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_0eplh"]
 [ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/ActionManager/Action/Move/JumpMove.gd" id="6_ohl1w"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujxie"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n71we"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lyni"]
 radius = 3.0
 
 [sub_resource type="Animation" id="Animation_3c3kg"]
@@ -175,7 +173,7 @@ switch_mode = 1
 advance_mode = 2
 advance_condition = &"dead"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0eplh"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3c3kg"]
 states/dead/node = SubResource("AnimationNodeAnimation_ohl1w")
 states/dead/position = Vector2(649, 100)
 states/fall/node = SubResource("AnimationNodeAnimation_c05mq")
@@ -187,61 +185,49 @@ states/jump/position = Vector2(469, 5)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jd5j2"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_jfvxu"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_6eobh"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_pg1fd"), "fall", "dead", SubResource("AnimationNodeStateMachineTransition_8lyni"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_0uwxh"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_4a6pk"), "jump", "dead", SubResource("AnimationNodeStateMachineTransition_3c3kg")]
 graph_offset = Vector2(-7, -36)
 
-[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("1_8lyni")
+[node name="Slime" instance=ExtResource("1_ubfyv")]
+overbody_color = Color(2, 0, 0, 1)
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icon" parent="." index="0"]
 position = Vector2(0.6, -6)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_ya0mj")
 hframes = 8
 vframes = 3
-region_rect = Rect2(0, 0, 32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+visible = false
 position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_5fd7p")
+shape = SubResource("CircleShape2D_ujxie")
 
-[node name="FloorDetectArea" type="Area2D" parent="."]
-unique_name_in_owner = true
+[node name="FloorDetectArea" parent="." index="3"]
+visible = false
 position = Vector2(0, -4)
-collision_layer = 3
-collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
 position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_n71we")
+shape = SubResource("CircleShape2D_8lyni")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 &"": SubResource("AnimationLibrary_ya0mj")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." index="5"]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
-tree_root = SubResource("AnimationNodeStateMachine_0eplh")
+tree_root = SubResource("AnimationNodeStateMachine_3c3kg")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/dead = false
 parameters/conditions/fall = false
 parameters/conditions/jump = false
 
-[node name="AttackManager" type="Node" parent="."]
-script = ExtResource("3_ya0mj")
-metadata/_custom_type_script = "uid://dkkr382xaqb8j"
-
-[node name="TouchAttack" type="Node" parent="AttackManager"]
+[node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
 script = ExtResource("4_2dt28")
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
-[node name="MoveManager" type="Node" parent="."]
-script = ExtResource("5_0eplh")
-metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
-
-[node name="JumpMove" type="Node" parent="MoveManager"]
+[node name="JumpMove" type="Node" parent="MoveManager" index="0"]
 script = ExtResource("6_ohl1w")
 MAX_SPEED = Vector2(200, 270)
 cooldown = 2.0

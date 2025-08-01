@@ -22,17 +22,9 @@ func try_attack(_delta):
 	pass
 
 func attack(t):
-	if current_damage > 0 \
-	and (not t in attack_cooldown_dict.keys() \
-	or attack_cooldown_dict[t].is_ready()):
+	if current_damage > 0:
 		t.take_damage(current_damage, target)
 
-		var new_cooldown_timer = CooldownTimer.new()
-		new_cooldown_timer.trigger(cooldown)
-		attack_cooldown_dict[t] = new_cooldown_timer
-
-	#if cooldown > 0.0:
-		#_cooldown_timer.trigger(cooldown)
 	if cooldown < 0.0: # 當<0時將在擊中後刪除, 主要用於投射物(箭)
 		target.queue_free()
 

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf2x6o6j8et38"]
+
+[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_hamuk"]
+[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_sjbhv"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_qcfe6"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_mqgrn"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_hamuk")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_sjbhv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 18.0
+offset_bottom = 18.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+
+[node name="FloorDetectArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 3
+collision_mask = 3
+
+[node name="AttackManager" type="Node" parent="."]
+script = ExtResource("3_qcfe6")
+metadata/_custom_type_script = "uid://dkkr382xaqb8j"
+
+[node name="MoveManager" type="Node" parent="."]
+script = ExtResource("5_mqgrn")
+metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"

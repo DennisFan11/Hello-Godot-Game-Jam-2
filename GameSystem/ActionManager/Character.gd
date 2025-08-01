@@ -11,11 +11,11 @@ signal died(character:Character)
 ## 受擊間隔
 @export var overbody_time:float = 0.333
 ## 受擊顏色
-@export var overbody_color:Color = Color(10, 0, 0, 10)
+@export var overbody_color:Color = Color(5, 0, 0, 10)
 
-@onready var anim_tree:AnimationTree
+var anim_tree:AnimationTree
 
-var _hp: int = 30
+var _hp: int
 
 ## 面朝方向
 ## false:左 true:右

@@ -57,6 +57,7 @@ polygon = PackedVector2Array(-12, -14, 9.78739, 14.22, -11, -15, -12, -15)
 
 [node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
 script = ExtResource("3_qkmko")
+enable = false
 metadata/_custom_type_script = "uid://dhy4eth68b7ji"
 
 [node name="SwordMove" type="Node" parent="MoveManager" index="0"]

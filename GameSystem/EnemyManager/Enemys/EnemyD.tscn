@@ -1,69 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://4vlqptxodl6n"]
+[gd_scene load_steps=7 format=3 uid="uid://4vlqptxodl6n"]
 
-[ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_iqa2u"]
-[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_ylx7x"]
-[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_xg8gw"]
+[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_xdpkg"]
 [ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/ActionManager/Action/Attack/BulletAttack.gd" id="4_ejnqx"]
-[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_plw2j"]
 [ext_resource type="PackedScene" uid="uid://crmf3o46forhd" path="res://GameSystem/ActionManager/Bullet/Ball.tscn" id="5_ylx7x"]
 [ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/ActionManager/Action/Move/FlyMove.gd" id="6_mk4y3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5fd7p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2x8b"]
 radius = 6.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n71we"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tueb"]
 radius = 4.0
 
-[node name="EnemyD" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("1_iqa2u")
+[node name="EnemyD" instance=ExtResource("1_xdpkg")]
 
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(1, 0.522405, 0.549925, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ylx7x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_u2x8b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5fd7p")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-offset_left = -5.0
-offset_top = -6.0
-offset_right = 17.0
-offset_bottom = 17.0
-scale = Vector2(0.5, 0.5)
-bbcode_enabled = true
+[node name="RichTextLabel" parent="." index="2"]
 text = "D"
-fit_content = true
-horizontal_alignment = 1
 
-[node name="FloorDetectArea" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
 position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_n71we")
+shape = SubResource("CircleShape2D_5tueb")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
 
-[node name="AttackManager" type="Node" parent="."]
-script = ExtResource("3_xg8gw")
-metadata/_custom_type_script = "uid://dkkr382xaqb8j"
-
-[node name="BulletAttack" type="Node" parent="AttackManager"]
+[node name="BulletAttack" type="Node" parent="AttackManager" index="0"]
 script = ExtResource("4_ejnqx")
 bullet = ExtResource("5_ylx7x")
 cooldown = 3.0
 metadata/_custom_type_script = "uid://i0eyoraab26"
 
-[node name="MoveManager" type="Node" parent="."]
-script = ExtResource("5_plw2j")
-metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
-
-[node name="FlyMove" type="Node" parent="MoveManager"]
+[node name="FlyMove" type="Node" parent="MoveManager" index="0"]
 script = ExtResource("6_mk4y3")
 max_rotation_angle = 180.0
 move_rotation = true
