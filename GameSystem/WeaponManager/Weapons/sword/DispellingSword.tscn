@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqgvi3j3xs1ku"]
+[gd_scene load_steps=14 format=3 uid="uid://bqgvi3j3xs1ku"]
 
 [ext_resource type="PackedScene" uid="uid://ynmgrxw25he7" path="res://GameSystem/WeaponManager/Weapons/BaseWeapon.tscn" id="1_5ya44"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="2_qe3q1"]
@@ -30,9 +30,6 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_oc7qn"]
 image = SubResource("Image_s5yp4")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0or32"]
-radius = 300.0
 
 [sub_resource type="Resource" id="Resource_yhvy4"]
 script = ExtResource("4_158ue")
@@ -71,10 +68,6 @@ polygon = PackedVector2Array(8.17157, -14, 7, -12.8284, 7, -11.8721, -6.59504, 0
 
 [node name="AttackArea" parent="PhysicalComponent" index="5"]
 collision_mask = 14
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalComponent/AttackArea" index="1"]
-shape = SubResource("CircleShape2D_0or32")
-disabled = true
 
 [node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
 script = ExtResource("2_qe3q1")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3tew8gcybhbo"]
+
+[ext_resource type="Script" uid="uid://drx32v1wajcp8" path="res://GameSystem/ItemManager/Item.gd" id="1_mvhub"]
+[ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="2_xr5a3"]
+[ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="3_kc7gh"]
+
+[node name="Item" type="CharacterBody2D"]
+script = ExtResource("1_mvhub")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AttackManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_xr5a3")
+metadata/_custom_type_script = "uid://dkkr382xaqb8j"
+
+[node name="MoveManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_kc7gh")
+metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

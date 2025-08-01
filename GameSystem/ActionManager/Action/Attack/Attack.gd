@@ -9,8 +9,6 @@ var current_damage:int
 
 var attack_type:String = ""
 
-var attack_cooldown_dict = {}
-
 func _physics_process(delta: float) -> void:
 	if enable and _cooldown_timer.is_ready():
 		update_current_damage()

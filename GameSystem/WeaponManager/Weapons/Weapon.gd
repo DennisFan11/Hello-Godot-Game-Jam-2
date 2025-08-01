@@ -16,7 +16,6 @@ var id: String = "sword"
 
 
 
-var is_main: bool = true
 var next_weapon: Weapon
 var glue_layer: Node2D:
 	set(new):
@@ -26,6 +25,8 @@ var glue_layer: Node2D:
 			next_weapon.glue_layer = new
 
 var in_attack:bool = false
+
+@onready var weapon_tail = %WeaponTail
 
 
 
@@ -80,13 +81,13 @@ func start_move(weapon_slot, time):
 	return false
 
 func start_attack():
-	if %WeaponTail: %WeaponTail.enable = true
+	if weapon_tail: weapon_tail.enable = true
 	%AttackManager.enable_action(true)
 	if next_weapon: next_weapon.start_attack()
 	in_attack = true
 
 func end_attack():
-	if %WeaponTail: %WeaponTail.enable = false
+	if weapon_tail: weapon_tail.enable = false
 	%AttackManager.enable_action(false)
 	if next_weapon: next_weapon.end_attack()
 	in_attack = false

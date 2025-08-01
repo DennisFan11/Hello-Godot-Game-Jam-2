@@ -2,13 +2,16 @@ extends Node
 
 var weapon_map = {
 	"Excalibur": {
-		"scene": preload("uid://4vimk1pu87eh")
+		"scene": preload("uid://4vimk1pu87eh"),
+	},
+	"BrokenSword": {
+		"scene": preload("uid://cmknshmdfm2m8"),
 	},
 	"sword": {
 		"scene": preload("uid://b0nre1wp17b5l"),
 	},
 	"BigSword": {
-		"scene": preload("uid://creq4ecbuhbfc")
+		"scene": preload("uid://creq4ecbuhbfc"),
 	},
 	"DispellingSword": {
 		"scene": preload("uid://bqgvi3j3xs1ku"),
@@ -28,10 +31,14 @@ var weapon_map = {
 	"Elephant": {
 		"scene": preload("uid://m2xsglplvrqa"),
 	},
+	"Spear": {
+		"scene": preload("uid://cqw8w6knv08b3"),
+	},
 }
 
 
 func get_random_weapon_id() -> String:
+	return "Spear"
 	return weapon_map.keys().pick_random()
 
 func create_weapon_scene(id: String) -> Weapon:
