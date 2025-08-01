@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxjohiuojdouc" path="res://GameSystem/_shared/Interactable/Interactable.gd" id="1_bm7a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm7a1"]
+resource_local_to_scene = true
 size = Vector2(117, 20)
 
 [node name="Interactable" type="Area2D"]

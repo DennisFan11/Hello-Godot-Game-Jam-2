@@ -61,8 +61,8 @@ func finish(win:bool):
 func _on_enemy_died(enemy:Enemy):
 	kill_count += 1
 	print(kill_count, "/", next_level_kill_count, " ", enemy)
-	if kill_count >= next_level_kill_count:
-		finish(true)
+	#if kill_count >= next_level_kill_count:
+		#finish(true)
 
 
 

@@ -1,418 +1,418 @@
 [
   {
-    "index": 1,
-    "weapons_count": "1,2,3",
-    "lake_state": "0",
-    "meetings_count": "1",
-    "talk1": {
-      "talk": "有{玩家武器}掉下來了。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk2": {
-      "talk": "陌生的勇者，初次見面，歡迎光臨我的湖。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk3": {
-      "talk": "不知你掉的是這個{武器A}還是{武器B}呢?",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-1": {
-      "talk": "你的誠實值得獎勵，本女神將賜予你祝福。",
-      "mood": "Goddess_C_Happy"
-    },
-    "talk4-2": {
-      "talk": "水能洗去污穢，卻洗不掉謊言。",
-      "mood": "Goddess_C_Confused"
-    }
+	"index": 1,
+	"weapons_count": "1,2,3",
+	"lake_state": "0",
+	"meetings_count": "1",
+	"talk1": {
+	  "talk": "有{玩家武器}掉下來了。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk2": {
+	  "talk": "陌生的勇者，初次見面，歡迎光臨我的湖。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk3": {
+	  "talk": "不知你掉的是這個{武器A}還是{武器B}呢?",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-1": {
+	  "talk": "你的誠實值得獎勵，本女神將賜予你祝福。",
+	  "mood": "Goddess_C_Happy"
+	},
+	"talk4-2": {
+	  "talk": "水能洗去污穢，卻洗不掉謊言。",
+	  "mood": "Goddess_C_Confused"
+	}
   },
   {
-    "index": 2,
-    "weapons_count": "1,2,3",
-    "lake_state": "1",
-    "meetings_count": "1",
-    "talk1": {
-      "talk": "咦？湖裡怎麼突然多了{玩家武器}？",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk2": {
-      "talk": "您好，初次見面，這裡很少有客人。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk3": {
-      "talk": "請問，這{武器A}和這{武器B}，哪一個屬於你呢？",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-1": {
-      "talk": "本女神非常欣賞你的坦率，這是獎勵。",
-      "mood": "Goddess_C_Happy"
-    },
-    "talk4-2": {
-      "talk": "真奇怪，那{玩家武器}是誰掉的呢?",
-      "mood": "Goddess_C_Confused"
-    }
+	"index": 2,
+	"weapons_count": "1,2,3",
+	"lake_state": "1",
+	"meetings_count": "1",
+	"talk1": {
+	  "talk": "咦？湖裡怎麼突然多了{玩家武器}？",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk2": {
+	  "talk": "您好，初次見面，這裡很少有客人。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk3": {
+	  "talk": "請問，這{武器A}和這{武器B}，哪一個屬於你呢？",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-1": {
+	  "talk": "本女神非常欣賞你的坦率，這是獎勵。",
+	  "mood": "Goddess_C_Happy"
+	},
+	"talk4-2": {
+	  "talk": "真奇怪，那{玩家武器}是誰掉的呢?",
+	  "mood": "Goddess_C_Confused"
+	}
   },
   {
-    "index": 3,
-    "weapons_count": "1,2,3",
-    "lake_state": "0",
-    "meetings_count": "2,3",
-    "talk1": {
-      "talk": "又是你？最近這湖還真熱鬧。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk2": {
-      "talk": "我們又見面了，希望這次不是來添亂的。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk3": {
-      "talk": "請問你這次掉的是這個{武器A}還是{武器B}呢?",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-1": {
-      "talk": "你的坦率讓很開心，{玩家武器}確實是你的",
-      "mood": "Goddess_C_Happy"
-    },
-    "talk4-2": {
-      "talk": "很遺憾你選擇了欺騙，{玩家武器}明明就是你的，你卻選擇了{玩家選擇武器}。",
-      "mood": "Goddess_C_Dispoint"
-    }
+	"index": 3,
+	"weapons_count": "1,2,3",
+	"lake_state": "0",
+	"meetings_count": "2,3",
+	"talk1": {
+	  "talk": "又是你？最近這湖還真熱鬧。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk2": {
+	  "talk": "我們又見面了，希望這次不是來添亂的。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk3": {
+	  "talk": "請問你這次掉的是這個{武器A}還是{武器B}呢?",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-1": {
+	  "talk": "你的坦率讓很開心，{玩家武器}確實是你的",
+	  "mood": "Goddess_C_Happy"
+	},
+	"talk4-2": {
+	  "talk": "很遺憾你選擇了欺騙，{玩家武器}明明就是你的，你卻選擇了{玩家選擇武器}。",
+	  "mood": "Goddess_C_Dispoint"
+	}
   },
   {
-    "index": 4,
-    "weapons_count": "1,2,3",
-    "lake_state": "1",
-    "meetings_count": "2,3",
-    "talk1": {
-      "talk": "唉～怎麼又有東西掉下來。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk2": {
-      "talk": "我們又見面了，希望這次不是來添亂的。",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk3": {
-      "talk": "請問你這次掉的是這個{武器A}還是{武器B}呢?",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-1": {
-      "talk": "既然你承認了，這次就原諒你了，但別再有下次。",
-      "mood": "Goddess_C_Dispoint"
-    },
-    "talk4-2": {
-      "talk": "雖然你的語氣誠懇，但本女神直覺.....",
-      "mood": "Goddess_C_Confused"
-    }
+	"index": 4,
+	"weapons_count": "1,2,3",
+	"lake_state": "1",
+	"meetings_count": "2,3",
+	"talk1": {
+	  "talk": "唉～怎麼又有東西掉下來。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk2": {
+	  "talk": "我們又見面了，希望這次不是來添亂的。",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk3": {
+	  "talk": "請問你這次掉的是這個{武器A}還是{武器B}呢?",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-1": {
+	  "talk": "既然你承認了，這次就原諒你了，但別再有下次。",
+	  "mood": "Goddess_C_Dispoint"
+	},
+	"talk4-2": {
+	  "talk": "雖然你的語氣誠懇，但本女神直覺.....",
+	  "mood": "Goddess_C_Confused"
+	}
   },
   {
-    "index": 5,
-    "weapons_count": "4,5,6",
-    "lake_state": "0",
-    "meetings_count": "1",
-    "talk1": {
-      "talk": "什麼東西砸到本女神了？{玩家武器}?",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk2": {
-      "talk": "這位陌生的勇者，要好好愛惜{玩家武器}喔～",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk3": {
-      "talk": "請問你掉的是{武器A}還是{武器B}呢？",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-1": {
-      "talk": "嗯，既然你承認了，這次算你誠實。但下不為例。",
-      "mood": "Goddess_C_Happy"
-    },
-    "talk4-2": {
-      "talk": "欸？第一次見面就要騙人嗎？{玩家武器}明明就是你的。",
-      "mood": "Goddess_C_Confused"
-    }
+	"index": 5,
+	"weapons_count": "4,5,6",
+	"lake_state": "0",
+	"meetings_count": "1",
+	"talk1": {
+	  "talk": "什麼東西砸到本女神了？{玩家武器}?",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk2": {
+	  "talk": "這位陌生的勇者，要好好愛惜{玩家武器}喔～",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk3": {
+	  "talk": "請問你掉的是{武器A}還是{武器B}呢？",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-1": {
+	  "talk": "嗯，既然你承認了，這次算你誠實。但下不為例。",
+	  "mood": "Goddess_C_Happy"
+	},
+	"talk4-2": {
+	  "talk": "欸？第一次見面就要騙人嗎？{玩家武器}明明就是你的。",
+	  "mood": "Goddess_C_Confused"
+	}
   },
   {
-    "index": 6,
-    "weapons_count": "4,5,6",
-    "lake_state": "1",
-    "meetings_count": "1",
-    "talk1": {
-      "talk": "什麼東西砸到本女神了？{玩家武器}?",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk2": {
-      "talk": "這位勇者，本女神可不是你的靶子……",
-      "mood": "Goddess_I_Defult"
-    },
-    "talk3": {
-      "talk": "請問你掉的是{武器A}還是{武器B}呢？",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-1": {
-      "talk": "算了，你至少還算誠實，這次放過你。",
-      "mood": "Goddess_C_Happy"
-    },
-    "talk4-2": {
-      "talk": "真奇怪，那{玩家武器}是誰掉的呢?",
-      "mood": "Goddess_C_Confused"
-    }
+	"index": 6,
+	"weapons_count": "4,5,6",
+	"lake_state": "1",
+	"meetings_count": "1",
+	"talk1": {
+	  "talk": "什麼東西砸到本女神了？{玩家武器}?",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk2": {
+	  "talk": "這位勇者，本女神可不是你的靶子……",
+	  "mood": "Goddess_I_Defult"
+	},
+	"talk3": {
+	  "talk": "請問你掉的是{武器A}還是{武器B}呢？",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-1": {
+	  "talk": "算了，你至少還算誠實，這次放過你。",
+	  "mood": "Goddess_C_Happy"
+	},
+	"talk4-2": {
+	  "talk": "真奇怪，那{玩家武器}是誰掉的呢?",
+	  "mood": "Goddess_C_Confused"
+	}
   },
   {
-    "index": 7,
-    "weapons_count": "4,5,6",
-    "lake_state": "0",
-    "meetings_count": "2,3",
-    "talk1": {
-      "talk": "怎麼又被砸了?",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk2": {
-      "talk": "這位勇者，湖裡面可不能亂丟{玩家武器}喔～",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk3": {
-      "talk": "你還記得你手裡的{玩家武器}嗎？或者你從不珍惜它們？",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-1": {
-      "talk": "你還敢承認，這點還算值得嘉許。",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-2": {
-      "talk": "你覺得我眼瞎嗎？",
-      "mood": "Goddess_C_Dispoint"
-    }
+	"index": 7,
+	"weapons_count": "4,5,6",
+	"lake_state": "0",
+	"meetings_count": "2,3",
+	"talk1": {
+	  "talk": "怎麼又被砸了?",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk2": {
+	  "talk": "這位勇者，湖裡面可不能亂丟{玩家武器}喔～",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk3": {
+	  "talk": "你還記得你手裡的{玩家武器}嗎？或者你從不珍惜它們？",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-1": {
+	  "talk": "你還敢承認，這點還算值得嘉許。",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-2": {
+	  "talk": "你覺得我眼瞎嗎？",
+	  "mood": "Goddess_C_Dispoint"
+	}
   },
   {
-    "index": 8,
-    "weapons_count": "4,5,6",
-    "lake_state": "1",
-    "meetings_count": "2,3",
-    "talk1": {
-      "talk": "嘶……頭好痛……",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk2": {
-      "talk": "你覺得朝湖裡丟東西很有趣嗎？",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk3": {
-      "talk": "這{玩家武器}，該不會是你丟的吧？",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-1": {
-      "talk": "本女神原諒你，但不要以為女神的耐心可以一而再地消耗。",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-2": {
-      "talk": "本女神選擇相信你，但不要以為女神的耐心可以一而再地消耗。",
-      "mood": "Goddess_C_None"
-    }
+	"index": 8,
+	"weapons_count": "4,5,6",
+	"lake_state": "1",
+	"meetings_count": "2,3",
+	"talk1": {
+	  "talk": "嘶……頭好痛……",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk2": {
+	  "talk": "你覺得朝湖裡丟東西很有趣嗎？",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk3": {
+	  "talk": "這{玩家武器}，該不會是你丟的吧？",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-1": {
+	  "talk": "本女神原諒你，但不要以為女神的耐心可以一而再地消耗。",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-2": {
+	  "talk": "本女神選擇相信你，但不要以為女神的耐心可以一而再地消耗。",
+	  "mood": "Goddess_C_None"
+	}
   },
   {
-    "index": 9,
-    "weapons_count": "4,5,6",
-    "lake_state": "0",
-    "meetings_count": "4,5,6",
-    "talk1": {
-      "talk": "哎呦！！",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk2": {
-      "talk": "你丟的{玩家武器}差點讓我腦袋裂開。",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk3": {
-      "talk": "你能否解釋這{玩家武器}為何會出現在這裡？",
-      "mood": "Goddess_C_Dispoint"
-    },
-    "talk4-1": {
-      "talk": "你承認也沒用，這次本女神不會再容忍你。",
-      "mood": "Goddess_C_Cursing"
-    },
-    "talk4-2": {
-      "talk": "不用再裝了，本女神已經厭倦這種謊言了。",
-      "mood": "Goddess_F_Cursing"
-    }
+	"index": 9,
+	"weapons_count": "4,5,6",
+	"lake_state": "0",
+	"meetings_count": "4,5,6",
+	"talk1": {
+	  "talk": "哎呦！！",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk2": {
+	  "talk": "你丟的{玩家武器}差點讓我腦袋裂開。",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk3": {
+	  "talk": "你能否解釋這{玩家武器}為何會出現在這裡？",
+	  "mood": "Goddess_C_Dispoint"
+	},
+	"talk4-1": {
+	  "talk": "你承認也沒用，這次本女神不會再容忍你。",
+	  "mood": "Goddess_C_Cursing"
+	},
+	"talk4-2": {
+	  "talk": "不用再裝了，本女神已經厭倦這種謊言了。",
+	  "mood": "Goddess_F_Cursing"
+	}
   },
   {
-    "index": 10,
-    "weapons_count": "4,5,6",
-    "lake_state": "1",
-    "meetings_count": "4,5,6",
-    "talk1": {
-      "talk": "有完沒完！",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk2": {
-      "talk": "你又來了？湖裡不是垃圾桶，懂嗎？",
-      "mood": "Goddess_I_Impatient"
-    },
-    "talk3": {
-      "talk": "老實說，是不是你？",
-      "mood": ""
-    },
-    "talk4-1": {
-      "talk": "本女神給你機會，不代表你能得寸進尺。",
-      "mood": "Goddess_C_Cursing"
-    },
-    "talk4-2": {
-      "talk": "你還想裝沒事？欺騙本女神只會讓你自討苦吃。",
-      "mood": "Goddess_C_Cursing"
-    }
+	"index": 10,
+	"weapons_count": "4,5,6",
+	"lake_state": "1",
+	"meetings_count": "4,5,6",
+	"talk1": {
+	  "talk": "有完沒完！",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk2": {
+	  "talk": "你又來了？湖裡不是垃圾桶，懂嗎？",
+	  "mood": "Goddess_I_Impatient"
+	},
+	"talk3": {
+	  "talk": "老實說，是不是你？",
+	  "mood": ""
+	},
+	"talk4-1": {
+	  "talk": "本女神給你機會，不代表你能得寸進尺。",
+	  "mood": "Goddess_C_Cursing"
+	},
+	"talk4-2": {
+	  "talk": "你還想裝沒事？欺騙本女神只會讓你自討苦吃。",
+	  "mood": "Goddess_C_Cursing"
+	}
   },
   {
-    "index": 11,
-    "weapons_count": "7,8,9",
-    "lake_state": "0",
-    "meetings_count": "1",
-    "talk1": {
-      "talk": "哪來的黑影？嗚呃！",
-      "mood": "Goddess_F_Angry"
-    },
-    "talk2": {
-      "talk": "雖然是第一次見面，但你的舉動已經超出常理。",
-      "mood": "Goddess_F_Angry"
-    },
-    "talk3": {
-      "talk": "這位......旅人，本女神頭上的{玩家武器}......是你的嗎？",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-1": {
-      "talk": "姑且饒你一次，再有下次可沒這麼好說話了。",
-      "mood": "Goddess_C_Defult"
-    },
-    "talk4-2": {
-      "talk": "謊言和魯莽行為，絕不原諒！",
-      "mood": "Goddess_F_Cursing"
-    }
+	"index": 11,
+	"weapons_count": "7,8,9",
+	"lake_state": "0",
+	"meetings_count": "1",
+	"talk1": {
+	  "talk": "哪來的黑影？嗚呃！",
+	  "mood": "Goddess_F_Angry"
+	},
+	"talk2": {
+	  "talk": "雖然是第一次見面，但你的舉動已經超出常理。",
+	  "mood": "Goddess_F_Angry"
+	},
+	"talk3": {
+	  "talk": "這位......旅人，本女神頭上的{玩家武器}......是你的嗎？",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-1": {
+	  "talk": "姑且饒你一次，再有下次可沒這麼好說話了。",
+	  "mood": "Goddess_C_Defult"
+	},
+	"talk4-2": {
+	  "talk": "謊言和魯莽行為，絕不原諒！",
+	  "mood": "Goddess_F_Cursing"
+	}
   },
   {
-    "index": 12,
-    "weapons_count": "7,8,9",
-    "lake_state": "1",
-    "meetings_count": "1",
-    "talk1": {
-      "talk": "啊！誰那麼沒公德心！",
-      "mood": "Goddess_F_Angry"
-    },
-    "talk2": {
-      "talk": "這位勇者，你知道本女神有多少紀元沒有流血了嗎？",
-      "mood": "Goddess_F_Angry"
-    },
-    "talk3": {
-      "talk": "這位......旅人，本女神頭上的{玩家武器}......是你的嗎？",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-1": {
-      "talk": "女神的怒意，不是你一句話能平息的。",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-2": {
-      "talk": "本女神雖未看見，但能拿得起這把{玩家武器}的人──只有你。",
-      "mood": "Goddess_C_Cursing"
-    }
+	"index": 12,
+	"weapons_count": "7,8,9",
+	"lake_state": "1",
+	"meetings_count": "1",
+	"talk1": {
+	  "talk": "啊！誰那麼沒公德心！",
+	  "mood": "Goddess_F_Angry"
+	},
+	"talk2": {
+	  "talk": "這位勇者，你知道本女神有多少紀元沒有流血了嗎？",
+	  "mood": "Goddess_F_Angry"
+	},
+	"talk3": {
+	  "talk": "這位......旅人，本女神頭上的{玩家武器}......是你的嗎？",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-1": {
+	  "talk": "女神的怒意，不是你一句話能平息的。",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-2": {
+	  "talk": "本女神雖未看見，但能拿得起這把{玩家武器}的人──只有你。",
+	  "mood": "Goddess_C_Cursing"
+	}
   },
   {
-    "index": 13,
-    "weapons_count": "7,8,9",
-    "lake_state": "0",
-    "meetings_count": "2,3",
-    "talk1": {
-      "talk": "那麼大根本躲不掉啊！",
-      "mood": "Goddess_I_Cursing"
-    },
-    "talk2": {
-      "talk": "你瘋了嗎？！竟敢用{玩家武器}來攻擊本女神！",
-      "mood": "Goddess_F_Cursing"
-    },
-    "talk3": {
-      "talk": "……湖水正在哭泣",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-1": {
-      "talk": "不論你怎麼說，這件事本女神不能就這麼算了，請您接受懲罰。",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-2": {
-      "talk": "還敢說謊？本女神今天就要讓你付出代價！",
-      "mood": "Goddess_F_Cursing"
-    }
+	"index": 13,
+	"weapons_count": "7,8,9",
+	"lake_state": "0",
+	"meetings_count": "2,3",
+	"talk1": {
+	  "talk": "那麼大根本躲不掉啊！",
+	  "mood": "Goddess_I_Cursing"
+	},
+	"talk2": {
+	  "talk": "你瘋了嗎？！竟敢用{玩家武器}來攻擊本女神！",
+	  "mood": "Goddess_F_Cursing"
+	},
+	"talk3": {
+	  "talk": "……湖水正在哭泣",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-1": {
+	  "talk": "不論你怎麼說，這件事本女神不能就這麼算了，請您接受懲罰。",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-2": {
+	  "talk": "還敢說謊？本女神今天就要讓你付出代價！",
+	  "mood": "Goddess_F_Cursing"
+	}
   },
   {
-    "index": 14,
-    "weapons_count": "7,8,9",
-    "lake_state": "1",
-    "meetings_count": "2,3",
-    "talk1": {
-      "talk": "啊啊啊啊啊啊！汝乃何方狂徒，竟敢對湖如此無禮？",
-      "mood": "Goddess_F_Angry"
-    },
-    "talk2": {
-      "talk": "本女神對惡作劇的寬容，只限一次。你已用完了。",
-      "mood": "Goddess_F_Cursing"
-    },
-    "talk3": {
-      "talk": "你想好要怎麼解釋這場災難了嗎？",
-      "mood": "Goddess_C_Angry"
-    },
-    "talk4-1": {
-      "talk": "你還敢承認？膽子倒是不小！",
-      "mood": "Goddess_C_Cursing"
-    },
-    "talk4-2": {
-      "talk": "連此時此刻你仍選擇欺瞞？真是膽大包天！",
-      "mood": "Goddess_F_Fight"
-    }
+	"index": 14,
+	"weapons_count": "7,8,9",
+	"lake_state": "1",
+	"meetings_count": "2,3",
+	"talk1": {
+	  "talk": "啊啊啊啊啊啊！汝乃何方狂徒，竟敢對湖如此無禮？",
+	  "mood": "Goddess_F_Angry"
+	},
+	"talk2": {
+	  "talk": "本女神對惡作劇的寬容，只限一次。你已用完了。",
+	  "mood": "Goddess_F_Cursing"
+	},
+	"talk3": {
+	  "talk": "你想好要怎麼解釋這場災難了嗎？",
+	  "mood": "Goddess_C_Angry"
+	},
+	"talk4-1": {
+	  "talk": "你還敢承認？膽子倒是不小！",
+	  "mood": "Goddess_C_Cursing"
+	},
+	"talk4-2": {
+	  "talk": "連此時此刻你仍選擇欺瞞？真是膽大包天！",
+	  "mood": "Goddess_F_Fight"
+	}
   },
   {
-    "index": 15,
-    "weapons_count": "7,8,9",
-    "lake_state": "0,1",
-    "meetings_count": "4,5,6",
-    "talk1": {
-      "talk": "……",
-      "mood": "Goddess_I_None"
-    },
-    "talk2": {
-      "talk": "……",
-      "mood": "Goddess_I_None"
-    },
-    "talk3": {
-      "talk": "……走流程吧……",
-      "mood": "Goddess_C_None"
-    },
-    "talk4-1": {
-      "talk": "承認了也沒用，你必須為這魯莽行為付出代價！",
-      "mood": "Goddess_F_Cursing"
-    },
-    "talk4-2": {
-      "talk": "這次一定要讓你深刻體會什麼是天罰！",
-      "mood": "Goddess_F_Fight"
-    }
+	"index": 15,
+	"weapons_count": "7,8,9",
+	"lake_state": "0,1",
+	"meetings_count": "4,5,6",
+	"talk1": {
+	  "talk": "……",
+	  "mood": "Goddess_I_None"
+	},
+	"talk2": {
+	  "talk": "……",
+	  "mood": "Goddess_I_None"
+	},
+	"talk3": {
+	  "talk": "……走流程吧……",
+	  "mood": "Goddess_C_None"
+	},
+	"talk4-1": {
+	  "talk": "承認了也沒用，你必須為這魯莽行為付出代價！",
+	  "mood": "Goddess_F_Cursing"
+	},
+	"talk4-2": {
+	  "talk": "這次一定要讓你深刻體會什麼是天罰！",
+	  "mood": "Goddess_F_Fight"
+	}
   },
   {
-    "index": 16,
-    "weapons_count": 10,
-    "lake_state": "0,1",
-    "meetings_count": ">1",
-    "talk1": {
-      "talk": "……你終於讓這湖，沉到無法回頭的深處了。",
-      "mood": ""
-    },
-    "talk2": {
-      "talk": "曾經的我會問你誠實與否……但現在，我只想知道……你怕不怕死？",
-      "mood": ""
-    },
-    "talk3": {
-      "talk": "這裡是深淵，不是寬恕之地。你的靈魂──我收下了。",
-      "mood": ""
-    },
-    "talk4-1": {
-      "talk": "",
-      "mood": ""
-    },
-    "talk4-2": {
-      "talk": "",
-      "mood": ""
-    }
+	"index": 16,
+	"weapons_count": 10,
+	"lake_state": "0,1",
+	"meetings_count": ">1",
+	"talk1": {
+	  "talk": "……你終於讓這湖，沉到無法回頭的深處了。",
+	  "mood": ""
+	},
+	"talk2": {
+	  "talk": "曾經的我會問你誠實與否……但現在，我只想知道……你怕不怕死？",
+	  "mood": ""
+	},
+	"talk3": {
+	  "talk": "這裡是深淵，不是寬恕之地。你的靈魂──我收下了。",
+	  "mood": ""
+	},
+	"talk4-1": {
+	  "talk": "",
+	  "mood": ""
+	},
+	"talk4-2": {
+	  "talk": "",
+	  "mood": ""
+	}
   }
 ]
