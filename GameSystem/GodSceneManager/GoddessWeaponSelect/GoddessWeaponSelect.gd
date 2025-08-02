@@ -463,7 +463,9 @@ func _on_journey_start():
 
 func _weapon_drop_animation():
 	"""武器掉落動畫 - 自由落體效果"""
-	# 使用預定義的 TextureRect 節點
+	# 顯示節點
+	dropped_weapon_image.visible = true
+	dropped_weapon_image.modulate.a = 1.0
 	
 	main_weapon.move_to(dropped_weapon_image, null, false)
 	# weapon 的 scale 設為 5倍
@@ -480,8 +482,6 @@ func _weapon_drop_animation():
 	dropped_weapon_image.position = Vector2(0, -50)
 	dropped_weapon_image.rotation_degrees = 45
 	
-	# 顯示節點
-	dropped_weapon_image.visible = true
 	
 	var target_position = Vector2(30, 450)
 	
@@ -777,6 +777,7 @@ func _reset():
 	# 重置 dropped_weapon_image 節點
 	if dropped_weapon_image and is_instance_valid(dropped_weapon_image):
 		dropped_weapon_image.visible = false
+		goddess_image.remove_child(dropped_weapon_image)
 		goddess_portrait.add_child(dropped_weapon_image)
 	
 	# 重置 UI 元素
