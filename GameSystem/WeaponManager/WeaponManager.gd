@@ -34,8 +34,13 @@ var weapon_map = {
 	"Spear": {
 		"scene": preload("uid://cqw8w6knv08b3"),
 	},
+	"House": {
+		"scene": preload("uid://80sgembmigab"),
+	},
 }
 
+func get_weapon_map_keys() -> Array[String]:
+	return weapon_map.keys()
 
 func get_random_weapon_id() -> String:
 	return "Spear"
