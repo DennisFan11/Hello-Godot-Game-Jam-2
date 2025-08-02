@@ -20,6 +20,8 @@ func _open() -> void:
 	# 武器拼接數
 	var weapon_count: int = WeaponManager.get_player_weapon_count()
 	# 計算獲得的金幣
+	if not total_kills or not weapon_count:
+		return 
 	var coins: int = _calculate_coins(total_kills, weapon_count)
 	%SummaryContext.text = "擊殺敵人數: %d\n武器拼接數: %d\n獲得金幣數: %d" % [total_kills, weapon_count, coins]
 
