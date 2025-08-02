@@ -206,6 +206,7 @@ func _show_dialogue_stage(stage: String):
 	var mood = dialogue_info.mood
 	
 	dialogue_label.text = text
+	%NameLabel.visible = true
 	# 這裡可以根據 mood 來改變女神的表情或狀態
 	print("顯示對話: ", text, " (心情: ", mood, ")")
 	# 從 GODDESS_IMAGE_ROOT_PATH 獲取女神圖片
@@ -319,8 +320,8 @@ func _prepare_weapon_selection():
 	var left_id: String = available_weapon_ids.pick_random()
 	var right_id: String = available_weapon_ids.pick_random()
 	
-	# 确保左右武器ID不等於 main 且左右武器ID不相同
-	while right_id == left_id or right_id == "main":
+	# 确保左右武器ID不等於  且左右武器ID不相同
+	while right_id == left_id or right_id == main_weapon.id or left_id == main_weapon.id:
 		right_id = available_weapon_ids.pick_random()
 
 	left_weapon = WeaponManager.create_weapon_scene(left_id)
@@ -463,7 +464,9 @@ func _on_journey_start():
 
 func _weapon_drop_animation():
 	"""武器掉落動畫 - 自由落體效果"""
-	# 使用預定義的 TextureRect 節點
+	# 顯示節點
+	dropped_weapon_image.visible = true
+	dropped_weapon_image.modulate.a = 1.0
 	
 	main_weapon.move_to(dropped_weapon_image, null, false)
 	# weapon 的 scale 設為 5倍
@@ -480,8 +483,6 @@ func _weapon_drop_animation():
 	dropped_weapon_image.position = Vector2(0, -50)
 	dropped_weapon_image.rotation_degrees = 45
 	
-	# 顯示節點
-	dropped_weapon_image.visible = true
 	
 	var target_position = Vector2(30, 450)
 	
@@ -777,11 +778,12 @@ func _reset():
 	# 重置 dropped_weapon_image 節點
 	if dropped_weapon_image and is_instance_valid(dropped_weapon_image):
 		dropped_weapon_image.visible = false
+		goddess_image.remove_child(dropped_weapon_image)
 		goddess_portrait.add_child(dropped_weapon_image)
 	
 	# 重置 UI 元素
-	dialogue_label.text = ""
-	name_label.text = ""
+	dialogue_label.text = "..."
+	%NameLabel.visible = false
 	continue_button.text = "繼續"
 	continue_button.visible = false
 	weapon_selection_panel.visible = false
