@@ -173,6 +173,9 @@ var _message_box_manager: MessageBoxManager
 
 
 
+func set_state_visible(v: bool) -> void:
+	for i in _physical_components:
+		i.set_state_visible(v)
 
 
 ## ////////// PRIVATE \\\\\\\\\\

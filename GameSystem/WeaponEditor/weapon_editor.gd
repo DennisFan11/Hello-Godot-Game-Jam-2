@@ -22,6 +22,11 @@ func start_event(args):
 	
 	#_shader_manager.enable("frosted_glass")
 	visible = true
+
+	var w = _base_weapon
+	while w:
+		w.set_state_visible(true)
+		w = w.next_weapon
 	
 	#_base_weapon.is_main = true
 	_base_weapon.move_to(%BaseWeaponMarker, %GlueLayer, false)

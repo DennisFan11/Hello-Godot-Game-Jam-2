@@ -30,6 +30,7 @@ func set_current_weapon(weapon: Weapon) -> void:
 	while w:
 		w.summoner = user
 		w.get_node("%AttackManager").update_attack_type()
+		w.set_state_visible(false)
 		w = w.next_weapon
 
 	weapon.move_to(self, %GlueLayer, false)

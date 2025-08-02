@@ -340,6 +340,8 @@ func _prepare_weapon_selection():
 	weapon_descriptions[2].text = right_weapon.DESC
 	left_weapon.visible = false
 	right_weapon.visible = false
+	left_weapon.z_index = 10
+	right_weapon.z_index = 10
 
 func _show_weapon_selection():
 	"""顯示武器選擇界面"""
