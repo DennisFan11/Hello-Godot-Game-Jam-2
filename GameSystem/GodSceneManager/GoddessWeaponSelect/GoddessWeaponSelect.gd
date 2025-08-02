@@ -42,7 +42,7 @@ var lake_state: int = 0
 var current_dialogue_index: int = 0
 var current_text_index: int = 0
 var is_dialogue_phase: bool = true
-var selected_weapon: Dictionary = {}
+var selected_weapon: Weapon
 var float_tween: Tween
 var move_tween: Tween
 var animated_icon: TextureRect
@@ -101,6 +101,8 @@ func _load_dialogue_texts():
 
 func _get_current_dialogue() -> Dictionary:
 	"""根據遊戲狀態獲取當前對話"""
+	lake_state = randi() % 2
+	
 	for dialogue in dialogue_data:
 		if _matches_dialogue_conditions(dialogue):
 			return dialogue
@@ -109,6 +111,8 @@ func _get_current_dialogue() -> Dictionary:
 
 func _matches_dialogue_conditions(dialogue: Dictionary) -> bool:
 	"""檢查對話是否符合當前遊戲狀態"""
+	print("檢查對話條件: index=", dialogue.get("index", "?"))
+	
 	# 檢查武器數量
 	var weapon_counts = str(dialogue.get("weapons_count", "")).split(",")
 	var weapon_match = false
@@ -125,6 +129,7 @@ func _matches_dialogue_conditions(dialogue: Dictionary) -> bool:
 			break
 	
 	if not weapon_match:
+		print("武器數量不匹配: 需要 %s, 當前 weapon_count = %d" % [dialogue.get("weapons_count", ""), weapon_count])
 		return false
 
 	# 檢查湖泊狀態
@@ -135,6 +140,7 @@ func _matches_dialogue_conditions(dialogue: Dictionary) -> bool:
 			lake_match = true
 			break
 	if not lake_match:
+		print("湖泊狀態不匹配: 需要 %s, 當前 lake_state = %d" % [dialogue.get("lake_state", ""), lake_state])
 		return false
 	
 	# 檢查見面次數
@@ -153,7 +159,12 @@ func _matches_dialogue_conditions(dialogue: Dictionary) -> bool:
 		elif count_str == str(meetings_count):
 			meeting_match = true
 			break
-	return meeting_match
+	if not meeting_match:
+		print("見面次數不匹配: 需要 %s, 當前 meetings_count = %d" % [dialogue.get("meetings_count", ""), meetings_count])
+		return false
+	
+	print("✓ 對話條件匹配成功: index=", dialogue.get("index", "?"))
+	return true
 
 func _get_dialogue_text(stage: String) -> Dictionary:
 	"""獲取當前狀態下的對話文本"""
@@ -181,8 +192,9 @@ func _replace_text_variables(text: String) -> String:
 		result = result.replace("{武器B}", weapon_name)
 	
 	# 替換玩家選擇的武器
-	if selected_weapon.has("name"):
-		result = result.replace("{玩家選擇武器}", str(selected_weapon.name))
+	if selected_weapon:
+		var weapon_name = selected_weapon.NAME if selected_weapon.NAME != "" else selected_weapon.id
+		result = result.replace("{玩家選擇武器}", weapon_name)
 	
 	return result
 
@@ -307,8 +319,8 @@ func _prepare_weapon_selection():
 	var left_id: String = available_weapon_ids.pick_random()
 	var right_id: String = available_weapon_ids.pick_random()
 	
-	# 确保左右武器ID不相同
-	while right_id == left_id:
+	# 确保左右武器ID不等於 main 且左右武器ID不相同
+	while right_id == left_id or right_id == "main":
 		right_id = available_weapon_ids.pick_random()
 
 	left_weapon = WeaponManager.create_weapon_scene(left_id)
@@ -422,8 +434,10 @@ func _on_weapon_selected(button_index: int):
 		weapon_id = "Main"
 	elif button_index == 0:
 		weapon_id = left_weapon.id
+		selected_weapon = left_weapon
 	else:
 		weapon_id = right_weapon.id
+		selected_weapon = right_weapon
 	print("選擇的武器 ID: ", weapon_id)
 	var weapon: Weapon = (
 		null
@@ -758,7 +772,7 @@ func _reset():
 	current_dialogue_index = 0
 	current_text_index = 0
 	is_dialogue_phase = false
-	selected_weapon = {}
+	selected_weapon = null
 	
 	# 重置 dropped_weapon_image 節點
 	if dropped_weapon_image and is_instance_valid(dropped_weapon_image):
