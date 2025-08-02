@@ -57,3 +57,7 @@ func _ready() -> void:
 		func(new): SoundManager.set_db(
 			SoundManager.BUS.EFFECT, new)
 	)
+
+
+func _on_clear_button_button_down() -> void:
+	ConfigRepo.clear()

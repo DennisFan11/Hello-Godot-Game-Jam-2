@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://c8rpoo8yoqeud" path="res://GameSystem/_shared/Interactable/Interactable.tscn" id="2_1ytoa"]
 [ext_resource type="Script" uid="uid://dsk6blqw40ece" path="res://GameSystem/_shared/Interactable/TeleportInteractable.gd" id="3_e2bma"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2bma"]
+resource_local_to_scene = true
+size = Vector2(50, 50)
+
 [sub_resource type="Shader" id="Shader_kfobd"]
 code = "shader_type canvas_item;
 //I DONT OWN THIS i just took it directly from balatros source code teehee
@@ -84,15 +88,15 @@ shader_parameter/polar_coordinates = false
 shader_parameter/polar_center = Vector2(0.5, 0.5)
 shader_parameter/polar_zoom = 1.0
 shader_parameter/polar_repeat = 1.0
-shader_parameter/spin_rotation = 6.7
-shader_parameter/spin_speed = 19.4
+shader_parameter/spin_rotation = 0.0
+shader_parameter/spin_speed = 20.0
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/colour_1 = Color(0.908548, 0.346476, 0.498169, 1)
-shader_parameter/colour_2 = Color(0.402058, 0.809657, 0.795634, 1)
+shader_parameter/colour_1 = Color(0.902461, 0.49658, 0.522654, 1)
+shader_parameter/colour_2 = Color(3.36915e-06, 0.748481, 0.685899, 1)
 shader_parameter/colour_3 = Color(0, 0, 0, 1)
 shader_parameter/contrast = 2.0
 shader_parameter/spin_amount = 0.36
-shader_parameter/pixel_filter = 700.0
+shader_parameter/pixel_filter = 2000.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fjbv3"]
 blend_mode = 3
@@ -104,13 +108,19 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1ytoa"]
 gradient = SubResource("Gradient_kfobd")
 fill_from = Vector2(0, 0.444079)
-fill_to = Vector2(0, 0.641447)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2bma"]
-resource_local_to_scene = true
-size = Vector2(50, 50)
+fill_to = Vector2(0, 0.764957)
 
 [node name="Teleport" type="Node2D"]
+
+[node name="Interactable" parent="." instance=ExtResource("2_1ytoa")]
+script = ExtResource("3_e2bma")
+
+[node name="CollisionShape2D" parent="Interactable" index="0"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_e2bma")
+
+[node name="RichTextLabel" parent="Interactable" index="1"]
+text = "[F] 進入傳送門"
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
@@ -137,15 +147,5 @@ texture = SubResource("GradientTexture2D_1ytoa")
 texture_mode = 2
 script = ExtResource("1_kfobd")
 CIRCLE_R = 24.86
-
-[node name="Interactable" parent="." instance=ExtResource("2_1ytoa")]
-script = ExtResource("3_e2bma")
-
-[node name="CollisionShape2D" parent="Interactable" index="0"]
-position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_e2bma")
-
-[node name="RichTextLabel" parent="Interactable" index="1"]
-text = "[F] 進入傳送門"
 
 [editable path="Interactable"]

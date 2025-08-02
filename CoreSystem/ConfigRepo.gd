@@ -12,6 +12,9 @@ func _ready() -> void:
 func save():
 	return repo.save(PATH)
 
+func clear():
+	repo = ConfigFile.new()
+
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		await save()
