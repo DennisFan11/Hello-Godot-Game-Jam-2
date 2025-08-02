@@ -321,8 +321,11 @@ func _prepare_weapon_selection():
 	var right_id: String = available_weapon_ids.pick_random()
 	
 	# 确保左右武器ID不等於  且左右武器ID不相同
-	while right_id == left_id or right_id == main_weapon.id or left_id == main_weapon.id:
-		right_id = available_weapon_ids.pick_random()
+	for i in range(100): ## FIXED DeadLoop
+		if (right_id == left_id or right_id == main_weapon.id or left_id == main_weapon.id):
+			right_id = available_weapon_ids.pick_random()
+		else:
+			break
 
 	left_weapon = WeaponManager.create_weapon_scene(left_id)
 	left_weapon.scale = Vector2(5, 5)
