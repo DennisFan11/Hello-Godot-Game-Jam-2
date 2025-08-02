@@ -35,7 +35,7 @@ func _ready() -> void:
 	await _game_start_recursive()
 	
 	%EnemyManager.enemy_died.connect(_on_enemy_died)
-	%PlayerManager.player_died.connect(func (c): finish(false))
+	#%PlayerManager.player_died.connect(func (c): finish(false))
 	
 	print("✓ GameManager 初始化完成")
 	SoundManager.play_bgm("battle_music_1")
