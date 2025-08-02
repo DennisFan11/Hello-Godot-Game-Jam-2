@@ -61,3 +61,12 @@ func _ready() -> void:
 
 func _on_clear_button_button_down() -> void:
 	ConfigRepo.clear()
+
+var _shader_manager: ShaderManager
+func _on_shader_test_button_toggled(toggled_on: bool) -> void:
+	DI.injection(self)
+	if _shader_manager:
+		if toggled_on:
+			_shader_manager.enable("FrostedGlass")
+		else:
+			_shader_manager.disable("FrostedGlass")

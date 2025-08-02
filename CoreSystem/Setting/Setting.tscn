@@ -133,6 +133,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Clear Data"
 
+[node name="ShaderTestButton" type="CheckButton" parent="CanvasLayer/Setting/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ShaderTestButton"
+
 [node name="SettingButton" type="Button" parent="CanvasLayer/Setting"]
 visible = false
 layout_mode = 1
@@ -152,4 +158,5 @@ text = "setting"
 [connection signal="button_down" from="CanvasLayer/Setting/Panel/VBoxContainer/TitleButton" to="CanvasLayer/Setting" method="_on_title_button_button_down"]
 [connection signal="pressed" from="CanvasLayer/Setting/Panel/VBoxContainer/ExitButton" to="CanvasLayer/Setting" method="_on_exit_button_pressed"]
 [connection signal="button_down" from="CanvasLayer/Setting/Panel/VBoxContainer/ClearButton" to="CanvasLayer/Setting" method="_on_clear_button_button_down"]
+[connection signal="toggled" from="CanvasLayer/Setting/Panel/VBoxContainer/ShaderTestButton" to="CanvasLayer/Setting" method="_on_shader_test_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/Setting/SettingButton" to="CanvasLayer/Setting" method="_on_setting_button_pressed"]
