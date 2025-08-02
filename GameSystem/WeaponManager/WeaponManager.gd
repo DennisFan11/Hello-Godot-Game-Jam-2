@@ -41,26 +41,22 @@ var weapon_map = {
 }
 
 func get_weapon_map_keys() -> Array:
-	var list = []
-	for id in weapon_map:
-		if weapon_map[id].get("can_random", true):
-			list.append(id)
-	print(list)
-	return list
+	return weapon_map.keys() \
+		.filter(
+			func(id):return weapon_map[id].get("can_random", true)
+		)
 
 func get_random_weapon_id() -> String:
 	#return "Spear"
 	return get_weapon_map_keys().pick_random()
 
 func get_random_weapon_id_list(num:int = 2, exclude:Array = []) -> Array:
-	var id_list:Array = get_weapon_map_keys()
 	var result:Array = []
+	var id_list:Array = get_weapon_map_keys() \
+		.filter(func(id): return not id in exclude)
 
-	for id in exclude:
-		id_list.erase(id)
-
-	while num > 0:
-		var index = randi_range(0, len(id_list))
+	while num > 0 and len(id_list):
+		var index = randi_range(0, len(id_list) - 1)
 		result.append(id_list[index])
 		id_list.pop_at(index)
 		num -= 1
@@ -75,6 +71,7 @@ func create_weapon_scene(id: String) -> Weapon:
 
 func create_random_weapon() -> Weapon:
 	return create_weapon_scene(get_random_weapon_id())
+
 
 
 func get_player_weapon():

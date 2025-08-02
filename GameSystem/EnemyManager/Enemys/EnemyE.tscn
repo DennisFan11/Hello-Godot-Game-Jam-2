@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1irg6p4f8wkm"]
+[gd_scene load_steps=8 format=3 uid="uid://1irg6p4f8wkm"]
 
 [ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_u32nn"]
 [ext_resource type="AnimationLibrary" uid="uid://71f4ttejejd" path="res://Asset/Enemy/anim/enemy_default_anim.res" id="3_vf6wj"]
@@ -8,10 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmf4seylpvkwe" path="res://Asset/VFX/TailFlame.tscn" id="8_aaaa4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2x8b"]
-radius = 6.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5tueb"]
-radius = 4.0
+radius = 25.0
 
 [node name="EnemyE" instance=ExtResource("1_u32nn")]
 
@@ -23,12 +20,7 @@ shape = SubResource("CircleShape2D_u2x8b")
 [node name="RichTextLabel" parent="." index="3"]
 text = "E"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_5tueb")
-debug_color = Color(0, 0.628466, 0.492094, 0.42)
-
-[node name="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 &"": ExtResource("3_vf6wj")
 }

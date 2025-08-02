@@ -6,23 +6,27 @@
 [ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/ActionManager/Action/Move/JumpMove.gd" id="6_ohl1w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2x8b"]
-radius = 6.0
+radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5tueb"]
-radius = 4.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4wm5"]
+radius = 25.0
 
 [node name="EnemyB" instance=ExtResource("1_m5qlo")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="RichTextLabel" parent="." index="1"]
+text = "B"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CircleShape2D_u2x8b")
 
-[node name="RichTextLabel" parent="." index="2"]
-text = "B"
+[node name="FloorDetectArea" type="Area2D" parent="." index="3"]
+unique_name_in_owner = true
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
 position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_5tueb")
-debug_color = Color(0, 0.628466, 0.492094, 0.42)
+shape = SubResource("CircleShape2D_e4wm5")
 
 [node name="AnimationPlayer" parent="." index="4"]
 libraries = {

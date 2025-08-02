@@ -1,34 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://632eff4dpxmu"]
+[gd_scene load_steps=7 format=3 uid="uid://632eff4dpxmu"]
 
 [ext_resource type="Script" uid="uid://b5wo3t4mwgitc" path="res://GameSystem/ActionManager/Bullet/Bullet.gd" id="1_mqlab"]
+[ext_resource type="Texture2D" uid="uid://cnj0ljf8shb11" path="res://Asset/Bullet/Arrow.png" id="2_4xqsd"]
 [ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="2_uq0t4"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_ry3ja"]
 [ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="4_0yqhe"]
 [ext_resource type="Script" uid="uid://dserl315l4v5g" path="res://GameSystem/ActionManager/Action/Move/Bullet/ArrowMove.gd" id="5_grc3d"]
 
-[sub_resource type="Gradient" id="Gradient_v46i7"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lx23g"]
-gradient = SubResource("Gradient_v46i7")
-width = 6
-height = 1
-metadata/_snap_count = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ai2g"]
-size = Vector2(6, 1)
-
 [node name="Arrow" type="CharacterBody2D" groups=["Bullet"]]
 z_index = -1
 collision_layer = 4
-collision_mask = 3
 script = ExtResource("1_mqlab")
 cooldown = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_lx23g")
+texture = ExtResource("2_4xqsd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2ai2g")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(10, -5, 15, -5, 19, -2, 19, 1, 15, 4, 10, 4)
 
 [node name="AttackManager" type="Node" parent="."]
 script = ExtResource("2_uq0t4")
@@ -45,5 +34,6 @@ metadata/_custom_type_script = "uid://bc6yr8uo6mtuh"
 
 [node name="ArrowMove" type="Node" parent="MoveManager"]
 script = ExtResource("5_grc3d")
+variance_range = Vector2(100, 100)
 MAX_SPEED = Vector2(300, 300)
 metadata/_custom_type_script = "uid://dserl315l4v5g"

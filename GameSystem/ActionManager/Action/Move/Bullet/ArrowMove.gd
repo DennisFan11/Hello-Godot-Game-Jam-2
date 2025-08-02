@@ -1,7 +1,11 @@
 class_name ArrowMove
 extends BulletMove
 
+@export var default_degree:int = 45
+
 var jump:bool = true
+
+
 
 func _physics_process(delta: float) -> void:
 	if not enable: return
@@ -10,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	
 	# 碰撞後停止移動, 模擬箭插在牆上
 	if target.move_and_slide():
+		print(target.get_last_slide_collision().get_collider().get_script().get_global_name())
 		target.velocity = Vector2.ZERO
 		enable = false
 
@@ -20,7 +25,7 @@ func try_move(delta:float):
 		var pos = _get_player_distance()
 		# 初始角度
 		# 向上45度(90 +- 45)
-		var rad = deg_to_rad(45 if pos.x > 0.0 else 135)
+		var rad = deg_to_rad(90 + default_degree * (-1 if pos.x > 0.0 else 1))
 
 		# 初始速度
 		var v0 = sqrt(

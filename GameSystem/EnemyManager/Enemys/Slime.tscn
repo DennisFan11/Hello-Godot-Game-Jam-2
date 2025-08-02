@@ -8,8 +8,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujxie"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8lyni"]
-radius = 3.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubfyv"]
+radius = 6.0
 
 [sub_resource type="Animation" id="Animation_3c3kg"]
 length = 0.001
@@ -197,18 +197,16 @@ hframes = 8
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-visible = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_ujxie")
 
-[node name="FloorDetectArea" parent="." index="3"]
-visible = false
-position = Vector2(0, -4)
+[node name="FloorDetectArea" type="Area2D" parent="." index="2"]
+unique_name_in_owner = true
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
-position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_8lyni")
-debug_color = Color(0, 0.628466, 0.492094, 0.42)
+shape = SubResource("CircleShape2D_ubfyv")
 
 [node name="AnimationPlayer" parent="." index="4"]
 libraries = {
