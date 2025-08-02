@@ -81,8 +81,9 @@ func play_anim():
 func aim_tween(t):
 	aim_line.modulate = lerp(aim_line_color, Color(0,0,0,0), t)
 
-	target.position = target.summoner.position
-	target.rotation = _get_move_vec().angle()
+	if target.summoner:
+		target.position = target.summoner.position
+		target.rotation = _get_move_vec().angle()
 
 func fire_tween(t):
 	laser_line.position.x = (width >> 1) * t

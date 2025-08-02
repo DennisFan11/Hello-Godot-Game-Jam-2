@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0h2yv241oq7s"]
+[gd_scene load_steps=8 format=3 uid="uid://d0h2yv241oq7s"]
 
 [ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_quide"]
 [ext_resource type="Texture2D" uid="uid://cmnv218gg3p7l" path="res://Asset/Enemy/fantasy_goblin.png" id="2_rmobe"]
+[ext_resource type="AnimationLibrary" uid="uid://71f4ttejejd" path="res://Asset/Enemy/anim/enemy_default_anim.res" id="3_l26lt"]
 [ext_resource type="Script" uid="uid://bcuuhnkh8tdqm" path="res://GameSystem/ActionManager/Action/Move/GroundMove.gd" id="3_rmobe"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_sa3x4"]
 
@@ -22,6 +23,11 @@ shape = SubResource("RectangleShape2D_sa3x4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
 position = Vector2(0, 19)
 shape = SubResource("RectangleShape2D_l26lt")
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": ExtResource("3_l26lt")
+}
 
 [node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
 script = ExtResource("3_sa3x4")

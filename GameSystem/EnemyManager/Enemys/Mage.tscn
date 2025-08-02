@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://ekn4g78ogh6l"]
+
+[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_m1i32"]
+[ext_resource type="Texture2D" uid="uid://dognp3nn4knh0" path="res://Asset/Enemy/fantasy_mahoujin_syoukan.png" id="2_fj3qo"]
+[ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/ActionManager/Action/Attack/BulletAttack.gd" id="3_no42r"]
+[ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/ActionManager/Action/Move/FlyMove.gd" id="4_h0ty5"]
+[ext_resource type="PackedScene" uid="uid://doanxfksnnymk" path="res://GameSystem/ActionManager/Bullet/Laser.tscn" id="4_smn2t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smn2t"]
+radius = 17.0
+
+[sub_resource type="Animation" id="Animation_sa3x4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_uel26"]
+resource_name = "dead"
+length = 0.3
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.1, -1, 1e-05, -0.2, 1, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.1, 1, 1e-05, -0.2, 2, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_rmobe"]
+resource_name = "idle"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_no42r"]
+resource_local_to_scene = true
+resource_name = "move"
+length = 0.001
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.383972, 0.0, 0.383972, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h0ty5"]
+_data = {
+&"RESET": SubResource("Animation_sa3x4"),
+&"dead": SubResource("Animation_uel26"),
+&"idle": SubResource("Animation_rmobe"),
+&"move": SubResource("Animation_no42r")
+}
+
+[node name="Mage" instance=ExtResource("1_m1i32")]
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_fj3qo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_smn2t")
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": SubResource("AnimationLibrary_h0ty5")
+}
+
+[node name="BulletAttack" type="Node" parent="AttackManager" index="0"]
+script = ExtResource("3_no42r")
+bullet = ExtResource("4_smn2t")
+cooldown = 7.0
+metadata/_custom_type_script = "uid://i0eyoraab26"
+
+[node name="FlyMove" type="Node" parent="MoveManager" index="0"]
+script = ExtResource("4_h0ty5")
+max_rotation_angle = 180.0
+move_rotation = true
+MAX_SPEED = Vector2(30, 30)
+social_distance = Vector2(50, 50)
+metadata/_custom_type_script = "uid://wpswuf8in8cv"

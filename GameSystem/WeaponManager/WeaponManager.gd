@@ -3,6 +3,7 @@ extends Node
 var weapon_map = {
 	"Excalibur": {
 		"scene": preload("uid://4vimk1pu87eh"),
+		"can_random": false
 	},
 	"BrokenSword": {
 		"scene": preload("uid://cmknshmdfm2m8"),
@@ -40,11 +41,30 @@ var weapon_map = {
 }
 
 func get_weapon_map_keys() -> Array:
-	return weapon_map.keys()
+	var list = []
+	for id in weapon_map:
+		if weapon_map[id].get("can_random", true):
+			list.append(id)
+	print(list)
+	return list
 
 func get_random_weapon_id() -> String:
-	return "Spear"
-	return weapon_map.keys().pick_random()
+	#return "Spear"
+	return get_weapon_map_keys().pick_random()
+
+func get_random_weapon_id_list(num:int = 2, exclude:Array = []) -> Array:
+	var id_list:Array = get_weapon_map_keys()
+	var result:Array = []
+
+	for id in exclude:
+		id_list.erase(id)
+
+	while num > 0:
+		var index = randi_range(0, len(id_list))
+		result.append(id_list[index])
+		id_list.pop_at(index)
+		num -= 1
+	return result
 
 func create_weapon_scene(id: String) -> Weapon:
 	var weapon: Weapon = \

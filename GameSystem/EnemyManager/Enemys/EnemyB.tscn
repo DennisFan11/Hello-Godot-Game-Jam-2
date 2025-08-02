@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bequc6v8l0lyo"]
+[gd_scene load_steps=7 format=3 uid="uid://bequc6v8l0lyo"]
 
 [ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_m5qlo"]
+[ext_resource type="AnimationLibrary" uid="uid://71f4ttejejd" path="res://Asset/Enemy/anim/enemy_default_anim.res" id="2_e4wm5"]
 [ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="4_2dt28"]
 [ext_resource type="Script" uid="uid://vaaj7wcovhby" path="res://GameSystem/ActionManager/Action/Move/JumpMove.gd" id="6_ohl1w"]
 
@@ -22,6 +23,11 @@ text = "B"
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_5tueb")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": ExtResource("2_e4wm5")
+}
 
 [node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
 script = ExtResource("4_2dt28")

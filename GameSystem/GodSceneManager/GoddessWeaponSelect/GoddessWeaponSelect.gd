@@ -316,16 +316,9 @@ func _update_dialogue_characters(visible_count: int):
 	dialogue_label.visible_characters = visible_count
 
 func _prepare_weapon_selection():
-	var available_weapon_ids = WeaponManager.get_weapon_map_keys()
-	var left_id: String = available_weapon_ids.pick_random()
-	var right_id: String = available_weapon_ids.pick_random()
-	
-	# 确保左右武器ID不等於  且左右武器ID不相同
-	for i in range(100): ## FIXED DeadLoop
-		if (right_id == left_id or right_id == main_weapon.id or left_id == main_weapon.id):
-			right_id = available_weapon_ids.pick_random()
-		else:
-			break
+	var rag_weapon_id = WeaponManager.get_random_weapon_id_list(2, [main_weapon.id])
+	var left_id: String = rag_weapon_id[0]
+	var right_id: String = rag_weapon_id[1]
 
 	left_weapon = WeaponManager.create_weapon_scene(left_id)
 	left_weapon.scale = Vector2(5, 5)
