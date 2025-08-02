@@ -7,7 +7,8 @@ extends Node
 var LEVEL_SEQUENCE: Array[String] = [
 	"Level1",
 	"Level2",
-	"Level3"
+	"Level3",
+	"Lake",
 ]
 func _ready() -> void:
 	DI.register("_level_manager", self)

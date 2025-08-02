@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnxvmxu78aacr"]
+
+[ext_resource type="PackedScene" uid="uid://bgtiwbv5cfrsi" path="res://Scene/Levels/Template.tscn" id="1_fw301"]
+[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="2_2h7pu"]
+[ext_resource type="Resource" uid="uid://bt2d8cax35pw5" path="res://GameSystem/WaveManager/PreWaveConfigs/SafeAreaWaveConfig.tres" id="2_wvyxb"]
+
+[node name="GameManager" instance=ExtResource("1_fw301")]
+
+[node name="WaveManager" parent="." index="1"]
+waveConfig = ExtResource("2_wvyxb")
+
+[node name="RichTextLabel" parent="CanvasLayer" index="0"]
+text = "[font_size=70]SafeArea"
+
+[node name="Lake" parent="TestNode" index="0"]
+position = Vector2(-99, 4)
+
+[node name="Teleport" parent="TestNode" index="1" instance=ExtResource("2_2h7pu")]
+position = Vector2(74, -17)
+
+[editable path="TerrainManager"]

@@ -1623,6 +1623,6 @@ Radius = 200.0
 Shape = 1
 
 [node name="Teleport" parent="TestNode" index="0" instance=ExtResource("2_aiihb")]
-position = Vector2(-101, -809)
+position = Vector2(582, -228)
 
 [editable path="TerrainManager"]

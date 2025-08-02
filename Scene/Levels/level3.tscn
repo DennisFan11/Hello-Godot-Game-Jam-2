@@ -3520,6 +3520,18 @@ _map_data = [{
 Radius = 10.0
 
 [node name="Teleport" parent="TestNode" index="0" instance=ExtResource("2_lgvdp")]
-position = Vector2(57, -362)
+position = Vector2(-235, -199)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerUILayer" index="1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[font_size=70]LEVEL 3"
+fit_content = true
+horizontal_alignment = 2
 
 [editable path="TerrainManager"]

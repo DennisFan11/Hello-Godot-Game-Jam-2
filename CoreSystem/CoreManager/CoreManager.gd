@@ -21,6 +21,9 @@ var SCENE := {
 	"Level3": {
 		"file": preload("uid://dmq6hvpeioana")
 	},
+	"SafeArea": {
+		"file": preload("uid://cnxvmxu78aacr")
+	},
 	
 	"UpgradeShop": {
 		"file": preload("uid://c0p31kfgvdkkq")

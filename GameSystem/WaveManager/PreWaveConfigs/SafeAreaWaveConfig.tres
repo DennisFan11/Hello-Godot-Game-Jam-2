@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WaveConfig" load_steps=3 format=3 uid="uid://bt2d8cax35pw5"]
+
+[ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="1_36seq"]
+[ext_resource type="Script" uid="uid://cu0xicm6f2rtw" path="res://GameSystem/WaveManager/WaveDataDefine/WaveConfig.gd" id="3_nkh20"]
+
+[resource]
+script = ExtResource("3_nkh20")
+WaveArray = Array[ExtResource("1_36seq")]([])
+metadata/_custom_type_script = "uid://cu0xicm6f2rtw"

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://by1ilb7vws5mw"]
+[gd_scene load_steps=3 format=3 uid="uid://by1ilb7vws5mw"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_hg86w"]
-[ext_resource type="PackedScene" uid="uid://djxy1siqmm16l" path="res://GameSystem/_shared/Lake/Lake.tscn" id="2_d7ik8"]
 [ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="3_gqurj"]
 
 [node name="Level2" instance=ExtResource("1_hg86w")]
@@ -1176,10 +1175,19 @@ _map_data = [{
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 90.0
 
-[node name="Lake2" parent="TestNode" index="0" instance=ExtResource("2_d7ik8")]
-position = Vector2(-491, 144)
+[node name="Teleport" parent="TestNode" index="0" instance=ExtResource("3_gqurj")]
+position = Vector2(-621, 104)
 
-[node name="Teleport" parent="TestNode" index="1" instance=ExtResource("3_gqurj")]
-position = Vector2(-165, -222)
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerUILayer" index="1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[font_size=70]LEVEL 2"
+fit_content = true
+horizontal_alignment = 2
 
 [editable path="TerrainManager"]
