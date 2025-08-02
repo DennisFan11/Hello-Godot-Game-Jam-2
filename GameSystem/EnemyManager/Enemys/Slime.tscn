@@ -186,6 +186,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-7, -36)
 
 [node name="Slime" instance=ExtResource("1_ubfyv")]
+attack_damage = 5
 overbody_color = Color(2, 0, 0, 1)
 
 [node name="Icon" parent="." index="0"]

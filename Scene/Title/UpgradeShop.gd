@@ -23,6 +23,9 @@ var inventory_system
 func _ready():
 	# 等待一幀確保 @onready 變數已初始化
 	await get_tree().process_frame
+
+	var coin = ConfigRepo.repo.get_value("PLAYER_PROPERTIES", "coins", 0)
+	print("Current Coins: ", coin)
 	
 	# 獲取 AutoLoad 單例引用
 	upgrade_system = PlayerUpgradeSystem

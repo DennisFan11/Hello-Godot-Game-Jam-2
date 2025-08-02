@@ -58,8 +58,13 @@ func finish(win:bool):
 	on_end.emit(win)
 
 ## FIXME
-func _on_enemy_died(enemy:Enemy):
-	kill_count += 1
+func _on_enemy_died(enemy: Enemy):
+	# kill_count += 1
+	var _total_kills = InGameSaveSystem.load_object("total_kills")
+	if not _total_kills:
+		_total_kills = 0
+	_total_kills += 1
+	InGameSaveSystem.save_object("total_kills", _total_kills)
 	print(kill_count, "/", next_level_kill_count, " ", enemy)
 	#if kill_count >= next_level_kill_count:
 		#finish(true)
