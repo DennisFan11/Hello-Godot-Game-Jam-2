@@ -8,56 +8,53 @@ var LEVEL_SEQUENCE: Array[String] = [
 	"Level1",
 	"Level2",
 	"Level3",
-	"Lake",
+	"SafeArea",
 ]
+
+## 關卡重複次數
+const LEVEL_REPEAT_COUNT = 2
 func _ready() -> void:
 	DI.register("_level_manager", self)
 	
-
-
 
 ## PUBLIC ///////////////
 var _is_start: bool = false
 
 ## 開始你的冒險 !
-func start_game()-> void:
-	if _is_start : return 
+func start_game() -> void:
+	if _is_start: return
 	_is_start = true
 	await _start_game()
 	_is_start = false
 
 
-
-
-
-
-
-
 ## PRIVATE /////////////
 
-func _start_game()-> void:
+func _start_game() -> void:
 	_reset_progress()
 	
 	await _tutorial()
-	
-	for level: String in LEVEL_SEQUENCE:
-		var _game_manager:GameManager = await CoreManager.goto_scene(level)
-		
-		var player_win: bool = await _game_manager.on_end
-		
-		if not player_win: ## lose
-			_lose()
-			return 
+	print("Start Game")
+	for cycle in range(LEVEL_REPEAT_COUNT):
+		print("Cycle: ", cycle + 1)
+		for level: String in LEVEL_SEQUENCE:
+			var _game_manager: GameManager = await CoreManager.goto_scene(level)
+			
+			var player_win: bool = await _game_manager.on_end
+			
+			if not player_win: ## lose
+				_lose()
+				return
 	## Win
 	_win()
 
-func _tutorial()-> void:
-	var need_tutorial:bool = ConfigRepo.repo.get_value("LEVEL_MANAGER", "need_tutorial", true)
+func _tutorial() -> void:
+	var need_tutorial: bool = ConfigRepo.repo.get_value("LEVEL_MANAGER", "need_tutorial", true)
 	if not need_tutorial:
 		return
 	
 	while true:
-		var _game_manager:GameManager = await CoreManager.goto_scene("Tutorial")
+		var _game_manager: GameManager = await CoreManager.goto_scene("Tutorial")
 		
 		var player_win: bool = await _game_manager.on_end
 		
