@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://khvl61kd2fon" path="res://Asset/Class/TweenPanel.gd" id="2_evgl1"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="3_2iv7x"]
 [ext_resource type="FontFile" uid="uid://c1bk7jgs07e5i" path="res://Asset/Fonts/Patrick_Hand/PatrickHand-Regular.ttf" id="5_4le2u"]
-[ext_resource type="Script" uid="uid://fbegrav277xd" path="res://Asset/Class/SummaryPanel.gd" id="5_x25x8"]
+[ext_resource type="Script" path="res://Asset/Class/SummaryPanel.gd" id="5_x25x8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4le2u"]
 bg_color = Color(0.69614, 0.903454, 0.980105, 1)

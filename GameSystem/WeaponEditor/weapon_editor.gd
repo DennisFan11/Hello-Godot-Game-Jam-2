@@ -23,7 +23,7 @@ func start_event(args):
 	#_shader_manager.enable("frosted_glass")
 	visible = true
 	
-	_base_weapon.is_main = true
+	#_base_weapon.is_main = true
 	_base_weapon.move_to(%BaseWeaponMarker, %GlueLayer, false)
 	_base_weapon.scale = Vector2.ONE * 7.0
 	if _new_weapon:

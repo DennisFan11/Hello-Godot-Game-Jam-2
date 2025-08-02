@@ -39,7 +39,7 @@ var weapon_map = {
 	},
 }
 
-func get_weapon_map_keys() -> Array[String]:
+func get_weapon_map_keys() -> Array:
 	return weapon_map.keys()
 
 func get_random_weapon_id() -> String:
