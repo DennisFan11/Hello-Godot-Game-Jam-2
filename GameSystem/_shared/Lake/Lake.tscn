@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djxy1siqmm16l"]
 
-[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="1_7y3b6"]
+[ext_resource type="Texture2D" uid="uid://b5or5enb5flf7" path="res://Asset/Image/lake.png" id="1_2rht4"]
 [ext_resource type="PackedScene" uid="uid://c8rpoo8yoqeud" path="res://GameSystem/_shared/Interactable/Interactable.tscn" id="2_i1koa"]
 [ext_resource type="Script" uid="uid://c2ucm0ymo38h3" path="res://GameSystem/_shared/Lake/Lake.gd" id="3_2rht4"]
 
@@ -8,8 +8,9 @@
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-scale = Vector2(1, 0.21875)
-texture = ExtResource("1_7y3b6")
+scale = Vector2(0.156134, 0.156134)
+texture = ExtResource("1_2rht4")
+metadata/_edit_group_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -66.0
@@ -17,7 +18,6 @@ offset_top = 7.0
 offset_right = 62.0
 offset_bottom = 47.0
 bbcode_enabled = true
-text = "[color=yellow]I'm Lake"
 horizontal_alignment = 1
 vertical_alignment = 1
 
