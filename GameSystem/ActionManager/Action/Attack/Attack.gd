@@ -55,7 +55,6 @@ func update_attack_type():
 		elif target is Enemy \
 		or (target is Derivative and target.summoner is Enemy):
 			attack_type = "Player"
-	printt("UAT", self, target, attack_type)
 
 
 

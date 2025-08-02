@@ -1,9 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf2x6o6j8et38"]
+[gd_scene load_steps=16 format=3 uid="uid://bf2x6o6j8et38"]
 
 [ext_resource type="Script" uid="uid://bea5tdyuhjbc8" path="res://GameSystem/EnemyManager/Enemys/Enemy.gd" id="1_hamuk"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="2_sjbhv"]
+[ext_resource type="AnimationLibrary" uid="uid://71f4ttejejd" path="res://Asset/Enemy/anim/enemy_default_anim.res" id="3_lhjme"]
 [ext_resource type="Script" uid="uid://dkkr382xaqb8j" path="res://GameSystem/ActionManager/Action/AttackManager.gd" id="3_qcfe6"]
 [ext_resource type="Script" uid="uid://bc6yr8uo6mtuh" path="res://GameSystem/ActionManager/Action/MoveManager.gd" id="5_mqgrn"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c7dsi"]
+animation = &"dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3w8dv"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_efhn3"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_swkh6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mmu71"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0aws1"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rins"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rjofy"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dcwwm"]
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hamuk"]
+states/dead/node = SubResource("AnimationNodeAnimation_c7dsi")
+states/dead/position = Vector2(643, 105)
+states/idle/node = SubResource("AnimationNodeAnimation_3w8dv")
+states/idle/position = Vector2(430, 41)
+states/move/node = SubResource("AnimationNodeAnimation_efhn3")
+states/move/position = Vector2(430, 188)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_swkh6"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_mmu71"), "move", "dead", SubResource("AnimationNodeStateMachineTransition_0aws1"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_6rins"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_rjofy"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_dcwwm")]
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
@@ -11,7 +53,7 @@ collision_mask = 3
 script = ExtResource("1_hamuk")
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_sjbhv")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -29,6 +71,20 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 collision_layer = 3
 collision_mask = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": ExtResource("3_lhjme")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_hamuk")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/dead = false
+parameters/conditions/idle = true
+parameters/conditions/move = false
 
 [node name="AttackManager" type="Node" parent="."]
 script = ExtResource("3_qcfe6")

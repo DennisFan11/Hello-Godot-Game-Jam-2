@@ -40,6 +40,10 @@ func _ready() -> void:
 	print("✓ GameManager 初始化完成")
 	SoundManager.play_bgm("battle_music_1")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("debug"):
+		finish(true)
+
 func _exit_tree() -> void:
 	await Save()
 

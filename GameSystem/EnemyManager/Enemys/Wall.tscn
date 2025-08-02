@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf0wxaibupxeb"]
+
+[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_pe3rj"]
+[ext_resource type="Texture2D" uid="uid://dcc6r2fl1ruu4" path="res://Asset/Enemy/youkai_nurikabe.png" id="2_rq1bh"]
+[ext_resource type="Script" uid="uid://bcuuhnkh8tdqm" path="res://GameSystem/ActionManager/Action/Move/GroundMove.gd" id="3_blqou"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_rq1bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq1bh"]
+size = Vector2(30, 39)
+
+[node name="Enemy" instance=ExtResource("1_pe3rj")]
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_rq1bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_rq1bh")
+
+[node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
+script = ExtResource("3_rq1bh")
+metadata/_custom_type_script = "uid://dhy4eth68b7ji"
+
+[node name="GroundMove" type="Node" parent="MoveManager" index="0"]
+script = ExtResource("3_blqou")
+metadata/_custom_type_script = "uid://bcuuhnkh8tdqm"

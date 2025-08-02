@@ -150,8 +150,6 @@ func change_direction(velocity):
 		return
 
 	var new_direction = velocity.x > 0.0
-	#if state == ON_WALL:
-		#new_direction = not new_direction
 
 	if new_direction == target.direction:
 		return

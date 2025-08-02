@@ -28,15 +28,18 @@ func try_move(delta: float) -> void:
 	new_velocity.y = try_move_y(new_velocity.y, delta)
 
 	target.velocity = new_velocity
+	change_direction(new_velocity)
 
 func try_move_x(value:float, delta:float) -> float:
 	# 处理左右移动
 	var vec = _get_move_vec()
 	if vec.x != 0: 
+		set_target_anim_state("idle", false)
 		set_target_anim_state("move", true)
 		return lerp(value, MAX_SPEED.x * vec.x, INCREASE * delta)
 	else: # 停止移动
 		set_target_anim_state("move", false)
+		set_target_anim_state("idle", true)
 		return lerp(value, 0.0, DECREASE * delta)
 
 func try_move_y(value:float, _delta:float) -> float:

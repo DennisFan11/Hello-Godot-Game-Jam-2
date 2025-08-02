@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaveConfig" load_steps=6 format=3 uid="uid://cgdeoh5n0f6ix"]
+[gd_resource type="Resource" script_class="WaveConfig" load_steps=7 format=3 uid="uid://cgdeoh5n0f6ix"]
 
 [ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="1_l0iuf"]
 [ext_resource type="Script" uid="uid://dddth468gqso1" path="res://GameSystem/WaveManager/WaveDataDefine/WaveEnemy.gd" id="2_et1iv"]
@@ -6,14 +6,20 @@
 
 [sub_resource type="Resource" id="Resource_rmvt2"]
 script = ExtResource("2_et1iv")
-EnemyType = 1
+EnemyType = ""
+Mount = 10
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_rqmft"]
+script = ExtResource("2_et1iv")
+EnemyType = ""
 Mount = 10
 metadata/_custom_type_script = "uid://dddth468gqso1"
 
 [sub_resource type="Resource" id="Resource_0onfb"]
 script = ExtResource("1_l0iuf")
 WaitTime = 0.0
-Enemys = Array[ExtResource("2_et1iv")]([SubResource("Resource_rmvt2")])
+Enemys = Array[ExtResource("2_et1iv")]([SubResource("Resource_rmvt2"), SubResource("Resource_rqmft")])
 metadata/_custom_type_script = "uid://cxlrsuibgh48g"
 
 [resource]

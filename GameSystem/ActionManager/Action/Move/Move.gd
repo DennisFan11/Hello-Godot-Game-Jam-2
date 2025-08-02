@@ -32,6 +32,17 @@ func _physics_process(delta: float) -> void:
 func try_move(_delta: float) -> void:
 	pass
 
+func change_direction(vec:Vector2):
+	if is_zero_approx(vec.x):
+		return
+
+	var new_direction = vec.x > 0.0
+	if new_direction == target.direction:
+		return
+
+	target.scale.x = 1 if new_direction else -1
+	target.direction = new_direction
+
 
 
 var _player_manager: PlayerManager

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0h2yv241oq7s"]
+
+[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_quide"]
+[ext_resource type="Texture2D" uid="uid://cmnv218gg3p7l" path="res://Asset/Enemy/fantasy_goblin.png" id="2_rmobe"]
+[ext_resource type="Script" uid="uid://bcuuhnkh8tdqm" path="res://GameSystem/ActionManager/Action/Move/GroundMove.gd" id="3_rmobe"]
+[ext_resource type="Script" uid="uid://dhy4eth68b7ji" path="res://GameSystem/ActionManager/Action/Attack/TouchAttack.gd" id="3_sa3x4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa3x4"]
+size = Vector2(28, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l26lt"]
+size = Vector2(28, 4)
+
+[node name="Goblin" instance=ExtResource("1_quide")]
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_rmobe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_sa3x4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetectArea" index="0"]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_l26lt")
+
+[node name="TouchAttack" type="Node" parent="AttackManager" index="0"]
+script = ExtResource("3_sa3x4")
+metadata/_custom_type_script = "uid://dhy4eth68b7ji"
+
+[node name="GroundMove" type="Node" parent="MoveManager" index="0"]
+script = ExtResource("3_rmobe")
+metadata/_custom_type_script = "uid://bcuuhnkh8tdqm"

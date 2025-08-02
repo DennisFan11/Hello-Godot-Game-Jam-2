@@ -173,7 +173,7 @@ switch_mode = 1
 advance_mode = 2
 advance_condition = &"dead"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3c3kg"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ubfyv"]
 states/dead/node = SubResource("AnimationNodeAnimation_ohl1w")
 states/dead/position = Vector2(649, 100)
 states/fall/node = SubResource("AnimationNodeAnimation_c05mq")
@@ -210,17 +210,13 @@ position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_8lyni")
 debug_color = Color(0, 0.628466, 0.492094, 0.42)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 &"": SubResource("AnimationLibrary_ya0mj")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="5"]
-unique_name_in_owner = true
-root_node = NodePath("%AnimationTree/..")
-tree_root = SubResource("AnimationNodeStateMachine_3c3kg")
-anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/dead = false
+[node name="AnimationTree" parent="." index="5"]
+tree_root = SubResource("AnimationNodeStateMachine_ubfyv")
 parameters/conditions/fall = false
 parameters/conditions/jump = false
 

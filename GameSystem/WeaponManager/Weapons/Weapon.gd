@@ -35,7 +35,7 @@ func get_weapon_name()-> String:
 	var curr_weapon: Weapon = self
 	while curr_weapon.next_weapon:
 		curr_weapon = curr_weapon.next_weapon
-		str += "[" + curr_weapon.NAME + "]"
+		str = "[{0}]{1}".format([curr_weapon.NAME, str])
 	return str + NAME
 
 func get_damage()-> int:

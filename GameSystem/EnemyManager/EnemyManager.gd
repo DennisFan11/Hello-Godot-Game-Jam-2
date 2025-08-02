@@ -7,8 +7,19 @@ extends IGameSubManager
 """
 ## PUBLIC
 
+var _enemy_file: Dictionary = {
+	"A" : preload("uid://dsivi152md61i"),
+	"B" : preload("uid://bequc6v8l0lyo"),
+	"C" : preload("uid://bncde2rk1wyly"),
+	"D" : preload("uid://4vlqptxodl6n"),
+	"E" : preload("uid://1irg6p4f8wkm"),
+	"Goblin": preload("uid://d0h2yv241oq7s"),
+	"Slime": preload("uid://cmbx8s22egbna"),
+	"Wall": preload("uid://bf0wxaibupxeb"),
+}
 
-
+func get_enemy(enemy_name:String):
+	return _enemy_file.get(enemy_name)
 
 
 
@@ -20,16 +31,21 @@ signal enemy_died(enemy: Enemy)
 enum ENEMY_TYPE {A, B, C, D, E}
 
 ## 尋找空位生成敵人 (可能失敗)
-func spawn_enemy(enemy_type: ENEMY_TYPE)-> Enemy:
-	for i in range(10):
-		var spawn_pos := _gen_random_position()
-		if _has_space(spawn_pos):
-			return _spawn_enemy(enemy_type, spawn_pos)
-	return null
+func spawn_enemy(wave_enemy:WaveEnemy)-> Array:
+	var enemy_list = []
+	for a in wave_enemy.Mount:
+		for i in range(10):
+			var spawn_pos := _gen_random_position()
+			if _has_space(spawn_pos):
+				enemy_list.append(_spawn_enemy(wave_enemy.EnemyType, spawn_pos))
+				break
+		# 等待小段時間避免怪物動作同步
+		await get_tree().create_timer(randf_range(-0.5, 0.5)).timeout
+	return enemy_list
 
 ## 在指定位置強制生成敵人
 var _terrain_manager: TerrainManager
-func spawn_enemy_force(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
+func spawn_enemy_force(enemy_type:String, spawn_pos: Vector2)-> Enemy:
 	_terrain_manager.clip(
 		GeometryShapeTool.gen_circle(50.0, spawn_pos)
 	)
@@ -42,13 +58,6 @@ func spawn_enemy_force(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
 
 ## PRIVATE ///////////////////////////
 
-var _enemy_file: Dictionary[ENEMY_TYPE, PackedScene] = {
-	ENEMY_TYPE.A : preload("uid://dsivi152md61i"),
-	ENEMY_TYPE.B : preload("uid://cmbx8s22egbna"),
-	ENEMY_TYPE.C : preload("uid://bncde2rk1wyly"),
-	ENEMY_TYPE.D : preload("uid://4vlqptxodl6n"),
-	ENEMY_TYPE.E : preload("uid://1irg6p4f8wkm"),
-}
 
 func _ready() -> void:
 	DI.register("_enemy_manager", self)
@@ -66,8 +75,17 @@ func _ready() -> void:
 
 
 
-func _spawn_enemy(enemy_type: ENEMY_TYPE, spawn_pos: Vector2)-> Enemy:
-	var enemy: Enemy = _enemy_file[enemy_type].instantiate()
+func _spawn_enemy(enemy_type:String, spawn_pos: Vector2)-> Enemy:
+	if not enemy_type:
+		return null
+	
+	var enemy_scene = get_enemy(enemy_type)
+	if not enemy_scene:
+		return null
+	
+	var enemy: Enemy = enemy_scene.instantiate()
+	if not enemy is Enemy:
+		return null
 	
 	enemy.position = spawn_pos
 	

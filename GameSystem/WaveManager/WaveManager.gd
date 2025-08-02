@@ -63,8 +63,7 @@ func _next_wave():
 		_next_wave_timer.trigger(waveConfig.WaveArray[0].WaitTime)
 	
 	for i: WaveEnemy in wave.Enemys:
-		for j: int in range(i.Mount):
-			_enemy_manager.spawn_enemy(i.EnemyType)
+		_enemy_manager.spawn_enemy(i)
 
 
 

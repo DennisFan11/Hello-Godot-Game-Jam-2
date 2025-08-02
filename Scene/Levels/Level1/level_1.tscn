@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_4uiaf"]
 script = ExtResource("3_wmitf")
-EnemyType = 0
+EnemyType = "Goblin"
 Mount = 5
 metadata/_custom_type_script = "uid://dddth468gqso1"
 
@@ -20,13 +20,13 @@ metadata/_custom_type_script = "uid://cxlrsuibgh48g"
 
 [sub_resource type="Resource" id="Resource_nky7k"]
 script = ExtResource("3_wmitf")
-EnemyType = 3
+EnemyType = "Goblin"
 Mount = 30
 metadata/_custom_type_script = "uid://dddth468gqso1"
 
 [sub_resource type="Resource" id="Resource_eab4e"]
 script = ExtResource("3_wmitf")
-EnemyType = 4
+EnemyType = "Slime"
 Mount = 10
 metadata/_custom_type_script = "uid://dddth468gqso1"
 
