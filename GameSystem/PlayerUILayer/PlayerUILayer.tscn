@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://t0dcqjbdfr4j"]
+[gd_scene load_steps=9 format=3 uid="uid://t0dcqjbdfr4j"]
 
 [ext_resource type="Script" uid="uid://lmwf2xpq56bc" path="res://GameSystem/PlayerUILayer/PlayerUILayer.gd" id="1_fwg4k"]
 [ext_resource type="Script" uid="uid://khvl61kd2fon" path="res://Asset/Class/TweenPanel.gd" id="2_evgl1"]
 [ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="3_2iv7x"]
+[ext_resource type="FontFile" uid="uid://c1bk7jgs07e5i" path="res://Asset/Fonts/Patrick_Hand/PatrickHand-Regular.ttf" id="5_4le2u"]
+[ext_resource type="Script" uid="uid://fbegrav277xd" path="res://Asset/Class/SummaryPanel.gd" id="5_x25x8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4le2u"]
+bg_color = Color(0.69614, 0.903454, 0.980105, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x25x8"]
+bg_color = Color(0.182664, 0.567826, 0.685624, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7k00"]
+bg_color = Color(0.8793, 0.958995, 0.992729, 1)
 
 [node name="PlayerUILayer" type="CanvasLayer"]
 script = ExtResource("1_fwg4k")
@@ -59,3 +70,86 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
+
+[node name="SummaryPanel" type="Control" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_x25x8")
+
+[node name="ColorRect" type="ColorRect" parent="Control/SummaryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.835294)
+
+[node name="SummaryTitle" type="RichTextLabel" parent="Control/SummaryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 186.0
+offset_bottom = -458.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.882482, 0, 0.309709, 1)
+theme_override_fonts/normal_font = ExtResource("5_4le2u")
+theme_override_font_sizes/normal_font_size = 90
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="SummaryContext" type="RichTextLabel" parent="Control/SummaryPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 326.0
+offset_bottom = -182.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "擊殺敵人數:
+武器拼接數:
+獲得金幣數:"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="SummaryButton" type="Button" parent="Control/SummaryPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -192.0
+offset_right = 100.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/icon_normal_color = Color(0.671555, 0.768797, 0.769192, 1)
+theme_override_colors/font_color = Color(0.504455, 0.564982, 0.845261, 1)
+theme_override_colors/font_focus_color = Color(0.505882, 0.564706, 0.847059, 1)
+theme_override_colors/font_pressed_color = Color(0.505882, 0.564706, 0.847059, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_4le2u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x25x8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r7k00")
+text = "回首頁"
