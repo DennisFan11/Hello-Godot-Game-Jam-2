@@ -1,49 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://jghh2wj4o126"]
+[gd_scene load_steps=3 format=3 uid="uid://jghh2wj4o126"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_uypsg"]
-[ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="2_1lc7s"]
-[ext_resource type="Script" uid="uid://dddth468gqso1" path="res://GameSystem/WaveManager/WaveDataDefine/WaveEnemy.gd" id="3_eob7b"]
-[ext_resource type="Script" uid="uid://cu0xicm6f2rtw" path="res://GameSystem/WaveManager/WaveDataDefine/WaveConfig.gd" id="4_cwdju"]
-
-[sub_resource type="Resource" id="Resource_4uiaf"]
-script = ExtResource("3_eob7b")
-EnemyType = "Goblin"
-Mount = 5
-metadata/_custom_type_script = "uid://dddth468gqso1"
-
-[sub_resource type="Resource" id="Resource_0q50x"]
-script = ExtResource("2_1lc7s")
-WaitTime = 3.0
-Enemys = Array[ExtResource("3_eob7b")]([SubResource("Resource_4uiaf")])
-metadata/_custom_type_script = "uid://cxlrsuibgh48g"
-
-[sub_resource type="Resource" id="Resource_nky7k"]
-script = ExtResource("3_eob7b")
-EnemyType = "Goblin"
-Mount = 30
-metadata/_custom_type_script = "uid://dddth468gqso1"
-
-[sub_resource type="Resource" id="Resource_eab4e"]
-script = ExtResource("3_eob7b")
-EnemyType = "Slime"
-Mount = 10
-metadata/_custom_type_script = "uid://dddth468gqso1"
-
-[sub_resource type="Resource" id="Resource_a1qoo"]
-script = ExtResource("2_1lc7s")
-WaitTime = 3.0
-Enemys = Array[ExtResource("3_eob7b")]([SubResource("Resource_nky7k"), SubResource("Resource_eab4e")])
-metadata/_custom_type_script = "uid://cxlrsuibgh48g"
-
-[sub_resource type="Resource" id="Resource_m3ola"]
-script = ExtResource("4_cwdju")
-WaveArray = Array[ExtResource("2_1lc7s")]([SubResource("Resource_0q50x"), SubResource("Resource_a1qoo")])
-metadata/_custom_type_script = "uid://cu0xicm6f2rtw"
+[ext_resource type="Resource" uid="uid://deft3v12sytlo" path="res://GameSystem/WaveManager/PreWaveConfigs/Level6WaveConfig.tres" id="2_guoi6"]
 
 [node name="Level1" instance=ExtResource("1_uypsg")]
 
 [node name="WaveManager" parent="." index="1"]
-waveConfig = SubResource("Resource_m3ola")
+waveConfig = ExtResource("2_guoi6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
 
