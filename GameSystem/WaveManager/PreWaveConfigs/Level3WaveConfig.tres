@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="WaveConfig" load_steps=10 format=3 uid="uid://bejsl77ntv6qb"]
+
+[ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="1_5x13n"]
+[ext_resource type="Script" uid="uid://dddth468gqso1" path="res://GameSystem/WaveManager/WaveDataDefine/WaveEnemy.gd" id="2_vh454"]
+[ext_resource type="Script" uid="uid://cu0xicm6f2rtw" path="res://GameSystem/WaveManager/WaveDataDefine/WaveConfig.gd" id="3_vfho3"]
+
+[sub_resource type="Resource" id="Resource_rmvt2"]
+script = ExtResource("2_vh454")
+EnemyType = "Wall"
+Mount = 2
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_rqmft"]
+script = ExtResource("2_vh454")
+EnemyType = "Angel"
+Mount = 5
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_ehrgg"]
+script = ExtResource("2_vh454")
+EnemyType = "Slime_old"
+Mount = 20
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_5x13n"]
+script = ExtResource("2_vh454")
+EnemyType = "Devil"
+Mount = 3
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_vh454"]
+script = ExtResource("2_vh454")
+EnemyType = "Mage"
+Mount = 2
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_0onfb"]
+script = ExtResource("1_5x13n")
+WaitTime = 0.0
+Enemys = Array[ExtResource("2_vh454")]([SubResource("Resource_rmvt2"), SubResource("Resource_rqmft"), SubResource("Resource_ehrgg"), SubResource("Resource_5x13n"), SubResource("Resource_vh454")])
+metadata/_custom_type_script = "uid://cxlrsuibgh48g"
+
+[resource]
+script = ExtResource("3_vfho3")
+WaveArray = Array[ExtResource("1_5x13n")]([SubResource("Resource_0onfb")])
+metadata/_custom_type_script = "uid://cu0xicm6f2rtw"
