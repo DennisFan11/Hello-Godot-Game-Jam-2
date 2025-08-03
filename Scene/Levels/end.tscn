@@ -1,0 +1,2270 @@
+[gd_scene load_steps=5 format=3 uid="uid://go8blnweufr4"]
+
+[ext_resource type="PackedScene" uid="uid://bgtiwbv5cfrsi" path="res://Scene/Levels/Template.tscn" id="1_5414y"]
+[ext_resource type="PackedScene" uid="uid://bcvphcm5mrft5" path="res://Asset/Class/hint/Hinter.tscn" id="2_47n1o"]
+[ext_resource type="Resource" uid="uid://bt2d8cax35pw5" path="res://GameSystem/WaveManager/PreWaveConfigs/SafeAreaWaveConfig.tres" id="2_yfkdp"]
+[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="3_yfkdp"]
+
+[node name="GameManager" instance=ExtResource("1_5414y")]
+
+[node name="WaveManager" parent="." index="1"]
+waveConfig = ExtResource("2_yfkdp")
+
+[node name="RichTextLabel" parent="CanvasLayer" index="0"]
+text = "[font_size=70]END"
+
+[node name="TerrainManager" parent="." index="3"]
+_map_data = [{
+"id": 1,
+"polygon": PackedVector2Array(-900, 800, -995.461, 800, -995.461, 700, -900, 700),
+"pos_id": Vector2(-10, 7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 802.014, -995.461, 833.601, -995.461, 800, -900, 800),
+"pos_id": Vector2(-10, 8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 802.014, -900, 800, -893.912, 800),
+"pos_id": Vector2(-9, 8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 500, -995.461, 500, -995.461, 433.601, -900, 402.014),
+"pos_id": Vector2(-10, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 600, -995.461, 600, -995.461, 500, -900, 500),
+"pos_id": Vector2(-10, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 700, -995.461, 700, -995.461, 600, -900, 600),
+"pos_id": Vector2(-10, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 500, -900, 500, -900, 402.014, -893.912, 400, -800, 400),
+"pos_id": Vector2(-9, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 600, -900, 600, -900, 500, -800, 500),
+"pos_id": Vector2(-9, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 700, -900, 700, -900, 600, -800, 600),
+"pos_id": Vector2(-9, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 768.926, -893.912, 800, -900, 800, -900, 700, -800, 700),
+"pos_id": Vector2(-9, 7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 500, -800, 500, -800, 400, -700, 400),
+"pos_id": Vector2(-8, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 600, -800, 600, -800, 500, -700, 500),
+"pos_id": Vector2(-8, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 700, -800, 700, -800, 600, -700, 600),
+"pos_id": Vector2(-8, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 735.837, -800, 768.926, -800, 700, -700, 700),
+"pos_id": Vector2(-8, 7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 702.748, -700, 735.837, -700, 700, -600, 700),
+"pos_id": Vector2(-7, 7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 439.091, -756.504, 441.03, -756.504, 400, -700, 400),
+"pos_id": Vector2(-8, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 500, -700, 500, -700, 400, -600, 400),
+"pos_id": Vector2(-7, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 600, -700, 600, -700, 500, -600, 500),
+"pos_id": Vector2(-7, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 700, -700, 700, -700, 600, -600, 600),
+"pos_id": Vector2(-7, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 400, -600, 400, -600, 300, -500, 300),
+"pos_id": Vector2(-6, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 500, -600, 500, -600, 400, -500, 400),
+"pos_id": Vector2(-6, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 600, -600, 600, -600, 500, -500, 500),
+"pos_id": Vector2(-6, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 669.659, -591.695, 700, -600, 700, -600, 600, -500, 600),
+"pos_id": Vector2(-6, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-591.695, 700, -600, 702.748, -600, 700),
+"pos_id": Vector2(-6, 7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 400, -500, 400, -500, 300, -400, 300),
+"pos_id": Vector2(-5, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 500, -500, 500, -500, 400, -400, 400),
+"pos_id": Vector2(-5, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 600, -500, 600, -500, 500, -400, 500),
+"pos_id": Vector2(-5, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 636.57, -500, 669.659, -500, 600, -400, 600),
+"pos_id": Vector2(-5, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 200, -400, 200, -400, 100, -300, 100),
+"pos_id": Vector2(-4, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 300, -400, 300, -400, 200, -300, 200),
+"pos_id": Vector2(-4, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 400, -400, 400, -400, 300, -300, 300),
+"pos_id": Vector2(-4, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 500, -400, 500, -400, 400, -300, 400),
+"pos_id": Vector2(-4, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 600, -400, 600, -400, 500, -300, 500),
+"pos_id": Vector2(-4, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 603.482, -400, 636.57, -400, 600, -300, 600),
+"pos_id": Vector2(-4, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 16.3533, -276.059, 24.5411, -200, 21.9307, -200, 100, -300, 100),
+"pos_id": Vector2(-3, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 200, -300, 200, -300, 100, -200, 100),
+"pos_id": Vector2(-3, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 300, -300, 300, -300, 200, -200, 200),
+"pos_id": Vector2(-3, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 400, -300, 400, -300, 300, -200, 300),
+"pos_id": Vector2(-3, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 500, -300, 500, -300, 400, -200, 400),
+"pos_id": Vector2(-3, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 570.393, -289.478, 600, -300, 600, -300, 500, -200, 500),
+"pos_id": Vector2(-3, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-289.478, 600, -300, 603.482, -300, 600),
+"pos_id": Vector2(-3, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 100, -200, 100, -200, 21.9307, -100, 18.4987),
+"pos_id": Vector2(-2, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 200, -200, 200, -200, 100, -100, 100),
+"pos_id": Vector2(-2, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 300, -200, 300, -200, 200, -100, 200),
+"pos_id": Vector2(-2, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 400, -200, 400, -200, 300, -100, 300),
+"pos_id": Vector2(-2, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 500, -200, 500, -200, 400, -100, 400),
+"pos_id": Vector2(-2, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 537.304, -200, 570.393, -200, 500, -100, 500),
+"pos_id": Vector2(-2, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 100, -100, 100, -100, 18.4987, 0, 15.0667),
+"pos_id": Vector2(-1, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 200, -100, 200, -100, 100, 0, 100),
+"pos_id": Vector2(-1, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 300, -100, 300, -100, 200, 0, 200),
+"pos_id": Vector2(-1, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 400, -100, 400, -100, 300, 0, 300),
+"pos_id": Vector2(-1, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 500, -100, 500, -100, 400, 0, 400),
+"pos_id": Vector2(-1, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 518.955, -21.905, 511.463, -100, 537.304, -100, 537.304, -100, 500, 0, 500),
+"pos_id": Vector2(-1, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 100, 0, 100, 0, 15.0667, 100, 11.6347),
+"pos_id": Vector2(0, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 200, 0, 200, 0, 100, 100, 100),
+"pos_id": Vector2(0, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 300, 0, 300, 0, 200, 100, 200),
+"pos_id": Vector2(0, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 400, 0, 400, 0, 300, 100, 300),
+"pos_id": Vector2(0, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 500, 0, 500, 0, 400, 100, 400),
+"pos_id": Vector2(0, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 553.156, 0, 518.955, 0, 500, 100, 500),
+"pos_id": Vector2(0, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, 100, 100, 100, 100, 11.6347, 200, 8.2027),
+"pos_id": Vector2(1, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, 200, 100, 200, 100, 100, 200, 100),
+"pos_id": Vector2(1, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, 300, 100, 300, 100, 200, 200, 200),
+"pos_id": Vector2(1, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, 400, 100, 400, 100, 300, 200, 300),
+"pos_id": Vector2(1, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, 500, 100, 500, 100, 400, 200, 400),
+"pos_id": Vector2(1, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, 587.356, 100, 553.156, 100, 500, 200, 500),
+"pos_id": Vector2(1, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 100, 200, 100, 200, 8.2027, 300, 4.77069),
+"pos_id": Vector2(2, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 200, 200, 200, 200, 100, 300, 100),
+"pos_id": Vector2(2, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 300, 200, 300, 200, 200, 300, 200),
+"pos_id": Vector2(2, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 400, 200, 400, 200, 300, 300, 300),
+"pos_id": Vector2(2, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 500, 200, 500, 200, 400, 300, 400),
+"pos_id": Vector2(2, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 600, 236.97, 600, 200, 587.356, 200, 500, 300, 500),
+"pos_id": Vector2(2, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, 621.557, 236.97, 600, 300, 600),
+"pos_id": Vector2(2, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 0, 314.956, 0, 400, -28.14),
+"pos_id": Vector2(3, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 100, 300, 100, 300, 4.77069, 300.601, 4.75008, 314.956, 0, 400, 0),
+"pos_id": Vector2(3, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 200, 300, 200, 300, 100, 400, 100),
+"pos_id": Vector2(3, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 300, 300, 300, 300, 200, 400, 200),
+"pos_id": Vector2(3, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 400, 300, 400, 300, 300, 400, 300),
+"pos_id": Vector2(3, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 500, 300, 500, 300, 400, 400, 400),
+"pos_id": Vector2(3, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 600, 300, 600, 300, 500, 400, 500),
+"pos_id": Vector2(3, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, 655.757, 300, 621.557, 300, 600, 400, 600),
+"pos_id": Vector2(3, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 400, 400, 400, 400, 300, 500, 300),
+"pos_id": Vector2(4, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 500, 400, 500, 400, 400, 500, 400),
+"pos_id": Vector2(4, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 600, 400, 600, 400, 500, 500, 500),
+"pos_id": Vector2(4, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 689.958, 400, 655.757, 400, 600, 500, 600),
+"pos_id": Vector2(4, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 500, 500, 500, 500, 400, 600, 400),
+"pos_id": Vector2(5, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 600, 500, 600, 500, 500, 600, 500),
+"pos_id": Vector2(5, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 679.177, 562.34, 679.177, 562.34, 700, 529.363, 700, 500, 689.958, 500, 600, 600, 600),
+"pos_id": Vector2(5, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(562.34, 711.278, 529.363, 700, 562.34, 700),
+"pos_id": Vector2(5, 7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 500, 600, 500, 600, 400, 700, 400),
+"pos_id": Vector2(6, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 600, 600, 600, 600, 500, 700, 500),
+"pos_id": Vector2(6, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 679.177, 600, 679.177, 600, 600, 700, 600),
+"pos_id": Vector2(6, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 500, 700, 500, 700, 400, 800, 400),
+"pos_id": Vector2(7, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 600, 700, 600, 700, 500, 800, 500),
+"pos_id": Vector2(7, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 679.177, 700, 679.177, 700, 600, 800, 600),
+"pos_id": Vector2(7, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, 500, 800, 500, 800, 400, 900, 400),
+"pos_id": Vector2(8, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, 600, 800, 600, 800, 500, 900, 500),
+"pos_id": Vector2(8, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, 679.177, 800, 679.177, 800, 600, 900, 600),
+"pos_id": Vector2(8, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(925.611, 500, 900, 500, 900, 400, 925.611, 400),
+"pos_id": Vector2(9, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(925.611, 600, 900, 600, 900, 500, 925.611, 500),
+"pos_id": Vector2(9, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(925.611, 679.177, 900, 679.177, 900, 600, 925.611, 600),
+"pos_id": Vector2(9, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -900, -1024.47, -900, -1000, -909.265),
+"pos_id": Vector2(-11, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -900, -1000, -900, -1000, -909.265, -900, -947.124),
+"pos_id": Vector2(-10, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -900, -900, -900, -900, -947.124, -800, -984.983),
+"pos_id": Vector2(-9, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -1000, -760.334, -1000, -700, -1022.84),
+"pos_id": Vector2(-8, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -900, -800, -900, -800, -984.983, -760.334, -1000, -700, -1000),
+"pos_id": Vector2(-8, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, -1000, -700, -1000, -700, -1022.84, -600, -1060.7),
+"pos_id": Vector2(-7, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, -900, -700, -900, -700, -1000, -600, -1000),
+"pos_id": Vector2(-7, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, -1000, -600, -1000, -600, -1060.7, -500, -1098.56),
+"pos_id": Vector2(-6, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, -900, -600, -900, -600, -1000, -500, -1000),
+"pos_id": Vector2(-6, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, -645.381, 300, -688.172, 300, -700, 400, -700),
+"pos_id": Vector2(3, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(506.055, -1000, 500, -1000, 500, -1002.59),
+"pos_id": Vector2(5, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, -959.8, 600, -900, 500, -900, 500, -1000, 506.055, -1000),
+"pos_id": Vector2(5, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -917.01, 700, -900, 600, -900, 600, -959.8),
+"pos_id": Vector2(6, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(739.751, -900, 700, -900, 700, -917.01),
+"pos_id": Vector2(7, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1500, -625.752, 1500, -600, 1400, -600, 1400, -625.752),
+"pos_id": Vector2(14, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1500, -500, 1400, -500, 1400, -600, 1500, -600),
+"pos_id": Vector2(14, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1500, -400, 1400, -400, 1400, -500, 1500, -500),
+"pos_id": Vector2(14, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1500, -300, 1400, -300, 1400, -400, 1500, -400),
+"pos_id": Vector2(14, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1500, -225.752, 1443.36, -225.752, 1443.36, -200, 1440.84, -200, 1400, -217.476, 1400, -300, 1500, -300),
+"pos_id": Vector2(14, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1443.36, -198.924, 1440.84, -200, 1443.36, -200),
+"pos_id": Vector2(14, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1600, -625.752, 1600, -600, 1500, -600, 1500, -625.752),
+"pos_id": Vector2(15, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1600, -500, 1500, -500, 1500, -600, 1600, -600),
+"pos_id": Vector2(15, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1600, -400, 1500, -400, 1500, -500, 1600, -500),
+"pos_id": Vector2(15, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1600, -300, 1500, -300, 1500, -400, 1600, -400),
+"pos_id": Vector2(15, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1600, -225.752, 1500, -225.752, 1500, -300, 1600, -300),
+"pos_id": Vector2(15, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1653.01, -625.752, 1653.01, -600, 1600, -600, 1600, -625.752),
+"pos_id": Vector2(16, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1653.01, -500, 1600, -500, 1600, -600, 1653.01, -600),
+"pos_id": Vector2(16, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1653.01, -400, 1600, -400, 1600, -500, 1653.01, -500),
+"pos_id": Vector2(16, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1653.01, -300, 1600, -300, 1600, -400, 1653.01, -400),
+"pos_id": Vector2(16, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1653.01, -225.752, 1600, -225.752, 1600, -300, 1653.01, -300),
+"pos_id": Vector2(16, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, -1100, -496.195, -1100, -400, -1136.42),
+"pos_id": Vector2(-5, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, -1000, -500, -1000, -500, -1098.56, -496.195, -1100, -400, -1100),
+"pos_id": Vector2(-5, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, -900, -500, -900, -500, -1000, -400, -1000),
+"pos_id": Vector2(-5, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, -1100, -400, -1100, -400, -1136.42, -300, -1174.28),
+"pos_id": Vector2(-4, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, -1000, -400, -1000, -400, -1100, -300, -1100),
+"pos_id": Vector2(-4, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, -900, -400, -900, -400, -1000, -300, -1000),
+"pos_id": Vector2(-4, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, -800, -400, -800, -400, -900, -300, -900),
+"pos_id": Vector2(-4, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, -774.277, -400, -736.418, -400, -800, -300, -800),
+"pos_id": Vector2(-4, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -1300, -258.313, -1300, -258.313, -1364.03, -257.319, -1364.03, -257.319, -1370.98, -200, -1370.98),
+"pos_id": Vector2(-3, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -1200, -258.313, -1200, -258.313, -1300, -200, -1300),
+"pos_id": Vector2(-3, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -1100, -300, -1100, -300, -1174.28, -258.313, -1190.06, -258.313, -1200, -200, -1200),
+"pos_id": Vector2(-3, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -1000, -300, -1000, -300, -1100, -200, -1100),
+"pos_id": Vector2(-3, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -900, -300, -900, -300, -1000, -200, -1000),
+"pos_id": Vector2(-3, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -812.136, -232.056, -800, -300, -800, -300, -900, -200, -900),
+"pos_id": Vector2(-3, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-232.056, -800, -300, -774.277, -300, -800),
+"pos_id": Vector2(-3, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -1300, -200, -1300, -200, -1370.98, -100, -1370.98),
+"pos_id": Vector2(-2, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -1200, -200, -1200, -200, -1300, -100, -1300),
+"pos_id": Vector2(-2, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -1100, -200, -1100, -200, -1200, -100, -1200),
+"pos_id": Vector2(-2, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -1000, -200, -1000, -200, -1100, -100, -1100),
+"pos_id": Vector2(-2, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -900, -200, -900, -200, -1000, -100, -1000),
+"pos_id": Vector2(-2, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -849.995, -200, -812.136, -200, -900, -100, -900),
+"pos_id": Vector2(-2, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, -1300, -100, -1300, -100, -1370.98, 0, -1370.98),
+"pos_id": Vector2(-1, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, -1200, -100, -1200, -100, -1300, 0, -1300),
+"pos_id": Vector2(-1, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, -1100, -100, -1100, -100, -1200, 0, -1200),
+"pos_id": Vector2(-1, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, -1000, -100, -1000, -100, -1100, 0, -1100),
+"pos_id": Vector2(-1, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, -900, -100, -900, -100, -1000, 0, -1000),
+"pos_id": Vector2(-1, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, -816.544, -88.4199, -854.379, -100, -849.995, -100, -900, 0, -900),
+"pos_id": Vector2(-1, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -1300, 0, -1300, 0, -1370.98, 100, -1370.98),
+"pos_id": Vector2(0, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -1200, 0, -1200, 0, -1300, 100, -1300),
+"pos_id": Vector2(0, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -1100, 0, -1100, 0, -1200, 100, -1200),
+"pos_id": Vector2(0, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -1000, 0, -1000, 0, -1100, 100, -1100),
+"pos_id": Vector2(0, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -900, 0, -900, 0, -1000, 100, -1000),
+"pos_id": Vector2(0, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -800, 38.6617, -800, 0, -816.544, 0, -900, 100, -900),
+"pos_id": Vector2(0, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, -773.753, 38.6617, -800, 100, -800),
+"pos_id": Vector2(0, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(142.681, -1300, 100, -1300, 100, -1370.98, 142.681, -1370.98),
+"pos_id": Vector2(1, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(142.681, -1200, 100, -1200, 100, -1300, 142.681, -1300),
+"pos_id": Vector2(1, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(142.681, -1155.49, 200, -1130.96, 200, -1100, 100, -1100, 100, -1200, 142.681, -1200),
+"pos_id": Vector2(1, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, -1000, 100, -1000, 100, -1100, 200, -1100),
+"pos_id": Vector2(1, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, -900, 100, -900, 100, -1000, 200, -1000),
+"pos_id": Vector2(1, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, -800, 100, -800, 100, -900, 200, -900),
+"pos_id": Vector2(1, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, -730.962, 100, -773.753, 100, -800, 200, -800),
+"pos_id": Vector2(1, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(200, -1130.96, 272.358, -1100, 200, -1100),
+"pos_id": Vector2(2, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(272.358, -1100, 300, -1088.17, 300, -1000, 200, -1000, 200, -1100),
+"pos_id": Vector2(2, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, -900, 200, -900, 200, -1000, 300, -1000),
+"pos_id": Vector2(2, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, -800, 200, -800, 200, -900, 300, -900),
+"pos_id": Vector2(2, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, -700, 272.358, -700, 200, -730.962, 200, -800, 300, -800),
+"pos_id": Vector2(2, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, -700, 300, -688.172, 272.358, -700),
+"pos_id": Vector2(2, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(300, -1088.17, 400, -1045.38, 400, -1000, 300, -1000),
+"pos_id": Vector2(3, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, -900, 300, -900, 300, -1000, 400, -1000),
+"pos_id": Vector2(3, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, -800, 300, -800, 300, -900, 400, -900),
+"pos_id": Vector2(3, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(400, -700, 300, -700, 300, -800, 400, -800),
+"pos_id": Vector2(3, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, -1002.59, 500, -1000, 400, -1000, 400, -1045.38),
+"pos_id": Vector2(4, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, -900, 400, -900, 400, -1000, 500, -1000),
+"pos_id": Vector2(4, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, -800, 400, -800, 400, -900, 500, -900),
+"pos_id": Vector2(4, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1900, -600, -1902.79, -600, -1902.79, -647.613, -1900, -647.613),
+"pos_id": Vector2(-20, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1900, -500, -1902.79, -500, -1902.79, -600, -1900, -600),
+"pos_id": Vector2(-20, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1900, -400, -1902.79, -400, -1902.79, -500, -1900, -500),
+"pos_id": Vector2(-20, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1900, -300, -1902.79, -300, -1902.79, -400, -1900, -400),
+"pos_id": Vector2(-20, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1900, -242.645, -1902.79, -242.645, -1902.79, -300, -1900, -300),
+"pos_id": Vector2(-20, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1800, -600, -1900, -600, -1900, -647.613, -1800, -647.613),
+"pos_id": Vector2(-19, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1800, -500, -1900, -500, -1900, -600, -1800, -600),
+"pos_id": Vector2(-19, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1800, -400, -1900, -400, -1900, -500, -1800, -500),
+"pos_id": Vector2(-19, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1800, -300, -1900, -300, -1900, -400, -1800, -400),
+"pos_id": Vector2(-19, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1800, -242.645, -1900, -242.645, -1900, -300, -1800, -300),
+"pos_id": Vector2(-19, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1700, -600, -1800, -600, -1800, -647.613, -1700, -647.613),
+"pos_id": Vector2(-18, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1700, -500, -1800, -500, -1800, -600, -1700, -600),
+"pos_id": Vector2(-18, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1700, -400, -1800, -400, -1800, -500, -1700, -500),
+"pos_id": Vector2(-18, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1700, -300, -1800, -300, -1800, -400, -1700, -400),
+"pos_id": Vector2(-18, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1700, -242.645, -1704.25, -242.645, -1793.49, -208.86, -1793.49, -242.645, -1800, -242.645, -1800, -300, -1700, -300),
+"pos_id": Vector2(-18, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1600, -600, -1700, -600, -1700, -647.613, -1691.13, -647.613, -1600, -682.112),
+"pos_id": Vector2(-17, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1600, -500, -1700, -500, -1700, -600, -1600, -600),
+"pos_id": Vector2(-17, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1600, -400, -1700, -400, -1700, -500, -1600, -500),
+"pos_id": Vector2(-17, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1600, -300, -1700, -300, -1700, -400, -1600, -400),
+"pos_id": Vector2(-17, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1600, -242.645, -1700, -242.645, -1700, -300, -1600, -300),
+"pos_id": Vector2(-17, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1500, -700, -1552.75, -700, -1500, -719.971),
+"pos_id": Vector2(-16, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1500, -600, -1600, -600, -1600, -682.112, -1552.75, -700, -1500, -700),
+"pos_id": Vector2(-16, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1500, -500, -1600, -500, -1600, -600, -1500, -600),
+"pos_id": Vector2(-16, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1500, -400, -1600, -400, -1600, -500, -1500, -500),
+"pos_id": Vector2(-16, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1500, -319.971, -1502.79, -318.916, -1502.79, -300, -1600, -300, -1600, -400, -1500, -400),
+"pos_id": Vector2(-16, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1502.79, -242.645, -1600, -242.645, -1600, -300, -1502.79, -300),
+"pos_id": Vector2(-16, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1400, -700, -1500, -700, -1500, -719.971, -1400, -757.83),
+"pos_id": Vector2(-15, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1400, -600, -1500, -600, -1500, -700, -1400, -700),
+"pos_id": Vector2(-15, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1400, -500, -1500, -500, -1500, -600, -1400, -600),
+"pos_id": Vector2(-15, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1400, -400, -1500, -400, -1500, -500, -1400, -500),
+"pos_id": Vector2(-15, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1400, -357.83, -1500, -319.971, -1500, -400, -1400, -400),
+"pos_id": Vector2(-15, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1300, -700, -1400, -700, -1400, -757.83, -1300, -795.689),
+"pos_id": Vector2(-14, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1300, -600, -1400, -600, -1400, -700, -1300, -700),
+"pos_id": Vector2(-14, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1300, -500, -1400, -500, -1400, -600, -1300, -600),
+"pos_id": Vector2(-14, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1300, -400, -1400, -400, -1400, -500, -1300, -500),
+"pos_id": Vector2(-14, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1300, -395.689, -1400, -357.83, -1400, -400, -1300, -400),
+"pos_id": Vector2(-14, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 200, -901.585, 200, -901.585, 100, -900, 100),
+"pos_id": Vector2(-10, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 211.15, -901.585, 210.608, -901.585, 200, -900, 200),
+"pos_id": Vector2(-10, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 200, -900, 200, -900, 100, -800, 100),
+"pos_id": Vector2(-9, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 245.35, -900, 211.15, -900, 200, -800, 200),
+"pos_id": Vector2(-9, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 400, -893.912, 400, -800, 368.926),
+"pos_id": Vector2(-9, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 200, -800, 200, -800, 100, -700, 100),
+"pos_id": Vector2(-8, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 300, -756.504, 300, -756.504, 260.226, -800, 245.35, -800, 200, -700, 200),
+"pos_id": Vector2(-8, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 400, -800, 400, -800, 368.926, -756.504, 354.533, -756.504, 300, -700, 300),
+"pos_id": Vector2(-8, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 200, -700, 200, -700, 100, -600, 100),
+"pos_id": Vector2(-7, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 300, -700, 300, -700, 200, -600, 200),
+"pos_id": Vector2(-7, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 300, -600, 400, -700, 400, -700, 300),
+"pos_id": Vector2(-7, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 100, -600, 100, -600, 0, -500, 0),
+"pos_id": Vector2(-6, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 200, -600, 200, -600, 100, -500, 100),
+"pos_id": Vector2(-6, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, 300, -600, 300, -600, 200, -500, 200),
+"pos_id": Vector2(-6, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 100, -500, 100, -500, 0, -400, 0),
+"pos_id": Vector2(-5, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 200, -500, 200, -500, 100, -400, 100),
+"pos_id": Vector2(-5, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, 300, -500, 300, -500, 200, -400, 200),
+"pos_id": Vector2(-5, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, -17.8473, -347.816, 0, -400, 0),
+"pos_id": Vector2(-4, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-347.816, 0, -300, 16.3533, -300, 100, -400, 100, -400, 0),
+"pos_id": Vector2(-4, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1200, -800, -1288.61, -800, -1200, -833.548),
+"pos_id": Vector2(-13, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1200, -700, -1300, -700, -1300, -795.689, -1288.61, -800, -1200, -800),
+"pos_id": Vector2(-13, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1200, -600, -1300, -600, -1300, -700, -1200, -700),
+"pos_id": Vector2(-13, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1200, -500, -1300, -500, -1300, -600, -1200, -600),
+"pos_id": Vector2(-13, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1200, -433.548, -1288.61, -400, -1300, -400, -1300, -500, -1200, -500),
+"pos_id": Vector2(-13, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1288.61, -400, -1300, -395.689, -1300, -400),
+"pos_id": Vector2(-13, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1100, -800, -1200, -800, -1200, -833.548, -1100, -871.406),
+"pos_id": Vector2(-12, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1100, -700, -1200, -700, -1200, -800, -1100, -800),
+"pos_id": Vector2(-12, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1100, -600, -1200, -600, -1200, -700, -1100, -700),
+"pos_id": Vector2(-12, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1100, -500, -1200, -500, -1200, -600, -1100, -600),
+"pos_id": Vector2(-12, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1100, -471.406, -1200, -433.548, -1200, -500, -1100, -500),
+"pos_id": Vector2(-12, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -800, -1100, -800, -1100, -871.406, -1024.47, -900, -1000, -900),
+"pos_id": Vector2(-11, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -700, -1100, -700, -1100, -800, -1000, -800),
+"pos_id": Vector2(-11, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -600, -1100, -600, -1100, -700, -1000, -700),
+"pos_id": Vector2(-11, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -500, -1100, -500, -1100, -600, -1000, -600),
+"pos_id": Vector2(-11, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -400, -1094.96, -400, -1094.96, -473.315, -1100, -471.406, -1100, -500, -1000, -500),
+"pos_id": Vector2(-11, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -300, -1094.96, -300, -1094.96, -400, -1000, -400),
+"pos_id": Vector2(-11, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -200, -1089.99, -200, -1089.99, -297.295, -1094.96, -297.295, -1094.96, -300, -1000, -300),
+"pos_id": Vector2(-11, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, -100, -1089.99, -100, -1089.99, -200, -1000, -200),
+"pos_id": Vector2(-11, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, 0, -1089.99, 0, -1089.99, -100, -1000, -100),
+"pos_id": Vector2(-11, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-1000, 0.796997, -1089.99, 0.796997, -1089.99, 0, -1000, 0),
+"pos_id": Vector2(-11, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -800, -1000, -800, -1000, -900, -900, -900),
+"pos_id": Vector2(-10, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -700, -1000, -700, -1000, -800, -900, -800),
+"pos_id": Vector2(-10, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -600, -1000, -600, -1000, -700, -900, -700),
+"pos_id": Vector2(-10, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -500, -1000, -500, -1000, -600, -900, -600),
+"pos_id": Vector2(-10, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -400, -1000, -400, -1000, -500, -900, -500),
+"pos_id": Vector2(-10, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -300, -1000, -300, -1000, -400, -900, -400),
+"pos_id": Vector2(-10, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -200, -1000, -200, -1000, -300, -900, -300),
+"pos_id": Vector2(-10, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, -100, -1000, -100, -1000, -200, -900, -200),
+"pos_id": Vector2(-10, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 0, -1000, 0, -1000, -100, -900, -100),
+"pos_id": Vector2(-10, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-900, 100, -901.585, 100, -901.585, 0.796997, -1000, 0.796997, -1000, 0, -900, 0),
+"pos_id": Vector2(-10, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -800, -900, -800, -900, -900, -800, -900),
+"pos_id": Vector2(-9, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -700, -900, -700, -900, -800, -800, -800),
+"pos_id": Vector2(-9, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -600, -900, -600, -900, -700, -800, -700),
+"pos_id": Vector2(-9, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -500, -900, -500, -900, -600, -800, -600),
+"pos_id": Vector2(-9, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -400, -900, -400, -900, -500, -800, -500),
+"pos_id": Vector2(-9, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -300, -900, -300, -900, -400, -800, -400),
+"pos_id": Vector2(-9, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -200, -900, -200, -900, -300, -800, -300),
+"pos_id": Vector2(-9, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, -100, -900, -100, -900, -200, -800, -200),
+"pos_id": Vector2(-9, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 0, -900, 0, -900, -100, -800, -100),
+"pos_id": Vector2(-9, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-800, 100, -900, 100, -900, 0, -800, 0),
+"pos_id": Vector2(-9, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -800, -800, -800, -800, -900, -700, -900),
+"pos_id": Vector2(-8, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -700, -800, -700, -800, -800, -700, -800),
+"pos_id": Vector2(-8, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -600, -800, -600, -800, -700, -700, -700),
+"pos_id": Vector2(-8, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -500, -800, -500, -800, -600, -700, -600),
+"pos_id": Vector2(-8, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -400, -800, -400, -800, -500, -700, -500),
+"pos_id": Vector2(-8, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -300, -800, -300, -800, -400, -700, -400),
+"pos_id": Vector2(-8, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -200, -800, -200, -800, -300, -700, -300),
+"pos_id": Vector2(-8, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, -100, -800, -100, -800, -200, -700, -200),
+"pos_id": Vector2(-8, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 0, -800, 0, -800, -100, -700, -100),
+"pos_id": Vector2(-8, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-700, 100, -800, 100, -800, 0, -700, 0),
+"pos_id": Vector2(-8, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, -800, -700, -800, -700, -900, -600, -900),
+"pos_id": Vector2(-7, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, -700, -700, -700, -700, -800, -600, -800),
+"pos_id": Vector2(-7, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, -660.701, -694.96, -624.75, -694.96, -600, -700, -600, -700, -700, -600, -700),
+"pos_id": Vector2(-7, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-694.96, -500, -700, -500, -700, -600, -694.96, -600),
+"pos_id": Vector2(-7, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-694.96, -400, -700, -400, -700, -500, -694.96, -500),
+"pos_id": Vector2(-7, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-694.96, -399.203, -689.992, -399.203, -689.992, -300, -700, -300, -700, -400, -694.96, -400),
+"pos_id": Vector2(-7, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-689.992, -200, -700, -200, -700, -300, -689.992, -300),
+"pos_id": Vector2(-7, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-689.992, -117.026, -640.209, -100, -700, -100, -700, -200, -689.992, -200),
+"pos_id": Vector2(-7, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-640.209, -100, -600, -86.2484, -600, 0, -700, 0, -700, -100),
+"pos_id": Vector2(-7, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, 0, -600, 100, -700, 100, -700, 0),
+"pos_id": Vector2(-7, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, -800, -600, -800, -600, -900, -500, -900),
+"pos_id": Vector2(-6, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, -700, -600, -700, -600, -800, -500, -800),
+"pos_id": Vector2(-6, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, -698.56, -600, -660.701, -600, -700, -500, -700),
+"pos_id": Vector2(-6, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-600, -86.2484, -500, -52.0478, -500, 0, -600, 0),
+"pos_id": Vector2(-6, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, -800, -500, -800, -500, -900, -400, -900),
+"pos_id": Vector2(-5, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-400, -736.418, -496.195, -700, -500, -700, -500, -800, -400, -800),
+"pos_id": Vector2(-5, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-496.195, -700, -500, -698.56, -500, -700),
+"pos_id": Vector2(-5, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-500, -52.0478, -400, -17.8473, -400, 0, -500, 0),
+"pos_id": Vector2(-5, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 100, 400, 100, 400, 0, 500, 0),
+"pos_id": Vector2(4, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 200, 400, 200, 400, 100, 500, 100),
+"pos_id": Vector2(4, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 300, 400, 300, 400, 200, 500, 200),
+"pos_id": Vector2(4, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 200, 500, 200, 500, 100, 600, 100),
+"pos_id": Vector2(5, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 300, 500, 300, 500, 200, 600, 200),
+"pos_id": Vector2(5, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 400, 500, 400, 500, 300, 600, 300),
+"pos_id": Vector2(5, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 200, 600, 200, 600, 100, 700, 100),
+"pos_id": Vector2(6, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 300, 600, 300, 600, 200, 700, 200),
+"pos_id": Vector2(6, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 400, 600, 400, 600, 300, 700, 300),
+"pos_id": Vector2(6, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 200, 700, 200, 700, 100, 800, 100),
+"pos_id": Vector2(7, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 300, 700, 300, 700, 200, 800, 200),
+"pos_id": Vector2(7, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 400, 700, 400, 700, 300, 800, 300),
+"pos_id": Vector2(7, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(818.364, 200, 800, 200, 800, 100, 818.364, 100),
+"pos_id": Vector2(8, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(818.364, 279.177, 900, 279.177, 900, 300, 800, 300, 800, 200, 818.364, 200),
+"pos_id": Vector2(8, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, 400, 800, 400, 800, 300, 900, 300),
+"pos_id": Vector2(8, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(925.611, 279.177, 925.611, 300, 900, 300, 900, 279.177),
+"pos_id": Vector2(9, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(925.611, 400, 900, 400, 900, 300, 925.611, 300),
+"pos_id": Vector2(9, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, -700, 400, -700, 400, -800, 500, -800),
+"pos_id": Vector2(4, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, -602.591, 400, -645.381, 400, -700, 500, -700),
+"pos_id": Vector2(4, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(500, 0, 400, 0, 400, -28.14, 500, -61.2288),
+"pos_id": Vector2(4, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, -800, 500, -800, 500, -900, 600, -900),
+"pos_id": Vector2(5, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, -700, 500, -700, 500, -800, 600, -800),
+"pos_id": Vector2(5, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, -600, 506.055, -600, 500, -602.591, 500, -700, 600, -700),
+"pos_id": Vector2(5, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, -559.8, 506.055, -600, 600, -600),
+"pos_id": Vector2(5, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 0, 500, 0, 500, -61.2288, 600, -94.3176),
+"pos_id": Vector2(5, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(600, 100, 500, 100, 500, 0, 600, 0),
+"pos_id": Vector2(5, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -800, 600, -800, 600, -900, 700, -900),
+"pos_id": Vector2(6, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -700, 600, -700, 600, -800, 700, -800),
+"pos_id": Vector2(6, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -600, 600, -600, 600, -700, 700, -700),
+"pos_id": Vector2(6, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -500, 614.102, -500, 614.102, -553.766, 600, -559.8, 600, -600, 700, -600),
+"pos_id": Vector2(6, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -400, 614.102, -400, 614.102, -500, 700, -500),
+"pos_id": Vector2(6, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -300, 604.165, -300, 604.165, -319.712, 614.102, -319.712, 614.102, -400, 700, -400),
+"pos_id": Vector2(6, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -200, 604.165, -200, 604.165, -300, 700, -300),
+"pos_id": Vector2(6, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, -100, 604.165, -100, 604.165, -200, 700, -200),
+"pos_id": Vector2(6, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 0, 600, 0, 600, -94.3176, 604.165, -95.6957, 604.165, -100, 700, -100),
+"pos_id": Vector2(6, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(700, 100, 600, 100, 600, 0, 700, 0),
+"pos_id": Vector2(6, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -874.219, 800, -800, 700, -800, 700, -900, 739.751, -900),
+"pos_id": Vector2(7, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -700, 700, -700, 700, -800, 800, -800),
+"pos_id": Vector2(7, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -600, 700, -600, 700, -700, 800, -700),
+"pos_id": Vector2(7, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -500, 700, -500, 700, -600, 800, -600),
+"pos_id": Vector2(7, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -400, 700, -400, 700, -500, 800, -500),
+"pos_id": Vector2(7, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -300, 700, -300, 700, -400, 800, -400),
+"pos_id": Vector2(7, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -200, 700, -200, 700, -300, 800, -300),
+"pos_id": Vector2(7, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -100, 700, -100, 700, -200, 800, -200),
+"pos_id": Vector2(7, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 0, 700, 0, 700, -100, 800, -100),
+"pos_id": Vector2(7, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, 100, 700, 100, 700, 0, 800, 0),
+"pos_id": Vector2(7, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(800, -874.219, 900, -831.429, 900, -800, 800, -800),
+"pos_id": Vector2(8, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -700, 800, -700, 800, -800, 900, -800),
+"pos_id": Vector2(8, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -600, 800, -600, 800, -700, 900, -700),
+"pos_id": Vector2(8, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -500, 800, -500, 800, -600, 900, -600),
+"pos_id": Vector2(8, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -400, 800, -400, 800, -500, 900, -500),
+"pos_id": Vector2(8, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -300, 800, -300, 800, -400, 900, -400),
+"pos_id": Vector2(8, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -200, 800, -200, 800, -300, 900, -300),
+"pos_id": Vector2(8, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -100, 800, -100, 800, -200, 900, -200),
+"pos_id": Vector2(8, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, 0, 800, 0, 800, -100, 900, -100),
+"pos_id": Vector2(8, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, 80.2881, 818.364, 80.2881, 818.364, 100, 800, 100, 800, 0, 900, 0),
+"pos_id": Vector2(8, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(900, -831.429, 973.448, -800, 900, -800),
+"pos_id": Vector2(9, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(973.448, -800, 1000, -788.638, 1000, -700, 900, -700, 900, -800),
+"pos_id": Vector2(9, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -600, 900, -600, 900, -700, 1000, -700),
+"pos_id": Vector2(9, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -500, 900, -500, 900, -600, 1000, -600),
+"pos_id": Vector2(9, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -400, 900, -400, 900, -500, 1000, -500),
+"pos_id": Vector2(9, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -300, 900, -300, 900, -400, 1000, -400),
+"pos_id": Vector2(9, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -200, 900, -200, 900, -300, 1000, -300),
+"pos_id": Vector2(9, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -100, 900, -100, 900, -200, 1000, -200),
+"pos_id": Vector2(9, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, 0, 900, 0, 900, -100, 1000, -100),
+"pos_id": Vector2(9, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, 80.2881, 900, 80.2881, 900, 0, 1000, 0),
+"pos_id": Vector2(9, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1000, -788.638, 1100, -745.848, 1100, -700, 1000, -700),
+"pos_id": Vector2(10, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1100, -600, 1000, -600, 1000, -700, 1100, -700),
+"pos_id": Vector2(10, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1100, -500, 1000, -500, 1000, -600, 1100, -600),
+"pos_id": Vector2(10, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1100, -400, 1000, -400, 1000, -500, 1100, -500),
+"pos_id": Vector2(10, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1100, -345.848, 1014.1, -382.604, 1014.1, -300, 1000, -300, 1000, -400, 1100, -400),
+"pos_id": Vector2(10, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1014.1, -242.645, 1004.17, -242.645, 1004.17, -200, 1000, -200, 1000, -300, 1014.1, -300),
+"pos_id": Vector2(10, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1004.17, -100, 1000, -100, 1000, -200, 1004.17, -200),
+"pos_id": Vector2(10, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1004.17, 0, 1000, 0, 1000, -100, 1004.17, -100),
+"pos_id": Vector2(10, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1004.17, 80.2881, 1000, 80.2881, 1000, 0, 1004.17, 0),
+"pos_id": Vector2(10, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1200, -703.057, 1200, -700, 1100, -700, 1100, -745.848),
+"pos_id": Vector2(11, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1200, -600, 1100, -600, 1100, -700, 1200, -700),
+"pos_id": Vector2(11, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1200, -500, 1100, -500, 1100, -600, 1200, -600),
+"pos_id": Vector2(11, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1200, -400, 1100, -400, 1100, -500, 1200, -500),
+"pos_id": Vector2(11, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1200, -303.057, 1100, -345.848, 1100, -400, 1200, -400),
+"pos_id": Vector2(11, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1200, -703.057, 1207.14, -700, 1200, -700),
+"pos_id": Vector2(12, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1207.14, -700, 1300, -660.267, 1300, -600, 1200, -600, 1200, -700),
+"pos_id": Vector2(12, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1300, -500, 1200, -500, 1200, -600, 1300, -600),
+"pos_id": Vector2(12, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1300, -400, 1200, -400, 1200, -500, 1300, -500),
+"pos_id": Vector2(12, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1300, -300, 1207.14, -300, 1200, -303.057, 1200, -400, 1300, -400),
+"pos_id": Vector2(12, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1300, -225.752, 1253.01, -225.752, 1253.01, -280.372, 1207.14, -300, 1300, -300),
+"pos_id": Vector2(12, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1300, -660.267, 1380.66, -625.752, 1400, -625.752, 1400, -600, 1300, -600),
+"pos_id": Vector2(13, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1400, -500, 1300, -500, 1300, -600, 1400, -600),
+"pos_id": Vector2(13, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1400, -400, 1300, -400, 1300, -500, 1400, -500),
+"pos_id": Vector2(13, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1400, -300, 1300, -300, 1300, -400, 1400, -400),
+"pos_id": Vector2(13, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(1400, -217.476, 1380.66, -225.752, 1300, -225.752, 1300, -300, 1400, -300),
+"pos_id": Vector2(13, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, 100, -100, 100, -100, 50, -50, 50),
+"pos_id": Vector2(-2, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, 150, -100, 150, -100, 100, -50, 100),
+"pos_id": Vector2(-2, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, 200, -100, 200, -100, 150, -50, 150),
+"pos_id": Vector2(-2, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, 227.623, -100, 227.623, -100, 200, -50, 200),
+"pos_id": Vector2(-2, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 100, -50, 100, -50, 50, 0, 50),
+"pos_id": Vector2(-1, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 150, -50, 150, -50, 100, 0, 100),
+"pos_id": Vector2(-1, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 200, -50, 200, -50, 150, 0, 150),
+"pos_id": Vector2(-1, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 227.623, -50, 227.623, -50, 200, 0, 200),
+"pos_id": Vector2(-1, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(50, 100, 0, 100, 0, 50, 50, 50),
+"pos_id": Vector2(0, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(50, 150, 0, 150, 0, 100, 50, 100),
+"pos_id": Vector2(0, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(50, 200, 0, 200, 0, 150, 50, 150),
+"pos_id": Vector2(0, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(50, 227.623, 0, 227.623, 0, 200, 50, 200),
+"pos_id": Vector2(0, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 78.7223, 100, 100, 50, 100, 50, 50, 97.7363, 50),
+"pos_id": Vector2(1, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 150, 50, 150, 50, 100, 100, 100),
+"pos_id": Vector2(1, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 200, 50, 200, 50, 150, 100, 150),
+"pos_id": Vector2(1, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(100, 227.623, 50, 227.623, 50, 200, 100, 200),
+"pos_id": Vector2(1, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(101.677, 100, 100, 100, 100, 78.7223),
+"pos_id": Vector2(2, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(105.618, 150, 100, 150, 100, 100, 101.677, 100),
+"pos_id": Vector2(2, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(109.558, 200, 100, 200, 100, 150, 105.618, 150),
+"pos_id": Vector2(2, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(111.736, 227.623, 100, 227.623, 100, 200, 109.558, 200),
+"pos_id": Vector2(2, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, 50, -100, 50, -100, 23.4527, -50, 23.2022),
+"pos_id": Vector2(-2, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(0, 50, -50, 50, -50, 23.2022, 0, 22.9517),
+"pos_id": Vector2(-1, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(50, 50, 0, 50, 0, 22.9517, 50, 22.7013),
+"pos_id": Vector2(0, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(97.7363, 50, 50, 50, 50, 22.7013, 95.5667, 22.473),
+"pos_id": Vector2(1, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 0, -300.823, 0, -300, -11.0972),
+"pos_id": Vector2(-7, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 50, -304.532, 50, -303.432, 35.1759, -304.275, 24.4759, -302.638, 24.4677, -300.823, 0, -300, 0),
+"pos_id": Vector2(-7, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 100, -308.24, 100, -304.532, 50, -300, 50),
+"pos_id": Vector2(-7, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 150, -311.949, 150, -308.24, 100, -300, 100),
+"pos_id": Vector2(-7, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 200, -315.657, 200, -311.949, 150, -300, 150),
+"pos_id": Vector2(-7, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 250, -319.366, 250, -315.657, 200, -300, 200),
+"pos_id": Vector2(-7, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 300, -323.074, 300, -319.366, 250, -300, 250),
+"pos_id": Vector2(-7, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-300, 315.06, -324.191, 315.06, -323.074, 300, -300, 300),
+"pos_id": Vector2(-7, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -650, -252.613, -650, -250, -685.225),
+"pos_id": Vector2(-6, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -600, -256.321, -600, -252.613, -650, -250, -650),
+"pos_id": Vector2(-6, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -550, -260.03, -550, -256.321, -600, -250, -600),
+"pos_id": Vector2(-6, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -500, -263.738, -500, -260.03, -550, -250, -550),
+"pos_id": Vector2(-6, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -450, -267.447, -450, -263.738, -500, -250, -500),
+"pos_id": Vector2(-6, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -400, -271.155, -400, -267.447, -450, -250, -450),
+"pos_id": Vector2(-6, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -350, -274.864, -350, -271.155, -400, -250, -400),
+"pos_id": Vector2(-6, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -300, -278.572, -300, -274.864, -350, -250, -350),
+"pos_id": Vector2(-6, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -250, -282.281, -250, -278.572, -300, -250, -300),
+"pos_id": Vector2(-6, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -200, -285.989, -200, -282.281, -250, -250, -250),
+"pos_id": Vector2(-6, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -150, -289.698, -150, -285.989, -200, -250, -200),
+"pos_id": Vector2(-6, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -100, -293.406, -100, -289.698, -150, -250, -150),
+"pos_id": Vector2(-6, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, -50, -297.115, -50, -293.406, -100, -250, -100),
+"pos_id": Vector2(-6, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 0, -300, 0, -300, -11.0972, -297.115, -50, -250, -50),
+"pos_id": Vector2(-6, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 50, -300, 50, -300, 0, -250, 0),
+"pos_id": Vector2(-6, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 100, -300, 100, -300, 50, -250, 50),
+"pos_id": Vector2(-6, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 150, -300, 150, -300, 100, -250, 100),
+"pos_id": Vector2(-6, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 200, -300, 200, -300, 150, -250, 150),
+"pos_id": Vector2(-6, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 250, -300, 250, -300, 200, -250, 200),
+"pos_id": Vector2(-6, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 300, -300, 300, -300, 250, -250, 250),
+"pos_id": Vector2(-6, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-250, 315.06, -300, 315.06, -300, 300, -250, 300),
+"pos_id": Vector2(-6, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -900, -234.07, -900, -232.231, -924.796, -200, -924.796),
+"pos_id": Vector2(-5, -19)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -850, -237.779, -850, -234.07, -900, -200, -900),
+"pos_id": Vector2(-5, -18)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -800, -241.487, -800, -237.779, -850, -200, -850),
+"pos_id": Vector2(-5, -17)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -750, -245.196, -750, -241.487, -800, -200, -800),
+"pos_id": Vector2(-5, -16)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -700, -248.904, -700, -245.196, -750, -200, -750),
+"pos_id": Vector2(-5, -15)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -650, -250, -650, -250, -685.225, -248.904, -700, -200, -700),
+"pos_id": Vector2(-5, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -600, -250, -600, -250, -650, -200, -650),
+"pos_id": Vector2(-5, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -550, -250, -550, -250, -600, -200, -600),
+"pos_id": Vector2(-5, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -500, -250, -500, -250, -550, -200, -550),
+"pos_id": Vector2(-5, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -450, -250, -450, -250, -500, -200, -500),
+"pos_id": Vector2(-5, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -400, -250, -400, -250, -450, -200, -450),
+"pos_id": Vector2(-5, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -350, -250, -350, -250, -400, -200, -400),
+"pos_id": Vector2(-5, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -300, -250, -300, -250, -350, -200, -350),
+"pos_id": Vector2(-5, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -250, -250, -250, -250, -300, -200, -300),
+"pos_id": Vector2(-5, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -200, -250, -200, -250, -250, -200, -250),
+"pos_id": Vector2(-5, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -150, -250, -150, -250, -200, -200, -200),
+"pos_id": Vector2(-5, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -100, -250, -100, -250, -150, -200, -150),
+"pos_id": Vector2(-5, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, -50, -250, -50, -250, -100, -200, -100),
+"pos_id": Vector2(-5, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 0, -250, 0, -250, -50, -200, -50),
+"pos_id": Vector2(-5, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 50, -250, 50, -250, 0, -200, 0),
+"pos_id": Vector2(-5, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 100, -250, 100, -250, 50, -200, 50),
+"pos_id": Vector2(-5, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 150, -250, 150, -250, 100, -200, 100),
+"pos_id": Vector2(-5, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 200, -250, 200, -250, 150, -200, 150),
+"pos_id": Vector2(-5, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 250, -250, 250, -250, 200, -200, 200),
+"pos_id": Vector2(-5, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 300, -250, 300, -250, 250, -200, 250),
+"pos_id": Vector2(-5, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-200, 315.06, -250, 315.06, -250, 300, -200, 300),
+"pos_id": Vector2(-5, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -900, -200, -900, -200, -924.796, -150, -924.796),
+"pos_id": Vector2(-4, -19)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -850, -200, -850, -200, -900, -150, -900),
+"pos_id": Vector2(-4, -18)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -800, -200, -800, -200, -850, -150, -850),
+"pos_id": Vector2(-4, -17)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -750, -200, -750, -200, -800, -150, -800),
+"pos_id": Vector2(-4, -16)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -700, -200, -700, -200, -750, -150, -750),
+"pos_id": Vector2(-4, -15)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -650, -200, -650, -200, -700, -150, -700),
+"pos_id": Vector2(-4, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -600, -200, -600, -200, -650, -150, -650),
+"pos_id": Vector2(-4, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -550, -200, -550, -200, -600, -150, -600),
+"pos_id": Vector2(-4, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -500, -200, -500, -200, -550, -150, -550),
+"pos_id": Vector2(-4, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -450, -200, -450, -200, -500, -150, -500),
+"pos_id": Vector2(-4, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -400, -200, -400, -200, -450, -150, -450),
+"pos_id": Vector2(-4, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -350, -200, -350, -200, -400, -150, -400),
+"pos_id": Vector2(-4, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -300, -200, -300, -200, -350, -150, -350),
+"pos_id": Vector2(-4, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -250, -200, -250, -200, -300, -150, -300),
+"pos_id": Vector2(-4, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -200, -200, -200, -200, -250, -150, -250),
+"pos_id": Vector2(-4, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -150, -200, -150, -200, -200, -150, -200),
+"pos_id": Vector2(-4, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -100, -200, -100, -200, -150, -150, -150),
+"pos_id": Vector2(-4, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, -50, -200, -50, -200, -100, -150, -100),
+"pos_id": Vector2(-4, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 0, -200, 0, -200, -50, -150, -50),
+"pos_id": Vector2(-4, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 50, -200, 50, -200, 0, -150, 0),
+"pos_id": Vector2(-4, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 100, -200, 100, -200, 50, -150, 50),
+"pos_id": Vector2(-4, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 150, -200, 150, -200, 100, -150, 100),
+"pos_id": Vector2(-4, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 200, -200, 200, -200, 150, -150, 150),
+"pos_id": Vector2(-4, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 250, -200, 250, -200, 200, -150, 200),
+"pos_id": Vector2(-4, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 300, -200, 300, -200, 250, -150, 250),
+"pos_id": Vector2(-4, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-150, 315.06, -200, 315.06, -200, 300, -150, 300),
+"pos_id": Vector2(-4, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -900, -150, -900, -150, -924.796, -100, -924.796),
+"pos_id": Vector2(-3, -19)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -850, -150, -850, -150, -900, -100, -900),
+"pos_id": Vector2(-3, -18)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -800, -150, -800, -150, -850, -100, -850),
+"pos_id": Vector2(-3, -17)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -750, -150, -750, -150, -800, -100, -800),
+"pos_id": Vector2(-3, -16)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -700, -150, -700, -150, -750, -100, -750),
+"pos_id": Vector2(-3, -15)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -650, -150, -650, -150, -700, -100, -700),
+"pos_id": Vector2(-3, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -600, -150, -600, -150, -650, -100, -650),
+"pos_id": Vector2(-3, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -550, -150, -550, -150, -600, -100, -600),
+"pos_id": Vector2(-3, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -500, -150, -500, -150, -550, -100, -550),
+"pos_id": Vector2(-3, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -450, -150, -450, -150, -500, -100, -500),
+"pos_id": Vector2(-3, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -400, -150, -400, -150, -450, -100, -450),
+"pos_id": Vector2(-3, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -350, -150, -350, -150, -400, -100, -400),
+"pos_id": Vector2(-3, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -300, -150, -300, -150, -350, -100, -350),
+"pos_id": Vector2(-3, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -250, -150, -250, -150, -300, -100, -300),
+"pos_id": Vector2(-3, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -200, -150, -200, -150, -250, -100, -250),
+"pos_id": Vector2(-3, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -150, -150, -150, -150, -200, -100, -200),
+"pos_id": Vector2(-3, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -100, -150, -100, -150, -150, -100, -150),
+"pos_id": Vector2(-3, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -50, -150, -50, -150, -100, -100, -100),
+"pos_id": Vector2(-3, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -11.0972, -100.823, 0, -150, 0, -150, -50, -100, -50),
+"pos_id": Vector2(-3, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-102.564, 23.4655, -100, 23.4527, -100, 50, -150, 50, -150, 0, -100.823, 0),
+"pos_id": Vector2(-3, 0)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 100, -150, 100, -150, 50, -100, 50),
+"pos_id": Vector2(-3, 1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 150, -150, 150, -150, 100, -100, 100),
+"pos_id": Vector2(-3, 2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 200, -150, 200, -150, 150, -100, 150),
+"pos_id": Vector2(-3, 3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, 227.623, -117.706, 227.623, -119.366, 250, -150, 250, -150, 200, -100, 200),
+"pos_id": Vector2(-3, 4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-123.074, 300, -150, 300, -150, 250, -119.366, 250),
+"pos_id": Vector2(-3, 5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-124.191, 315.06, -150, 315.06, -150, 300, -123.074, 300),
+"pos_id": Vector2(-3, 6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -900, -100, -900, -100, -924.796, -50, -924.796),
+"pos_id": Vector2(-2, -19)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -850, -100, -850, -100, -900, -50, -900),
+"pos_id": Vector2(-2, -18)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -800, -100, -800, -100, -850, -50, -850),
+"pos_id": Vector2(-2, -17)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -750, -100, -750, -100, -800, -50, -800),
+"pos_id": Vector2(-2, -16)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -700, -100, -700, -100, -750, -50, -750),
+"pos_id": Vector2(-2, -15)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -685.225, -52.6126, -650, -100, -650, -100, -700, -50, -700),
+"pos_id": Vector2(-2, -14)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-56.3211, -600, -100, -600, -100, -650, -52.6126, -650),
+"pos_id": Vector2(-2, -13)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-60.0296, -550, -100, -550, -100, -600, -56.3211, -600),
+"pos_id": Vector2(-2, -12)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-63.7381, -500, -100, -500, -100, -550, -60.0296, -550),
+"pos_id": Vector2(-2, -11)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-67.4466, -450, -100, -450, -100, -500, -63.7381, -500),
+"pos_id": Vector2(-2, -10)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-71.1551, -400, -100, -400, -100, -450, -67.4466, -450),
+"pos_id": Vector2(-2, -9)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-74.8636, -350, -100, -350, -100, -400, -71.1551, -400),
+"pos_id": Vector2(-2, -8)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-78.5721, -300, -100, -300, -100, -350, -74.8636, -350),
+"pos_id": Vector2(-2, -7)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-82.2806, -250, -100, -250, -100, -300, -78.5721, -300),
+"pos_id": Vector2(-2, -6)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-85.9891, -200, -100, -200, -100, -250, -82.2806, -250),
+"pos_id": Vector2(-2, -5)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-89.6976, -150, -100, -150, -100, -200, -85.9891, -200),
+"pos_id": Vector2(-2, -4)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-93.4061, -100, -100, -100, -100, -150, -89.6976, -150),
+"pos_id": Vector2(-2, -3)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-97.1146, -50, -100, -50, -100, -100, -93.4061, -100),
+"pos_id": Vector2(-2, -2)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-100, -11.0972, -100, -50, -97.1146, -50),
+"pos_id": Vector2(-2, -1)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-34.0702, -900, -50, -900, -50, -924.796, -32.2311, -924.796),
+"pos_id": Vector2(-1, -19)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-37.7787, -850, -50, -850, -50, -900, -34.0702, -900),
+"pos_id": Vector2(-1, -18)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-41.4872, -800, -50, -800, -50, -850, -37.7787, -850),
+"pos_id": Vector2(-1, -17)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-45.1956, -750, -50, -750, -50, -800, -41.4872, -800),
+"pos_id": Vector2(-1, -16)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-48.9041, -700, -50, -700, -50, -750, -45.1956, -750),
+"pos_id": Vector2(-1, -15)
+}, {
+"id": 1,
+"polygon": PackedVector2Array(-50, -685.225, -50, -700, -48.9041, -700),
+"pos_id": Vector2(-1, -14)
+}]
+
+[node name="TerrainEditor" parent="TerrainManager" index="1"]
+Radius = 100.0
+Type = 1
+
+[node name="Lake" parent="TestNode" index="0"]
+visible = false
+
+[node name="ThanksHinter" parent="TestNode" index="1" instance=ExtResource("2_47n1o")]
+position = Vector2(84, -51)
+text = "Thank you for playing!"
+text_size = 32
+dist = 72.0
+
+[node name="CreditsHinter" parent="TestNode" index="2" instance=ExtResource("2_47n1o")]
+position = Vector2(252, -51)
+text = "dev : DF
+dev : xx
+dev : coffeewine
+design : 軒轅天芽"
+text_size = 32
+dist = 72.0
+
+[node name="TipHinter" parent="TestNode" index="3" instance=ExtResource("2_47n1o")]
+position = Vector2(425, -97)
+text = "Please enter the teleport point to return to the title."
+text_size = 32
+dist = 72.0
+
+[node name="Teleport" parent="TestNode" index="4" instance=ExtResource("3_yfkdp")]
+position = Vector2(545, -106)
+
+[editable path="TerrainManager"]

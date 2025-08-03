@@ -13,8 +13,11 @@ var LEVEL_SEQUENCE: Array[String] = [
 	"SafeArea",
 	"Level4",
 	"SafeArea",
+	"Level5",
+	"SafeArea",
 	"Level6",
 	"SafeArea",
+	"End",
 ]
 
 ## 關卡重複次數
