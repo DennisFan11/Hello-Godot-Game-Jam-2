@@ -1,7 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://chs71krydajvg"]
+[gd_scene load_steps=5 format=3 uid="uid://chs71krydajvg"]
 
 [ext_resource type="Script" uid="uid://tm3dt4pnwkc" path="res://GameSystem/TerrainManager/DestroyableBlock/DestoryableBlockBaseScene/destoryable_block_base_scene.gd" id="1_e3dcx"]
 [ext_resource type="Texture2D" uid="uid://n11tyncaiydx" path="res://GameSystem/TerrainManager/DestroyableBlock/DestoryableBlockBaseScene/TerrainTexture.jpg" id="2_52sao"]
+
+[sub_resource type="Shader" id="Shader_52sao"]
+code = "shader_type canvas_item;
+vec2 random(vec2 uv) {
+	return vec2(fract(sin(dot(uv.xy,
+		vec2(12.9898,78.233))) * 43758.5453123));
+}
+vec2 voronoi(vec2 uv, float columns, float rows) {
+
+	vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+	vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+
+	float minimum_dist = 1.0;
+	vec2 minimum_point;
+
+	for (int y= -1; y <= 1; y++) {
+		for (int x= -1; x <= 1; x++) {
+			vec2 neighbor = vec2(float(x),float(y));
+			vec2 point = random(index_uv + neighbor);
+
+			vec2 diff = neighbor + point - fract_uv;
+			float dist = length(diff);
+
+			if(dist < minimum_dist) {
+				minimum_dist = dist;
+				minimum_point = point;
+			}
+		}
+	}
+	return minimum_point;
+}
+uniform float scale  = 1.0;
+uniform vec4 color: source_color;
+const vec2 fixed_scale = vec2(1.0, 1.6);
+void fragment() {
+	vec2 cell = voronoi(UV * scale * fixed_scale, 10.0, 5.0);
+	float brightness = 0.5 + 0.5 * cell.r; // 將 0~1 映射到 0.5~1.0
+	COLOR = vec4(color.rgb * brightness, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nwrlq"]
+shader = SubResource("Shader_52sao")
+shader_parameter/scale = 35.02
+shader_parameter/color = Color(0.683787, 0.304537, 0, 1)
 
 [node name="DestoryableBlockBaseScene" type="StaticBody2D" groups=["Block"]]
 collision_layer = 524289
@@ -12,8 +56,10 @@ script = ExtResource("1_e3dcx")
 unique_name_in_owner = true
 texture_filter = 1
 texture_repeat = 2
+material = SubResource("ShaderMaterial_nwrlq")
 color = Color(0.703705, 0.278033, 0, 1)
 texture = ExtResource("2_52sao")
+polygon = PackedVector2Array(-29, -27, 23, -24, 37, 21, -31, 15, -32, -20)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
