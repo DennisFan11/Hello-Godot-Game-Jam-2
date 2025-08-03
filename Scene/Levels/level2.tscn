@@ -1176,7 +1176,7 @@ _map_data = [{
 Radius = 90.0
 
 [node name="Teleport" parent="TestNode" index="0" instance=ExtResource("3_gqurj")]
-position = Vector2(23, 87)
+position = Vector2(-621, 104)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUILayer" index="1"]
 anchors_preset = 15
