@@ -43,6 +43,7 @@ func try_move(delta:float):
 	if move_rotation:
 		target.rotation = current_move_angle
 	target.velocity = new_velocity
+	change_direction(new_velocity)
 
 
 
