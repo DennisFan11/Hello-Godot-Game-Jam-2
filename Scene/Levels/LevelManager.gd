@@ -6,13 +6,17 @@ extends Node
 ## 關卡順序配置
 var LEVEL_SEQUENCE: Array[String] = [
 	"Level1",
+	"SafeArea",
 	"Level2",
+	"SafeArea",
 	"Level3",
+	"SafeArea",
+	"Level4",
 	"SafeArea",
 ]
 
 ## 關卡重複次數
-const LEVEL_REPEAT_COUNT = 2
+const LEVEL_REPEAT_COUNT = 1
 func _ready() -> void:
 	DI.register("_level_manager", self)
 	

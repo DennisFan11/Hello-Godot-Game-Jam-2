@@ -8,7 +8,7 @@ var SCENE := {
 	"Title": {
 		"file": preload("uid://bg4ji6py6jgn8")
 	},
-	"Tutorial":{
+	"Tutorial": {
 		"file": preload("uid://bcmasoxjfybi5")
 	},
 	
@@ -20,6 +20,9 @@ var SCENE := {
 	},
 	"Level3": {
 		"file": preload("uid://dmq6hvpeioana")
+	},
+	"Level4": {
+		"file": preload("uid://cw45uprex267m")
 	},
 	"SafeArea": {
 		"file": preload("uid://cnxvmxu78aacr")
@@ -114,7 +117,7 @@ func _ready():
 
 func event_instantiate():
 	for event_name in EVENT:
-		var source:PackedScene = EVENT[event_name].get("file", null)
+		var source: PackedScene = EVENT[event_name].get("file", null)
 		if source and source.can_instantiate():
 			var node = source.instantiate()
 			node.visible = false
@@ -129,7 +132,7 @@ func event_instantiate():
 				.format([event_name])
 			)
 
-func start_event(event_name:String, args = null):
+func start_event(event_name: String, args = null):
 	var event = EVENT.get(event_name)
 	if event:
 		event.node.start_event(args)
