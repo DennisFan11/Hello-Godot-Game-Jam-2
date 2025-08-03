@@ -58,12 +58,12 @@ func _update_shop_display():
 		print("⚠ player_points_label 節點未找到")
 		return
 	
-	# 更新玩家點數顯示
-	var points = upgrade_system.upgrade_levels.get_upgrade_point()
-	var level = upgrade_system.player_stats.get_stats("level")
-	var experience = upgrade_system.player_stats.get_stats("experience_points")
+	# 獲取玩家金幣數量
+	var coins = ConfigRepo.repo.get_value("PLAYER_PROPERTIES", "coins", 0)
+	# var level = upgrade_system.player_stats.get_stats("level")
+	# var experience = upgrade_system.player_stats.get_stats("experience_points")
 	
-	player_points_label.text = "可用升級點數: %d | 等級: %d | 經驗: %d" % [points, level, experience]
+	player_points_label.text = "你的金幣: %d " % [coins]
 	
 	# 清除現有升級項目
 	_clear_upgrade_items()
@@ -89,7 +89,7 @@ func _create_upgrade_items():
 		var upgrade_info = upgrade_levels.get_upgrade_info(upgrade_type)
 		_create_upgrade_item(upgrade_type, upgrade_info)
 
-func _create_upgrade_item(upgrade_type:String, info: Dictionary):
+func _create_upgrade_item(upgrade_type: String, info: Dictionary):
 	"""創建單個升級項目的 UI"""
 	# 主容器
 	var item_panel = Panel.new()
@@ -185,9 +185,9 @@ func _create_upgrade_item(upgrade_type:String, info: Dictionary):
 	
 	# 價格標籤
 	var price_label = Label.new()
-	price_label.text = "消耗: %d 點" % info.cost
+	price_label.text = "價格: %d 金幣" % info.cost
 	price_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	price_label.add_theme_color_override("font_color", Color.ORANGE)
+	price_label.add_theme_color_override("font_color", Color.GOLD)
 	price_label.add_theme_font_size_override("font_size", 12)
 	right_container.add_child(price_label)
 	
@@ -196,11 +196,14 @@ func _create_upgrade_item(upgrade_type:String, info: Dictionary):
 	var button_text = ""
 	var can_buy = false
 	
+	# 獲取當前金幣數量
+	var current_coins = ConfigRepo.repo.get_value("PLAYER_PROPERTIES", "coins", 0)
+	
 	if info.current_level >= info.max_level:
 		button_text = "已滿級"
 		buy_button.disabled = true
-	elif upgrade_system.upgrade_levels.get_upgrade_point() < info.cost:
-		button_text = "點數不足"
+	elif current_coins < info.cost:
+		button_text = "金幣不足"
 		buy_button.disabled = true
 	else:
 		button_text = "購買升級"
@@ -267,7 +270,7 @@ func _create_upgrade_item(upgrade_type:String, info: Dictionary):
 	bottom_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	right_container.add_child(bottom_spacer)
 
-func _get_upgrade_effect_text(upgrade_type:String, info: Dictionary) -> String:
+func _get_upgrade_effect_text(upgrade_type: String, info: Dictionary) -> String:
 	"""獲取升級效果文字"""
 	var current_level = info.current_level
 	var base_value = info.base_value
@@ -289,15 +292,53 @@ func _get_upgrade_effect_text(upgrade_type:String, info: Dictionary) -> String:
 		_:
 			return "升級效果未知"
 
-func _on_buy_upgrade(upgrade_type:String):
+func _on_buy_upgrade(upgrade_type: String):
 	"""處理購買升級"""
-	var success = upgrade_system.apply_upgrade(upgrade_type)
-	if success:
-		print("✅ 購買成功！升級了 %s" % upgrade_system.upgrade_levels.get_config(upgrade_type).name)
+	# 獲取升級信息
+	var upgrade_info = upgrade_system.upgrade_levels.get_upgrade_info(upgrade_type)
+	var cost = upgrade_info.cost
+	var current_coins = ConfigRepo.repo.get_value("PLAYER_PROPERTIES", "coins", 0)
+	
+	# 檢查是否有足夠的金幣
+	if current_coins < cost:
+		print("❌ 金幣不足！需要 %d 金幣，目前只有 %d 金幣" % [cost, current_coins])
+		return
+	
+	# 檢查是否已達最高等級
+	if upgrade_info.current_level >= upgrade_info.max_level:
+		print("❌ 已達到最高等級！")
+		return
+	
+	# 扣除金幣
+	var new_coin_amount = current_coins - cost
+	ConfigRepo.repo.set_value("PLAYER_PROPERTIES", "coins", new_coin_amount)
+	
+	# 直接應用屬性升級（不使用升級點數系統）
+	var config = upgrade_system.upgrade_levels.get_config(upgrade_type)
+	upgrade_system.player_stats.add_stats(config.stats, config.base_value)
+	
+	# 提升升級等級
+	upgrade_system.upgrade_levels.set_level(upgrade_type, upgrade_info.current_level + 1)
+	
+	# 如果是生命值升級，回滿血
+	if config.stats == "max_health":
+		upgrade_system.player_stats.set_stats("current_health", upgrade_system.player_stats.get_stats("max_health"))
+	
+	# 保存數據
+	upgrade_system._save_player_data()
+	
+	# 發出升級信號
+	upgrade_system.upgrade_applied.emit(upgrade_type, upgrade_info.current_level + 1)
+	
+	print("✅ 購買成功！花費 %d 金幣升級了 %s，剩餘金幣: %d" % [cost, config.name, new_coin_amount])
 
 func _on_add_exp_pressed():
-	"""測試按鈕：增加經驗值"""
+	"""測試按鈕：增加經驗值和金幣"""
 	upgrade_system.gain_experience(100)
+	# 同時給玩家一些金幣用於測試
+	var current_coins = ConfigRepo.repo.get_value("PLAYER_PROPERTIES", "coins", 0)
+	ConfigRepo.repo.set_value("PLAYER_PROPERTIES", "coins", current_coins + 50)
+	print("測試：增加了 50 金幣")
 
 func _on_reset_pressed():
 	"""重置按鈕：重置所有升級"""
@@ -307,7 +348,7 @@ func _on_back_to_title_pressed():
 	"""返回標題畫面"""
 	await CoreManager.goto_scene("Title")
 
-func _on_upgrade_purchased(upgrade_type:String, new_level: int):
+func _on_upgrade_purchased(upgrade_type: String, new_level: int):
 	"""升級購買成功時的回調"""
 	var upgrade_name = upgrade_system.upgrade_levels.get_config(upgrade_type).name
 	print("🎉 已購買：%s 升級到等級 %d" % [upgrade_name, new_level])
