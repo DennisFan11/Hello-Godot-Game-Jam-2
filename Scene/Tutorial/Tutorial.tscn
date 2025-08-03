@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcmasoxjfybi5"]
+[gd_scene load_steps=8 format=3 uid="uid://bcmasoxjfybi5"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_w5d86"]
 [ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="2_bnj1i"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bcvphcm5mrft5" path="res://Asset/Class/hint/Hinter.tscn" id="4_bd1n5"]
 [ext_resource type="PackedScene" uid="uid://b68cetxw3svh3" path="res://Asset/Class/DistanceSignal/DistanceSignal.tscn" id="5_fred4"]
 [ext_resource type="Script" uid="uid://dkhkhr6me555s" path="res://Scene/Tutorial/BattleEvent.gd" id="6_bweva"]
-[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="7_24irb"]
 
 [sub_resource type="Resource" id="Resource_fred4"]
 script = ExtResource("3_bd1n5")
@@ -2285,6 +2284,9 @@ _map_data = [{
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 124.0
 
+[node name="Teleport" parent="." index="3"]
+position = Vector2(777, -203)
+
 [node name="JumpHinter" parent="TestNode" index="0" instance=ExtResource("4_bd1n5")]
 position = Vector2(216, -6)
 text = "space -> jump"
@@ -2307,8 +2309,5 @@ dist = 72.0
 position = Vector2(694, -221)
 script = ExtResource("6_bweva")
 dist = 200.0
-
-[node name="Teleport" parent="TestNode" index="4" instance=ExtResource("7_24irb")]
-position = Vector2(777, -203)
 
 [editable path="TerrainManager"]

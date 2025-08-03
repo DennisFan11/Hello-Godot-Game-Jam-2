@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck880glpw7yhe"]
+[gd_scene load_steps=16 format=3 uid="uid://ck880glpw7yhe"]
 
 [ext_resource type="Script" uid="uid://ceagxmln0cgie" path="res://GameSystem/GameManager.gd" id="1_jcyoa"]
 [ext_resource type="PackedScene" uid="uid://tblwle8bwha6" path="res://GameSystem/Background/parallax_background.tscn" id="2_cmd41"]
+[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="5_cmd41"]
 [ext_resource type="PackedScene" uid="uid://b2d27osycyph" path="res://GameSystem/EnemyManager/EnemyManager.tscn" id="5_wonvf"]
 [ext_resource type="PackedScene" uid="uid://bg4ag1spy7bdx" path="res://GameSystem/PlayerManager/PlayerManager.tscn" id="5_ypx2t"]
 [ext_resource type="PackedScene" uid="uid://dg3djwp882ugn" path="res://GameSystem/ShaderManager/ShaderManager.tscn" id="7_o6cs3"]
@@ -3317,6 +3318,9 @@ _map_data = [{
 
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 18.0
+
+[node name="Teleport" parent="." instance=ExtResource("5_cmd41")]
+unique_name_in_owner = true
 
 [node name="TestNode" type="Node2D" parent="."]
 

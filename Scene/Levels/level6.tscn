@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://jghh2wj4o126"]
+[gd_scene load_steps=11 format=3 uid="uid://jghh2wj4o126"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_uypsg"]
 [ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="2_1lc7s"]
 [ext_resource type="Script" uid="uid://dddth468gqso1" path="res://GameSystem/WaveManager/WaveDataDefine/WaveEnemy.gd" id="3_eob7b"]
 [ext_resource type="Script" uid="uid://cu0xicm6f2rtw" path="res://GameSystem/WaveManager/WaveDataDefine/WaveConfig.gd" id="4_cwdju"]
-[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="5_nrlrh"]
 
 [sub_resource type="Resource" id="Resource_4uiaf"]
 script = ExtResource("3_eob7b")
@@ -1854,7 +1853,7 @@ _map_data = [{
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Type = 1
 
-[node name="Teleport" parent="TestNode" index="0" instance=ExtResource("5_nrlrh")]
+[node name="Teleport" parent="." index="4"]
 position = Vector2(-691, 673)
 
 [editable path="TerrainManager"]

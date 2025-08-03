@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0rrecnk50f1u"]
+[gd_scene load_steps=2 format=3 uid="uid://b0rrecnk50f1u"]
 
 [ext_resource type="PackedScene" uid="uid://bgtiwbv5cfrsi" path="res://Scene/Levels/Template.tscn" id="1_bcdrs"]
-[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="2_imtud"]
 
 [node name="GameManager" instance=ExtResource("1_bcdrs")]
 
@@ -4259,10 +4258,19 @@ _map_data = [{
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 20.0
 
+[node name="Teleport" parent="." index="4"]
+position = Vector2(18, -101)
+
 [node name="Lake" parent="TestNode" index="0"]
 visible = false
 
-[node name="Teleport" parent="TestNode" index="1" instance=ExtResource("2_imtud")]
-position = Vector2(18, -101)
+[node name="left" parent="Boundary" index="1"]
+disabled = true
+
+[node name="right" parent="Boundary" index="2"]
+disabled = true
+
+[node name="up" parent="Boundary" index="3"]
+disabled = true
 
 [editable path="TerrainManager"]
