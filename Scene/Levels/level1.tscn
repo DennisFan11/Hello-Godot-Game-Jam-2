@@ -4261,6 +4261,7 @@ _map_data = [{
 
 [node name="TerrainEditor" parent="TerrainManager" index="1"]
 Radius = 20.0
+Shape = 0
 
 [node name="Teleport" parent="." index="4"]
 position = Vector2(18, -101)
