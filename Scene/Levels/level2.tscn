@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://by1ilb7vws5mw"]
+[gd_scene load_steps=3 format=3 uid="uid://by1ilb7vws5mw"]
 
 [ext_resource type="PackedScene" uid="uid://ck880glpw7yhe" path="res://GameSystem/GameManager.tscn" id="1_hg86w"]
+[ext_resource type="Resource" uid="uid://dskkgpeo47x4p" path="res://GameSystem/WaveManager/PreWaveConfigs/Level2WaveConfig.tres" id="2_5u2yp"]
 
 [node name="Level2" instance=ExtResource("1_hg86w")]
+
+[node name="WaveManager" parent="." index="1"]
+waveConfig = ExtResource("2_5u2yp")
 
 [node name="TerrainManager" parent="." index="2"]
 _map_data = [{
