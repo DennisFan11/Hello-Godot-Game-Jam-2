@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw45uprex267m"]
+[gd_scene load_steps=3 format=3 uid="uid://cw45uprex267m"]
 
 [ext_resource type="PackedScene" uid="uid://bgtiwbv5cfrsi" path="res://Scene/Levels/Template.tscn" id="1_olucc"]
+[ext_resource type="Resource" uid="uid://ckfb1lac03trp" path="res://GameSystem/WaveManager/PreWaveConfigs/Level4WaveConfig.tres" id="2_s6v5x"]
 
 [node name="GameManager" instance=ExtResource("1_olucc")]
+
+[node name="WaveManager" parent="." index="1"]
+waveConfig = ExtResource("2_s6v5x")
 
 [node name="RichTextLabel" parent="CanvasLayer" index="0"]
 text = "[font_size=70]LEVEL 4"
