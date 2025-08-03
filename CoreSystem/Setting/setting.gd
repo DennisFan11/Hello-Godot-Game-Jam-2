@@ -3,8 +3,8 @@ extends Control
 var open: bool = false:
 	set(new):
 		print("OPen", new)
-		if new != open:
-			return
+		#if new != open:
+			#return
 
 		var game_manager = DI.get_dependence("_game_manager")
 		if new:
