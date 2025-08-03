@@ -13,7 +13,7 @@ var SCENE := {
 	},
 	
 	"Level1": {
-		"file": preload("uid://jghh2wj4o126")
+		"file": preload("uid://b0rrecnk50f1u")
 	},
 	"Level2": {
 		"file": preload("uid://by1ilb7vws5mw")
@@ -23,6 +23,9 @@ var SCENE := {
 	},
 	"Level4": {
 		"file": preload("uid://cw45uprex267m")
+	},
+	"Level6": {
+		"file": preload("uid://jghh2wj4o126")
 	},
 	"SafeArea": {
 		"file": preload("uid://cnxvmxu78aacr")

@@ -3520,7 +3520,7 @@ _map_data = [{
 Radius = 10.0
 
 [node name="Teleport" parent="TestNode" index="0" instance=ExtResource("2_lgvdp")]
-position = Vector2(-235, -199)
+position = Vector2(73, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUILayer" index="1"]
 anchors_preset = 15
