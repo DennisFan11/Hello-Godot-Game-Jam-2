@@ -16,9 +16,9 @@ func _on_upgrade_shop_button_pressed() -> void:
 	await CoreManager.goto_scene("UpgradeShop")
 
 
-func _on_credit_button_pressed() -> void:
-	_disable_buttons()
-	CoreManager.goto_scene("Endding")
+#func _on_credit_button_pressed() -> void:
+	#_disable_buttons()
+	#CoreManager.goto_scene("Endding")
 
 func _disable_buttons() -> void:
 	%StartButton.disabled = true
