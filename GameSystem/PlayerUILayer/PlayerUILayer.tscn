@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lmwf2xpq56bc" path="res://GameSystem/PlayerUILayer/PlayerUILayer.gd" id="1_fwg4k"]
 [ext_resource type="Script" uid="uid://khvl61kd2fon" path="res://Asset/Class/TweenPanel.gd" id="2_evgl1"]
-[ext_resource type="Texture2D" uid="uid://cfh1ps5eugq1r" path="res://icon.svg" id="3_2iv7x"]
+[ext_resource type="Texture2D" uid="uid://b1ho2nhgfnmdh" path="res://GameSystem/PlayerUILayer/Blood.png" id="3_x25x8"]
 [ext_resource type="FontFile" uid="uid://c1bk7jgs07e5i" path="res://Asset/Fonts/Patrick_Hand/PatrickHand-Regular.ttf" id="5_4le2u"]
 [ext_resource type="Script" uid="uid://fbegrav277xd" path="res://Asset/Class/SummaryPanel.gd" id="5_x25x8"]
 [ext_resource type="Texture2D" uid="uid://jac0heda6uyr" path="res://Asset/Image/Cursor_3.png" id="6_x25x8"]
@@ -56,7 +56,7 @@ grow_vertical = 2
 mouse_filter = 2
 value = 100.0
 nine_patch_stretch = true
-texture_progress = ExtResource("3_2iv7x")
+texture_progress = ExtResource("3_x25x8")
 
 [node name="HPLabel" type="RichTextLabel" parent="Control"]
 unique_name_in_owner = true
