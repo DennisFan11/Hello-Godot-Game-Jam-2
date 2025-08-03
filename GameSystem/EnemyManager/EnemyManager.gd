@@ -19,6 +19,8 @@ var _enemy_file: Dictionary = {
 	"Wall": preload("uid://bf0wxaibupxeb"),
 	"Mage": preload("uid://ekn4g78ogh6l"),
 	"Angel": preload("uid://ludva5tmopic"),
+	"Devil": preload("uid://k8j506n66ioe"),
+	"Fish": preload("uid://dd53jmxywh86c")
 }
 
 func get_enemy(enemy_name:String):

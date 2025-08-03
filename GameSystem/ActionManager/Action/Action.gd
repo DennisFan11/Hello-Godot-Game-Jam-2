@@ -57,3 +57,9 @@ func set_control(t) -> bool:
 func set_target_anim_state(key, value):
 	if target.has_method("set_anim_state"):
 		target.set_anim_state(key, value)
+
+func start_cooldown():
+	_cooldown_timer.trigger(cooldown)
+
+func finish_cooldown():
+	return _cooldown_timer.is_ready()

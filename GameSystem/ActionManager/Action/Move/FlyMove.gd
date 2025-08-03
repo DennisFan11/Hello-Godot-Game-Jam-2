@@ -38,7 +38,8 @@ func try_move(delta:float):
 		else:
 			current_move_angle = new_angle
 
-		new_velocity = MAX_SPEED * vec
+		new_velocity.x = lerp(new_velocity.x, MAX_SPEED.x * vec.x, INCREASE * delta)
+		new_velocity.y = lerp(new_velocity.y, MAX_SPEED.y * vec.y, INCREASE * delta)
 
 	if move_rotation:
 		target.rotation = current_move_angle

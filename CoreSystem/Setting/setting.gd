@@ -2,21 +2,22 @@ extends Control
 
 var open: bool = false:
 	set(new):
-		print("OPen", new)
-		#if new != open:
-			#return
+		if new == open:
+			return
 
 		var game_manager = DI.get_dependence("_game_manager")
 		if new:
-			#if not game_manager.can_process:
-				#return
+			# 檢查是否正在運行, 如果不是則為其他界面, 取消開啟
+			if not game_manager.can_process():
+				return
 			%Panel.visible = true
 			%Panel._open()
 			if game_manager:
 				game_manager.set_process_mode(PROCESS_MODE_DISABLED)
 		else:
-			#if game_manager.can_process:
-				#return
+			# 檢查是否正在運行, 如果是則為其他界面, 取消開啟
+			if game_manager.can_process():
+				return
 			await %Panel._close()
 			%Panel.visible = false
 			ConfigRepo.save()

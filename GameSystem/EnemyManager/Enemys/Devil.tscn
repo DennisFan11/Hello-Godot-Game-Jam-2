@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://ludva5tmopic"]
+[gd_scene load_steps=12 format=3 uid="uid://k8j506n66ioe"]
 
-[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_qri0n"]
-[ext_resource type="PackedScene" uid="uid://bmf4seylpvkwe" path="res://Asset/VFX/TailFlame.tscn" id="2_cik6f"]
-[ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/ActionManager/Action/Attack/BulletAttack.gd" id="3_0ehjb"]
-[ext_resource type="Texture2D" uid="uid://nj0ovq2vkv20" path="res://Asset/Enemy/Angel.png" id="3_cik6f"]
-[ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/ActionManager/Action/Move/FlyMove.gd" id="4_0pkpr"]
+[ext_resource type="PackedScene" uid="uid://bf2x6o6j8et38" path="res://GameSystem/EnemyManager/Enemys/Enemy.tscn" id="1_ybkr6"]
+[ext_resource type="Script" uid="uid://i0eyoraab26" path="res://GameSystem/ActionManager/Action/Attack/BulletAttack.gd" id="2_crxew"]
+[ext_resource type="Texture2D" uid="uid://v3lh4oi0tb2r" path="res://Asset/Enemy/character_cthulhu_night_gaunts.png" id="2_iwl5h"]
+[ext_resource type="PackedScene" uid="uid://crmf3o46forhd" path="res://GameSystem/ActionManager/Bullet/Ball.tscn" id="3_iwl5h"]
+[ext_resource type="Script" uid="uid://wpswuf8in8cv" path="res://GameSystem/ActionManager/Action/Move/FlyMove.gd" id="4_esof1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2x8b"]
-radius = 15.0
+radius = 14.0
 
 [sub_resource type="Animation" id="Animation_sa3x4"]
 length = 0.001
@@ -90,7 +90,7 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_0ehjb"]
+[sub_resource type="Animation" id="Animation_xdpkg"]
 resource_local_to_scene = true
 resource_name = "move"
 loop_mode = 1
@@ -108,38 +108,38 @@ tracks/0/keys = {
 "values": [0.0, -0.383972, 0.0, 0.383972, 0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0pkpr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7f1l"]
 resource_local_to_scene = true
 _data = {
 &"RESET": SubResource("Animation_sa3x4"),
 &"dead": SubResource("Animation_uel26"),
 &"idle": SubResource("Animation_rmobe"),
-&"move": SubResource("Animation_0ehjb")
+&"move": SubResource("Animation_xdpkg")
 }
 
-[node name="Angel" instance=ExtResource("1_qri0n")]
-collision_mask = 2
+[node name="Devil" instance=ExtResource("1_ybkr6")]
 
-[node name="TailFlame" parent="." index="0" instance=ExtResource("2_cik6f")]
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_iwl5h")
 
-[node name="Icon" parent="." index="1"]
-texture = ExtResource("3_cik6f")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_u2x8b")
 
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_0pkpr")
+&"": SubResource("AnimationLibrary_u7f1l")
 }
 
 [node name="BulletAttack" type="Node" parent="AttackManager" index="0"]
-script = ExtResource("3_0ehjb")
-cooldown = 3.0
+script = ExtResource("2_crxew")
+bullet = ExtResource("3_iwl5h")
+cooldown = 4.0
 metadata/_custom_type_script = "uid://i0eyoraab26"
 
 [node name="FlyMove" type="Node" parent="MoveManager" index="0"]
-script = ExtResource("4_0pkpr")
-MAX_SPEED = Vector2(60, 50)
-social_distance = Vector2(85, 85)
+script = ExtResource("4_esof1")
+max_rotation_angle = 180.0
+move_rotation = true
+MAX_SPEED = Vector2(80, 100)
+social_distance = Vector2(60, 20)
 metadata/_custom_type_script = "uid://wpswuf8in8cv"

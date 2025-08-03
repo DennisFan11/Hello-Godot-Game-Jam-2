@@ -52,7 +52,7 @@ z_index = -1
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_sie6p")
-cooldown = 3.0
+cooldown = 6.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ydy15")
