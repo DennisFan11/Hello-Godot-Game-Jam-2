@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://bg4ji6py6jgn8"]
+[gd_scene load_steps=31 format=3 uid="uid://bg4ji6py6jgn8"]
 
 [ext_resource type="Script" uid="uid://b2k1ue4nboo5g" path="res://Scene/Title/Title.gd" id="1_o7trp"]
 [ext_resource type="Texture2D" uid="uid://dbheh2ownuj1e" path="res://Scene/Title/asset/TitleBackground.webp" id="2_3vhpb"]
 [ext_resource type="Texture2D" uid="uid://dn354hr6eoo5d" path="res://Asset/Image/book/book.png" id="3_0qc81"]
 [ext_resource type="Texture2D" uid="uid://c1j0flfjkigpq" path="res://Asset/Image/book/Single/1.png" id="4_ap454"]
+[ext_resource type="FontFile" uid="uid://b5gbqt27lmlcs" path="res://Asset/Fonts/NotoSansTC-Medium.ttf" id="4_p3vf5"]
 [ext_resource type="Texture2D" uid="uid://bosejr177i8nw" path="res://Asset/Image/book/Single/2.png" id="5_i4c4r"]
 [ext_resource type="Texture2D" uid="uid://c5ulsjuk7dxst" path="res://Asset/Image/book/Single/3.png" id="6_8cbpv"]
 [ext_resource type="Texture2D" uid="uid://bonwajwpqomu2" path="res://Asset/Image/book/Single/4.png" id="7_gw025"]
@@ -109,15 +110,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 812.0
+offset_top = 669.0
+offset_right = 997.0
+offset_bottom = 713.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("4_p3vf5")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "可是本作沒有魔王"
+scroll_active = false
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 150.0
 offset_top = 150.0
 offset_right = 1020.0
 offset_bottom = 373.0
 rotation = -0.165328
-theme_override_font_sizes/normal_font_size = 80
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("4_p3vf5")
+theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "Title"
+text = "穿越到書中為了回家的我只能一遍遍砸死尋找能擊敗魔王的勇者的湖中女神"
 scroll_active = false
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
