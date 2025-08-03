@@ -8,8 +8,9 @@ var open: bool = false:
 		var game_manager = DI.get_dependence("_game_manager")
 		if new:
 			# 檢查是否正在運行, 如果不是則為其他界面, 取消開啟
-			if not game_manager.can_process():
-				return
+			if game_manager:
+				if not game_manager.can_process():
+					return
 			%Panel.visible = true
 			%Panel._open()
 			if game_manager:
