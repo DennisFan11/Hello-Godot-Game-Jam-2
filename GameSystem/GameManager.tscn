@@ -3349,16 +3349,19 @@ one_way_collision_margin = 0.0
 [node name="left" type="CollisionShape2D" parent="Boundary"]
 position = Vector2(-1000, 0)
 shape = SubResource("WorldBoundaryShape2D_30fhk")
+disabled = true
 one_way_collision_margin = 0.0
 
 [node name="right" type="CollisionShape2D" parent="Boundary"]
 position = Vector2(1000, 0)
 shape = SubResource("WorldBoundaryShape2D_ko6fk")
+disabled = true
 one_way_collision_margin = 0.0
 
 [node name="up" type="CollisionShape2D" parent="Boundary"]
 position = Vector2(0, -1000)
 shape = SubResource("WorldBoundaryShape2D_haw3m")
+disabled = true
 one_way_collision_margin = 0.0
 
 [node name="PlayerUILayer" parent="." instance=ExtResource("10_cmd41")]

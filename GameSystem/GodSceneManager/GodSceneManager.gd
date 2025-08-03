@@ -22,6 +22,10 @@ func start_event(args):
 	visible = true
 
 	await %GoddessWeaponSelect.start_scene()
+	#end_event(
+		#WeaponManager.get_player_weapon(),
+		#WeaponManager.create_random_weapon()
+	#)
 
 func end_event(player_weapon, new_weapon):
 	

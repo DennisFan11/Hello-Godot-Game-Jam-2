@@ -2,16 +2,24 @@ extends Control
 
 var open: bool = false:
 	set(new):
-		open = new
+		if new != open:
+			return
+
+		var game_manager = DI.get_dependence("_game_manager")
 		if new:
+			if not game_manager.can_process:
+				return
 			%Panel.visible = true
 			%Panel._open()
-			get_tree().current_scene.set_process_mode(PROCESS_MODE_DISABLED)
+			game_manager.set_process_mode(PROCESS_MODE_DISABLED)
 		else:
+			if game_manager.can_process:
+				return
 			await %Panel._close()
 			%Panel.visible = false
 			ConfigRepo.save()
-			get_tree().current_scene.set_process_mode(PROCESS_MODE_INHERIT)
+			game_manager.set_process_mode(PROCESS_MODE_INHERIT)
+		open = new
 
 
 func _input(event: InputEvent) -> void:

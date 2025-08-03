@@ -34,7 +34,7 @@ func start_event(args):
 	if _new_weapon:
 		#new_weapon.is_main = false
 		%FinishButton.disabled = true
-		_new_weapon.move_to(%SelectedMarker, %GlueLayer)
+		_new_weapon.move_to(%SelectedMarker, %GlueLayer, false)
 		_new_weapon.scale = Vector2.ONE * 7.0
 	
 	_rebind_weapon_event()
