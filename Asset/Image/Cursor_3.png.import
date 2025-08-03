@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtgpi8qxt2117"
-path="res://.godot/imported/image_1.png-c63866055ad40a7d0814461f3e2589eb.ctex"
+uid="uid://jac0heda6uyr"
+path="res://.godot/imported/Cursor_3.png-23ceb2a474c0612f7a81c796b5b77446.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scene/Levels/關卡調整簡介/image_1.png"
-dest_files=["res://.godot/imported/image_1.png-c63866055ad40a7d0814461f3e2589eb.ctex"]
+source_file="res://Asset/Image/Cursor_3.png"
+dest_files=["res://.godot/imported/Cursor_3.png-23ceb2a474c0612f7a81c796b5b77446.ctex"]
 
 [params]
 
