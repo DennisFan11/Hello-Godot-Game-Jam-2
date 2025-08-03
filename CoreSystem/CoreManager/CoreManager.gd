@@ -33,6 +33,9 @@ var SCENE := {
 	"SafeArea": {
 		"file": preload("uid://cnxvmxu78aacr")
 	},
+	"End": {
+		"file": preload("uid://go8blnweufr4")
+	},
 	
 	"UpgradeShop": {
 		"file": preload("uid://c0p31kfgvdkkq")
