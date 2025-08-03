@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="WaveConfig" load_steps=7 format=3 uid="uid://bwv3d74if4piy"]
+
+[ext_resource type="Script" uid="uid://cxlrsuibgh48g" path="res://GameSystem/WaveManager/WaveDataDefine/Wave.gd" id="1_k2hy0"]
+[ext_resource type="Script" uid="uid://dddth468gqso1" path="res://GameSystem/WaveManager/WaveDataDefine/WaveEnemy.gd" id="2_720cl"]
+[ext_resource type="Script" uid="uid://cu0xicm6f2rtw" path="res://GameSystem/WaveManager/WaveDataDefine/WaveConfig.gd" id="3_lp2as"]
+
+[sub_resource type="Resource" id="Resource_rqmft"]
+script = ExtResource("2_720cl")
+EnemyType = "Slime"
+Mount = 10
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_k2hy0"]
+script = ExtResource("2_720cl")
+EnemyType = "Angel"
+Mount = 3
+metadata/_custom_type_script = "uid://dddth468gqso1"
+
+[sub_resource type="Resource" id="Resource_0onfb"]
+script = ExtResource("1_k2hy0")
+WaitTime = 0.0
+Enemys = Array[ExtResource("2_720cl")]([SubResource("Resource_rqmft"), SubResource("Resource_k2hy0")])
+metadata/_custom_type_script = "uid://cxlrsuibgh48g"
+
+[resource]
+script = ExtResource("3_lp2as")
+WaveArray = Array[ExtResource("1_k2hy0")]([SubResource("Resource_0onfb")])
+metadata/_custom_type_script = "uid://cu0xicm6f2rtw"
