@@ -131,18 +131,21 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 80
 text = "Start Game"
 
 [node name="UpgradeShopButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 80
 text = "🛍️ Upgrade Shop"
 
 [node name="CreditButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Credit"
