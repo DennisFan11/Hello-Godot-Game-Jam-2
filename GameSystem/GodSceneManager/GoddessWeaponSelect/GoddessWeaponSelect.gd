@@ -331,7 +331,7 @@ func _prepare_weapon_selection():
 	right_weapon.move_to(node2d, %GlueLayer)
 	weapon_buttons[0].text = left_weapon.NAME
 	weapon_descriptions[0].text = left_weapon.DESC
-	weapon_buttons[1].text = "你掉的武器"
+	weapon_buttons[1].text = "女神頭上的武器"
 	weapon_buttons[2].text = right_weapon.NAME
 	weapon_descriptions[2].text = right_weapon.DESC
 	left_weapon.visible = false
@@ -451,6 +451,7 @@ func _on_weapon_selected(button_index: int):
 	var _new_weapon: Weapon
 	# 如果是 weapon_id == "Main"
 	if weapon_id == "Main":
+		_main_weapon = main_weapon
 		#因為選自己的(誠實)，送一個隨機新武器
 		_new_weapon = WeaponManager.create_random_weapon()
 	else:
