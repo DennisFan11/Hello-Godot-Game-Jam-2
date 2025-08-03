@@ -24,6 +24,9 @@ var SCENE := {
 	"Level4": {
 		"file": preload("uid://cw45uprex267m")
 	},
+	"Level5": {
+		"file": preload("uid://deqbuv8vdfbuf")
+	},
 	"Level6": {
 		"file": preload("uid://jghh2wj4o126")
 	},
