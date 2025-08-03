@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 
 func _ready() -> void:
@@ -12,7 +12,7 @@ func _on_upgrade_shop_button_pressed() -> void:
 	await CoreManager.goto_scene("UpgradeShop")
 
 
-func _on_credit_button_button_down() -> void:
+func _on_credit_button_pressed() -> void:
 	CoreManager.goto_scene("Endding")
 
 	

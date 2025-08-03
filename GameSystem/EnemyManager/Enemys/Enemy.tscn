@@ -53,7 +53,7 @@ collision_mask = 3
 script = ExtResource("1_hamuk")
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_sjbhv")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]

@@ -11,6 +11,6 @@ func _inside():
 func _spawn_enemy():
 	var rand_pos = Vector2(randfn(-10, 10), randfn(-10, 10))
 	_enemy_manager.spawn_enemy_force(
-		_enemy_manager.get_enemy("B"),
+		"Slime",
 		global_position + rand_pos
 	)

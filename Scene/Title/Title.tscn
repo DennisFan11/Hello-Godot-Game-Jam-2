@@ -1,14 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg4ji6py6jgn8"]
+[gd_scene load_steps=30 format=3 uid="uid://bg4ji6py6jgn8"]
 
 [ext_resource type="Script" uid="uid://b2k1ue4nboo5g" path="res://Scene/Title/Title.gd" id="1_o7trp"]
 [ext_resource type="Texture2D" uid="uid://dbheh2ownuj1e" path="res://Scene/Title/asset/TitleBackground.webp" id="2_3vhpb"]
+[ext_resource type="Texture2D" uid="uid://dn354hr6eoo5d" path="res://Asset/Image/book/book.png" id="3_0qc81"]
+[ext_resource type="Texture2D" uid="uid://c1j0flfjkigpq" path="res://Asset/Image/book/Single/1.png" id="4_ap454"]
+[ext_resource type="Texture2D" uid="uid://bosejr177i8nw" path="res://Asset/Image/book/Single/2.png" id="5_i4c4r"]
+[ext_resource type="Texture2D" uid="uid://c5ulsjuk7dxst" path="res://Asset/Image/book/Single/3.png" id="6_8cbpv"]
+[ext_resource type="Texture2D" uid="uid://bonwajwpqomu2" path="res://Asset/Image/book/Single/4.png" id="7_gw025"]
+[ext_resource type="Texture2D" uid="uid://crv7sem1apq25" path="res://Asset/Image/book/Single/5.png" id="8_ee2aq"]
+[ext_resource type="Texture2D" uid="uid://c8c1u7hy12jml" path="res://Asset/Image/book/Single/6.png" id="9_nurfl"]
+[ext_resource type="Texture2D" uid="uid://dwkutbmdqnfic" path="res://Asset/Image/book/Single/7.png" id="10_w4irx"]
+[ext_resource type="Texture2D" uid="uid://ccddqhpd6fftt" path="res://Asset/Image/book/Multiple/1.png" id="11_1kyvd"]
+[ext_resource type="Texture2D" uid="uid://bghowrxlo81su" path="res://Asset/Image/book/Multiple/2.png" id="12_8ypbq"]
+[ext_resource type="Texture2D" uid="uid://p22hv6cdcxq3" path="res://Asset/Image/book/Multiple/3.png" id="13_p3vf5"]
+[ext_resource type="Texture2D" uid="uid://c4vvv8r2fmiyl" path="res://Asset/Image/book/Multiple/4.png" id="14_68844"]
+[ext_resource type="Texture2D" uid="uid://q7lw5nic5k2p" path="res://Asset/Image/book/Multiple/5.png" id="15_olu14"]
+[ext_resource type="Texture2D" uid="uid://cg3btllhhxoop" path="res://Asset/Image/book/Multiple/6.png" id="16_qmo2o"]
+[ext_resource type="Texture2D" uid="uid://c008b51nfgl5d" path="res://Asset/Image/book/Multiple/7.png" id="17_ppyov"]
+[ext_resource type="Texture2D" uid="uid://bia8xi8x3pau4" path="res://Asset/Image/book/Multiple/8.png" id="18_4jreh"]
+[ext_resource type="Texture2D" uid="uid://f0ushcrvyjug" path="res://Asset/Image/book/Multiple/9.png" id="19_p78cs"]
+[ext_resource type="Texture2D" uid="uid://de6inicuoxxrh" path="res://Asset/Image/book/Multiple/10.png" id="20_ytsya"]
+[ext_resource type="Texture2D" uid="uid://uwcmg81wiptu" path="res://Asset/Image/book/Multiple/11.png" id="21_oi4mb"]
+[ext_resource type="Texture2D" uid="uid://b705b5p6g5wfl" path="res://Asset/Image/book/Multiple/12.png" id="22_mu2j6"]
+[ext_resource type="Texture2D" uid="uid://d2qhmf1w6fb3q" path="res://Asset/Image/book/Multiple/13.png" id="23_0br3i"]
+[ext_resource type="Texture2D" uid="uid://bhwy7dw1t6ijk" path="res://Asset/Image/book/Multiple/14.png" id="24_4x3pi"]
+[ext_resource type="Texture2D" uid="uid://dtupyjsvg624t" path="res://Asset/Image/book/Multiple/15.png" id="25_7tkrl"]
 
-[node name="Title" type="Node2D"]
+[sub_resource type="Animation" id="Animation_ap454"]
+resource_name = "page_turn_single"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("4_ap454"), ExtResource("5_i4c4r"), ExtResource("6_8cbpv"), ExtResource("7_gw025"), ExtResource("8_ee2aq"), ExtResource("9_nurfl"), ExtResource("10_w4irx"), null]
+}
+
+[sub_resource type="Animation" id="Animation_i4c4r"]
+resource_name = "page_turn_multiple"
+length = 1.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("11_1kyvd"), ExtResource("12_8ypbq"), ExtResource("13_p3vf5"), ExtResource("14_68844"), ExtResource("15_olu14"), ExtResource("16_qmo2o"), ExtResource("17_ppyov"), ExtResource("18_4jreh"), ExtResource("19_p78cs"), ExtResource("20_ytsya"), ExtResource("21_oi4mb"), ExtResource("22_mu2j6"), ExtResource("23_0br3i"), ExtResource("24_4x3pi"), ExtResource("25_7tkrl"), null]
+}
+
+[sub_resource type="Animation" id="Animation_2pnit"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2pnit"]
+_data = {
+&"RESET": SubResource("Animation_2pnit"),
+&"page_turn_multiple": SubResource("Animation_i4c4r"),
+&"page_turn_single": SubResource("Animation_ap454")
+}
+
+[node name="Title" type="CanvasLayer"]
 script = ExtResource("1_o7trp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,7 +94,22 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_3vhpb")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="book" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0qc81")
+
+[node name="page" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 150.0
 offset_top = 150.0
 offset_right = 1020.0
@@ -27,33 +120,38 @@ bbcode_enabled = true
 text = "Title"
 scroll_active = false
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 80
 text = "Start Game"
 
-[node name="UpgradeShopButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="UpgradeShopButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 80
 text = "🛍️ Upgrade Shop"
 
-[node name="CreditButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="CreditButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Credit"
 
-[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/StartButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/UpgradeShopButton" to="." method="_on_upgrade_shop_button_pressed"]
-[connection signal="button_down" from="CanvasLayer/CenterContainer/VBoxContainer/CreditButton" to="." method="_on_credit_button_button_down"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2pnit")
+}
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/UpgradeShopButton" to="." method="_on_upgrade_shop_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CreditButton" to="." method="_on_credit_button_pressed"]
