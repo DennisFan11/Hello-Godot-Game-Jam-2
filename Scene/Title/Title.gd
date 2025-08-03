@@ -1,10 +1,12 @@
 extends CanvasLayer
 
-
 func _ready() -> void:
 	SoundManager.play_bgm("title_music")
+	%AnimationPlayer.play("page_turn_multiple")
 
 func _on_button_pressed() -> void:
+	%AnimationPlayer.play("page_turn_single")
+	await %AnimationPlayer.animation_finished
 	LevelManager.start_game()
 
 
