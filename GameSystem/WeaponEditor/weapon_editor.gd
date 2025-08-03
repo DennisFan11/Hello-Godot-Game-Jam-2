@@ -121,11 +121,13 @@ func _on_selected_weapon(selected_weapon: Weapon):
 	%FinishButton.disabled = true
 	_new_weapon.move_to(%SelectedMarker, %GlueLayer)
 
-func _rebind_weapon_event()-> void:
+func _rebind_weapon_event() -> void:
 	if _new_weapon:
 		for i: Weapon in _new_weapon.get_all_weapon():
-			for j in i.on_click.get_connections():
-				i.on_click.disconnect(j)
+			# get_connections() 返回 Dictionary 數組，需要取出 callable
+			for connection_dict in i.on_click.get_connections():
+				var callable = connection_dict["callable"]
+				i.on_click.disconnect(callable)
 	if _base_weapon:
 		for i: Weapon in _base_weapon.get_all_weapon():
 			if not i.on_click.is_connected(_on_selected_weapon):
