@@ -446,9 +446,23 @@ func _on_weapon_selected(button_index: int):
 		await _show_dialogue_stage("talk4-1")
 	else:
 		await _show_dialogue_stage("talk4-2")
+	
+	var _main_weapon: Weapon
+	var _new_weapon: Weapon
+	# 如果是 weapon_id == "Main"
+	if weapon_id == "Main":
+		#因為選自己的(誠實)，送一個隨機新武器
+		_new_weapon = WeaponManager.create_random_weapon()
+	else:
+		#因為選新的(說謊)，使新武器成為主武器參數，舊武器成為新武器參數
+		_main_weapon = weapon
+		_new_weapon = main_weapon
+		_new_weapon.position = Vector2.ZERO
+		_new_weapon.rotation_degrees = 0
+
 	# 顯示女神的回應並等待完成
 	await _on_journey_start()
-	_god_scene_manager.end_event(main_weapon, weapon)
+	_god_scene_manager.end_event(_main_weapon, _new_weapon)
 
 func _on_journey_start():
 	"""開始旅程"""
