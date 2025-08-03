@@ -26,7 +26,7 @@ func try_move(delta:float):
 		var rad = deg_to_rad(90 + default_degree * (-1 if pos.x > 0.0 else 1))
 
 		# 初始速度
-		if target.position + MAX_SPEED <= _player_manager.get_player_position():
+		if (target.position + MAX_SPEED).y <= _player_manager.get_player_position().y:
 			var v0 = sqrt(
 				(target.get_gravity().y * pos.x ** 2) /
 				(2 * cos(rad) ** 2 * (pos.x * tan(rad) + pos.y))
