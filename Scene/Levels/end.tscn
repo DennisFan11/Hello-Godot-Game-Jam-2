@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://go8blnweufr4"]
+[gd_scene load_steps=4 format=3 uid="uid://go8blnweufr4"]
 
 [ext_resource type="PackedScene" uid="uid://bgtiwbv5cfrsi" path="res://Scene/Levels/Template.tscn" id="1_5414y"]
 [ext_resource type="PackedScene" uid="uid://bcvphcm5mrft5" path="res://Asset/Class/hint/Hinter.tscn" id="2_47n1o"]
 [ext_resource type="Resource" uid="uid://bt2d8cax35pw5" path="res://GameSystem/WaveManager/PreWaveConfigs/SafeAreaWaveConfig.tres" id="2_yfkdp"]
-[ext_resource type="PackedScene" uid="uid://765pk5g57qr3" path="res://GameSystem/_shared/Teleport/Teleport.tscn" id="3_yfkdp"]
 
 [node name="GameManager" instance=ExtResource("1_5414y")]
 
@@ -2240,6 +2239,9 @@ _map_data = [{
 Radius = 100.0
 Type = 1
 
+[node name="Teleport" parent="." index="4"]
+position = Vector2(545, -106)
+
 [node name="Lake" parent="TestNode" index="0"]
 visible = false
 
@@ -2263,8 +2265,5 @@ position = Vector2(425, -97)
 text = "Please enter the teleport point to return to the title."
 text_size = 32
 dist = 72.0
-
-[node name="Teleport" parent="TestNode" index="4" instance=ExtResource("3_yfkdp")]
-position = Vector2(545, -106)
 
 [editable path="TerrainManager"]
