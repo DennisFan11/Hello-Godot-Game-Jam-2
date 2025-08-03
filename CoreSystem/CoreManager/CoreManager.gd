@@ -40,9 +40,9 @@ var SCENE := {
 	"UpgradeShop": {
 		"file": preload("uid://c0p31kfgvdkkq")
 	},
-	"Endding": {
-		"file": preload("uid://cv2bm6xikqx7q")
-	},
+	#"Endding": {
+		#"file": preload("uid://cv2bm6xikqx7q")
+	#},
 	"GoddessWeaponSelect": {
 		"file": preload("uid://dbdeoxecjlqqg")
 	}

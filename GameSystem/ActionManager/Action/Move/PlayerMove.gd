@@ -102,8 +102,12 @@ func try_move(delta: float) -> void:
 	target.velocity = new_velocity
 	_hint_component_update()
 
+var _teloport: Node2D
 func _hint_component_update()-> void:
 	%Arrow.set_vec(target.velocity)
+	
+	var vec = (_teloport.global_position - target.global_position).normalized() * 30.0
+	%PortolArrow.set_vec(vec)
 	
 
 

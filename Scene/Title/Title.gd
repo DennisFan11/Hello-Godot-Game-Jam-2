@@ -23,7 +23,7 @@ func _on_upgrade_shop_button_pressed() -> void:
 func _disable_buttons() -> void:
 	%StartButton.disabled = true
 	%UpgradeShopButton.disabled = true
-	%CreditButton.disabled = true
+	#%CreditButton.disabled = true
 
 	
 #var _rot: float = -0.116937
