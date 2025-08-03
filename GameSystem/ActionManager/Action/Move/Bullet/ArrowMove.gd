@@ -1,7 +1,7 @@
 class_name ArrowMove
 extends BulletMove
 
-@export var default_degree:int = 45
+@export_range(1, 89) var default_degree:int = 45
 
 var jump:bool = true
 
@@ -23,7 +23,7 @@ func try_move(delta:float):
 		var pos = _get_player_distance()
 		# 初始角度
 		# 向上45度(90 +- 45)
-		var rad = deg_to_rad(90 + default_degree * (-1 if pos.x > 0.0 else 1))
+		var rad = deg_to_rad(90 + default_degree * (1 if pos.x < 0.0 else -1))
 
 		# 初始速度
 		var in_range = pos.x * tan(rad) + pos.y
@@ -35,7 +35,9 @@ func try_move(delta:float):
 			
 			new_velocity = Vector2(v0 * cos(rad), -v0 * sin(rad))
 		else:
-			new_velocity = Vector2(MAX_SPEED.x, -MAX_SPEED.y)
+			new_velocity = Vector2(MAX_SPEED.x , -MAX_SPEED.y)
+			if pos.x < 0.0:
+				new_velocity.x = -new_velocity.x
 
 		# 限制最高速度
 		new_velocity = Vector2(
