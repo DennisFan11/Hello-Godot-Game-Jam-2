@@ -1,11 +1,11 @@
 class_name UpgradeLevel
 extends SaveResource
 
-var default_icon = "🔧"
+var default_icon = ""
 
-var config_dict:Dictionary = {
+var config_dict: Dictionary = {
 	"HEALTH": {
-		"icon": "❤️",
+		"icon": "",
 		"name": "生命值強化",
 		"description": "增加最大生命值",
 		"stats": "max_health",
@@ -14,7 +14,7 @@ var config_dict:Dictionary = {
 		"cost": 1
 	},
 	"ATTACK": {
-		"icon": "⚔️",
+		"icon": "",
 		"name": "攻擊力強化",
 		"description": "增加攻擊傷害",
 		"stats": "attack_damage",
@@ -23,7 +23,7 @@ var config_dict:Dictionary = {
 		"cost": 1
 	},
 	"SPEED": {
-		"icon": "💨",
+		"icon": "",
 		"name": "移動速度強化",
 		"description": "增加移動速度",
 		"stats": "move_speed",
@@ -32,7 +32,7 @@ var config_dict:Dictionary = {
 		"cost": 1
 	},
 	"JUMP": {
-		"icon": "🦘",
+		"icon": "",
 		"name": "跳躍力強化",
 		"description": "增加跳躍高度",
 		"stats": "jump_power",
@@ -41,7 +41,7 @@ var config_dict:Dictionary = {
 		"cost": 1
 	},
 	"COOLDOWN_REDUCTION": {
-		"icon": "⏰",
+		"icon": "",
 		"name": "技能冷卻縮減",
 		"description": "減少技能冷卻時間",
 		"stats": "skill_cooldown_reduction",
@@ -52,8 +52,7 @@ var config_dict:Dictionary = {
 }
 
 var point = 0
-var level_dict:Dictionary = {}
-
+var level_dict: Dictionary = {}
 
 
 func get_data():
@@ -65,7 +64,6 @@ func get_data():
 func set_data(data):
 	point = data.get("point", point)
 	level_dict = data.get("level_dict", level_dict)
-
 
 
 func get_upgrade_type():
@@ -100,8 +98,7 @@ func get_upgrade_info(upgrade_type):
 	})
 
 
-
-func can_upgrade(upgrade_type:String, count:int = 1) -> int:
+func can_upgrade(upgrade_type: String, count: int = 1) -> int:
 	if not upgrade_type in config_dict \
 	or count <= 0:
 		return 0
@@ -119,7 +116,7 @@ func can_upgrade(upgrade_type:String, count:int = 1) -> int:
 
 	return can_upgrade_level
 
-func try_upgrade(upgrade_type:String, count:int = 1) -> int:
+func try_upgrade(upgrade_type: String, count: int = 1) -> int:
 	count = can_upgrade(upgrade_type)
 	if count > 0:
 		add_upgrade_point(-get_config(upgrade_type).cost * count)

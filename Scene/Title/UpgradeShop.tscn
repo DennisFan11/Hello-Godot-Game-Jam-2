@@ -142,7 +142,7 @@ alignment = 1
 [node name="AddExpButton" type="Button" parent="VBoxContainer/ButtonsPanel/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_3")
-text = "➕ 測試：增加經驗 (+100)"
+text = "➕ 測試：增加金幣 (+50)"
 flat = true
 
 [node name="ResetButton" type="Button" parent="VBoxContainer/ButtonsPanel/HBoxContainer"]
