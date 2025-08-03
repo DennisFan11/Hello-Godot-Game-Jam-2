@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcvphcm5mrft5"]
+[gd_scene load_steps=2 format=3 uid="uid://bcvphcm5mrft5"]
 
 [ext_resource type="Script" uid="uid://nrcxreuu5005" path="res://Asset/Class/hint/hinter.gd" id="1_dxmsb"]
-[ext_resource type="FontFile" uid="uid://ccjd5bwkp56le" path="res://Asset/Fonts/Sour_Gummy/SDF_light.ttf" id="2_22n0j"]
 
 [node name="Hinter" type="Node2D"]
 script = ExtResource("1_dxmsb")
@@ -24,7 +23,6 @@ offset_bottom = 98.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("2_22n0j")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 horizontal_alignment = 1
