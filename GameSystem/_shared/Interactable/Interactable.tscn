@@ -21,6 +21,7 @@ offset_left = -108.0
 offset_top = -69.0
 offset_right = 108.0
 offset_bottom = -6.0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[F] 丟掉你的武器"
 fit_content = true

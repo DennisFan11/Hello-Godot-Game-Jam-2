@@ -137,6 +137,7 @@ offset_right = 25.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CircleLine" type="Line2D" parent="CanvasGroup"]
 material = SubResource("CanvasItemMaterial_fjbv3")

@@ -17,6 +17,7 @@ offset_left = -66.0
 offset_top = 7.0
 offset_right = 62.0
 offset_bottom = 47.0
+mouse_filter = 2
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1

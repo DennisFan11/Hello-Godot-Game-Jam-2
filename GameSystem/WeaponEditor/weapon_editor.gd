@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 	#%BaseWeaponMarker.global_position = _player_manager.get_player_position()
 	_weapon_shader_update()
 
-func _unhandled_input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if event is InputEventPanGesture:
 		%SelectedMarker.rotation -= 2.0 * event.delta.x * get_process_delta_time()
 	if event.is_action_pressed("left_click"):
