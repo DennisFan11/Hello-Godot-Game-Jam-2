@@ -16,7 +16,11 @@ var id: String = "sword"
 
 
 
-var next_weapon: Weapon
+var next_weapon: Weapon:
+	get:
+		if %NextWeaponContainer.get_children().size()>=1:
+			return %NextWeaponContainer.get_children()[0]
+		return null
 var glue_layer: Node2D:
 	set(new):
 		glue_layer = new

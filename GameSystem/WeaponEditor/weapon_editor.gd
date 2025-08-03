@@ -56,6 +56,10 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventPanGesture:
 		%SelectedMarker.rotation -= 2.0 * event.delta.x * get_process_delta_time()
+	if event.is_action_pressed("scroll_down"):
+		%SelectedMarker.rotation -= 2.0* get_process_delta_time()
+	if event.is_action_pressed("scroll_up"):
+		%SelectedMarker.rotation += 2.0* get_process_delta_time()
 	if event.is_action_pressed("left_click"):
 		try_merge()
 
